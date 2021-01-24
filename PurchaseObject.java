@@ -1,10 +1,8 @@
-package SE;
-
-public class PurchaseObject
+public class PurchaseObject extends PurchaseList
 {
-    String name;
-    int id;
-    int amount;
+    private String name;
+    private int id;
+    private int amount;
     
     //create new PurchaseObject
     PurchaseObject(String nameInit, int idInit, int amountInit)
@@ -14,16 +12,38 @@ public class PurchaseObject
         this.amount = amountInit;
     }
 
+    //calculate new value for Subtotal from class purchaseList when adding an object from the list  ______!!!!!!!______
+    public float changeSubtotalADD(float oldSubtotal)
+    {
+        float subtotal = oldSubtotal;
+        subtotal = subtotal + (/*price **/ amount);
+        return subtotal;
+    }
+
+    //calculate new value for Subtotal from class purchaseList when removing an object from the list  ______!!!!!!!______
+    public float changeSubtotalREM(float oldSubtotal)
+    {
+        float subtotal = oldSubtotal;
+        subtotal = subtotal - (/*price **/ amount);
+        return subtotal;
+    }
+
     //set new value for Amount
     public void setAmount(int newAmount)
     {
-        amount = newAmount;
+        this.amount = newAmount;
     }
 
     //set new value for Id
     public void setId(int newId)
     {
-        id = newId;
+        this.id = newId;
+    }
+
+    //request the current value for Name
+    public String getName()
+    {
+        return name;
     }
 
     //request the current value for Amount
@@ -36,11 +56,5 @@ public class PurchaseObject
     public int getId()
     {
         return id;
-    }
-
-    //set new value for Subtotal from class Grocerylist
-    public void changeSubtotal(float newSubtotal)
-    {
-        subtotal = newSubtotal;
     }
 }
