@@ -2,13 +2,13 @@ class Category {
     String name;
 
     //create new Category
-    Category(String nameInit) {
-        name = nameInit;
+    Category(String name) {
+        name = name;
     }
 
     //set new value for name
-    public void setName(String newName) {
-        name = newName;
+    public void setName(String name) {
+        name = name;
     }
 
     //request the current value for name
