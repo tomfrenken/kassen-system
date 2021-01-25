@@ -14,9 +14,12 @@ public class PurchaseList
     }
 
     //add a new PurchaseObject at the end of the list
-    public void newPurchaseObject(String nameInit, int idInit, int amountInit)
+    public void newPurchaseObject(String name, int id, int amount)
     {
-        PurchaseObject temp = new PurchaseObject(nameInit,idInit,amountInit);
+        if idInPurchaseList(int id) {
+
+        }
+        PurchaseObject temp = new PurchaseObject(name,idInit,amountInit);
         purchaseList.add(temp);
         this.subtotal = temp.changeSubtotalADD(subtotal);
     }
