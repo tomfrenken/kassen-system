@@ -2,23 +2,15 @@ package src.model;
 
 import java.util.ArrayList;
 
-public class PurchaseList {
+public class PurchaseList extends ArrayList<Item> {
     //subtotal of the Price all Objects in the list
     private float subtotal;
-    //the PurchaseList
-    private ArrayList<Product, int> purchaseList;
-
-    //create new purchaseList
-    PurchaseList()
-    {
-        this.purchaseList = new ArrayList<PurchaseObject>();
-    }
 
     //add a new PurchaseObject at the end of the list
-    public void newPurchaseObject(String name, int id, int amount) {
-        if (idInPurchaseList(int id)) {
-            for (Object obj : this.purchaseList) {
-                if (obj.getId() == id) {
+    public void newItem(Product product, int amount) {
+        if (this.product.get == ) {
+            for (Item item : this.purchaseList) {
+                if (item.product.id == id) {
                     obj.setAmount(amount);
                 }
             }

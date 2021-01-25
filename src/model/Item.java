@@ -5,34 +5,28 @@ public class Item {
     private int amount;
     
     // Create a new PurchaseObject
-    PurchaseObject(String name, int id, int amount)
-    {
-        this.name = name;
-        this.id = id;
+    Item(Product product, int amount) {
+        this.product = product;
         this.amount = amount;
     }
+
     // Set a new value for amount
-    public void setAmount(int newAmount)
+    public void setAmount(int amount)
     {
-        this.amount = newAmount;
+        this.amount = amount;
     }
 
-    // Set a new value for id
-    public void setId(int newId)
-    {
-        this.id = newId;
-    }
 
     // Request the current value for name
-    public String getName()
+    public String getProduct()
     {
-        return name;
+        return this.product;
     }
 
     // Request the current value for amount
     public int getAmount()
     {
-        return amount;
+        return this.amount;
     }
 
     // Request the current value for id
