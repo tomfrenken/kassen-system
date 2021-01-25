@@ -5,11 +5,11 @@ public class PurchaseObject
     private int amount;
     
     //create new PurchaseObject
-    PurchaseObject(String nameInit, int idInit, int amountInit)
+    PurchaseObject(String name, int id, int amount)
     {
-        this.name = nameInit;
-        this.id = idInit;
-        this.amount = amountInit;
+        this.name = name;
+        this.id = id;
+        this.amount = amount;
     }
 
     //calculate new value for Subtotal from class purchaseList when adding an object from the list  ______!!!!!!!______
