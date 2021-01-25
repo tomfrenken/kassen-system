@@ -1,5 +1,6 @@
-class Product
-{
+package src.model;
+
+class Product {
     String name;
     int id;
     int stock;

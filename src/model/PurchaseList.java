@@ -1,11 +1,12 @@
+package src.model;
+
 import java.util.ArrayList;
 
-public class PurchaseList
-{
+public class PurchaseList {
     //subtotal of the Price all Objects in the list
     private float subtotal;
     //the PurchaseList
-    private ArrayList<PurchaseObject> purchaseList; 
+    private ArrayList<Product> purchaseList;
 
     //create new purchaseList
     PurchaseList()
@@ -14,12 +15,16 @@ public class PurchaseList
     }
 
     //add a new PurchaseObject at the end of the list
-    public void newPurchaseObject(String name, int id, int amount)
-    {
-        if idInPurchaseList(int id) {
+    public void newPurchaseObject(String name, int id, int amount) {
+        if (idInPurchaseList(int id)) {
+            for (Product product : this.purchaseList) {
+                if (obj.getId() == id) {
+                    obj.setAmount(amount);
+                }
+            }
 
         }
-        PurchaseObject temp = new PurchaseObject(name,idInit,amountInit);
+        PurchaseObject temp = new PurchaseObject(name, id, amount);
         purchaseList.add(temp);
         this.subtotal = temp.changeSubtotalADD(subtotal);
     }
@@ -33,8 +38,7 @@ public class PurchaseList
     }
 
     //set a new Amount for the PurchaseObject at the specified index 
-    public void chageAmount(int index, int newAmount)
-    {
+    public void changeAmount(int index, int newAmount) {
         PurchaseObject temp = purchaseList.get(index);
         temp.setAmount(newAmount);
         this.subtotal = temp.changeSubtotalADD(subtotal);
@@ -58,6 +62,14 @@ public class PurchaseList
     public void setSubtotal(float newSubtotal)
     {
         this.subtotal = newSubtotal;
+    }
+
+    // calculate new value for Subtotal from class purchaseList when removing an object from the list  ______!!!!!!!______
+    public float changeSubtotalREM(float oldSubtotal)
+    {
+        float subtotal = oldSubtotal;
+        subtotal = subtotal - (/*price **/ amount);
+        return subtotal;
     }
 
     public float getSubtotal()
