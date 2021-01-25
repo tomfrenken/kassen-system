@@ -1,5 +1,4 @@
-public class CategoryList
-{
+public class CategoryList {
     private ArrayList<Category> categoryList;
 
     CategoryList() {
@@ -25,16 +24,16 @@ public class CategoryList
 
     }
 
-    public void showList() {
-        
+    public ArrayList showList() {
+        return categoryList
     }
 
     public ArrayList getCategory(String search) {
-        ArrayList<Category> result =new ArrayList<Category>
-        search = search.subSequence(0,search.length-1);
-        for(int i = 0; i < categoryList.length()-1; i++) {
+        ArrayList<Category> result = new ArrayList<Category>
+        search = search.subSequence(0,search.length - 1);
+        for (int i = 0; i < categoryList.length() - 1; i++) {
             Category temp = categoryList.get(i);
-            if(temp.name.contains(search)) {
+            if (temp.name.contains(search)) {
                 result.add(temp)
             }
         }
@@ -42,10 +41,10 @@ public class CategoryList
     }
 
     public boolean categoryInList(String search) {
-        search = search.subSequence(0,search.length-1);
-        for(int i = 0; i < categoryList.length()-1; i++) {
+        search = search.subSequence(0,search.length - 1);
+        for (int i = 0; i < categoryList.length() - 1; i++) {
             Category temp = categoryList.get(i);
-            if(temp.name.contains(search)) {
+            if (temp.name.contains(search)) {
                 return True;
             }
         }
