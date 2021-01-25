@@ -2,22 +2,23 @@ package src.model;
 
 import java.util.ArrayList;
 
-public class PurchaseList extends ArrayList<Item> {
+public class PurchaseList {
     //subtotal of the Price all Objects in the list
-    private float subtotal;
+    private float subtotal = 0;
+    private ArrayList<Item> purchaseList;
+
+    PurchaseList() {
+        this.purchaseList = new ArrayList<Item>();
+    }
 
     //add a new PurchaseObject at the end of the list
     public void newItem(Product product, int amount) {
-        if (this.product.get == ) {
-            for (Item item : this.purchaseList) {
-                if (item.product.id == id) {
-                    obj.setAmount(amount);
-                }
+        for (Item item : ArrayList<Item>) {
+            if (this[item].getProduct() == product) {
+                this[item].changeAmount(amount);
+                changeSubtotal(amount);
             }
         }
-        PurchaseObject temp = new PurchaseObject(name, id, amount);
-        purchaseList.add(temp);
-        this.subtotal = temp.changeSubtotalADD(subtotal);
     }
     
     //remove PurchaseObject at the specified index
@@ -42,26 +43,20 @@ public class PurchaseList extends ArrayList<Item> {
     }
 
     //finish old purchase and clear purchaseList ______!!!!!!!______
-    public void finishPurchase()
-    {
+    public void finishPurchase() {
         //return subtotal to UI
         //reduce Stock by amount
         purchaseList.clear();
-
     }
 
-    public void setSubtotal(float newSubtotal)
-    {
-        this.subtotal = newSubtotal;
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
     }
 
-    // calculate new value for Subtotal from class purchaseList when removing an object from the list  ______!!!!!!!______
-    public float changeSubtotalREM(float oldSubtotal)
-    {
-        float subtotal = oldSubtotal;
-        subtotal = subtotal - (/*price **/ amount);
-        return subtotal;
+    public void changeSubtotal(int change) {
+        this.setSubtotal(this.subtotal + change);
     }
+
 
     public float getSubtotal()
     {

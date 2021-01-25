@@ -16,22 +16,18 @@ public class Item {
         this.amount = amount;
     }
 
-
     // Request the current value for name
-    public String getProduct()
-    {
+    public Product getProduct() {
         return this.product;
     }
 
     // Request the current value for amount
-    public int getAmount()
-    {
+    public int getAmount() {
         return this.amount;
     }
 
-    // Request the current value for id
-    public int getId()
-    {
-        return id;
+    // Request the current value for amount
+    public void changeAmount(int change) {
+        this.setAmount(this.amount + change);
     }
 }
