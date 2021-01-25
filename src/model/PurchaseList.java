@@ -6,7 +6,7 @@ public class PurchaseList {
     //subtotal of the Price all Objects in the list
     private float subtotal;
     //the PurchaseList
-    private ArrayList<Product> purchaseList;
+    private ArrayList<Product, int> purchaseList;
 
     //create new purchaseList
     PurchaseList()
@@ -17,12 +17,11 @@ public class PurchaseList {
     //add a new PurchaseObject at the end of the list
     public void newPurchaseObject(String name, int id, int amount) {
         if (idInPurchaseList(int id)) {
-            for (Product product : this.purchaseList) {
+            for (Object obj : this.purchaseList) {
                 if (obj.getId() == id) {
                     obj.setAmount(amount);
                 }
             }
-
         }
         PurchaseObject temp = new PurchaseObject(name, id, amount);
         purchaseList.add(temp);

@@ -9,13 +9,13 @@ class Product {
     float baseprice;
 
     //create new product
-    Product(String nameInit, int idInit, int stockInit, float weightInit, float priceInit, float basepriceInit)
+    Product(String name, int id, int stock, float weight, float price, float baseprice)
     {
-        name = nameInit;
-        id = idInit;
-        stock = stockInit;
-        weight = weightInit;
-        price = priceInit;
-        baseprice = basepriceInit;
+        this.name = name;
+        this.id = id;
+        this.stock = stock;
+        this.weight = weight;
+        this.price = price;
+        this.baseprice = baseprice;
     }
 }
