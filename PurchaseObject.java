@@ -1,4 +1,4 @@
-public class PurchaseObject extends PurchaseList
+public class PurchaseObject
 {
     private String name;
     private int id;
