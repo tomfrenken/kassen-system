@@ -11,8 +11,7 @@ public class Item {
     }
 
     // Set a new value for amount
-    public void setAmount(int amount)
-    {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

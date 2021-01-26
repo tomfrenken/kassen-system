@@ -12,9 +12,10 @@ public class PurchaseList {
         this.purchaseList = new ArrayList<Item>();
     }
 
-    //add a new PurchaseObject at the end of the list
-    public void newItem(Product product, int amount) {
-        purchaseList.forEach(item -> {
+    //add a Product to the list
+    public void addProduct(Product product, int amount) {
+        //
+        this.purchaseList.forEach(item -> {
             if (item.getProduct() == product) {
                 item.changeAmount(amount);
                 changeSubtotal(amount * item.getProduct().getPrice());
@@ -23,23 +24,33 @@ public class PurchaseList {
     }
 
     //remove PurchaseObject at the specified index
-    public void removePurchaseObject(int index)
-    {
-        PurchaseObject temp = purchaseList.get(index);
-        this.subtotal = temp.changeSubtotalREM(subtotal);
-        purchaseList.remove(temp);
+    public void removeProduct(Product product) {
+        this.purchaseList.forEach(item -> {
+            if (item.getProduct() == product) {
+                float change = item.getAmount();
+                float price = item.getProduct().getPrice();
+                float changeSubtotal = -(change * price);
+                this.purchaseList.remove(item);
+                changeSubtotal(changeSubtotal);
+            }
+        });
     }
 
     //set a new Amount for the PurchaseObject at the specified index 
-    public void changeAmount(int index, int newAmount) {
-        PurchaseObject temp = purchaseList.get(index);
-        temp.setAmount(newAmount);
-        this.subtotal = temp.changeSubtotalADD(subtotal);
+    public void changeAmount(Product product, int amount) {
+        this.purchaseList.forEach(item -> {
+            if (item.getProduct() == product) {
+                int change = amount - item.getAmount();
+                float price = item.getProduct().getPrice();
+                float changeSubtotal = change * price;
+                item.changeAmount(change);
+                changeSubtotal(changeSubtotal);
+            }
+        });
     }
 
     //clear purchaseList
-    public void cancelPuchase()
-    {
+    public void cancelPuchase() {
         purchaseList.clear();
     }
 
@@ -54,13 +65,14 @@ public class PurchaseList {
         this.subtotal = subtotal;
     }
 
+    public float getSubtotal() {
+        return this.subtotal;
+    }
+
     public void changeSubtotal(float change) {
-        this.setSubtotal(this.subtotal + change);
+        this.setSubtotal(this.getSubtotal() + change);
     }
 
 
-    public float getSubtotal()
-    {
-        return subtotal;
-    }
+
 }
