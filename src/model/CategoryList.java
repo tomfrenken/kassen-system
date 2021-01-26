@@ -1,15 +1,16 @@
+import java.util.ArrayList;
+
 public class CategoryList {
     private ArrayList<Category> categoryList;
 
     CategoryList() {
-        categroyList = new ArrayList<Category>
+        categoryList = new ArrayList<>();
     }
 
-    public void setCategroy(String name) {
-        Category temp = new Category(name);
-        for (int i = 0; i < categoryList.length() - 1; i++) {
+    public void setCategory(String name) {
+        for (int i = 0; i < categoryList.size() - 1; i++) {
             Category temp = categoryList.get(i);
-            if (temp.compareTo(name) > 0) {
+            if (temp.name.compareTo(name) > 0) {
                 categoryList.add(i,temp);
                 break;
             } else {
@@ -28,20 +29,16 @@ public class CategoryList {
         temp.setName(name);
     }
 
-    public void sort() {
-        
-    }
-
     public ArrayList<Category> showList() {
         return categoryList;
     }
 
     public ArrayList<Category> getCategory(String search) {
-        ArrayList<Category> result = new ArrayList<Category>
-        search = search.subSequence(0,search.length - 1);
-        for (int i = 0; i < categoryList.length() - 1; i++) {
+        ArrayList<Category> result = new ArrayList<>();
+        CharSequence sequence = search.subSequence(0,search.length() - 1);
+        for (int i = 0; i < categoryList.size() - 1; i++) {
             Category temp = categoryList.get(i);
-            if (temp.name.contains(search)) {
+            if (temp.name.contains(sequence)) {
                 result.add(temp);
             }
         }
@@ -49,13 +46,13 @@ public class CategoryList {
     }
 
     public boolean categoryInList(String search) {
-        search = search.subSequence(0,search.length - 1);
-        for (int i = 0; i < categoryList.length() - 1; i++) {
+        CharSequence sequence = search.subSequence(0, search.length() - 1);
+        for (int i = 0; i < categoryList.size() - 1; i++) {
             Category temp = categoryList.get(i);
-            if (temp.name.contains(search)) {
-                return True;
+            if (temp.name.contains(sequence)) {
+                return true;
             }
         }
-        return False;
+        return false;
     }
 }
