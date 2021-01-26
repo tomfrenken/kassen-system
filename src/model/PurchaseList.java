@@ -23,9 +23,12 @@ public class PurchaseList {
     }
 
     //remove PurchaseObject at the specified index
-    public void removePurchaseObject(int index)
-    {
-        PurchaseObject temp = purchaseList.get(index);
+    public void removePurchaseObject(Product product) {
+        purchaseList.forEach(item -> {
+                    if (item.getProduct() == product) {
+        }
+        float change = this
+        this.remove(product);
         this.subtotal = temp.changeSubtotalREM(subtotal);
         purchaseList.remove(temp);
     }
