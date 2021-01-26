@@ -1,5 +1,6 @@
 package src.model;
 
+import src.model.Item;
 import java.util.ArrayList;
 
 public class PurchaseList {
@@ -13,14 +14,14 @@ public class PurchaseList {
 
     //add a new PurchaseObject at the end of the list
     public void newItem(Product product, int amount) {
-        for (Item item : ArrayList<Item>) {
-            if (this[item].getProduct() == product) {
-                this[item].changeAmount(amount);
-                changeSubtotal(amount*this[item].getProduct());
+        purchaseList.forEach(item ->
+            if (item.getProduct() == product) {
+                item.changeAmount(amount);
+                changeSubtotal(amount * item.getProduct().getPrice());
             }
-        }
+        )
     }
-    
+
     //remove PurchaseObject at the specified index
     public void removePurchaseObject(int index)
     {

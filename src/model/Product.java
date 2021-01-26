@@ -44,7 +44,7 @@ class Product {
     }
 
     // Request the current value for id
-    public int getBasePrice() {
+    public float getBasePrice() {
         return this.basePrice;
     }
 }
