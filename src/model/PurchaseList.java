@@ -14,12 +14,12 @@ public class PurchaseList {
 
     //add a new PurchaseObject at the end of the list
     public void newItem(Product product, int amount) {
-        purchaseList.forEach(item ->
+        purchaseList.forEach(item -> {
             if (item.getProduct() == product) {
                 item.changeAmount(amount);
                 changeSubtotal(amount * item.getProduct().getPrice());
             }
-        )
+        });
     }
 
     //remove PurchaseObject at the specified index
@@ -54,7 +54,7 @@ public class PurchaseList {
         this.subtotal = subtotal;
     }
 
-    public void changeSubtotal(int change) {
+    public void changeSubtotal(float change) {
         this.setSubtotal(this.subtotal + change);
     }
 
