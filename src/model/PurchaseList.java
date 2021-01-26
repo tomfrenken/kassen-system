@@ -16,7 +16,7 @@ public class PurchaseList {
         for (Item item : ArrayList<Item>) {
             if (this[item].getProduct() == product) {
                 this[item].changeAmount(amount);
-                changeSubtotal(amount);
+                changeSubtotal(amount*this[item].getProduct());
             }
         }
     }
