@@ -59,8 +59,7 @@ public class PurchaseList {
     }
 
 
-    public float getSubtotal()
-    {
+    public float getSubtotal() {
         return subtotal;
     }
 }
