@@ -1,3 +1,6 @@
+package src.model;
+
+import src.model.Category;
 import java.util.ArrayList;
 
 public class CategoryList {

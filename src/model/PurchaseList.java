@@ -1,5 +1,6 @@
 package src.model;
 
+import src.model.Product;
 import src.model.Item;
 import java.util.ArrayList;
 
@@ -50,7 +51,7 @@ public class PurchaseList {
     }
 
     //clear purchaseList
-    public void cancelPuchase() {
+    public void cancelPurchase() {
         purchaseList.clear();
     }
 
