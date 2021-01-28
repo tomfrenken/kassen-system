@@ -49,7 +49,7 @@ public class PurchaseList {
     }
 
     //clear purchaseList
-    public void cancelPuchase() {
+    public void cancelPurchase() {
         purchaseList.clear();
     }
 

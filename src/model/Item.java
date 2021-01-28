@@ -1,5 +1,7 @@
 package model;
 
+import src.model.Product;
+
 public class Item {
     private Product product;
     private int amount;
