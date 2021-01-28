@@ -1,6 +1,6 @@
 package model;
 
-import src.model.Product;
+import model.Product;
 
 public class Item {
     private Product product;

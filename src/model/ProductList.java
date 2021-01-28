@@ -1,6 +1,5 @@
-package src.model;
+package model;
 
-import src.model.Product;
 import java.util.ArrayList;
 
 public class ProductList {
