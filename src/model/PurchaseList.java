@@ -1,7 +1,5 @@
-package src.model;
+package model;
 
-import src.model.Product;
-import src.model.Item;
 import java.util.ArrayList;
 
 public class PurchaseList {

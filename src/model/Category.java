@@ -1,4 +1,4 @@
-package src.model;
+package model;
 
 class Category {
     String name;
