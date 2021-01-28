@@ -12,7 +12,7 @@ public class CategoryList {
     public void setCategory(String name) {
         for (int i = 0; i < categoryList.size() - 1; i++) {
             Category temp = categoryList.get(i);
-            if (temp.name.compareTo(name) > 0) {
+            if (temp.getName().compareTo(name) > 0) {
                 categoryList.add(i,temp);
                 break;
             } else {
@@ -40,7 +40,7 @@ public class CategoryList {
         CharSequence sequence = search.subSequence(0,search.length() - 1);
         for (int i = 0; i < categoryList.size() - 1; i++) {
             Category temp = categoryList.get(i);
-            if (temp.name.contains(sequence)) {
+            if (temp.getName().contains(sequence)) {
                 result.add(temp);
             }
         }
@@ -51,7 +51,7 @@ public class CategoryList {
         CharSequence sequence = search.subSequence(0, search.length() - 1);
         for (int i = 0; i < categoryList.size() - 1; i++) {
             Category temp = categoryList.get(i);
-            if (temp.name.contains(sequence)) {
+            if (temp.getName().contains(sequence)) {
                 return true;
             }
         }

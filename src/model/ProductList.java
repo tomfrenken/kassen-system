@@ -11,8 +11,8 @@ public class ProductList {
 
     // unsorted adding to PL
     public void addProduct(String name, int id, int stock, float weight,
-                           float price, float basePrice) {
-        Product temp = new Product(name, id, stock, weight, price, basePrice);
+                           float price, float basePrice, Category category) {
+        Product temp = new Product(name, id, stock, weight, price, basePrice, category);
         productList.add(temp);
     }
 

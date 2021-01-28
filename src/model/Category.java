@@ -1,7 +1,10 @@
 package model;
 
-class Category {
-    String name;
+public class Category{
+    private String name;
+
+    //create new Category
+    Category() {}
 
     //create new Category
     Category(String name) {

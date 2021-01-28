@@ -10,13 +10,14 @@ public class Product {
     private Category category;
 
     //create new product
-    public Product(String name, int id, int stock, float weight, float price, float basePrice) {
+    public Product(String name, int id, int stock, float weight, float price, float basePrice, Category category) {
         this.name = name;
         this.id = id;
         this.stock = stock;
         this.weight = weight;
         this.price = price;
         this.basePrice = basePrice;
+        this.category = category;
     }
 
     // Set a new value for amount
@@ -50,8 +51,8 @@ public class Product {
     }
 
     // Set a new value for amount
-    public void setCategory(String name) {
-        this.category.setName(name);
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     // Request the current value for id
@@ -85,7 +86,7 @@ public class Product {
     }
 
     // Request the current value for id
-    public String getCategory() {
-        return category.getName();
+    public Category getCategory() {
+        return this.category;
     }
 }
