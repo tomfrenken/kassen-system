@@ -47,7 +47,13 @@ public class PurchaseList {
 
     // change the current amount of a item to a new one
     // adjust subtotal by change
-    public void changeItemAmount(Product product, int amount) {
+    public void changeItemAmount(Product product, int amount) throws Exception {
+        Item item;
+        try {
+            item = new Item(product, amount);
+        } catch (Exception e) {
+            throw e;
+        }
         for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 if (amount == 0) {
@@ -58,8 +64,10 @@ public class PurchaseList {
                 float changeSubtotal = change * price;
                 item.changeAmount(change);
                 this.changeSubtotal(changeSubtotal);
+                return;
             }
         }
+        throw new Exception("Der Artikel " + product.getName() + " ist zu gering für diese Operation");
     }
 
     //clear purchaseList
