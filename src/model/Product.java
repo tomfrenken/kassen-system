@@ -16,7 +16,6 @@ public class Product {
             this.id = id;
             this.stock = stock;
             this.weight = weight;
-            this.price = price;
             this.basePrice = basePrice;
             this.category = category;
         } else {
