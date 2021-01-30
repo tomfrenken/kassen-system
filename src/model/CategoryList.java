@@ -15,11 +15,14 @@ public class CategoryList {
      *
      * @param category The new category.
      */
-    public void addCategory(String category) {
-        categoryList.add(category);
-        Collections.sort(categoryList);
+    public void addCategory(String category) throws Exception {
+        if(category.length()<32 && category.length>3) {
+            categoryList.add(category);
+            Collections.sort(categoryList);
+        } else {
+            throw new Exception("Der Name der Kategorie muss zwischen 3 und 32 Zeichen liegen.");
+        }
     }
-
     // kategory nur removen wenn kein Produkt
     /**
      * Removes a category from the list.
