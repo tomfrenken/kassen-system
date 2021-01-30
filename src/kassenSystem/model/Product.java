@@ -1,4 +1,4 @@
-package model;
+package kassenSystem.model;
 
 public class Product {
     private String name;
