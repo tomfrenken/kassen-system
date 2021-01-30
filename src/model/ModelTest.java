@@ -14,7 +14,7 @@ public class ModelTest {
         myCategoryList.addCategory("Grünes Gemüse");
         myCategoryList.addCategory("Rotes Gemüse");
         myCategoryList.addCategory("Früchte");
-        myCategoryList.addCategory("Tieflkühlkost");
+        myCategoryList.addCategory("Tiefkühlkost");
         System.out.println();
         System.out.println(myCategoryList.getCategoryList());
         myCategoryList.changeCategory("Früchte", "MEGAFRÜCHTE");
@@ -23,6 +23,8 @@ public class ModelTest {
         myCategoryList.removeCategory("Tiefkühlkost");
         System.out.println();
         System.out.println(myCategoryList.categoryInList("MEGAFRÜCHTE"));
+        System.out.println();
+        System.out.println(myCategoryList.getCategoryList());
         System.out.println();
         System.out.println(myCategoryList.searchCategory("Gemüse"));
 
