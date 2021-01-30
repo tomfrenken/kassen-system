@@ -8,11 +8,8 @@ public class ModelTest {
         // Additionally, if we don't manage to write the database integration in time, we have this test file to
         // show the functionality without a real database.
 
-        Category fruit = new Category("fruit");
-        Category vegetables = new Category("vegetables");
-        Category frozenFood = new Category("frozenFood");
 
-        System.out.println("First we try out the category");
+
 
         System.out.println(fruit.getName());
         System.out.println("Now we change the category");

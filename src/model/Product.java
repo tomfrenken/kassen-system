@@ -7,10 +7,10 @@ public class Product {
     private float weight;
     private float price;
     private float basePrice;
-    private Category category;
+    private String category;
 
     //create new product
-    public Product(String name, int id, int stock, float weight, float price, float basePrice, Category category) {
+    public Product(String name, int id, int stock, float weight, float price, float basePrice, String category) {
         this.name = name;
         this.id = id;
         this.stock = stock;
@@ -40,6 +40,7 @@ public class Product {
      *
      * @param id the number used to identify each unique product
      */
+  
     public void setId(int id) {
         this.id = id;
     }
