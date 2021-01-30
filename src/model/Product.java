@@ -110,7 +110,7 @@ public class Product {
      *
      * @return the number used to identify each unique product
      */
-    public int getId() {
+    public long getId() {
         return this.id;
     }
 
