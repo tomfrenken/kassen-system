@@ -20,6 +20,7 @@ public class CategoryList {
         Collections.sort(categoryList);
     }
 
+    // kategory nur removen wenn kein Produkt
     /**
      * Removes a category from the list.
      *
@@ -29,6 +30,7 @@ public class CategoryList {
         categoryList.remove(category);
     }
 
+    // change muss auch alle produkte changen
     /**
      * Changes a category to a new category.
      *
@@ -73,10 +75,6 @@ public class CategoryList {
      * @return True if the category is already in the list.
      */
     public boolean categoryInList(String category) {
-        if (categoryList.contains(category)){
-            return true;
-        } else {
-            return false;
-        }
+        return categoryList.contains(category);
     }
 }
