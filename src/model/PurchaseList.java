@@ -17,7 +17,7 @@ public class PurchaseList {
         for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 item.changeAmount(amount);
-                changeSubtotal(amount * item.getProduct().getPrice());
+                this.changeSubtotal(amount * product.getPrice());
                 return;
             }
         }
@@ -28,7 +28,7 @@ public class PurchaseList {
             throw e;
         }
         this.purchaseList.add(item);
-        changeSubtotal(amount * item.getProduct().getPrice());
+        this.changeSubtotal(amount * product.getPrice());
     }
 
     //remove a Product from the purchaseList
