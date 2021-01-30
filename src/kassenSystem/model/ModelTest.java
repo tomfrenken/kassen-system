@@ -1,4 +1,4 @@
-package model;
+package kassenSystem.model;
 
 public class ModelTest {
     public static void main(String[] args) throws Exception {
