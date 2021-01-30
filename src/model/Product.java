@@ -10,18 +10,18 @@ public class Product {
     private String category;
 
     //create new product
-    public Product(String name, int id, int stock, float weight, float price, float basePrice, String category) throws Exception {
-        if(categoryInList(category)) {
+    public Product(String name, long id, int stock, float weight, float basePrice, String category) throws Exception {
+        if (categoryInList(category)) {
             this.name = name;
             this.id = id;
             this.stock = stock;
             this.weight = weight;
-            this.price = price;
             this.basePrice = basePrice;
             this.category = category;
         } else {
             throw new Exception("The category " + this.getCategory() + " does not exist.");
         }
+    }
 
     /**
      * Sets a new value for the name of the product.

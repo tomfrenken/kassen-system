@@ -10,7 +10,9 @@ public class CategoryList {
         categoryList = new ArrayList<>();
     }
 
-    /** Add a category to the categoryList.
+    /**
+     * Add a category to the categoryList.
+     *
      * @param category The new category.
      */
     public void addCategory(String category) {
@@ -20,6 +22,7 @@ public class CategoryList {
 
     /**
      * Removes a category from the list.
+     *
      * @param category The category to be removed.
      */
     public void removeCategory(String category) {
@@ -28,6 +31,7 @@ public class CategoryList {
 
     /**
      * Changes a category to a new category.
+     *
      * @param category The category to be changed.
      * @param newCategory The new category.
      */
@@ -38,6 +42,7 @@ public class CategoryList {
 
     /**
      * Returns the category list.
+     *
      * @return returns the category list.
      */
     public ArrayList<String> getCategoryList() {
@@ -46,6 +51,7 @@ public class CategoryList {
 
     /**
      * Searches for a category in the category list.
+     *
      * @param search The (sub)string of the search.
      * @return An array of all categories that contained the (sub)string.
      */
@@ -62,6 +68,7 @@ public class CategoryList {
 
     /**
      * Searches for a category in categoryList.
+     *
      * @param category The category you search for.
      * @return True if the category is already in the list.
      */
