@@ -11,7 +11,7 @@ public class ProductList {
 
     // unsorted adding to PL
     public void addProduct(String name, int id, int stock, float weight,
-                           float price, float basePrice, Category category) {
+                           float price, float basePrice, String category) {
         Product temp = new Product(name, id, stock, weight, price, basePrice, category);
         productList.add(temp);
     }
@@ -153,8 +153,8 @@ public class ProductList {
         do {
             swaped = false;
             for (int i = 0; i < n - 1; i++) {
-                if (productList.get(i).getCategory().getName().compareTo(
-                        productList.get(i + 1).getCategory().getName()) > 0) {
+                if (productList.get(i).getCategory().compareTo(
+                        productList.get(i + 1).getCategory()) > 0) {
                     Product temp = productList.get(i);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
