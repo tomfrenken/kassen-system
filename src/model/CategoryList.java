@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CategoryList {
-    private static ArrayList<String> categoryList;
+    private static final ArrayList<String> categoryList = new ArrayList<>();
 
-    CategoryList() {
-        categoryList = new ArrayList<>();
-    }
+    CategoryList() {}
 
     /**
      * Add a category to the categoryList.

@@ -4,23 +4,33 @@ public class Product {
     private String name;
     private long id;
     private int stock;
-    private float weight;
-    private float price;
-    private float basePrice;
+    private double weight;
+    private double price;
+    private double basePrice;
     private String category;
-    private CategoryList categoryList;
+    private CategoryList categoryList = new CategoryList();
 
     //create new product
-    public Product(String name, long id, int stock, float weight, float basePrice, String category) throws Exception {
-        if (categoryList.categoryInList(category)) {
-            this.name = name;
-            this.id = id;
+    public Product(String name, long id, int stock, double weight, double basePrice,
+                   String category) throws Exception {
+
+            if(name.length() > 2 && name.length() < 32) {
+                this.name = name;
+            }else {
+                throw new Exception("Der Name" + name + "ist nicht von zulässiger Länge");
+            }
+            if (id == id) {
+                this.id = id;
+            } else {
+                throw new Exception("Der Name" + name);
+            }
             this.stock = stock;
             this.weight = weight;
             this.basePrice = basePrice;
+        if (categoryList.categoryInList(category)) {
             this.category = category;
         } else {
-            throw new Exception("Die Kategorie " + this.getCategory() + " existiert nicht.");
+            throw new Exception("Die Kategorie " + category + " existiert nicht.");
         }
     }
 
@@ -44,7 +54,7 @@ public class Product {
      *
      * @param id the number used to identify each unique product
      */
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -64,7 +74,7 @@ public class Product {
      *
      * @param weight the weight of one unit of this product
      */
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -74,7 +84,7 @@ public class Product {
      *
      * @param price the price charged for one unit of this product
      */
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -84,7 +94,7 @@ public class Product {
      *
      * @param basePrice the price charged for a fixed amount of this product
      */
-    public void setBasePrice(float basePrice) {
+    public void setBasePrice(double basePrice) {
         this.basePrice = basePrice;
     }
 
@@ -129,7 +139,7 @@ public class Product {
      *
      * @return the weight of one unit of this product
      */
-    public float getWeight() {
+    public double getWeight() {
         return this.weight;
     }
 
@@ -142,7 +152,7 @@ public class Product {
      *
      * @return the price charged for one unit of this product
      */
-    public float getPrice() {
+    public double getPrice() {
         return this.price;
     }
 
@@ -153,7 +163,7 @@ public class Product {
      *
      * @return the price charged for a fixed amount of this product
      */
-    public float getBasePrice() {
+    public double getBasePrice() {
         return this.basePrice;
     }
 
