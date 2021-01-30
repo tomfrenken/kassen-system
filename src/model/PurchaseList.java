@@ -28,19 +28,20 @@ public class PurchaseList {
             throw e;
         }
         this.purchaseList.add(item);
+        changeSubtotal(amount * item.getProduct().getPrice());
     }
 
     //remove a Product from the purchaseList
     public void removeItem(Product product) {
-        this.purchaseList.forEach(item -> {
+        for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 float change = item.getAmount();
                 float price = item.getProduct().getPrice();
                 float changeSubtotal = -(change * price);
                 this.purchaseList.remove(item);
-                changeSubtotal(changeSubtotal);
+                this.changeSubtotal(changeSubtotal);
             }
-        });
+        }
     }
 
     //set a new Amount for the PurchaseObject at the specified index 
@@ -51,7 +52,7 @@ public class PurchaseList {
                 float price = item.getProduct().getPrice();
                 float changeSubtotal = change * price;
                 item.changeAmount(change);
-                changeSubtotal(changeSubtotal);
+                this.changeSubtotal(changeSubtotal);
             }
         });
     }
