@@ -9,24 +9,23 @@ public class ModelTest {
         // show the functionality without a real database.
 
 
+        CategoryList myCategoryList = new CategoryList();
+        myCategoryList.addCategory("Gemüse");
+        myCategoryList.addCategory("Grünes Gemüse");
+        myCategoryList.addCategory("Rotes Gemüse");
+        myCategoryList.addCategory("Früchte");
+        myCategoryList.addCategory("Tieflkühlkost");
+        System.out.println();
+        System.out.println(myCategoryList.getCategoryList());
+        myCategoryList.changeCategory("Früchte", "MEGAFRÜCHTE");
+        System.out.println();
+        System.out.println(myCategoryList.getCategoryList());
+        myCategoryList.removeCategory("Tiefkühlkost");
+        System.out.println();
+        System.out.println(myCategoryList.categoryInList("MEGAFRÜCHTE"));
+        System.out.println();
+        System.out.println(myCategoryList.searchCategory("Gemüse"));
 
-
-        System.out.println(fruit.getName());
-        System.out.println("Now we change the category");
-        fruit.setName("green-fruit");
-        System.out.println(fruit.getName());
-
-        System.out.println("Now we try Products");
-
-        Product apple = new Product("Apple", 1, 50, 50, 10, 20, fruit);
-
-        System.out.println(apple.getName());
-        System.out.println(apple.getId());
-        System.out.println(apple.getStock());
-        System.out.println(apple.getWeight());
-        System.out.println(apple.getPrice());
-        System.out.println(apple.getBasePrice());
-        System.out.println(apple.getCategory().getName());
 
         // Implement tests for:
         // CategoryList
