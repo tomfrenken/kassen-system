@@ -1,60 +1,75 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CategoryList {
-    private ArrayList<Category> categoryList;
+    private ArrayList<String> categoryList;
 
     CategoryList() {
         categoryList = new ArrayList<>();
     }
 
-    public void setCategory(String name) {
-        for (int i = 0; i < categoryList.size() - 1; i++) {
-            Category temp = categoryList.get(i);
-            if (temp.getName().compareTo(name) > 0) {
-                categoryList.add(i,temp);
-                break;
-            } else {
-                i++;
-            }
-        }
+    /** Add a category to the categoryList.
+     * @param category The new category.
+     */
+    public void addCategory(String category) {
+        categoryList.add(category);
+        Collections.sort(categoryList);
     }
 
-    public void removeCategory(int index) {
-        Category temp = categoryList.get(index);
-        categoryList.remove(temp);
+    /**
+     * Removes a category from the list.
+     * @param category The category to be removed.
+     */
+    public void removeCategory(String category) {
+        categoryList.remove(category);
     }
 
-    public void changeCategory(int index, String name) {
-        Category temp = categoryList.get(index);
-        temp.setName(name);
+    /**
+     * Changes a category to a new category.
+     * @param category The category to be changed.
+     * @param newCategory The new category.
+     */
+    public void changeCategory(String category, String newCategory) {
+        this.removeCategory(category);
+        this.addCategory(newCategory);
     }
 
-    public ArrayList<Category> showList() {
+    /**
+     * Returns the category list.
+     * @return returns the category list.
+     */
+    public ArrayList<String> getCategoryList() {
         return categoryList;
     }
 
-    public ArrayList<Category> getCategory(String search) {
-        ArrayList<Category> result = new ArrayList<>();
-        CharSequence sequence = search.subSequence(0,search.length() - 1);
+    /**
+     * Searches for a category in the category list.
+     * @param search The (sub)string of the search.
+     * @return An array of all categories that contained the (sub)string.
+     */
+    public ArrayList<String> searchCategory(String search) {
+        ArrayList<String> result = new ArrayList<String>();
         for (int i = 0; i < categoryList.size() - 1; i++) {
-            Category temp = categoryList.get(i);
-            if (temp.getName().contains(sequence)) {
-                result.add(temp);
+            String category = categoryList.get(i);
+            if (category.contains(search)) {
+                result.add(category);
             }
         }
         return result;
     }
 
-    public boolean categoryInList(String search) {
-        CharSequence sequence = search.subSequence(0, search.length() - 1);
-        for (int i = 0; i < categoryList.size() - 1; i++) {
-            Category temp = categoryList.get(i);
-            if (temp.getName().contains(sequence)) {
-                return true;
-            }
+    /**
+     * Searches for a category in categoryList.
+     * @param category The category you search for.
+     * @return True if the category is already in the list.
+     */
+    public boolean categoryInList(String category) {
+        if (categoryList.contains(category)){
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 }
