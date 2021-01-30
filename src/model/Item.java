@@ -7,9 +7,13 @@ public class Item {
     private int amount;
     
     // Create a new PurchaseObject
-    Item(Product product, int amount) {
-        this.product = product;
-        this.amount = amount;
+    Item(Product product, int amount) throws Exception {
+        if(product.getStock() - amount >=0) {
+            this.product = product;
+            this.amount = amount;
+        } else {
+            throw new Exception("The item " + product.getName() + " is out of stock.");
+        }
     }
 
     // Set a new value for amount
@@ -17,17 +21,17 @@ public class Item {
         this.amount = amount;
     }
 
-    // Request the current value for name
+    // Get the product
     public Product getProduct() {
         return this.product;
     }
 
-    // Request the current value for amount
+    // Get the amount
     public int getAmount() {
         return this.amount;
     }
 
-    // Request the current value for amount
+    // Change the amount
     public void changeAmount(int change) {
         this.setAmount(this.amount + change);
     }
