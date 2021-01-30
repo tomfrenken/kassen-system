@@ -19,7 +19,7 @@ public class Product {
             this.basePrice = basePrice;
             this.category = category;
         } else {
-            throw new Exception("The category " + this.getCategory() + " does not exist.");
+            throw new Exception("Die Kategorie " + this.getCategory() + " existiert nicht.");
         }
     }
 
