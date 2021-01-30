@@ -4,9 +4,6 @@ public class Category{
     private String name;
 
     //create new Category
-    Category() {}
-
-    //create new Category
     Category(String name) {
         this.name = name;
     }
