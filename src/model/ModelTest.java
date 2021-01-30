@@ -27,6 +27,44 @@ public class ModelTest {
         System.out.println();
         System.out.println(myCategoryList.searchCategory("Gemüse"));
 
+
+        Product karotte;
+        Product apfel;
+        karotte = new Product("Karrotte", 1234567890123L,
+                1000, 10, 0.5, "Gemüse");
+        apfel = new Product("Apfel", 94001L,
+                1000, 5, 0.4, "MEGAFRÜCHTE");
+
+
+        //Product tests
+        System.out.println("Name: " + karotte.getName());
+        System.out.println("ID: " + karotte.getId());
+        System.out.println("Stock: " + karotte.getStock());
+        System.out.println("Weight: " + karotte.getWeight());
+        System.out.println("Price: " + karotte.getPrice());
+        System.out.println("BasePrice: " + karotte.getBasePrice());
+        System.out.println("Category: " + karotte.getCategory());
+
+        myCategoryList.addCategory("ULTRAGEMÜSE");
+
+        karotte.setName("Pastinake");
+        karotte.setId(9999999999999L);
+        karotte.setStock(10);
+        karotte.setWeight(5);
+        karotte.setPrice(1.0f);
+        karotte.setBasePrice(0.5);
+        karotte.setCategory("ULTRAGEMÜSE");
+
+        System.out.println("Name: " + karotte.getName());
+        System.out.println("ID: " + karotte.getId());
+        System.out.println("Stock: " + karotte.getStock());
+        System.out.println("Weight: " + karotte.getWeight());
+        System.out.println("Price: " + karotte.getPrice());
+        System.out.println("BasePrice: " + karotte.getBasePrice());
+        System.out.println("Category: " + karotte.getCategory());
+
+
+
         // Implement tests for:
         // CategoryList
         // ProductList

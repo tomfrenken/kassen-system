@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PurchaseList {
     //subtotal of the Price all Objects in the list
-    private float subtotal = 0;
+    private double subtotal = 0;
     private ArrayList<Item> purchaseList;
 
     PurchaseList() {
@@ -42,10 +42,10 @@ public class PurchaseList {
     public void removeItem(Product product) {
         for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
-                float change = item.getAmount();
-                float price = item.getProduct().getPrice();
-                float changeSubtotal = -(change * price);
-                this.removeItem(product);
+                double change = item.getAmount();
+                double price = item.getProduct().getPrice();
+                double changeSubtotal = -(change * price);
+                this.purchaseList.remove(item);
                 this.changeSubtotal(changeSubtotal);
             }
         }
@@ -66,8 +66,8 @@ public class PurchaseList {
                     this.removeItem(product);
                 }
                 int change = amount - item.getAmount();
-                float price = item.getProduct().getPrice();
-                float changeSubtotal = change * price;
+                double price = item.getProduct().getPrice();
+                double changeSubtotal = change * price;
                 item.changeAmount(change);
                 this.changeSubtotal(changeSubtotal);
                 return;
@@ -88,15 +88,15 @@ public class PurchaseList {
         purchaseList.clear();
     }
 
-    public void setSubtotal(float subtotal) {
+    public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
 
-    public float getSubtotal() {
+    public double getSubtotal() {
         return this.subtotal;
     }
 
-    public void changeSubtotal(float change) {
+    public void changeSubtotal(double change) {
         this.setSubtotal(this.getSubtotal() + change);
     }
 
