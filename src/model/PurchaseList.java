@@ -11,19 +11,27 @@ public class PurchaseList {
         this.purchaseList = new ArrayList<Item>();
     }
 
-    //add a Product to the list
-    public void addProduct(Product product, int amount) {
+    //add a item to the list
+    public void addItem(Product product, int amount) throws Exception {
         //
-        this.purchaseList.forEach(item -> {
+        for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 item.changeAmount(amount);
                 changeSubtotal(amount * item.getProduct().getPrice());
+                return;
             }
-        });
+        }
+        Item item;
+        try {
+            item = new Item(product, amount);
+        } catch (Exception e) {
+            throw e;
+        }
+        this.purchaseList.add(item);
     }
 
-    //remove PurchaseObject at the specified index
-    public void removeProduct(Product product) {
+    //remove a Product from the purchaseList
+    public void removeItem(Product product) {
         this.purchaseList.forEach(item -> {
             if (item.getProduct() == product) {
                 float change = item.getAmount();

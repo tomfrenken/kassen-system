@@ -2,7 +2,7 @@ package model;
 
 public class Product {
     private String name;
-    private int id;
+    private long id;
     private int stock;
     private float weight;
     private float price;
@@ -55,7 +55,7 @@ public class Product {
     }
 
     // Set a new value for amount
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
