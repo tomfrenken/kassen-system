@@ -30,9 +30,9 @@ public class ModelTest {
 
         Product karotte;
         Product apfel;
-        karotte = new Product("Karrotte", 1234567890123L,
+        karotte = new Product("Karrotte", 12345L,
                 1000, 10, 0.5, "Gemüse");
-        apfel = new Product("Apfel", 94001L,
+        apfel = new Product("Apfel", 1234567890123L,
                 1000, 5, 0.4, "MEGAFRÜCHTE");
 
 
@@ -48,7 +48,7 @@ public class ModelTest {
         myCategoryList.addCategory("ULTRAGEMÜSE");
 
         karotte.setName("Pastinake");
-        karotte.setId(9999999999999L);
+        karotte.setId(12345L);
         karotte.setStock(10);
         karotte.setWeight(5);
         karotte.setPrice(1.0f);

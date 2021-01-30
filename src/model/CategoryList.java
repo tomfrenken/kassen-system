@@ -13,6 +13,7 @@ public class CategoryList {
      *
      * @param category The new category.
      */
+    //ZAHLEN DÜRFEN NICHT ZUGELASSEN WERDEN
     public void addCategory(String category) throws Exception {
         if(category.length()<32 && category.length()>3) {
             categoryList.add(category);

@@ -17,14 +17,22 @@ public class Product {
             if(name.length() > 2 && name.length() < 32) {
                 this.name = name;
             }else {
-                throw new Exception("Der Name" + name + "ist nicht von zulässiger Länge");
+                throw new Exception("Der Name " + name + " ist nicht von zulässiger Länge");
             }
-            if (id == id) {
+
+            String number = String.valueOf(id);
+            if (number.length() == 13 || number.length() == 4 || (number.length() == 5 &&
+                    number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
                 this.id = id;
             } else {
-                throw new Exception("Der Name" + name);
+                throw new Exception("Die ID " + name + " ist nicht zulässig");
             }
-            this.stock = stock;
+
+            if (stock > 0 && stock < 1000) {
+                this.stock = stock;
+            } else {
+                throw new Exception();
+            }
             this.weight = weight;
             this.basePrice = basePrice;
         if (categoryList.categoryInList(category)) {
