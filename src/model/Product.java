@@ -91,7 +91,6 @@ public class Product {
      * Sets a new value for the category of the product.
      *
      * @param category the category this product has be assigned to
-     * @see Category
      */
     public void setCategory(String category) {
         this.category = category;
