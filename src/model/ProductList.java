@@ -23,9 +23,146 @@ public class ProductList {
     public void removeProduct(int index) {
         productList.remove(index);
     }
-    // for every sorting new function
-    public void sortProductList() {
 
+    /**
+     *
+     */
+    public void sortName() {
+        boolean swaped;
+        int n = productList.size();
+        do {
+            swaped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (productList.get(i).getName().compareTo(productList.get(i + 1).getName()) > 0) {
+                    Product temp = productList.get(i);
+                    productList.set(i+1,productList.get(i));
+                    productList.set(i,temp);
+                    swaped = true;
+                }
+            }
+            n = n - 1;
+        } while (swaped);
+    }
+
+    /**
+     *
+     */
+    public void sortId() {
+        boolean swaped;
+        int n = productList.size();
+        do {
+            swaped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (productList.get(i).getId() > productList.get(i+1).getId()) {
+                    Product temp = productList.get(i);
+                    productList.set(i+1,productList.get(i));
+                    productList.set(i,temp);
+                    swaped = true;
+                }
+            }
+            n = n - 1;
+        } while (swaped);
+    }
+
+    /**
+     *
+     */
+    public void sortStock() {
+        boolean swaped;
+        int n = productList.size();
+        do {
+            swaped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (productList.get(i).getStock() > productList.get(i+1).getStock()) {
+                    Product temp = productList.get(i);
+                    productList.set(i+1,productList.get(i));
+                    productList.set(i,temp);
+                    swaped = true;
+                }
+            }
+            n = n - 1;
+        } while (swaped);
+    }
+
+    /**
+     *
+     */
+    public void sortWeight() {
+        boolean swaped;
+        int n = productList.size();
+        do {
+            swaped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (productList.get(i).getWeight() > productList.get(i+1).getWeight()) {
+                    Product temp = productList.get(i);
+                    productList.set(i+1,productList.get(i));
+                    productList.set(i,temp);
+                    swaped = true;
+                }
+            }
+            n = n - 1;
+        } while (swaped);
+    }
+
+    /**
+     *
+     */
+    public void sortPrice() {
+        boolean swaped;
+        int n = productList.size();
+        do {
+            swaped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (productList.get(i).getPrice() > productList.get(i+1).getPrice()) {
+                    Product temp = productList.get(i);
+                    productList.set(i+1,productList.get(i));
+                    productList.set(i,temp);
+                    swaped = true;
+                }
+            }
+            n = n - 1;
+        } while (swaped);
+    }
+
+    /**
+     *
+     */
+    public void sortBasePrice() {
+        boolean swaped;
+        int n = productList.size();
+        do {
+            swaped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (productList.get(i).getBasePrice() > productList.get(i+1).getBasePrice()) {
+                    Product temp = productList.get(i);
+                    productList.set(i+1,productList.get(i));
+                    productList.set(i,temp);
+                    swaped = true;
+                }
+            }
+            n = n - 1;
+        } while (swaped);
+    }
+
+    /**
+     *
+     */
+    public void sortCategory() {
+        boolean swaped;
+        int n = productList.size();
+        do {
+            swaped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (productList.get(i).getCategory().getName().compareTo(
+                        productList.get(i + 1).getCategory().getName()) > 0) {
+                    Product temp = productList.get(i);
+                    productList.set(i+1,productList.get(i));
+                    productList.set(i,temp);
+                    swaped = true;
+                }
+            }
+            n = n - 1;
+        } while (swaped);
     }
 
     public ArrayList<Product> searchProduct(String search) {
