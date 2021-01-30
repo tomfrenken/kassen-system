@@ -67,7 +67,7 @@ public class PurchaseList {
                 return;
             }
         }
-        throw new Exception("Der Artikel " + product.getName() + " ist zu gering für diese Operation");
+        throw new Exception("Der Artikel " + product.getName() + " ist nicht in der Einkaufsliste.");
     }
 
     //clear purchaseList
