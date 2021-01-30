@@ -3,7 +3,7 @@ package kassenSystem.view;
 import javax.swing.*;
 
 public class AdminView {
-    private JPanel panel1;
+    private JPanel jp;
     private JTextArea textArea1;
     private JButton button1;
     private JButton button2;

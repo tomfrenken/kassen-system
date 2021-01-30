@@ -10,6 +10,11 @@ public class LoginView {
     private JPanel jp;
 
     public LoginView() {
+        JFrame frame = new JFrame("Kassensystem");
+        frame.setContentPane(new LoginView().jp);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
         adminButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
@@ -18,7 +23,9 @@ public class LoginView {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                jp.
+                frame.setContentPane(new AdminView().jp);
+                frame.invalidate();
+                frame.validate();
             }
         });
         verkäuferButton.addActionListener(new ActionListener() {
@@ -29,15 +36,10 @@ public class LoginView {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.setContentPane(new AdminView().jp);
+                frame.invalidate();
+                frame.validate();
             }
         });
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Kassensystem");
-        frame.setContentPane(new LoginView().jp);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
     }
 }
