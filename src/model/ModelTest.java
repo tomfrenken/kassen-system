@@ -24,6 +24,8 @@ public class ModelTest {
         System.out.println();
         System.out.println(myCategoryList.categoryInList("MEGAFRÜCHTE"));
         System.out.println();
+        System.out.println(myCategoryList.getCategoryList());
+        System.out.println();
         System.out.println(myCategoryList.searchCategory("Gemüse"));
 
 
