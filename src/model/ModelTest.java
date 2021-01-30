@@ -8,7 +8,6 @@ public class ModelTest {
         // Additionally, if we don't manage to write the database integration in time, we have this test file to
         // show the functionality without a real database.
 
-
         CategoryList myCategoryList = new CategoryList();
         myCategoryList.addCategory("Gemüse");
         myCategoryList.addCategory("Grünes Gemüse");
@@ -31,31 +30,22 @@ public class ModelTest {
 
         Product karotte;
         Product apfel;
-        try {
-            karotte = new Product("Karrotte", 1234567890123L,
-                    1000, 10, 0.5, "Gemüse");
-            apfel = new Product("Apfel", 94001L,
-                    1000, 5, 0.4, "Früchte");
-        } catch (Exception e) {
-            throw e;
-        }
+        karotte = new Product("Karrotte", 1234567890123L,
+                1000, 10, 0.5, "Gemüse");
+        apfel = new Product("Apfel", 94001L,
+                1000, 5, 0.4, "MEGAFRÜCHTE");
+
 
         //Product tests
-        System.out.println(karotte.getName());
-        System.out.println(karotte.getId());
-        System.out.println(karotte.getStock());
-        System.out.println(karotte.getWeight());
-        System.out.println(karotte.getPrice());
-        System.out.println(karotte.getBasePrice());
-        System.out.println(karotte.getCategory());
+        System.out.println("Name: " + karotte.getName());
+        System.out.println("ID: " + karotte.getId());
+        System.out.println("Stock: " + karotte.getStock());
+        System.out.println("Weight: " + karotte.getWeight());
+        System.out.println("Price: " + karotte.getPrice());
+        System.out.println("BasePrice: " + karotte.getBasePrice());
+        System.out.println("Category: " + karotte.getCategory());
 
-        System.out.println(apfel.getName());
-        System.out.println(apfel.getId());
-        System.out.println(apfel.getStock());
-        System.out.println(apfel.getWeight());
-        System.out.println(apfel.getPrice());
-        System.out.println(apfel.getBasePrice());
-        System.out.println(apfel.getCategory());
+        myCategoryList.addCategory("ULTRAGEMÜSE");
 
         karotte.setName("Pastinake");
         karotte.setId(9999999999999L);
@@ -63,31 +53,16 @@ public class ModelTest {
         karotte.setWeight(5);
         karotte.setPrice(1.0f);
         karotte.setBasePrice(0.5);
-        karotte.setCategory("MEGAGEMÜSE");
+        karotte.setCategory("ULTRAGEMÜSE");
 
-        apfel.setName("Birne");
-        apfel.setId(3210987654321L);
-        apfel.setStock(10);
-        apfel.setWeight(10);
-        apfel.setPrice(100.0f);
-        apfel.setBasePrice(100.0);
-        apfel.setCategory("Elektronik");
+        System.out.println("Name: " + karotte.getName());
+        System.out.println("ID: " + karotte.getId());
+        System.out.println("Stock: " + karotte.getStock());
+        System.out.println("Weight: " + karotte.getWeight());
+        System.out.println("Price: " + karotte.getPrice());
+        System.out.println("BasePrice: " + karotte.getBasePrice());
+        System.out.println("Category: " + karotte.getCategory());
 
-        System.out.println(karotte.getName());
-        System.out.println(karotte.getId());
-        System.out.println(karotte.getStock());
-        System.out.println(karotte.getWeight());
-        System.out.println(karotte.getPrice());
-        System.out.println(karotte.getBasePrice());
-        System.out.println(karotte.getCategory());
-
-        System.out.println(apfel.getName());
-        System.out.println(apfel.getId());
-        System.out.println(apfel.getStock());
-        System.out.println(apfel.getWeight());
-        System.out.println(apfel.getPrice());
-        System.out.println(apfel.getBasePrice());
-        System.out.println(apfel.getCategory());
 
 
         // Implement tests for:

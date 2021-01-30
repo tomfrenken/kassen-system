@@ -12,7 +12,7 @@ public class Item {
             this.product = product;
             this.amount = amount;
         } else {
-            throw new Exception("Der Bestand des Artikels " + product.getName() + " ist zu gering für diese Operation");
+            throw new Exception("Der Bestand des Artikels " + product.getName() + " ist zu gering für diese Operation.");
         }
     }
 

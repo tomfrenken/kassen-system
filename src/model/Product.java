@@ -8,16 +8,18 @@ public class Product {
     private double price;
     private double basePrice;
     private String category;
+    private CategoryList categoryList = new CategoryList();
 
     //create new product
-    public Product(String name, long id, int stock, double weight, double basePrice, String category) throws Exception {
+    public Product(String name, long id, int stock, double weight, double basePrice,
+                   String category) throws Exception {
 
             if(name.length() > 2 && name.length() < 32) {
                 this.name = name;
             }else {
                 throw new Exception("Der Name" + name + "ist nicht von zulässiger Länge");
             }
-            if () {
+            if (id == id) {
                 this.id = id;
             } else {
                 throw new Exception("Der Name" + name);
