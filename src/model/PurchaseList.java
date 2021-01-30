@@ -11,7 +11,8 @@ public class PurchaseList {
         this.purchaseList = new ArrayList<Item>();
     }
 
-    //add a item to the list
+    // add a item to the list
+    // adjust subtotal by change
     public void addItem(Product product, int amount) throws Exception {
         //
         for (Item item : this.purchaseList) {
@@ -32,6 +33,7 @@ public class PurchaseList {
     }
 
     //remove a Product from the purchaseList
+    // adjust subtotal by change
     public void removeItem(Product product) {
         for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
@@ -44,9 +46,10 @@ public class PurchaseList {
         }
     }
 
-    //set a new Amount for the PurchaseObject at the specified index 
-    public void changeAmount(Product product, int amount) {
-        this.purchaseList.forEach(item -> {
+    // change the current amount of a item to a new one
+    // adjust subtotal by change
+    public void changeItemAmount(Product product, int amount) {
+        for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 int change = amount - item.getAmount();
                 float price = item.getProduct().getPrice();
@@ -54,7 +57,7 @@ public class PurchaseList {
                 item.changeAmount(change);
                 this.changeSubtotal(changeSubtotal);
             }
-        });
+        }
     }
 
     //clear purchaseList
