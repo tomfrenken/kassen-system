@@ -1,4 +1,4 @@
-package view;
+package kassenSystem.view;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

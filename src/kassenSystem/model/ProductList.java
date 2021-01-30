@@ -1,4 +1,4 @@
-package model;
+package kassenSystem.model;
 
 import java.util.ArrayList;
 
