@@ -11,21 +11,27 @@ public class PurchaseList {
         this.purchaseList = new ArrayList<Item>();
     }
 
-    // add a item to the list
+    // add a item to the list or increase amount of item with the same product
     // adjust subtotal by change
     public void addItem(Product product, int amount) throws Exception {
         Item item;
+        for (Item i : this.purchaseList) {
+            if (i.getProduct() == product) {
+                try {
+                    int total = i.getAmount() + amount;
+                    item = new Item(product, total);
+                } catch (Exception e) {
+                    throw e;
+                }
+                i.changeAmount(amount);
+                this.changeSubtotal(amount * product.getPrice());
+                return;
+            }
+        }
         try {
             item = new Item(product, amount);
         } catch (Exception e) {
             throw e;
-        }
-        for (Item item : this.purchaseList) {
-            if (item.getProduct() == product) {
-                item.changeAmount(amount);
-                this.changeSubtotal(amount * product.getPrice());
-                return;
-            }
         }
         this.purchaseList.add(item);
         this.changeSubtotal(amount * product.getPrice());
@@ -48,9 +54,9 @@ public class PurchaseList {
     // change the current amount of a item to a new one
     // adjust subtotal by change
     public void changeItemAmount(Product product, int amount) throws Exception {
-        Item item;
+        Item test;
         try {
-            item = new Item(product, amount);
+            test = new Item(product, amount);
         } catch (Exception e) {
             throw e;
         }
