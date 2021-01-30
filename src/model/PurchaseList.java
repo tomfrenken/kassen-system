@@ -5,14 +5,21 @@ import java.util.ArrayList;
 public class PurchaseList {
     //subtotal of the Price all Objects in the list
     private double subtotal = 0;
-    private ArrayList<Item> purchaseList;
+    private final ArrayList<Item> purchaseList;
 
     PurchaseList() {
         this.purchaseList = new ArrayList<Item>();
     }
 
-    // add a item to the list or increase amount of item with the same product
+    // add an item to the list or increase amount of item with the same product
     // adjust subtotal by change
+
+    /**
+     * Add an item to the list or increment the amount of items with
+     * @param product
+     * @param amount
+     * @throws Exception
+     */
     public void addItem(Product product, int amount) throws Exception {
         Item item;
         for (Item i : this.purchaseList) {
