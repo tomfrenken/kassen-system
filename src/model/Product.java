@@ -8,10 +8,11 @@ public class Product {
     private float price;
     private float basePrice;
     private String category;
+    private CategoryList categoryList;
 
     //create new product
     public Product(String name, long id, int stock, float weight, float basePrice, String category) throws Exception {
-        if (categoryInList(category)) {
+        if (categoryList.categoryInList(category)) {
             this.name = name;
             this.id = id;
             this.stock = stock;

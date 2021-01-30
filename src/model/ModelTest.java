@@ -27,7 +27,6 @@ public class ModelTest {
         System.out.println();
         System.out.println(myCategoryList.searchCategory("Gemüse"));
 
-
         // Implement tests for:
         // CategoryList
         // ProductList

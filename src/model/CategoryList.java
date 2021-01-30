@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CategoryList {
-    private ArrayList<String> categoryList;
+    private static ArrayList<String> categoryList;
 
     CategoryList() {
         categoryList = new ArrayList<>();
@@ -16,7 +16,7 @@ public class CategoryList {
      * @param category The new category.
      */
     public void addCategory(String category) throws Exception {
-        if(category.length()<32 && category.length>3) {
+        if(category.length()<32 && category.length()>3) {
             categoryList.add(category);
             Collections.sort(categoryList);
         } else {
@@ -40,7 +40,7 @@ public class CategoryList {
      * @param category The category to be changed.
      * @param newCategory The new category.
      */
-    public void changeCategory(String category, String newCategory) {
+    public void changeCategory(String category, String newCategory) throws Exception {
         this.removeCategory(category);
         this.addCategory(newCategory);
     }
@@ -61,7 +61,7 @@ public class CategoryList {
      * @return An array of all categories that contained the (sub)string.
      */
     public ArrayList<String> searchCategory(String search) {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < categoryList.size() - 1; i++) {
             String category = categoryList.get(i);
             if (category.contains(search)) {
