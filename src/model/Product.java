@@ -10,7 +10,7 @@ public class Product {
     private String category;
 
     //create new product
-    public Product(String name, long id, int stock, float weight, float price, float basePrice, String category) throws Exception {
+    public Product(String name, long id, int stock, float weight, float basePrice, String category) throws Exception {
         if (categoryInList(category)) {
             this.name = name;
             this.id = id;
