@@ -10,7 +10,7 @@ public class ProductList {
     /**
      * This is
      */
-    private ArrayList<Product> productList;
+    private static ArrayList<Product> productList;
 
     ProductList() {
         productList = new ArrayList<Product>();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CategoryList {
-    private ArrayList<String> categoryList;
+    private static ArrayList<String> categoryList;
 
     CategoryList() {
         categoryList = new ArrayList<>();
@@ -15,11 +15,14 @@ public class CategoryList {
      *
      * @param category The new category.
      */
-    public void addCategory(String category) {
-        categoryList.add(category);
-        Collections.sort(categoryList);
+    public void addCategory(String category) throws Exception {
+        if(category.length()<32 && category.length()>3) {
+            categoryList.add(category);
+            Collections.sort(categoryList);
+        } else {
+            throw new Exception("Der Name der Kategorie muss zwischen 3 und 32 Zeichen liegen.");
+        }
     }
-
     // kategory nur removen wenn kein Produkt
     /**
      * Removes a category from the list.
@@ -37,7 +40,7 @@ public class CategoryList {
      * @param category The category to be changed.
      * @param newCategory The new category.
      */
-    public void changeCategory(String category, String newCategory) {
+    public void changeCategory(String category, String newCategory) throws Exception {
         this.removeCategory(category);
         this.addCategory(newCategory);
     }
@@ -58,7 +61,7 @@ public class CategoryList {
      * @return An array of all categories that contained the (sub)string.
      */
     public ArrayList<String> searchCategory(String search) {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < categoryList.size() - 1; i++) {
             String category = categoryList.get(i);
             if (category.contains(search)) {
