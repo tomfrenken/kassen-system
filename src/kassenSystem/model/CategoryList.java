@@ -10,16 +10,22 @@ public class CategoryList {
 
     /**
      * Add a category to the categoryList.
+     * Checks if the category name is between 3 and 32 Symbols and does not contain any Number.
+     * Throws an exception if the category does not meet the requirements.
      *
-     * @param category The new category.
+     * @param category   The new category.
+     * @throws Exception if the category is shorter then 3 or longer then 32 symbols,
+     *                   or contains a number
      */
-    //ZAHLEN DÜRFEN NICHT ZUGELASSEN WERDEN
     public void addCategory(String category) throws Exception {
-        if(category.length()<32 && category.length()>3) {
+        if(category.length() <= 32 && category.length() >= 3 &&
+                !category.matches(".*\\d.*")) {
             categoryList.add(category);
             Collections.sort(categoryList);
         } else {
-            throw new Exception("Der Name der Kategorie muss zwischen 3 und 32 Zeichen liegen.");
+            throw new Exception("Der Name der Kategorie darf keine Zahlen enthalten und " +
+                    "muss zwischen 3 und 32 Zeichen liegen." +
+                    " Ihre eingabe " + category + " war fehlerhaft.");
         }
     }
     // kategory nur removen wenn kein Produkt
