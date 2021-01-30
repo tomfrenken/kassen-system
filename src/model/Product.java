@@ -7,17 +7,21 @@ public class Product {
     private float weight;
     private float price;
     private float basePrice;
-    private Category category;
+    private String category;
 
     //create new product
-    public Product(String name, int id, int stock, float weight, float price, float basePrice, Category category) {
-        this.name = name;
-        this.id = id;
-        this.stock = stock;
-        this.weight = weight;
-        this.price = price;
-        this.basePrice = basePrice;
-        this.category = category;
+    public Product(String name, int id, int stock, float weight, float price, float basePrice, String category) throws Exception {
+        if(categoryInList(category)) {
+            this.name = name;
+            this.id = id;
+            this.stock = stock;
+            this.weight = weight;
+            this.price = price;
+            this.basePrice = basePrice;
+            this.category = category;
+        } else {
+            throw new Exception("The category " + this.getCategory() + " does not exist.");
+        }
     }
 
     // Set a new value for amount
@@ -86,7 +90,7 @@ public class Product {
     }
 
     // Request the current value for id
-    public Category getCategory() {
+    public String getCategory() {
         return this.category;
     }
 }
