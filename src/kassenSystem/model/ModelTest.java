@@ -30,10 +30,10 @@ public class ModelTest {
 
         Product karotte;
         Product apfel;
-        karotte = new Product("Karrotte", 12345L,
-                1000, 10, 0.5, "Gemüse");
-        apfel = new Product("Apfel", 1234567890123L,
-                1000, 5, 0.4, "MEGAFRÜCHTE");
+        karotte = new Product("Karrotte", 2345L,
+                1000, 100, 100000, "Gemüse");
+        apfel = new Product("Apfel", 94321L,
+                0, 100, 0.01, "MEGAFRÜCHTE");
 
 
         //Product tests
@@ -48,11 +48,11 @@ public class ModelTest {
         myCategoryList.addCategory("ULTRAGEMÜSE");
 
         karotte.setName("Pastinake");
-        karotte.setId(12345L);
-        karotte.setStock(10);
-        karotte.setWeight(5);
-        karotte.setPrice(1.0f);
-        karotte.setBasePrice(0.5);
+        karotte.setId(1234567890123L);
+        karotte.setStock(0);
+        karotte.setWeight(0.01);
+        karotte.setPrice(100000);
+        karotte.setBasePrice(0.01);
         karotte.setCategory("ULTRAGEMÜSE");
 
         System.out.println("Name: " + karotte.getName());

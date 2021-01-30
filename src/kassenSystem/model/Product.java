@@ -195,7 +195,7 @@ public class Product {
      * Throws an exception if the price does not meet these requirements.
      *
      * @param price the price charged for one unit of this product
-     * @throws Exception
+     * @throws Exception if price is less then 0.01 or greater then 100000
      */
     //was passiert hiermit
     public void setPrice(double price) throws Exception {
