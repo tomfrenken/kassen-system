@@ -2,7 +2,7 @@ package model;
 
 public class Product {
     private String name;
-    private int id;
+    private long id;
     private int stock;
     private float weight;
     private float price;
@@ -10,15 +10,18 @@ public class Product {
     private String category;
 
     //create new product
-    public Product(String name, int id, int stock, float weight, float price, float basePrice, String category) {
-        this.name = name;
-        this.id = id;
-        this.stock = stock;
-        this.weight = weight;
-        this.price = price;
-        this.basePrice = basePrice;
-        this.category = category;
-    }
+    public Product(String name, int id, int stock, float weight, float price, float basePrice, String category) throws Exception {
+        if(categoryInList(category)) {
+            this.name = name;
+            this.id = id;
+            this.stock = stock;
+            this.weight = weight;
+            this.price = price;
+            this.basePrice = basePrice;
+            this.category = category;
+        } else {
+            throw new Exception("The category " + this.getCategory() + " does not exist.");
+        }
 
     /**
      * Sets a new value for the name of the product.
@@ -40,7 +43,6 @@ public class Product {
      *
      * @param id the number used to identify each unique product
      */
-  
     public void setId(int id) {
         this.id = id;
     }
@@ -91,7 +93,7 @@ public class Product {
      * @param category the category this product has be assigned to
      * @see Category
      */
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -160,7 +162,7 @@ public class Product {
      *
      * @return the category this product has be assigned to
      */
-    public Category getCategory() {
+    public String getCategory() {
         return this.category;
     }
 }

@@ -11,41 +11,53 @@ public class PurchaseList {
         this.purchaseList = new ArrayList<Item>();
     }
 
-    //add a Product to the list
-    public void addProduct(Product product, int amount) {
+    // add a item to the list
+    // adjust subtotal by change
+    public void addItem(Product product, int amount) throws Exception {
         //
-        this.purchaseList.forEach(item -> {
+        for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 item.changeAmount(amount);
-                changeSubtotal(amount * item.getProduct().getPrice());
+                this.changeSubtotal(amount * product.getPrice());
+                return;
             }
-        });
+        }
+        Item item;
+        try {
+            item = new Item(product, amount);
+        } catch (Exception e) {
+            throw e;
+        }
+        this.purchaseList.add(item);
+        this.changeSubtotal(amount * product.getPrice());
     }
 
-    //remove PurchaseObject at the specified index
-    public void removeProduct(Product product) {
-        this.purchaseList.forEach(item -> {
+    //remove a Product from the purchaseList
+    // adjust subtotal by change
+    public void removeItem(Product product) {
+        for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 float change = item.getAmount();
                 float price = item.getProduct().getPrice();
                 float changeSubtotal = -(change * price);
                 this.purchaseList.remove(item);
-                changeSubtotal(changeSubtotal);
+                this.changeSubtotal(changeSubtotal);
             }
-        });
+        }
     }
 
-    //set a new Amount for the PurchaseObject at the specified index 
-    public void changeAmount(Product product, int amount) {
-        this.purchaseList.forEach(item -> {
+    // change the current amount of a item to a new one
+    // adjust subtotal by change
+    public void changeItemAmount(Product product, int amount) {
+        for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 int change = amount - item.getAmount();
                 float price = item.getProduct().getPrice();
                 float changeSubtotal = change * price;
                 item.changeAmount(change);
-                changeSubtotal(changeSubtotal);
+                this.changeSubtotal(changeSubtotal);
             }
-        });
+        }
     }
 
     //clear purchaseList
