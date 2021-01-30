@@ -7,10 +7,10 @@ public class Product {
     private float weight;
     private float price;
     private float basePrice;
-    private Category category;
+    private String category;
 
     //create new product
-    public Product(String name, int id, int stock, float weight, float price, float basePrice, Category category) {
+    public Product(String name, int id, int stock, float weight, float price, float basePrice, String category) {
         this.name = name;
         this.id = id;
         this.stock = stock;
@@ -25,7 +25,7 @@ public class Product {
         this.name = name;
     }
 
-    // Set a new value for amount
+    // Set a new value for id
     public void setId(int id) {
         this.id = id;
     }
@@ -51,7 +51,7 @@ public class Product {
     }
 
     // Set a new value for amount
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -86,7 +86,7 @@ public class Product {
     }
 
     // Request the current value for id
-    public Category getCategory() {
+    public String getCategory() {
         return this.category;
     }
 }
