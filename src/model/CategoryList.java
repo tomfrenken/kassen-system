@@ -72,7 +72,7 @@ public class CategoryList {
      * @param category The category you search for.
      * @return True if the category is already in the list.
      */
-    public boolean categoryInList(String category) {
+    public static boolean categoryInList(ArrayList<String> categoryList, String category) {
         if (categoryList.contains(category)){
             return true;
         } else {

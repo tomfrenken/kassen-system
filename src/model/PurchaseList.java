@@ -14,19 +14,18 @@ public class PurchaseList {
     // add a item to the list
     // adjust subtotal by change
     public void addItem(Product product, int amount) throws Exception {
-        //
+        Item item;
+        try {
+            item = new Item(product, amount);
+        } catch (Exception e) {
+            throw e;
+        }
         for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
                 item.changeAmount(amount);
                 this.changeSubtotal(amount * product.getPrice());
                 return;
             }
-        }
-        Item item;
-        try {
-            item = new Item(product, amount);
-        } catch (Exception e) {
-            throw e;
         }
         this.purchaseList.add(item);
         this.changeSubtotal(amount * product.getPrice());
@@ -40,7 +39,7 @@ public class PurchaseList {
                 float change = item.getAmount();
                 float price = item.getProduct().getPrice();
                 float changeSubtotal = -(change * price);
-                this.purchaseList.remove(item);
+                this.removeItem(product);
                 this.changeSubtotal(changeSubtotal);
             }
         }
@@ -51,6 +50,9 @@ public class PurchaseList {
     public void changeItemAmount(Product product, int amount) {
         for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
+                if (amount == 0) {
+                    this.removeItem(product);
+                }
                 int change = amount - item.getAmount();
                 float price = item.getProduct().getPrice();
                 float changeSubtotal = change * price;
