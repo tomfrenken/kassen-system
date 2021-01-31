@@ -171,7 +171,7 @@ public class Product {
         if (specialStock.equals("n") || specialStock.equals("N")) {
             this.specialStock = specialStock;
         } else {
-            throw new Exception("Der Spezialfall wird mit n aufgerufen." +
+            throw new Exception("Der Spezialfall wird mit n oder N aufgerufen." +
                     " Ihre Eingabe " + stock + " war fehlerhaft.");
         }
 
@@ -266,21 +266,19 @@ public class Product {
     }
 
     /**
-     * Sets a new value for the stock of the product.
-     * The stock must be an integer between 0 and 1000
+     * Sets a new value for the specialStock of the product.
+     * The stock must be a String equal to n or N
      * Throws an exception if the stock does not meet these requirements.
      *
-     * @param stock the amount of units stored of this product
+     * @param specialStock indicates that the special case is used where a product can not be counted, has to be either n or N
      * @throws Exception if the stock is smaller then 0 or greater then 1000
      */
-    public void setStock(int stock) throws Exception {
+    public void setStock(String specialStock) throws Exception {
         if (specialStock.equals("n") || specialStock.equals("N")) {
-            throw new Exception("Der Bestand muss zwischen 0 und 1.000 liegen." +
-                    "Ihre Eingabe " + stock + " war fehlerhaft.");
-
+            this.specialStock = specialStock;
         } else {
-            throw new Exception("Der Bestand muss zwischen 0 und 1.000 liegen." +
-                    "Ihre Eingabe " + stock + " war fehlerhaft.");
+            throw new Exception("Der Spezialfall wird mit n oder N aufgerufen." +
+                    " Ihre Eingabe " + specialStock + " war fehlerhaft.");
         }
     }
 
@@ -296,10 +294,10 @@ public class Product {
         switch(this.weightUnit){
             case "g":
             case "ml":
-                if (weight >= 1 && weight <= 2000){
+                if (weight >= 1 && weight <= 100000){
                     this.weight = weight;
                 } else {
-                    throw new Exception("Das Gewicht in " + this.weightUnit + " muss im Bereich 1 bis 2000 liegen." +
+                    throw new Exception("Das Gewicht in " + this.weightUnit + " muss im Bereich 1 bis 100.000 liegen." +
                             "Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 break;
