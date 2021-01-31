@@ -71,9 +71,15 @@ public class ModelTest {
 
         Product karotte;
         Product apfel;
-        karotte = new Product("Karotte", 2345L,
+        Product kuerbis;
+        Product birne;
+        karotte = new Product("Karotte1", 2345L,
                 1000, 100, "g", 1000, "Gemüse");
-        apfel = new Product("Apfel", 94321L,
+        apfel = new Product("Ap 1fel", 94321L,
+                980, 100, "stück", 1000, "MEGAFRÜCHTE");
+        kuerbis = new Product("122", 94322L,
+                980, 100, "stück", 1000, "MEGAFRÜCHTE");
+        birne = new Product("ÖÖÖ235 4ÜÄöäü", 94323L,
                 980, 100, "stück", 1000, "MEGAFRÜCHTE");
 
         System.out.println("Check if construction of product worked as inteded");
@@ -131,7 +137,7 @@ public class ModelTest {
         PurchaseList myPurchaseList = new PurchaseList();
         myPurchaseList.addItem(karotte, 5);
         myPurchaseList.addItem(apfel, 950);
-        System.out.println("Check if purchase list creation worked as inteded");
+        System.out.println("Check if purchase list creation worked as intended");
         for(Item item : myPurchaseList.getPurchaseList()){
             System.out.println("Name: " + item.getProduct().getName());
             System.out.println("Preis: " + item.getProduct().getPrice());
@@ -141,7 +147,7 @@ public class ModelTest {
         System.out.println("Zwischensumme: " + myPurchaseList.getSubtotal());
         System.out.println();
 
-        System.out.println("Check if setItemAmount works as inteded - price and amount change");
+        System.out.println("Check if setItemAmount works as intended - price and amount change");
         myPurchaseList.setItemAmount(myPurchaseList.getPurchaseList().get(1), 200);
         for(Item item : myPurchaseList.getPurchaseList()){
             System.out.println("Name: " + item.getProduct().getName());
