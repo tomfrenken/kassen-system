@@ -10,6 +10,4 @@ public class CategoryListController {
         this.view = view;
         this.model = model;
     }
-
-    // funktionen
 }

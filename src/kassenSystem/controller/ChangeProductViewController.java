@@ -2,15 +2,15 @@ package kassenSystem.controller;
 
 import kassenSystem.model.ProductList;
 import kassenSystem.view.AdminView;
-import kassenSystem.view.LoginView;
+import kassenSystem.view.ChangeProductView;
 
 import java.awt.event.ActionListener;
 
-public class AdminViewController {
-    private final AdminView view;
+public class ChangeProductViewController {
+    private final ChangeProductView view;
     private final ProductList model;
 
-    public AdminViewController(AdminView view, ProductList model) {
+    public ChangeProductViewController(ChangeProductView view, ProductList model) {
         this.view = view;
         this.model = model;
     }
