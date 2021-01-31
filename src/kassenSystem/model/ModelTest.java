@@ -164,8 +164,6 @@ public class ModelTest {
         myPurchaseList.cancelPurchase();
         System.out.println("Size after canceling: " + myPurchaseList.getPurchaseList().size());
 
-        //finishPurchase()
-
         System.out.println();
         System.out.println("------------------------------");
         System.out.println("------------------------------");
@@ -173,10 +171,6 @@ public class ModelTest {
         System.out.println("------------------------------");
         System.out.println("------------------------------");
         System.out.println();
-
-
-
-
 
     }
 }
