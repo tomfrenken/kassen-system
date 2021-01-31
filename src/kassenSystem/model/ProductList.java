@@ -31,11 +31,7 @@ public class ProductList {
     public void addProduct(String name, long id, int stock, float weight,
                            float basePrice, String category) throws Exception {
         Product temp;
-        try {
-            temp = new Product(name, id, stock, weight, basePrice, category);
-        } catch (Exception e) {
-            throw e;
-        }
+        temp = new Product(name, id, stock, weight, basePrice, category);
         productList.add(temp);
     }
 

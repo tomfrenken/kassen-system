@@ -49,37 +49,41 @@ public class PurchaseList {
         }
     }
 
-    // change the current amount of a item to a new one
-    // adjust subtotal by change
-    /* public void changeItemAmount(Item item, int amount) throws Exception {
-        Item test;
-        try {
-            test = new Item(product, amount);
-        } catch (Exception e) {
-            throw e;
-        }
-        for (Item item : this.purchaseList) {
-            if (item.getProduct() == product) {
-                if (amount == 0) {
-                    this.removeItem(product);
-                }
-                int change = amount - item.getAmount();
-                double price = item.getProduct().getPrice();
-                double changeSubtotal = change * price;
-                item.changeAmount(change);
-                this.changeSubtotal(changeSubtotal);
-                return;
+    /**
+     * Changes the item amount, if the amount is set to 0, removes the item instead.
+     *
+     * @param item The item to be changed.
+     * @param amount The new amount.
+     * @throws Exception When the new item amount isn't left in stock.
+     */
+    public void changeItemAmount(Item item, int amount) throws Exception {
+        if (purchaseList.contains(item)) {
+            if (item.getAmount() - amount == 0) {
+                this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
+                purchaseList.remove(item);
+            } else if (item.getAmount() < amount) {
+                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
+                item.setAmount(amount);
+            } else {
+                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
+                item.setAmount(amount);
             }
+        } else {
+            throw new Exception("Der Artikel " + item.getProduct().getName() + " ist nicht in der Einkaufsliste.");
         }
-        throw new Exception("Der Artikel " + product.getName() + " ist nicht in der Einkaufsliste.");
-    } */
+    }
 
-    //clear purchaseList
+    /**
+     * Clears the purchaseList to cancel the purchase.
+     */
     public void cancelPurchase() {
         purchaseList.clear();
     }
 
-    //finish old purchase and clear purchaseList ______!!!!!!!______
+    /**
+     * Finishes the purchase, reduces the stock and returns the subtotal
+     */
+    // finish this after productlist functions such as changeStock / removeProduct work
     public void finishPurchase() {
         //return subtotal to UI
         //reduce Stock by amount

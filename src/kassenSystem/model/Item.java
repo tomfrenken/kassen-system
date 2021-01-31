@@ -19,8 +19,12 @@ public class Item {
      *
      * @param amount the amount of this item
      */
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setAmount(int amount) throws Exception {
+        if(product.getStock() - amount >=0) {
+            this.amount = amount;
+        } else {
+            throw new Exception("Der Bestand des Artikels " + product.getName() + " ist zu gering für diese Operation.");
+        }
     }
 
     /**
