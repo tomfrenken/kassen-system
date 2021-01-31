@@ -45,10 +45,11 @@ public class ProductList {
              }
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
+             //updateInDatabase(Product temp);
         } else {
             Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
             productList.add(temp);
-
+            //updateInDatabase(Product temp);
         }
     }
 
