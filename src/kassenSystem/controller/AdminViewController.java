@@ -20,10 +20,10 @@ public class AdminViewController {
     }
 
     public void showView(){
-        view.setVisible(true);
+        this.view.setVisible(true);
     }
 
     public void hideView(){
-        view.setVisible(false);
+        this.view.setVisible(false);
     }
 }
