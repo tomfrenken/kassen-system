@@ -1,4 +1,4 @@
-package model;
+package kassenSystem.model;
 
 public class ModelTest {
     public static void main(String[] args) throws Exception {
@@ -41,10 +41,10 @@ public class ModelTest {
 
         Product karotte;
         Product apfel;
-        karotte = new Product("Karrotte", 1234567890123L,
-                1000, 10, 0.5, "Gemüse");
-        apfel = new Product("Apfel", 94001L,
-                1000, 5, 0.4, "MEGAFRÜCHTE");
+        karotte = new Product("Karrotte", 2345L,
+                1000, 100, 100000, "Gemüse");
+        apfel = new Product("Apfel", 94321L,
+                0, 100, 0.01, "MEGAFRÜCHTE");
 
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());
@@ -57,11 +57,11 @@ public class ModelTest {
         myCategoryList.addCategory("ULTRAGEMÜSE");
 
         karotte.setName("Pastinake");
-        karotte.setId(9999999999999L);
+        karotte.setId(1234567890123L);
         karotte.setStock(10);
-        karotte.setWeight(5);
-        karotte.setPrice(1.0f);
-        karotte.setBasePrice(0.9);
+        karotte.setWeight(0.01);
+        karotte.setPrice(100000);
+        karotte.setBasePrice(0.01);
         karotte.setCategory("ULTRAGEMÜSE");
 
         System.out.println("Name: " + karotte.getName());

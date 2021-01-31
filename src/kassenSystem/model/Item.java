@@ -1,6 +1,4 @@
-package model;
-
-import model.Product;
+package kassenSystem.model;
 
 public class Item {
     private Product product;
