@@ -27,12 +27,9 @@ public class PurchaseList {
                     return;
                 }
             }
-            this.purchaseList.add(new Item(product, amount));
-            this.addSubtotal(product.getPrice() * amount);
-        } else {
-            this.purchaseList.add(new Item(product, amount));
-            this.addSubtotal(product.getPrice() * amount);
         }
+        this.purchaseList.add(new Item(product, amount));
+        this.addSubtotal(product.getPrice() * amount);
     }
 
 
