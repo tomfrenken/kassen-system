@@ -46,6 +46,9 @@ public class ModelTest {
         apfel = new Product("Apfel", 94321L,
                 980, 100, 0.01, "MEGAFRÜCHTE");
 
+        // set price needs to be implemented in product
+        apfel.setPrice(10);
+
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());
         System.out.println("Stock: " + karotte.getStock());
@@ -89,7 +92,8 @@ public class ModelTest {
         }
         System.out.println("Zwischensumme: " + myPurchaseList.getSubtotal());
         System.out.println();
-        myPurchaseList.removeItem(karotte);
+
+        myPurchaseList.setItemAmount(myPurchaseList.getPurchaseList().get(1), 200);
         for(Item item : myPurchaseList.getPurchaseList()){
             System.out.println("Name: " + item.getProduct().getName());
             System.out.println("Preis: " + item.getProduct().getPrice());
@@ -98,6 +102,19 @@ public class ModelTest {
         }
         System.out.println("Zwischensumme: " + myPurchaseList.getSubtotal());
         System.out.println();
+
+        myPurchaseList.removeItem(myPurchaseList.getPurchaseList().get(0));
+        for(Item item : myPurchaseList.getPurchaseList()){
+            System.out.println("Name: " + item.getProduct().getName());
+            System.out.println("Preis: " + item.getProduct().getPrice());
+            System.out.println("Anzahl: " + item.getAmount());
+            System.out.println();
+        }
+        System.out.println("Zwischensumme: " + myPurchaseList.getSubtotal());
+        System.out.println();
+
+        //cancelPurchase
+        //setItemAmount
 
 
         // Implement tests for:

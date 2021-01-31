@@ -37,26 +37,20 @@ public class PurchaseList {
     /**
      * Removes an item from the purchaseList.
      *
-     * @param product The product you want to remove from the purchaseList.
+     * @param item The item you want to remove from the purchaseList.
      */
-    public void removeItem(Product product) {
-       for (Item item : this.purchaseList) {
-            if (item.getProduct() == product) {
-                this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
-                this.purchaseList.remove(item);
-                break;
-            }
-        }
+    public void removeItem(Item item) {
+       purchaseList.remove(item);
     }
 
     /**
-     * Changes the item amount, if the amount is set to 0, removes the item instead.
+     * Sets the item amount to a new value, if the amount is set to 0, removes the item instead.
      *
      * @param item The item to be changed.
      * @param amount The new amount.
      * @throws Exception When the new item amount isn't left in stock.
      */
-    public void changeItemAmount(Item item, int amount) throws Exception {
+    public void setItemAmount(Item item, int amount) throws Exception {
         if (purchaseList.contains(item)) {
             if (item.getAmount() - amount == 0) {
                 this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
