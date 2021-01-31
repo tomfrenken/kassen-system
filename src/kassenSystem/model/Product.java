@@ -342,7 +342,6 @@ public class Product {
      * @param basePrice the price charged for a fixed amount of this product
      * @throws Exception if the basePrice is less then 0.01 or greater then 100000 or special case is not activated
      */
-    // muss überarbeitet werden, dass es nur noch bei 2ten geht
     public void setBasePrice(double basePrice) throws Exception {
         if (specialStock == null) {
             throw new Exception("Der Spezialfall ist nicht aktiviert." +
