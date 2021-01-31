@@ -57,10 +57,10 @@ public class PurchaseList {
                 this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
                 purchaseList.remove(item);
             } else if (item.getAmount() < amount) {
-                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
+                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
                 item.setAmount(amount);
             } else {
-                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
+                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
                 item.setAmount(amount);
             }
         } else {
