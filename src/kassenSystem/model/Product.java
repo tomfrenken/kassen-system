@@ -137,7 +137,7 @@ public class Product {
         if(name.length() >= 2 && name.length() <= 32) {
             this.name = name;
         }else {
-            throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein." +
+            throw new Exception("Der Name muss 2 bis 32 Zeichen lang sein." +
                     " Ihre Eingabe " + name + " war fehlerhaft.");
         }
 
