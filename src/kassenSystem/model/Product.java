@@ -268,7 +268,7 @@ public class Product {
      * Throws an exception if the stock does not meet these requirements or the special case is activated for that product.
      *
      * @param stock the stock of the product, has to be between 0 and 1000
-     * @throws Exception if the stock is smaller then 0 or greater then 1000
+     * @throws Exception if the stock is smaller then 0 or greater then 1000 or special case is activated
      */
     public void setStock(int stock) throws Exception {
         if (specialStock.length() == 0) {
