@@ -1,5 +1,14 @@
 package kassenSystem.model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +19,8 @@ public class ProductList {
     /**
      * This is the product list.
      */
-    private static ArrayList<Product> productList = new ArrayList<>();
+    private static final ArrayList<Product> productList = new ArrayList<>();
+    Path path = Paths.get("kassenSystem/model/Database.txt");
 
     ProductList() {}
 
@@ -193,8 +203,7 @@ public class ProductList {
     }
 
     /**
-     * Searches the productList for all products whose name includes,
-     * or is equal to the search phrase.
+     *
      *
      * @param search The search phrase that is looked for in the productList
      * @return a list of products with the same name as the search phrase,
@@ -213,10 +222,49 @@ public class ProductList {
     }
 
     /**
-     * Parses the database for Products and adds them to the productList.
+     * Adds a new product entry to the database.
+     *
+     * @param product
      */
-    public void parseProducts(){
+    public void addToDatabase(Product product) {
+        Charset charset = StandardCharsets.UTF_8;
 
+        String s = product.toString(null);
+
+        try (FileWriter writer =  new FileWriter(path, true) {
+            writer
+        } catch (IOException x) {
+            System.err.format("IOException: %s%n", x);
+        }
+    }
+
+    /**
+     * Updates a product entry in the database.
+     *
+     * @param product
+     */
+    public void updateInDatabase(Product product) {}
+
+    /**
+     * Removes a product entry from the database.
+     *
+     * @param product
+     */
+    public void removeFromDatabase(Product product) {}
+
+    /**
+     * Reads a product entry from the database
+     */
+    public void readFromDatabase() {
+        Charset charset = StandardCharsets.UTF_8;
+        try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException x) {
+            System.err.format("IOException: %s%n", x);
+        }
     }
 
     /**

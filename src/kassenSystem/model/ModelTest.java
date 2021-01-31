@@ -348,5 +348,24 @@ public class ModelTest {
             System.out.println(product.getCategory());
         }
         System.out.println();
+
+
+        System.out.println();
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println("Database test");
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println();
+
+        System.out.println("All Categories in ProductList(after remove): ");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product);
+        }
+        for(Product product : myProductList.getProductList()) {
+            myProductList.addToDatabase(product);
+        }
+        myProductList.readFromDatabase();
+
     }
 }

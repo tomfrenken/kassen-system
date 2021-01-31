@@ -448,6 +448,19 @@ public class Product {
         return this.weightUnit;
     }
 
+
+    public String toString(String specialStock) {
+        if (specialStock == null) {
+            return this.getId() + " " + this.getName() + " " + this.getStock() + " " +
+                    this.getWeight() + " " + this.getWeightUnit() + " " + this.getPrice() + " " +
+                    this.getBasePrice() + " " + this.getCategory();
+        } else {
+            return this.getId() + " " + this.getName() + " " + this.getspecialStock() + " " +
+                    this.getWeight() + " " + this.getWeightUnit() + " " + this.getPrice() + " " +
+                    this.getBasePrice() + " " + this.getCategory();
+        }
+    }
+
     /**
      * Returns the specialStock, has to be n or N
      *
