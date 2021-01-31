@@ -11,7 +11,7 @@ public class AdminView extends JFrame {
     private JButton newProductButton;
     private JButton changeProductButton;
     private JButton deleteProductButton;
-    private JButton kategorielisteButton;
+    private JButton categoryListButton;
 
     private JList list1;
     private JComboBox comboBox1;
@@ -31,13 +31,13 @@ public class AdminView extends JFrame {
         newProductButton.setActionCommand("newProductView");
         changeProductButton.setActionCommand("changeProductView");
         deleteProductButton.setActionCommand("deleteProductView");
-        kategorielisteButton.setActionCommand("categoryListView");
+        categoryListButton.setActionCommand("categoryListView");
     }
 
     public void addActionListener(ActionListener actionListener){
         newProductButton.addActionListener(actionListener);
         changeProductButton.addActionListener(actionListener);
         deleteProductButton.addActionListener(actionListener);
-        kategorielisteButton.addActionListener(actionListener);
+        categoryListButton.addActionListener(actionListener);
     }
 }
