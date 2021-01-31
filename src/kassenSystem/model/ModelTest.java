@@ -188,7 +188,7 @@ public class ModelTest {
         myCategoryList.addCategory("AWare");
         myProductList.addProduct("Schokolade", 1591201843213L, 250, 200, "g", 200, "Süßwaren");
         myProductList.addProduct("Schokolade1", 1591201843214L, 250, 200, "g", 200, "Süßwaren");
-        myProductList.addProduct("Ananas", 93151L, 100, 2, "kg", 500, "MEGAFRUECHTE");
+        myProductList.addProduct("Ananas", 93151L, "n", 2, "kg", 500, "MEGAFRUECHTE");
         myProductList.addProduct("Ananas1", 93152L, 100, 2, "stück", 500, "MEGAFRUECHTE");
         myProductList.addProduct("Babakush", 1234L, 500, 10, "stück", 500, "AWare");
         myProductList.addProduct("Babakush1", 1235L, 500, 10, "g", 500, "AWare");
@@ -359,10 +359,28 @@ public class ModelTest {
         System.out.println("------------------------------");
         System.out.println();
 
+
+        System.out.println("productList before saving from Database");
         for(Product product : myProductList.getProductList()) {
-            myProductList.addToDatabase(product);
+            System.out.println(product.getStock());
         }
-        myProductList.readFromDatabase();
+        System.out.println();
+        myProductList.saveToDatabase();
+
+        System.out.println("Cleared Productlist after save");
+        int i = 0;
+        while(i < myProductList.getProductList().size()) {
+            myProductList.removeProduct(i);
+        }
+
+        myProductList.LoadFromDatabase();
+        System.out.println("productList after loading from Database");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getStock());
+        }
+        System.out.println();
+
+
 
     }
 }
