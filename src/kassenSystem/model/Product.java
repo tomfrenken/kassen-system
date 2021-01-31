@@ -26,7 +26,7 @@ public class Product {
 
 
     /**
-     * Creates a new Product and initializes the attributes name, id, stock, weight, basePrice
+     * Creates a new Product and initializes the attributes name, id, stock, weight, weightUnit, basePrice
      * and category and price.
      * It will also check if the parameters have correct values.
      *
@@ -131,6 +131,23 @@ public class Product {
         }
     }
 
+    /**
+     * Creates a new Product and initializes the attributes name, id, specialStock, weight, basePrice
+     * and category and price.
+     * It will also check if the parameters have correct values.
+     *
+     * @param name the name of the product, must be between 2 and 32 characters
+     * @param id the identification number of the product, has to be either 13 digits long, 4 digits long,
+     *           or 5 digits with a leading 9
+     * @param stock the stock of the product, has to be between 0 and 1000
+     * @param weight the weight of a unit of the product has to be between 1 and 100.000 for gramm and ml,
+     *               between 0,01 and 100 for l and kg and between 1 and 1000 for stück
+     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
+     * @param price the  price for a given amount of the product, between 0.01 and 100.000
+     * @param category the category the product has been assigned to, has to be part of the category list
+     *
+     * @throws Exception specified at each check
+     */
     public Product(String name, long id, String specialStock, double weight, String weightUnit, double basePrice, String category)
             throws Exception {
 
@@ -194,7 +211,7 @@ public class Product {
                 if(price/weight * 1 <= 100000 && price / weight * 1 >= 0.01) {
                     this.basePrice = price / weight * 1;
                 } else {
-                    throw new Exception("Der Grundpreis muss im Bereich einschließlich von 0,01 bis einschließlich 100.000 liegen, " +
+                    throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0,01 bis einschließlich 100.000 liegen, " +
                             "Ihr aktueller Grundpreis lautet: " + price / weight * 1);
                 }
         }
