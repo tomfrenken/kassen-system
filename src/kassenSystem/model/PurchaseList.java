@@ -22,10 +22,6 @@ public class PurchaseList {
                     item.changeAmount(amount);
                     this.addSubtotal(product.getPrice() * amount);
                     break;
-                } else {
-                    this.purchaseList.add(new Item(product, amount));
-                    this.addSubtotal(product.getPrice() * amount);
-                    break;
                 }
             }
         } else {
