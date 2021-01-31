@@ -25,7 +25,7 @@ public class ProductList {
      * @param id the identification number of the new product
      * @param stock the amount of units of the new product
      * @param weight the weight of the product
-     * @param basePrice the base price of the product
+     * @param price the base price of the product
      * @param category the category the product will be assigned to
      */
     // needs to handle both price and basePrice

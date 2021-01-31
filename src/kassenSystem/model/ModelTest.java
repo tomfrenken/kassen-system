@@ -1,5 +1,7 @@
 package kassenSystem.model;
 
+import java.sql.SQLSyntaxErrorException;
+
 public class ModelTest {
     public static void main(String[] args) throws Exception {
         // This class is only for testing purpose during development.
@@ -172,5 +174,64 @@ public class ModelTest {
         System.out.println("------------------------------");
         System.out.println();
 
+        ProductList myProductList = new ProductList();
+        myCategoryList.addCategory("Süßwaren");
+        myCategoryList.addCategory("A-Ware");
+        myProductList.addProduct("Schokolade", 1591201843213L, 250, 200, "g", 200, "Süßwaren");
+        myProductList.addProduct("Ananas", 93151L, 100, 2, "kg", 500, "MEGAFRÜCHTE");
+        myProductList.addProduct("Babakush", 1234L, 500, 10, "g", 500, "A-Ware");
+
+        System.out.println("First lets check the unsorted list");
+        System.out.println(myProductList.getProduct(0).getName());
+        System.out.println(myProductList.getProduct(1).getName());
+        System.out.println(myProductList.getProduct(2).getName());
+        System.out.println();
+
+        System.out.println("First sort by name:");
+        myProductList.sortByName();
+        System.out.println(myProductList.getProduct(0).getName());
+        System.out.println(myProductList.getProduct(1).getName());
+        System.out.println(myProductList.getProduct(2).getName());
+        System.out.println();
+
+        System.out.println("Next sort by ID");
+        myProductList.sortById();
+        System.out.println(myProductList.getProduct(0).getId());
+        System.out.println(myProductList.getProduct(1).getId());
+        System.out.println(myProductList.getProduct(2).getId());
+        System.out.println();
+
+        System.out.println("Next sort by Category");
+        myProductList.sortByCategory();
+        System.out.println(myProductList.getProduct(0).getCategory());
+        System.out.println(myProductList.getProduct(1).getCategory());
+        System.out.println(myProductList.getProduct(2).getCategory());
+        System.out.println();
+
+        System.out.println("Next sort by Stock");
+        myProductList.sortByStock();
+        System.out.println(myProductList.getProduct(0).getStock());
+        System.out.println(myProductList.getProduct(1).getStock());
+        System.out.println(myProductList.getProduct(2).getStock());
+        System.out.println();
+
+        System.out.println("Next sort by Price");
+        myProductList.sortByPrice();
+        System.out.println(myProductList.getProduct(0).getPrice());
+        System.out.println(myProductList.getProduct(1).getPrice());
+        System.out.println(myProductList.getProduct(2).getPrice());
+        System.out.println();
+
+        System.out.println("Next sort by weight");
+        myProductList.sortByWeight();
+        System.out.println(myProductList.getProduct(0).getWeight());
+        System.out.println(myProductList.getProduct(1).getWeight());
+        System.out.println(myProductList.getProduct(2).getWeight());
+
+        System.out.println("Finally, test sort by basePrice");
+        myProductList.sortByBasePrice();
+        System.out.println(myProductList.getProduct(0).getBasePrice());
+        System.out.println(myProductList.getProduct(1).getBasePrice());
+        System.out.println(myProductList.getProduct(2).getBasePrice());
     }
 }
