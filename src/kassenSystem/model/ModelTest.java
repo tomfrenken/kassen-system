@@ -43,17 +43,18 @@ public class ModelTest {
         myCategoryList.addCategory("Rotes Gemüse");
         myCategoryList.addCategory("Früchte");
         myCategoryList.addCategory("Tiefkühlkost");
+        myCategoryList.addCategory("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAÜA");
         System.out.println();
         System.out.println("Print all categories after creating a list of them.");
         System.out.println(myCategoryList.getCategoryList());
-        myCategoryList.changeCategory("Früchte", "MEGAFRÜCHTE");
+        myCategoryList.changeCategory("Früchte", "MEGAFRUECHTE");
         System.out.println();
         System.out.println("Check ich Früchte was changed to MEGAFRÜCHTE");
         System.out.println(myCategoryList.getCategoryList());
         myCategoryList.removeCategory("Tiefkühlkost");
         System.out.println();
-        System.out.println("Check if categoryInList works on MEGAFRÜCHTE");
-        System.out.println(myCategoryList.categoryInList("MEGAFRÜCHTE"));
+        System.out.println("Check if categoryInList works on MEGAFRUECHTE");
+        System.out.println(myCategoryList.categoryInList("MEGAFRUECHTE"));
         System.out.println();
         System.out.println("Check if Tiefkühlkost was removed");
         System.out.println(myCategoryList.getCategoryList());
@@ -76,11 +77,11 @@ public class ModelTest {
         karotte = new Product("Karotte1", 2345L,
                 1000, 100, "g", 1000, "Gemüse");
         apfel = new Product("Ap 1fel", 94321L,
-                980, 100, "stück", 1000, "MEGAFRÜCHTE");
+                980, 100, "stück", 1000, "MEGAFRUECHTE");
         kuerbis = new Product("122", 94322L,
-                980, 100, "stück", 1000, "MEGAFRÜCHTE");
+                980, 100, "stück", 1000, "MEGAFRUECHTE");
         birne = new Product("ÖÖÖ235 4ÜÄöäü", 94323L,
-                980, 100, "stück", 1000, "MEGAFRÜCHTE");
+                980, 100, "stück", 1000, "MEGAFRUECHTE");
 
         System.out.println("Check if construction of product worked as inteded");
         System.out.println("Name: " + karotte.getName());
@@ -111,7 +112,7 @@ public class ModelTest {
         karotte.setId(1234567890123L);
         karotte.setStock(10);
         karotte.setWeight(1);
-        karotte.setBasePrice(0.01);
+        karotte.setPrice(0.01);
         karotte.setCategory("ULTRAGEMÜSE");
 
 
@@ -186,10 +187,10 @@ public class ModelTest {
         myCategoryList.addCategory("Süßwaren");
         myCategoryList.addCategory("AWare");
         myProductList.addProduct("Schokolade", 1591201843213L, 250, 200, "g", 200, "Süßwaren");
-        myProductList.addProduct("Schokoladen", 1591201843214L, 250, 200, "g", 200, "Süßwaren");
-        myProductList.addProduct("Ananas", 93151L, 100, 2, "kg", 500, "MEGAFRÜCHTE");
-        myProductList.addProduct("Annanas", 93152L, 100, 2, "kg", 500, "MEGAFRÜCHTE");
-        myProductList.addProduct("Babakush", 1234L, 500, 10, "g", 500, "AWare");
+        myProductList.addProduct("Schokolade1", 1591201843214L, 250, 200, "g", 200, "Süßwaren");
+        myProductList.addProduct("Ananas", 93151L, 100, 2, "kg", 500, "MEGAFRUECHTE");
+        myProductList.addProduct("Ananas1", 93152L, 100, 2, "stück", 500, "MEGAFRUECHTE");
+        myProductList.addProduct("Babakush", 1234L, 500, 10, "stück", 500, "AWare");
         myProductList.addProduct("Babakush1", 1235L, 500, 10, "g", 500, "AWare");
 
         System.out.println("First lets check the unsorted list");
@@ -348,5 +349,20 @@ public class ModelTest {
             System.out.println(product.getCategory());
         }
         System.out.println();
+
+
+        System.out.println();
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println("Database Test");
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println();
+
+        for(Product product : myProductList.getProductList()) {
+            myProductList.addToDatabase(product);
+        }
+        myProductList.readFromDatabase();
+
     }
 }

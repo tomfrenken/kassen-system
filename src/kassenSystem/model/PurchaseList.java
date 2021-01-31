@@ -6,17 +6,17 @@ public class PurchaseList {
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
 
-    public PurchaseList() {};
+    public PurchaseList() {}
 
     /**
      * Add an item to the list or increment the amount of the item if the related item already exists.
      * Incrementation of 1 is meant for use with the product scanner.
      *
      * @param product The product that is used.
-     * @param amount The amount you want to use.
+     * @param amount  The amount you want to use.
      */
     public void addItem(Product product, int amount) throws Exception {
-        if(purchaseList.size()>0) {
+        if (purchaseList.size() > 0) {
             for (Item item : this.purchaseList) {
                 if (item.getProduct() == product) {
                     item.changeAmount(amount);
@@ -24,11 +24,11 @@ public class PurchaseList {
                     break;
                 }
             }
-        } else {
-            this.purchaseList.add(new Item(product, amount));
-            this.addSubtotal(product.getPrice() * amount);
         }
+        this.purchaseList.add(new Item(product, amount));
+        this.addSubtotal(product.getPrice() * amount);
     }
+
 
     /**
      * Removes an item from the purchaseList and subtracts the amount from the subtotal.
@@ -54,10 +54,10 @@ public class PurchaseList {
                 this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
                 purchaseList.remove(item);
             } else if (item.getAmount() < amount) {
-                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
+                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
                 item.setAmount(amount);
             } else {
-                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
+                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
                 item.setAmount(amount);
             }
         } else {

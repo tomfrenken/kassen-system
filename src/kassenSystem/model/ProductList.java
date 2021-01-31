@@ -1,5 +1,11 @@
 package kassenSystem.model;
 
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +16,8 @@ public class ProductList {
     /**
      * This is the product list.
      */
-    private static ArrayList<Product> productList = new ArrayList<>();
+    private static final ArrayList<Product> productList = new ArrayList<>();
+    Path path = Paths.get("kassenSystem/model/Database.txt");
 
     public ProductList() {}
 
@@ -25,12 +32,25 @@ public class ProductList {
      * @param weight the weight of the product
      * @param price the base price of the product
      * @param category the category the product will be assigned to
+     * @throws Exception When the product id is already in the list
      */
     // needs to handle both price and basePrice
     public void addProduct(String name, long id, int stock, float weight, String weightUnit,
                            float price, String category) throws Exception {
-        Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
-        productList.add(temp);
+         if (productList.size() > 0) {
+             for (Product product : productList) {
+                 if (product.getId() == id) {
+                     throw new Exception("Die Produkt-ID " + id + " wird bereits verwendet.");
+                 }
+             }
+             Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
+             productList.add(temp);
+             addToDatabase(temp);
+        } else {
+             Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
+             productList.add(temp);
+             addToDatabase(temp);
+        }
     }
 
     /**
@@ -193,8 +213,7 @@ public class ProductList {
     }
 
     /**
-     * Searches the productList for all products whose name includes,
-     * or is equal to the search phrase.
+     *
      *
      * @param search The search phrase that is looked for in the productList
      * @return a list of products with the same name as the search phrase,
@@ -213,10 +232,47 @@ public class ProductList {
     }
 
     /**
-     * Parses the database for Products and adds them to the productList.
+     * Adds a new product entry to the database.
+     *
+     * @param product
      */
-    public void parseProducts(){
+    public void addToDatabase(Product product) throws IOException {
+        String s = String.format("%13d %32s %4d %8.2f %5s  %8.2f %8.2f %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory());
+        //"%1$13d %2$32s %3$4d %4$6f.2 %5$5s  %6$6f.2 %7$6f.2 %8$32s", s
+        //"%13d %32s %4d %6f.2 %5s  %6f.2 %6f.2 %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory()
 
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
+        pw.println(s);
+        pw.close();
+    }
+
+    /**
+     * Updates a product entry in the database.
+     *
+     * @param product
+     */
+    public void updateInDatabase(Product product) {}
+
+    /**
+     * Removes a product entry from the database.
+     *
+     * @param product
+     */
+    public void removeFromDatabase(Product product) {}
+
+    /**
+     * Reads a product entry from the database
+     */
+    public void readFromDatabase() {
+        Charset charset = StandardCharsets.UTF_8;
+        try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException x) {
+            System.err.format("IOException: %s%n", x);
+        }
     }
 
     /**

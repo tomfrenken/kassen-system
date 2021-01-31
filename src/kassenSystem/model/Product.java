@@ -16,7 +16,6 @@ public class Product {
     private String category;
     private final CategoryList categoryList = new CategoryList();
     private String specialStock;
-    // public Product(String name, long id, int stock, )
 
 
 
@@ -44,9 +43,8 @@ public class Product {
      */
     public Product(String name, long id, int stock, double weight, String weightUnit, double price, String category)
             throws Exception {
-
         if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("([öÖäÄüÜßa-zA-Z\\d]*\\s?[öÖäÄüÜßa-zA-Z\\d]*)")) {
+                name.matches("([öÖäÄüÜßa-zA-Z\\d&'-]+(\\s?[öÖäÄüÜßa-zA-Z\\d&'-]+\\s?)*[öÖäÄüÜßa-zA-Z\\d&'-]+)")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss 2 bis 32 Zeichen lang sein." +
@@ -271,7 +269,7 @@ public class Product {
      * @throws Exception if the stock is smaller then 0 or greater then 1000 or special case is activated
      */
     public void setStock(int stock) throws Exception {
-        if (specialStock != null) {
+        if (this.getspecialStock() != null) {
             throw new Exception("Der Spezialfall ist aktiviert." +
                     " Diese Operation ist nicht möglich.");
         } else if (stock >= 0 && stock <= 1000) {
@@ -326,7 +324,6 @@ public class Product {
      * @param price the price charged for one unit of this product
      * @throws Exception if price is less then 0.01 or greater then 100000
      */
-    // muss überarbeitet werden, damit nur noch bei 1ten konstruktor funktioniert
     public void setPrice(double price) throws Exception {
             if (price >= 0.01 && price <= 100000) {
                 this.price = price;
@@ -338,15 +335,17 @@ public class Product {
 
     /**
      * Sets a new value for the base price of the product.
-     * The base price must be a double 0.01 100000
+     * The base price must be a double 0.01 - 100.000
      * Throws an exception if the basePrice does not meet these requirements.
      *
      * @param basePrice the price charged for a fixed amount of this product
-     * @throws Exception if the basePrice is less then 0.01 or greater then 100000
+     * @throws Exception if the basePrice is less then 0.01 or greater then 100000 or special case is not activated
      */
-    // muss überarbeitet werden, dass es nur noch bei 2ten geht
     public void setBasePrice(double basePrice) throws Exception {
-        if(basePrice >= 0.01 && basePrice <= 100000) {
+        if (this.getspecialStock() == null) {
+            throw new Exception("Der Spezialfall ist nicht aktiviert." +
+                    " Diese Operation ist nicht möglich.");
+        } else if (basePrice<=100000 && basePrice>=0.01) {
             this.basePrice = basePrice;
         } else {
             throw new Exception("Der Grundpreis muss zwischen 0.01 und 100.000 liegen." +
@@ -446,5 +445,27 @@ public class Product {
      */
     public String getWeightUnit() {
         return this.weightUnit;
+    }
+
+
+    public String toString(String specialStock) {
+        if (specialStock == null) {
+            return this.getId() + " " + this.getName() + " " + this.getStock() + " " +
+                    this.getWeight() + " " + this.getWeightUnit() + " " + this.getPrice() + " " +
+                    this.getBasePrice() + " " + this.getCategory();
+        } else {
+            return this.getId() + " " + this.getName() + " " + this.getspecialStock() + " " +
+                    this.getWeight() + " " + this.getWeightUnit() + " " + this.getPrice() + " " +
+                    this.getBasePrice() + " " + this.getCategory();
+        }
+    }
+
+    /**
+     * Returns the specialStock, has to be n or N
+     *
+     * @return the value n or N that indicates that the special case ist activated
+     */
+    public String getspecialStock() {
+        return this.specialStock;
     }
 }
