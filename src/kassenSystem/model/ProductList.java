@@ -28,10 +28,9 @@ public class ProductList {
      * @param basePrice the base price of the product
      * @param category the category the product will be assigned to
      */
-    public void addProduct(String name, long id, int stock, float weight,
+    public void addProduct(String name, long id, int stock, float weight, String weightUnit,
                            float basePrice, String category) throws Exception {
-        Product temp;
-        temp = new Product(name, id, stock, weight, basePrice, category);
+        Product temp = new Product(name, id, stock, weight, weightUnit, basePrice, category);
         productList.add(temp);
     }
 

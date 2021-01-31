@@ -19,7 +19,7 @@ public class Product {
 
 
 
-
+    // IMPLEMENT .toString() for Item & Product, so they can be selected from a list in the view
 
 
 
@@ -35,14 +35,14 @@ public class Product {
      * @param stock the stock of the product, has to be between 0 and 1000
      * @param weight the weight of a unit of the product has to be between 1 and 100.000 for gramm and ml,
      *               between 0,01 and 100 for l and kg and between 1 and 1000 for stück
-     * @param weightUnit the unit of the given weight has to be in unit list
-     * @param basePrice the base price for a fixed amount of the product, between 0.01 and 100.000
+     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
+     * @param price the  price for a given amount of the product, between 0.01 and 100.000
      * @param category the category the product has been assigned to, has to be part of the category list
      *
      * @throws Exception specified at each check
      */
-    public Product(String name, long id, int stock, double weight, String weightUnit, double basePrice,
-                   String category) throws Exception {
+    public Product(String name, long id, int stock, double weight, String weightUnit, double price, String category)
+            throws Exception {
 
         if(name.length() >= 2 && name.length() <= 32) {
             this.name = name;
@@ -76,8 +76,14 @@ public class Product {
                 if (weight >=1 && weight <= 100000){
                     this.weight = weight;
                 } else {
-                    throw new Exception(" Das Gewicht muss im Bereich 1 bis 100000 liegen." +
+                    throw new Exception("Das Gewicht muss im Bereich 1 bis 100000 liegen." +
                             " Ihre eingabe " + weight + " war fehlerhaft.");
+                }
+                if(price/weight * 100 <= 100000 && price/weight * 100 >= 0.1) {
+                    this.basePrice = price / weight * 100;
+                } else {
+                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, passen Sie den Preis" +
+                            "oder das Gewicht an.");
                 }
                 break;
 
@@ -86,22 +92,29 @@ public class Product {
                 if (weight >= 0.01 && weight <= 100){
                     this.weight = weight;
                 } else {
-                    throw new Exception(" Das Gewicht muss im Bereich 0,01 bis 100 liegen." +
+                    throw new Exception("Das Gewicht muss im Bereich 0,01 bis 100 liegen." +
                             " Ihre eingabe " + weight + " war fehlerhaft.");
+                }
+                if(price/weight * 1 <= 100000 && price/weight * 1 >= 0.1) {
+                    this.basePrice = price / weight * 1;
+                } else {
+                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, passen Sie den Preis" +
+                            " oder das Gewicht an.");
                 }
                 break;
             case "stück":
                 if(weight >= 1 && weight <= 1000){
                     this.weight = weight;
+                } else {
+                    throw new Exception("Das Gewicht muss im Berecih 1 bis 1000 liegen." +
+                            "Ihre eingabe " + weight + " war fehlerhaft.");
                 }
-        }
-
-
-        if(basePrice >= 0.01 && basePrice <= 100000) {
-            this.basePrice = basePrice;
-        } else {
-            throw new Exception("Der Grundpreis muss zwischen 0.01 und 100000 liegen." +
-                    " Ihre Eingabe " + basePrice + " war fehlerhaft.");
+                if(price/weight * 1 <= 1000 && price/weight * 1 >= 1) {
+                    this.basePrice = price / weight * 1;
+                } else {
+                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, passen Sie den Preis" +
+                            " oder das Gewicht an.");
+                }
         }
 
         if (categoryList.categoryInList(category)) {
@@ -331,6 +344,11 @@ public class Product {
         return this.category;
     }
 
+    /**
+     * Returns the used weight unit, e.g. g/kg/ml/l/stück
+     *
+     * @return the weight unit by which the product is measured
+     */
     public String getWeightUnit() {
         return this.weightUnit;
     }

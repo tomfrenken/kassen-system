@@ -42,9 +42,9 @@ public class ModelTest {
         Product karotte;
         Product apfel;
         karotte = new Product("Karrotte", 2345L,
-                1000, 100, 5000, "Gemüse");
+                1000, 100, "g", 5000, "Gemüse");
         apfel = new Product("Apfel", 94321L,
-                980, 100, 0.01, "MEGAFRÜCHTE");
+                980, 100, "stück", 0.01, "MEGAFRÜCHTE");
 
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());
