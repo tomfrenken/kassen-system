@@ -1,6 +1,8 @@
 package kassenSystem.model;
 
 import java.sql.SQLSyntaxErrorException;
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class ModelTest {
     public static void main(String[] args) throws Exception {
@@ -176,15 +178,21 @@ public class ModelTest {
 
         ProductList myProductList = new ProductList();
         myCategoryList.addCategory("Süßwaren");
-        myCategoryList.addCategory("A-Ware");
+        myCategoryList.addCategory("AWare");
         myProductList.addProduct("Schokolade", 1591201843213L, 250, 200, "g", 200, "Süßwaren");
+        myProductList.addProduct("Schokoladen", 1591201843214L, 250, 200, "g", 200, "Süßwaren");
         myProductList.addProduct("Ananas", 93151L, 100, 2, "kg", 500, "MEGAFRÜCHTE");
-        myProductList.addProduct("Babakush", 1234L, 500, 10, "g", 500, "A-Ware");
+        myProductList.addProduct("Annanas", 93152L, 100, 2, "kg", 500, "MEGAFRÜCHTE");
+        myProductList.addProduct("Babakush", 1234L, 500, 10, "g", 500, "AWare");
+        myProductList.addProduct("Babakush1", 1235L, 500, 10, "g", 500, "AWare");
 
         System.out.println("First lets check the unsorted list");
         System.out.println(myProductList.getProduct(0).getName());
         System.out.println(myProductList.getProduct(1).getName());
         System.out.println(myProductList.getProduct(2).getName());
+        System.out.println(myProductList.getProduct(3).getName());
+        System.out.println(myProductList.getProduct(4).getName());
+        System.out.println(myProductList.getProduct(5).getName());
         System.out.println();
 
         System.out.println("First sort by name:");
@@ -192,6 +200,9 @@ public class ModelTest {
         System.out.println(myProductList.getProduct(0).getName());
         System.out.println(myProductList.getProduct(1).getName());
         System.out.println(myProductList.getProduct(2).getName());
+        System.out.println(myProductList.getProduct(3).getName());
+        System.out.println(myProductList.getProduct(4).getName());
+        System.out.println(myProductList.getProduct(5).getName());
         System.out.println();
 
         System.out.println("Next sort by ID");
@@ -199,6 +210,9 @@ public class ModelTest {
         System.out.println(myProductList.getProduct(0).getId());
         System.out.println(myProductList.getProduct(1).getId());
         System.out.println(myProductList.getProduct(2).getId());
+        System.out.println(myProductList.getProduct(3).getId());
+        System.out.println(myProductList.getProduct(4).getId());
+        System.out.println(myProductList.getProduct(5).getId());
         System.out.println();
 
         System.out.println("Next sort by Category");
@@ -206,6 +220,9 @@ public class ModelTest {
         System.out.println(myProductList.getProduct(0).getCategory());
         System.out.println(myProductList.getProduct(1).getCategory());
         System.out.println(myProductList.getProduct(2).getCategory());
+        System.out.println(myProductList.getProduct(3).getCategory());
+        System.out.println(myProductList.getProduct(4).getCategory());
+        System.out.println(myProductList.getProduct(5).getCategory());
         System.out.println();
 
         System.out.println("Next sort by Stock");
@@ -213,6 +230,9 @@ public class ModelTest {
         System.out.println(myProductList.getProduct(0).getStock());
         System.out.println(myProductList.getProduct(1).getStock());
         System.out.println(myProductList.getProduct(2).getStock());
+        System.out.println(myProductList.getProduct(3).getStock());
+        System.out.println(myProductList.getProduct(4).getStock());
+        System.out.println(myProductList.getProduct(5).getStock());
         System.out.println();
 
         System.out.println("Next sort by Price");
@@ -220,6 +240,9 @@ public class ModelTest {
         System.out.println(myProductList.getProduct(0).getPrice());
         System.out.println(myProductList.getProduct(1).getPrice());
         System.out.println(myProductList.getProduct(2).getPrice());
+        System.out.println(myProductList.getProduct(3).getPrice());
+        System.out.println(myProductList.getProduct(4).getPrice());
+        System.out.println(myProductList.getProduct(5).getPrice());
         System.out.println();
 
         System.out.println("Next sort by weight");
@@ -227,11 +250,97 @@ public class ModelTest {
         System.out.println(myProductList.getProduct(0).getWeight());
         System.out.println(myProductList.getProduct(1).getWeight());
         System.out.println(myProductList.getProduct(2).getWeight());
+        System.out.println(myProductList.getProduct(3).getWeight());
+        System.out.println(myProductList.getProduct(4).getWeight());
+        System.out.println(myProductList.getProduct(5).getWeight());
+        System.out.println();
 
         System.out.println("Finally, test sort by basePrice");
         myProductList.sortByBasePrice();
         System.out.println(myProductList.getProduct(0).getBasePrice());
         System.out.println(myProductList.getProduct(1).getBasePrice());
         System.out.println(myProductList.getProduct(2).getBasePrice());
+        System.out.println(myProductList.getProduct(3).getBasePrice());
+        System.out.println(myProductList.getProduct(4).getBasePrice());
+        System.out.println(myProductList.getProduct(5).getBasePrice());
+        System.out.println();
+
+
+        System.out.println();
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println("CategoryList remove and change test when Products have been added");
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println();
+
+
+
+        System.out.println();
+        System.out.println("Category change should change all occurrences of the category TEST");
+        System.out.println();
+
+        System.out.println("All Categories in CategoryList: ");
+        for(String category : myCategoryList.getCategoryList()) {
+            System.out.println(category);
+        }
+        System.out.println();
+
+        System.out.println("All Categories in ProductList: ");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getCategory());
+        }
+        System.out.println();
+
+        System.out.println("-------CHANGE--------");
+        myCategoryList.changeCategory("Süßwaren","Schokoladen");
+
+        System.out.println();
+        System.out.println("All Categories in CategoryList(after change): ");
+        for(String category : myCategoryList.getCategoryList()) {
+            System.out.println(category);
+        }
+        System.out.println();
+
+        System.out.println("All Categories in ProductList(after change): ");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getCategory());
+        }
+        System.out.println();
+
+        System.out.println();
+        System.out.println();
+        System.out.println("------------------------------------------------");
+        System.out.println();
+        System.out.println("Category should not be removed if not empty TEST");
+        System.out.println();
+        System.out.println("All Categories in CategoryList: ");
+        for(String category : myCategoryList.getCategoryList()) {
+            System.out.println(category);
+        }
+        System.out.println();
+
+        System.out.println("All Categories in ProductList: ");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getCategory());
+        }
+        System.out.println();
+
+        System.out.println("-------Remove--------");
+        myCategoryList.removeCategory("Tiefkühlkost");
+        myCategoryList.removeCategory("Gemüse");
+
+        System.out.println();
+        System.out.println("All Categories in CategoryList(after remove): ");
+        for(String category : myCategoryList.getCategoryList()) {
+            System.out.println(category);
+        }
+        System.out.println();
+
+        System.out.println("All Categories in ProductList(after remove): ");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getCategory());
+        }
+        System.out.println();
     }
 }
