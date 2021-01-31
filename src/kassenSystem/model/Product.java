@@ -179,7 +179,8 @@ public class Product {
         if(basePrice<=100000 && basePrice>=0.01){
             this.basePrice = basePrice;
         } else {
-            throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0.01 bis einschließlich 100.000 liegen.");
+            throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0.01 bis einschließlich 100.000 liegen." +
+            "Ihr aktueller Grundpreis lautet: " + basePrice);
         }
 
         this.weightUnit = weightUnit;
@@ -193,12 +194,6 @@ public class Product {
                     throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von einschließlich 1 bis einschließlich 100.000 liegen." +
                             " Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
-                if(price/weight * 100 <= 100000 && price / weight * 100 >= 0.01) {
-                    this.basePrice = price / weight * 100;
-                } else {
-                    throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0,01 bis einschließlich 100.000 liegen." +
-                            "Ihr aktueller Grundpreis lautet: " + price / weight * 100);
-                }
                 break;
 
             case "kg":
@@ -209,8 +204,8 @@ public class Product {
                     throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von einschließlich 0,1 bis einschließlich 100 liegen." +
                             " Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
-                if(price/weight * 1 <= 100000 && price / weight * 1 >= 0.01) {
-                    this.basePrice = price / weight * 1;
+                if(basePrice <= 100000 && basePrice >= 0.01) {
+                    this.basePrice = basePrice;
                 } else {
                     throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0,01 bis einschließlich 100.000 liegen, " +
                             "Ihr aktueller Grundpreis lautet: " + price / weight * 1);
@@ -273,10 +268,10 @@ public class Product {
      * Throws an exception if the stock does not meet these requirements or the special case is activated for that product.
      *
      * @param stock the stock of the product, has to be between 0 and 1000
-     * @throws Exception if the stock is smaller then 0 or greater then 1000
+     * @throws Exception if the stock is smaller then 0 or greater then 1000 or special case is activated
      */
     public void setStock(int stock) throws Exception {
-        if (specialStock.equals("n") || specialStock.equals("N")) {
+        if (specialStock != null) {
             throw new Exception("Der Spezialfall ist aktiviert." +
                     " Diese Operation ist nicht möglich.");
         } else if (stock >= 0 && stock <= 1000) {
