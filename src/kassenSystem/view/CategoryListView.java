@@ -1,2 +1,4 @@
-package kassenSystem.view;public class CategoryListView {
+package kassenSystem.view;
+
+public class CategoryListView {
 }

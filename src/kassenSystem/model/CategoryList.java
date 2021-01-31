@@ -6,7 +6,7 @@ import java.util.Collections;
 public class CategoryList {
     private static final ArrayList<String> categoryList = new ArrayList<>();
 
-    CategoryList() {}
+    public CategoryList() {}
 
     /**
      * Add a category to the categoryList.

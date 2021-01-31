@@ -1,2 +1,4 @@
-package kassenSystem.view;public class AdminView {
+package kassenSystem.view;
+
+public class AdminView {
 }

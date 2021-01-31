@@ -6,7 +6,7 @@ public class PurchaseList {
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
 
-    PurchaseList() {};
+    public PurchaseList() {};
 
     /**
      * Add an item to the list or increment the amount of the item if the related item already exists.
