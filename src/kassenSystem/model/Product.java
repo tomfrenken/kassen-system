@@ -168,14 +168,14 @@ public class Product {
                     " Ihre Eingabe " + id + " war fehlerhaft.");
         }
 
-        if (specialStock == "n" || specialStock == "N") {
+        if (specialStock.equals("n") || specialStock.equals("N")) {
             this.specialStock = specialStock;
         } else {
             throw new Exception("Der Spezialfall wird mit n aufgerufen." +
                     " Ihre Eingabe " + stock + " war fehlerhaft.");
         }
 
-        if(price<=100000 && price>=1){
+        if(basePrice<=100000 && basePrice>=1){
             this.basePrice = basePrice;
         } else {
             throw new Exception("Der Preis muss im Bereich von einschließlich 0 bis einschließlich 100000 liegen.");
