@@ -72,7 +72,7 @@ public class Product {
         if(price <= 100000 && price >= 0.01){
             this.price = price;
         } else {
-            throw new Exception("Der Preis muss im Bereich von einschließlich 0 bis einschließlich 100000 liegen.");
+            throw new Exception("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.");
         }
 
         this.weightUnit = weightUnit;
@@ -175,10 +175,10 @@ public class Product {
                     " Ihre Eingabe " + stock + " war fehlerhaft.");
         }
 
-        if(basePrice<=100000 && basePrice>=1){
+        if(basePrice<=100000 && basePrice>=0.01){
             this.basePrice = basePrice;
         } else {
-            throw new Exception("Der Preis muss im Bereich von einschließlich 0 bis einschließlich 100000 liegen.");
+            throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.");
         }
 
         this.weightUnit = weightUnit;
