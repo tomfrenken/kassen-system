@@ -2,6 +2,9 @@ package kassenSystem.view;
 
 import javax.swing.*;
 
+/**
+ * The view to add products to the product list
+ */
 public class addProductView {
     private JTextField textField1;
     private JTextField textField2;

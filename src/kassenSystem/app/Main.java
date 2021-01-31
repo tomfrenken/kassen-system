@@ -13,6 +13,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The main application that connects all MVC parts together.
+ */
 public class Main extends JFrame implements ActionListener {
     JButton testButton;
 
@@ -26,21 +29,27 @@ public class Main extends JFrame implements ActionListener {
     AdminViewController adminViewController = new AdminViewController(adminView, productListModel);
     ChangeProductViewController changeProductViewController = new ChangeProductViewController(changeProductView, productListModel);
 
+    /**
+     * Main is only initialized with the eventlisteners to chain all other MVC parts together
+     */
     Main(){
         loginViewController.addActionsListeners(this);
         adminViewController.addActionsListeners(this);
     }
 
+    /**
+     * initalizees main and opens the login view
+     * @param args have no purpose
+     */
     public static void main(String[] args) {
-        // hier allgemeine übersicht erstellen von der man die anderen sichten auswählen kann
         Main main = new Main();
         main.loginViewController.showView();
     }
 
     /**
-     * Invoked when an action occurs.
+     * Reacts to the press of buttons that should open different views.
      *
-     * @param e
+     * @param e is the next view to open
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -49,7 +58,6 @@ public class Main extends JFrame implements ActionListener {
                 loginViewController.hideView();
                 adminViewController.showView();
             case "changeProductView":
-                adminViewController.hideView();
                 changeProductViewController.showView();
             case "changeCategoryView":
             case "sellerView":
