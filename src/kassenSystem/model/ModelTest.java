@@ -56,35 +56,51 @@ public class ModelTest {
         Product karotte;
         Product apfel;
         karotte = new Product("Karotte", 2345L,
-                1000, 100, "g", 5, "Gemüse");
+                1000, 100, "g", 1000, "Gemüse");
         apfel = new Product("Apfel", 94321L,
-                980, 100, "stück", 2, "MEGAFRÜCHTE");
+                980, 100, "stück", 1000, "MEGAFRÜCHTE");
 
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());
         System.out.println("Stock: " + karotte.getStock());
         System.out.println("Weight: " + karotte.getWeight());
+        System.out.println("Weight Unit: " + karotte.getWeightUnit());
         System.out.println("Price: " + karotte.getPrice());
         System.out.println("BasePrice: " + karotte.getBasePrice());
         System.out.println("Category: " + karotte.getCategory());
+        System.out.println();
+
+        System.out.println("Name: " + apfel.getName());
+        System.out.println("ID: " + apfel.getId());
+        System.out.println("Stock: " + apfel.getStock());
+        System.out.println("Weight: " + apfel.getWeight());
+        System.out.println("Weight Unit: " + apfel.getWeightUnit());
+        System.out.println("Price: " + apfel.getPrice());
+        System.out.println("BasePrice: " + apfel.getBasePrice());
+        System.out.println("Category: " + apfel.getCategory());
+        System.out.println();
 
         myCategoryList.addCategory("ULTRAGEMÜSE");
 
         karotte.setName("Pastinake");
         karotte.setId(1234567890123L);
         karotte.setStock(10);
-        karotte.setWeight(0.01);
-        karotte.setPrice(100000);
+        karotte.setWeight(1);
         karotte.setBasePrice(0.01);
         karotte.setCategory("ULTRAGEMÜSE");
+
+        System.out.println("After changing Karotte zu Pastinake");
+        System.out.println();
 
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());
         System.out.println("Stock: " + karotte.getStock());
         System.out.println("Weight: " + karotte.getWeight());
+        System.out.println("Weight Unit: " + karotte.getWeightUnit());
         System.out.println("Price: " + karotte.getPrice());
         System.out.println("BasePrice: " + karotte.getBasePrice());
         System.out.println("Category: " + karotte.getCategory());
+        System.out.println();
 
         System.out.println("------------------------------");
         System.out.println("------------------------------");

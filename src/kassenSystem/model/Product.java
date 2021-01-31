@@ -68,6 +68,12 @@ public class Product {
                     " Ihre eingabe " + stock + " war fehlerhaft.");
         }
 
+        if(price<=100000 && price>=1){
+            this.price = price;
+        } else {
+            throw new Exception("Der angegebene Preis übersteigt das Limit von 100.000.");
+        }
+
         this.weightUnit = weightUnit;
 
         switch(weightUnit){
@@ -76,14 +82,14 @@ public class Product {
                 if (weight >=1 && weight <= 100000){
                     this.weight = weight;
                 } else {
-                    throw new Exception("Das Gewicht muss im Bereich 1 bis 100000 liegen." +
+                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich 1 bis 100000 liegen." +
                             " Ihre eingabe " + weight + " war fehlerhaft.");
                 }
                 if(price/weight * 100 <= 100000 && price/weight * 100 >= 0.1) {
                     this.basePrice = price / weight * 100;
                 } else {
                     throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, " +
-                            "Ihr aktueller Preis lautet: " + price/weight*100);
+                            "Ihr aktueller Grundpreis lautet: " + price/weight*100);
                 }
                 break;
 
@@ -92,28 +98,28 @@ public class Product {
                 if (weight >= 0.01 && weight <= 100){
                     this.weight = weight;
                 } else {
-                    throw new Exception("Das Gewicht muss im Bereich 0,01 bis 100 liegen." +
-                            " Ihre eingabe " + weight + " war fehlerhaft.");
+                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich 0,01 bis 100 liegen." +
+                            " Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 if(price/weight * 1 <= 100000 && price/weight * 1 >= 0.1) {
                     this.basePrice = price / weight * 1;
                 } else {
                     throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, " +
-                            "Ihr aktueller Preis lautet: " + price/weight*1);
+                            "Ihr aktueller Grundpreis lautet: " + price/weight*1);
                 }
                 break;
             case "stück":
                 if(weight >= 1 && weight <= 1000){
                     this.weight = weight;
                 } else {
-                    throw new Exception("Das Gewicht muss im Berecih 1 bis 1000 liegen." +
-                            "Ihre eingabe " + weight + " war fehlerhaft.");
+                    throw new Exception("Das Gewicht in " + weightUnit + "  muss im Bereich 1 bis 1000 liegen." +
+                            "Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 if(price/weight * 1 <= 1000 && price/weight * 1 >= 1) {
                     this.basePrice = price / weight * 1;
                 } else {
                     throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, " +
-                            "Ihr aktueller Preis lautet: " + price/weight*1);
+                            "Ihr aktueller Grundpreis lautet: " + price/weight*1);
                 }
         }
 
@@ -178,7 +184,7 @@ public class Product {
         if (stock >= 0 && stock <= 1000) {
             this.stock = stock;
         } else {
-            throw new Exception("Der Bestand muss zwischen 0 und 1000 liegen." +
+            throw new Exception("Der Bestand muss zwischen 0 und 1.000 liegen." +
                     " Ihre eingabe " + stock + " war fehlerhaft.");
         }
     }
@@ -186,7 +192,7 @@ public class Product {
     /**
      * Sets a new value for the weight of the product.
      * the weight of a unit of the product has to be between 1 and 100.000 for gramm and ml,
-     * between 0,01 and 100 for l and kg and between 1 and 1000 for stück
+     * between 0,01 and 100 for l and kg and between 1 and 1.000 for stück
      *
      * @param weight the weight of one unit of this product.
      * @throws Exception if the weight is exceeds the respective weightUnit.
@@ -198,7 +204,7 @@ public class Product {
                 if (weight >=1 && weight <= 100000){
                     this.weight = weight;
                 } else {
-                    throw new Exception(" Das Gewicht muss im Bereich 1 bis 100000 liegen." +
+                    throw new Exception("Das Gewicht in " + this.weightUnit + " muss im Bereich 1 bis 100.000 liegen." +
                             " Ihre eingabe " + weight + " war fehlerhaft.");
                 }
                 break;
@@ -208,7 +214,7 @@ public class Product {
                 if (weight >= 0.01 && weight <= 100){
                     this.weight = weight;
                 } else {
-                    throw new Exception(" Das Gewicht muss im Bereich 0,01 bis 100 liegen." +
+                    throw new Exception(" Das Gewicht in " + this.weightUnit + " muss im Bereich 0,01 bis 100 liegen." +
                             " Ihre eingabe " + weight + " war fehlerhaft.");
                 }
                 break;
@@ -227,11 +233,12 @@ public class Product {
      * @param price the price charged for one unit of this product
      * @throws Exception if price is less then 0.01 or greater then 100000
      */
+    // muss überarbeitet werden, damit nur noch bei 1ten konstruktor funktioniert
     public void setPrice(double price) throws Exception {
             if (price >= 0.01 && price <= 100000) {
                 this.price = price;
             } else {
-                throw new Exception("Der Preis muss im Bereich zwischen 0.01 und 100000 liegen." +
+                throw new Exception("Der Preis muss im Bereich zwischen 0.01 und 100.000 liegen." +
                         " Ihre eingabe " + price + " war fehlerhaft.");
             }
     }
@@ -244,11 +251,12 @@ public class Product {
      * @param basePrice the price charged for a fixed amount of this product
      * @throws Exception if the basePrice is less then 0.01 or greater then 100000
      */
+    // muss überarbeitet werden, dass es nur noch bei 2ten geht
     public void setBasePrice(double basePrice) throws Exception {
         if(basePrice >= 0.01 && basePrice <= 100000) {
             this.basePrice = basePrice;
         } else {
-            throw new Exception("Der Grundpreis muss zwischen 0.01 und 100000 liegen." +
+            throw new Exception("Der Grundpreis muss zwischen 0.01 und 100.000 liegen." +
                     " Ihre eingabe " + basePrice + " war fehlerhaft.");
         }
     }
