@@ -26,8 +26,8 @@ public class Product {
 
 
     /**
-     * Creates a new Product and initializes the attributes name, id, stock, weight, weightUnit, basePrice
-     * and category and price.
+     * Creates a new Product and initializes the attributes name, id, stock, weight, weightUnit, basePrice,
+     * category and price.
      * It will also check if the parameters have correct values.
      *
      * @param name the name of the product, must be between 2 and 32 characters
@@ -133,17 +133,17 @@ public class Product {
 
     /**
      * Creates a new Product and initializes the attributes name, id, specialStock, weight, basePrice
-     * and category and price.
+     * and category.
      * It will also check if the parameters have correct values.
      *
      * @param name the name of the product, must be between 2 and 32 characters
      * @param id the identification number of the product, has to be either 13 digits long, 4 digits long,
      *           or 5 digits with a leading 9
-     * @param stock the stock of the product, has to be between 0 and 1000
+     * @param specialStock The special case where a product can not be counted, has to be either n or N
      * @param weight the weight of a unit of the product has to be between 1 and 100.000 for gramm and ml,
      *               between 0,01 and 100 for l and kg and between 1 and 1000 for stück
      * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
-     * @param price the  price for a given amount of the product, between 0.01 and 100.000
+     * @param basePrice the price for a given unit of the product, between 0.01 and 100.000, eg. €/100g
      * @param category the category the product has been assigned to, has to be part of the category list
      *
      * @throws Exception specified at each check
