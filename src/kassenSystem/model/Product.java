@@ -178,7 +178,7 @@ public class Product {
         if(basePrice<=100000 && basePrice>=0.01){
             this.basePrice = basePrice;
         } else {
-            throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.");
+            throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0.01 bis einschließlich 100.000 liegen.");
         }
 
         this.weightUnit = weightUnit;
@@ -274,8 +274,10 @@ public class Product {
      * @throws Exception if the stock is smaller then 0 or greater then 1000
      */
     public void setStock(int stock) throws Exception {
-        if (stock >= 0 && stock <= 1000) {
-            this.stock = stock;
+        if (specialStock.equals("n") || specialStock.equals("N")) {
+            throw new Exception("Der Bestand muss zwischen 0 und 1.000 liegen." +
+                    "Ihre Eingabe " + stock + " war fehlerhaft.");
+
         } else {
             throw new Exception("Der Bestand muss zwischen 0 und 1.000 liegen." +
                     "Ihre Eingabe " + stock + " war fehlerhaft.");
