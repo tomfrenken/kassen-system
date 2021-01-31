@@ -6,10 +6,7 @@ public class PurchaseList {
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
 
-    public PurchaseList() {
-    }
-
-    ;
+    public PurchaseList() {}
 
     /**
      * Add an item to the list or increment the amount of the item if the related item already exists.
@@ -24,15 +21,12 @@ public class PurchaseList {
                 if (item.getProduct() == product) {
                     item.changeAmount(amount);
                     this.addSubtotal(product.getPrice() * amount);
-                    return;
+                    break;
                 }
             }
-            this.purchaseList.add(new Item(product, amount));
-            this.addSubtotal(product.getPrice() * amount);
-        } else {
-            this.purchaseList.add(new Item(product, amount));
-            this.addSubtotal(product.getPrice() * amount);
         }
+        this.purchaseList.add(new Item(product, amount));
+        this.addSubtotal(product.getPrice() * amount);
     }
 
 
@@ -60,10 +54,10 @@ public class PurchaseList {
                 this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
                 purchaseList.remove(item);
             } else if (item.getAmount() < amount) {
-                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
+                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
                 item.setAmount(amount);
             } else {
-                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
+                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
                 item.setAmount(amount);
             }
         } else {

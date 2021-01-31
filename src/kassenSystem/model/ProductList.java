@@ -19,7 +19,7 @@ public class ProductList {
     private static final ArrayList<Product> productList = new ArrayList<>();
     private final Path path = Paths.get("kassenSystem/model/Database.txt");
 
-    ProductList() {}
+    public ProductList() {}
 
     /**
      * Adds a new product to the productList.
@@ -32,6 +32,7 @@ public class ProductList {
      * @param weight the weight of the product
      * @param price the base price of the product
      * @param category the category the product will be assigned to
+     * @throws Exception When the product id is already in the list
      */
     // needs to handle both price and basePrice
     public void addProduct(String name, long id, int stock, double weight, String weightUnit,
@@ -44,10 +45,11 @@ public class ProductList {
              }
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
+             addToDatabase(temp);
         } else {
-            Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
-            productList.add(temp);
-
+             Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
+             productList.add(temp);
+             addToDatabase(temp);
         }
     }
     /**
