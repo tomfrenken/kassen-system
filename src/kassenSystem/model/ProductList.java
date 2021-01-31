@@ -234,12 +234,10 @@ public class ProductList {
      */
     public void addToDatabase(Product product) throws IOException {
         String s = String.format("%13d %32s %4d %8.2f %5s  %8.2f %8.2f %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory());
-        //"%1$13d %2$32s %3$4d %4$6f.2 %5$5s  %6$6f.2 %7$6f.2 %8$32s", s
-        //"%13d %32s %4d %6f.2 %5s  %6f.2 %6f.2 %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory()
-
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
-        pw.println(s);
-        pw.close();
+        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path),true)));
+        writer.println(s);
+        writer.println();
+        writer.close();
     }
 
     /**
@@ -247,28 +245,30 @@ public class ProductList {
      *
      * @param product
      */
-    public void updateInDatabase(Product product) {}
+    public void updateInDatabase(Product product) {
+
+    }
 
     /**
      * Removes a product entry from the database.
      *
      * @param product
      */
-    public void removeFromDatabase(Product product) {}
+    public void removeFromDatabase(Product product) {
+
+    }
 
     /**
      * Reads a product entry from the database
      */
-    public void readFromDatabase() {
-        Charset charset = StandardCharsets.UTF_8;
-        try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException x) {
-            System.err.format("IOException: %s%n", x);
+    public String readFromDatabase() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(path)));
+        String line = "";
+        while (reader.ready()) {
+            line = reader.readLine();
         }
+        reader.close();
+        return line;
     }
 
     /**
