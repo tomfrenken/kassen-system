@@ -72,7 +72,7 @@ public class Product {
         if(price<=100000 && price>=1){
             this.price = price;
         } else {
-            throw new Exception("Der angegebene Preis übersteigt das Limit von 100.000.");
+            throw new Exception("Der Preis muss zwischen 0 und 1000 liegen.");
         }
 
         this.weightUnit = weightUnit;
@@ -89,7 +89,7 @@ public class Product {
                 if(price/weight * 100 <= 100000 && price / weight * 100 >= 0.01) {
                     this.basePrice = price / weight * 100;
                 } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen, " +
+                    throw new Exception("Der Grundpreis muss im Bereich von 0,01 bis 100.000 liegen, " +
                             "Ihr aktueller Grundpreis lautet: " + price / weight * 100);
                 }
                 break;
@@ -131,7 +131,7 @@ public class Product {
         }
     }
 
-    public Product(String name, long id, String specialStock, double weight, String weightUnit, double price, String category)
+    public Product(String name, long id, String specialStock, double weight, String weightUnit, double basePrice, String category)
             throws Exception {
 
         if(name.length() >= 2 && name.length() <= 32) {
@@ -159,9 +159,9 @@ public class Product {
         }
 
         if(price<=100000 && price>=1){
-            this.price = price;
+            this.basePrice = basePrice;
         } else {
-            throw new Exception("Der angegebene Preis übersteigt das Limit von 100.000.");
+            throw new Exception("Der angegebene Grundpreis übersteigt das Limit von 100.000.");
         }
 
         this.weightUnit = weightUnit;
