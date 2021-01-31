@@ -28,9 +28,10 @@ public class ProductList {
      * @param basePrice the base price of the product
      * @param category the category the product will be assigned to
      */
+    // needs to handle both price and basePrice
     public void addProduct(String name, long id, int stock, float weight, String weightUnit,
-                           float basePrice, String category) throws Exception {
-        Product temp = new Product(name, id, stock, weight, weightUnit, basePrice, category);
+                           float price, String category) throws Exception {
+        Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
         productList.add(temp);
     }
 
@@ -216,7 +217,10 @@ public class ProductList {
     /**
      * Parses the database for Products and adds them to the productList.
      */
-    public void getProducts() {
+    public void parseProducts(){
 
+    }
+    public ArrayList<Product> getProducts() {
+        return productList;
     }
 }
