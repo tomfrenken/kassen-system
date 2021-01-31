@@ -9,5 +9,6 @@ public class AdminView {
     private JList list1;
     private JComboBox comboBox1;
     private JButton produktÄndernButton;
+    private JPanel jp;
 
     public AdminView() { comboBox1.addActionListener(new ActionListener() { } );}}
