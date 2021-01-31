@@ -27,14 +27,13 @@ public class Main extends JFrame implements ActionListener {
         setLayout(new GridLayout(1,1));
         this.setSize(800, 400);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         loginViewController.addActionsListeners(this);
     }
 
     public static void main(String[] args) {
         // hier allgemeine übersicht erstellen von der man die anderen sichten auswählen kann
         Main main = new Main();
-        loginViewController.showView();
+        main.loginViewController.showView();
     }
 
     /**
