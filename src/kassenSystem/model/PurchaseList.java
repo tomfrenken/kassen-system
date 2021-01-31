@@ -19,12 +19,12 @@ public class PurchaseList {
         if(purchaseList.size()>0) {
             for (Item item : this.purchaseList) {
                 if (item.getProduct() == product) {
-                    item.changeAmount(1);
+                    item.changeAmount(amount);
                     this.addSubtotal(product.getPrice() * amount);
                     break;
                 } else {
                     this.purchaseList.add(new Item(product, amount));
-                    this.addSubtotal(product.getPrice() * amount);;
+                    this.addSubtotal(product.getPrice() * amount);
                     break;
                 }
             }

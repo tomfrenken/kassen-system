@@ -127,7 +127,7 @@ public class ModelTest {
         System.out.println();
 
         PurchaseList myPurchaseList = new PurchaseList();
-        myPurchaseList.addItem(karotte, 9);
+        myPurchaseList.addItem(karotte, 5);
         myPurchaseList.addItem(apfel, 950);
         System.out.println("Check if purchase list creation worked as inteded");
         for(Item item : myPurchaseList.getPurchaseList()){
