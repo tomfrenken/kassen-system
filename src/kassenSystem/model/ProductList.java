@@ -32,6 +32,7 @@ public class ProductList {
      * @param weight the weight of the product
      * @param price the base price of the product
      * @param category the category the product will be assigned to
+     * @throws Exception When the product id is already in the list
      */
     // needs to handle both price and basePrice
     public void addProduct(String name, long id, int stock, float weight, String weightUnit,
