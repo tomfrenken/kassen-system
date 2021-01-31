@@ -161,7 +161,7 @@ public class Product {
         if(price<=100000 && price>=1){
             this.basePrice = basePrice;
         } else {
-            throw new Exception("Der angegebene Grundpreis übersteigt das Limit von 100.000.");
+            throw new Exception("Der Preis muss im Bereich von einschließlich 0 bis einschließlich 100000 liegen.");
         }
 
         this.weightUnit = weightUnit;
