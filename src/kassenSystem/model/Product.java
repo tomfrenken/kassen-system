@@ -16,7 +16,6 @@ public class Product {
     private String category;
     private final CategoryList categoryList = new CategoryList();
     private String specialStock;
-    // public Product(String name, long id, int stock, )
 
 
 
