@@ -10,6 +10,20 @@ public class ModelTest {
 
         System.out.println("------------------------------");
         System.out.println("------------------------------");
+        System.out.println("AdminLogin Tests");
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        AdminLogin defaultAdminLogin = new AdminLogin();
+        boolean checkPassword = defaultAdminLogin.checkPassword("123456");
+        System.out.println("The password was: " + checkPassword);
+        defaultAdminLogin.logOut();
+        System.out.println("Are you logged in: " + defaultAdminLogin.getIsLoggedIn());
+        AdminLogin saveAdminLogin = new AdminLogin("i love bordihn");
+        System.out.println("The save password worked: " + saveAdminLogin.checkPassword("i love bordihn"));
+
+
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
         System.out.println("CategoryList Tests");
         System.out.println("------------------------------");
         System.out.println("------------------------------");
@@ -41,10 +55,10 @@ public class ModelTest {
 
         Product karotte;
         Product apfel;
-        karotte = new Product("Karrotte", 2345L,
-                1000, 100, "g", 5000, "Gemüse");
+        karotte = new Product("Karotte", 2345L,
+                1000, 100, "g", 5, "Gemüse");
         apfel = new Product("Apfel", 94321L,
-                980, 100, "stück", 0.01, "MEGAFRÜCHTE");
+                980, 100, "stück", 2, "MEGAFRÜCHTE");
 
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());

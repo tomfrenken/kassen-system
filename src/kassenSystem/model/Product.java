@@ -10,7 +10,7 @@ public class Product {
     private long id;
     private int stock;
     private double weight;
-    private String weightUnit;
+    private final String weightUnit;
     private double price;
     private double basePrice;
     private String category;
@@ -82,8 +82,8 @@ public class Product {
                 if(price/weight * 100 <= 100000 && price/weight * 100 >= 0.1) {
                     this.basePrice = price / weight * 100;
                 } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, passen Sie den Preis" +
-                            "oder das Gewicht an.");
+                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, " +
+                            "Ihr aktueller Preis lautet: " + price/weight*100);
                 }
                 break;
 
@@ -98,8 +98,8 @@ public class Product {
                 if(price/weight * 1 <= 100000 && price/weight * 1 >= 0.1) {
                     this.basePrice = price / weight * 1;
                 } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, passen Sie den Preis" +
-                            " oder das Gewicht an.");
+                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, " +
+                            "Ihr aktueller Preis lautet: " + price/weight*1);
                 }
                 break;
             case "stück":
@@ -112,8 +112,8 @@ public class Product {
                 if(price/weight * 1 <= 1000 && price/weight * 1 >= 1) {
                     this.basePrice = price / weight * 1;
                 } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, passen Sie den Preis" +
-                            " oder das Gewicht an.");
+                    throw new Exception("Der Grundpreis muss innerhalb von 1 bis 100.000 liegen, " +
+                            "Ihr aktueller Preis lautet: " + price/weight*1);
                 }
         }
 
@@ -121,12 +121,6 @@ public class Product {
             this.category = category;
         } else {
             throw new Exception("Die Kategorie " + category + " existiert nicht.");
-        }
-
-        if((basePrice * weight) < 100000 && (basePrice * weight) > 0.01){
-            this.price = basePrice * weight;
-        } else {
-            throw new Exception("Der Preis muss zwischen 0.01 und 100000 liegen. Ihre Eingabe war fehlerhaft.");
         }
     }
 
