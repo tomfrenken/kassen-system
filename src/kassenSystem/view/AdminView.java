@@ -1,12 +1,13 @@
 package kassenSystem.view;
 
-import javafx.scene.Node;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Contains the admin view, from which you can change the products and product categories
+ */
 public class AdminView extends JFrame {
     private JButton newProductButton;
     private JButton changeProductButton;
@@ -20,6 +21,10 @@ public class AdminView extends JFrame {
     private JTextArea ta;
     private JScrollPane sp;
 
+    /**
+     * The constructor to intialize the view
+     * @param name the name of the view
+     */
     public AdminView(String name) {
         super(name);
         add(jp);
@@ -34,6 +39,10 @@ public class AdminView extends JFrame {
         categoryListButton.setActionCommand("categoryListView");
     }
 
+    /**
+     * Adds actionlisteners to the buttons, so the controller can interact with the view.
+     * @param actionListener the actionlisteners to use with the view
+     */
     public void addActionListener(ActionListener actionListener){
         newProductButton.addActionListener(actionListener);
         changeProductButton.addActionListener(actionListener);

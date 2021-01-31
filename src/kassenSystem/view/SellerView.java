@@ -2,6 +2,9 @@ package kassenSystem.view;
 
 import javax.swing.*;
 
+/**
+ * The view which the seller uses to sell the goods
+ */
 public class SellerView {
     private JList list;
     private JScrollPane scroll;
