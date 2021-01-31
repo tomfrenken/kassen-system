@@ -10,7 +10,7 @@ public class AdminLogin {
     /**
      * The AdminLogin is initiated with a default password of 123456.
      */
-    AdminLogin(){
+    public AdminLogin(){
         this.password = "123456";
     }
 

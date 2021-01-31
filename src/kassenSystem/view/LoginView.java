@@ -5,41 +5,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginView {
-    private JButton verkäuferButton;
-    private JButton adminButton;
-    private JPanel jp;
-
-    public LoginView() {
-        JFrame frame = new JFrame("Kassensystem");
-        frame.setContentPane(new LoginView().jp);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-        adminButton.addActionListener(new ActionListener() {
-            /**
-             * Invoked when an action occurs.
-             *
-             * @param e
-             */
+    public static void main(String[] args) {
+        JFrame jframe= new JFrame("Kassensystem");
+        final JTextField textField = new JTextField();
+        textField.setBounds(50,50,150,20);
+        JButton adminViewButton = new JButton("Adminansicht");
+        JButton sellerViewButton = new JButton("Verkäuferansicht");
+        adminViewButton.setBounds(50,100,95,30);
+        jframe.add(adminViewButton);
+        jframe.setSize(1920,1080);
+        jframe.setLayout(null);
+        jframe.setVisible(true);
+        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        adminViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setContentPane(new AdminView().jp);
-                frame.invalidate();
-                frame.validate();
+                // loginViewController
             }
         });
-        verkäuferButton.addActionListener(new ActionListener() {
-            /**
-             * Invoked when an action occurs.
-             *
-             * @param e
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.setContentPane(new AdminView().jp);
-                frame.invalidate();
-                frame.validate();
-            }
-        });
+        jframe.add(adminViewButton);
+        jframe.add(textField);
+        jframe.setLayout(null);
+        jframe.setVisible(true);
     }
 }

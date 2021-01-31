@@ -1,4 +1,4 @@
 package kassenSystem.view;
 
-public class AdminView {
+public class SellerView {
 }

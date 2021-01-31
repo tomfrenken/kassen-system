@@ -7,7 +7,7 @@ public class CategoryList {
     private static final ArrayList<String> categoryList = new ArrayList<>();
     private final ProductList productList = new ProductList();
 
-    CategoryList() {}
+    public CategoryList() {}
 
     /**
      * Add a category to the categoryList.
