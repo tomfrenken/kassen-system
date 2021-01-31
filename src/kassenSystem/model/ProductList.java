@@ -37,11 +37,13 @@ public class ProductList {
     public void addProduct(String name, long id, int stock, float weight, String weightUnit,
                            float price, String category) throws Exception {
          if (productList.size() > 0) {
-            for (Product product : productList) {
-                if (product.getId() == id) {
-                    throw new Exception("Die Produkt-ID " + id + " wird bereits verwendet.");
-                }
-            }
+             for (Product product : productList) {
+                 if (product.getId() == id) {
+                     throw new Exception("Die Produkt-ID " + id + " wird bereits verwendet.");
+                 }
+             }
+             Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
+             productList.add(temp);
         } else {
             Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
             productList.add(temp);
