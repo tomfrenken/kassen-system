@@ -9,7 +9,8 @@ public class PurchaseList {
     public PurchaseList() {}
 
     /**
-     * Add an item to the list or increment the amount of the item if the related item already exists.
+     * Add an item to the list or increment the amount of the item if the related item already
+     * exists.
      * Incrementation of 1 is meant for use with the product scanner.
      *
      * @param product The product that is used.
@@ -54,14 +55,17 @@ public class PurchaseList {
                 this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
                 purchaseList.remove(item);
             } else if (item.getAmount() < amount) {
-                this.addSubtotal((amount - item.getAmount()) * item.getProduct().getPrice());
+                this.addSubtotal((amount - item.getAmount()) * item.getProduct()
+                        .getPrice());
                 item.setAmount(amount);
             } else {
-                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getPrice());
+                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
+                        .getPrice());
                 item.setAmount(amount);
             }
         } else {
-            throw new Exception("Der Artikel " + item.getProduct().getName() + " ist nicht in der Einkaufsliste.");
+            throw new Exception("Der Artikel " + item.getProduct().getName() +
+                    " ist nicht in der Einkaufsliste.");
         }
     }
 
@@ -75,7 +79,6 @@ public class PurchaseList {
     /**
      * Finishes the purchase, reduces the stock and returns the subtotal
      */
-    // finish this after productlist functions such as changeStock / removeProduct work
     public void finishPurchase() {
         //return subtotal to UI
         //reduce Stock by amount

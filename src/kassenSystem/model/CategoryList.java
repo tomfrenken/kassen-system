@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
+ * This class handles the CategoryDatabase and CategoryList
  */
 public class CategoryList {
     private static final ArrayList<String> categoryList = new ArrayList<>();
@@ -20,10 +20,10 @@ public class CategoryList {
     /**
      * Add a category to the categoryList.
      * Checks if the category name is between 3 and 32 Symbols and does not contain any Number,
-     * or punctuation symbol (/,.,_,-,etc.).
+     * or punctuation symbol (/,.,_,etc.).
      * Throws an exception if the category does not meet the requirements.
      *
-     * @param category   The new category.
+     * @param category   the new category
      * @throws Exception if the category is shorter then 3 or longer then 32 symbols,
      *                   or contains a number, or punctuation symbol
      */
@@ -43,7 +43,7 @@ public class CategoryList {
     /**
      * Removes a category from the list.
      *
-     * @param category The category to be removed.
+     * @param category the category to be removed
      */
     public void removeCategory(String category) throws Exception {
         int n = productList.getProductList().size();
@@ -63,8 +63,8 @@ public class CategoryList {
     /**
      * Changes a category to a new category.
      *
-     * @param category The category to be changed.
-     * @param newCategory The new category.
+     * @param category the category to be changed
+     * @param newCategory the new category
      */
     public void changeCategory(String category, String newCategory) throws Exception {
         int n = productList.getProductList().size();
@@ -80,7 +80,7 @@ public class CategoryList {
     /**
      * Returns the category list.
      *
-     * @return returns the category list.
+     * @return returns the category list
      */
     public ArrayList<String> getCategoryList() {
         return categoryList;
@@ -89,8 +89,8 @@ public class CategoryList {
     /**
      * Searches for a category in the category list.
      *
-     * @param search The (sub)string of the search.
-     * @return An array of all categories that contained the (sub)string.
+     * @param search the (sub)string of the search
+     * @return an array of all categories that contained the (sub)string
      */
     public ArrayList<String> searchCategory(String search) {
         ArrayList<String> result = new ArrayList<>();
@@ -106,23 +106,25 @@ public class CategoryList {
     /**
      * Searches for a category in categoryList.
      *
-     * @param category The category you search for.
-     * @return True if the category is already in the list.
+     * @param category the category you search for
+     * @return true if the category is already in the list
      */
     public boolean categoryInList(String category) {
         return categoryList.contains(category);
     }
 
     /**
-     * Adds a new product entry to the database.
-     *
+     * Saves all categories to the Database.
+     * The save function will be executed only once when the application is closed,
+     * because the way the category list is implemented represents an inMemory database.
      */
     public void saveToCategoryDatabase() throws Exception {
         PrintWriter pw = new PrintWriter(String.valueOf(path));
         pw.close();
         for(String category : categoryList) {
             String s = category;
-            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
+            PrintWriter writer = new PrintWriter(new BufferedWriter(
+                    new FileWriter(String.valueOf(path), true)));
             writer.println(s);
             writer.println();
             writer.close();
@@ -130,8 +132,13 @@ public class CategoryList {
     }
 
     /**
+     * Loads all Categories from the CategoryDatabase. WARNING Flaky behaviour!
      *
-     * @throws Exception
+     * The load function will be executed only once when the application is started,
+     * because the way the category list is implemented represents an inMemory database.
+     * Throws IO Exception if there is no file or a wrong path declared to read from.
+     *
+     * @throws Exception if the the file the reader accesses is non existent
      */
     public void LoadFromCategoryDatabase() throws Exception {
         try (BufferedReader reader = Files.newBufferedReader(path)) {

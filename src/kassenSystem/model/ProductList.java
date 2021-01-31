@@ -29,6 +29,7 @@ public class ProductList {
      * @param id the identification number of the new product
      * @param stock the amount of units of the new product
      * @param weight the weight of the product
+     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
      * @param price the base price of the product
      * @param category the category the product will be assigned to
      * @throws Exception When the product id is already in the list
@@ -58,22 +59,25 @@ public class ProductList {
      * @param id the identification number of the new product
      * @param specialStock the amount of units of the new product
      * @param weight the weight of the product
+     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
      * @param basePrice the base price of the product
      * @param category the category the product will be assigned to
      */
     // needs to handle both price and basePrice
-    public void addProduct(String name, long id, String specialStock, double weight, String weightUnit,
-                           double basePrice, String category) throws Exception {
+    public void addProduct(String name, long id, String specialStock, double weight,
+                           String weightUnit, double basePrice, String category) throws Exception {
         if (productList.size() > 0) {
             for (Product product : productList) {
                 if (product.getId() == id) {
                     throw new Exception("Die Produkt-ID " + id + " wird bereits verwendet.");
                 }
             }
-            Product temp = new Product(name, id, specialStock, weight, weightUnit, basePrice, category);
+            Product temp = new Product(name, id, specialStock, weight, weightUnit, basePrice,
+                    category);
             productList.add(temp);
         } else {
-            Product temp = new Product(name, id, specialStock, weight, weightUnit, basePrice, category);
+            Product temp = new Product(name, id, specialStock, weight, weightUnit, basePrice,
+                    category);
             productList.add(temp);
 
         }
@@ -239,14 +243,14 @@ public class ProductList {
     }
 
     /**
-     *
+     * Searches the productList for a product with this name.
      *
      * @param search The search phrase that is looked for in the productList
      * @return a list of products with the same name as the search phrase,
      *         or where the given search phrase is part of the name
      */
     public ArrayList<Product> searchProduct(String search) {
-        ArrayList<Product> result = new ArrayList<Product>();
+        ArrayList<Product> result = new ArrayList<>();
         CharSequence sequence = search.subSequence(0,search.length() - 1);
         for (int i = 0; i < productList.size() - 1; i++) {
             Product temp = productList.get(i);
@@ -258,18 +262,26 @@ public class ProductList {
     }
 
     /**
-     * Adds a new product entry to the database.
+     * Saves all products to the ProductDatabase.
      *
+     * The save function will be executed only once when the application is closed,
+     * because the way the product list is implemented represents an inMemory database.
      */
     public void saveToProductDatabase() throws Exception {
         PrintWriter pw = new PrintWriter(String.valueOf(path));
         pw.close();
         for(Product product : productList) {
             String s;
-            if(product.getspecialStock() == null) {
-                s = String.format("%d %s %d %.2f %s %.2f %.2f %s", product.getId(), product.getName(), product.getStock(), product.getWeight(), product.getWeightUnit(), product.getPrice(), product.getBasePrice(), product.getCategory());
+            if(product.getSpecialStock() == null) {
+                s = String.format("%d %s %d %.2f %s %.2f %.2f %s", product.getId(),
+                        product.getName(), product.getStock(), product.getWeight(),
+                        product.getWeightUnit(), product.getPrice(), product.getBasePrice(),
+                        product.getCategory());
             }else {
-                s = String.format("%d %s %s %.2f %s %.2f %.2f %s", product.getId(), product.getName(), product.getspecialStock(), product.getWeight(), product.getWeightUnit(), product.getPrice(), product.getBasePrice(), product.getCategory());
+                s = String.format("%d %s %s %.2f %s %.2f %.2f %s", product.getId(),
+                        product.getName(), product.getSpecialStock(), product.getWeight(),
+                        product.getWeightUnit(), product.getPrice(), product.getBasePrice(),
+                        product.getCategory());
             }
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
             writer.println(s);
@@ -279,20 +291,30 @@ public class ProductList {
     }
 
     /**
-     * Reads a product entry from the database
+     * Loads all Products from the ProductDatabase.
+     *
+     * The load function will be executed only once when the application is started,
+     * because the way the product list is implemented represents an inMemory database.
+     * Throws IO Exception if there is no file or a wrong path declared to read from.
+     *
+     * @throws Exception if the the file the reader accesses is non existent
      */
     public void LoadFromProductDatabase() throws Exception {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
-            String line = null;
+            String line;
             String[] paraList;
             while ((line = reader.readLine()) != null) {
                 line = line.replace(",",".");
                 paraList = line.split(" ");
                 if (paraList.length == 8) {
                     if (!paraList[2].equals("n")){
-                        this.addProduct(paraList[1], Long.parseLong(paraList[0]), Integer.parseInt(paraList[2]), Double.parseDouble(paraList[3]), paraList[4], Double.parseDouble(paraList[5]), paraList[7]);
+                        this.addProduct(paraList[1], Long.parseLong(paraList[0]),
+                                Integer.parseInt(paraList[2]), Double.parseDouble(paraList[3]),
+                                paraList[4], Double.parseDouble(paraList[5]), paraList[7]);
                     }else {
-                        this.addProduct(paraList[1], Long.parseLong(paraList[0]), paraList[2], Double.parseDouble(paraList[3]), paraList[4], Double.parseDouble(paraList[6]), paraList[7]);
+                        this.addProduct(paraList[1], Long.parseLong(paraList[0]), paraList[2],
+                                Double.parseDouble(paraList[3]), paraList[4],
+                                Double.parseDouble(paraList[6]), paraList[7]);
                     }
                 }
             }
@@ -302,8 +324,9 @@ public class ProductList {
     }
 
     /**
+     * Returns the productList.
      *
-     * @return
+     * @return the productList
      */
     public ArrayList<Product> getProductList() {
         return productList;
