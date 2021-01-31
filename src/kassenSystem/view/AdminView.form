@@ -16,14 +16,6 @@
           <text value="Produkt Löschen"/>
         </properties>
       </component>
-      <component id="f2bb3" class="javax.swing.JButton" binding="neuesProduktButton" default-binding="true">
-        <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Neues Produkt"/>
-        </properties>
-      </component>
       <hspacer id="80928">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -108,6 +100,14 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
+      <component id="f2bb3" class="javax.swing.JButton" binding="neuesProduktButton" default-binding="true">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Neues Produkt"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
