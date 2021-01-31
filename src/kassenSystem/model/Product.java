@@ -185,7 +185,7 @@ public class Product {
             this.stock = stock;
         } else {
             throw new Exception("Der Bestand muss zwischen 0 und 1.000 liegen." +
-                    " Ihre eingabe " + stock + " war fehlerhaft.");
+                    "Ihre Eingabe " + stock + " war fehlerhaft.");
         }
     }
 
@@ -205,7 +205,7 @@ public class Product {
                     this.weight = weight;
                 } else {
                     throw new Exception("Das Gewicht in " + this.weightUnit + " muss im Bereich 1 bis 100.000 liegen." +
-                            " Ihre eingabe " + weight + " war fehlerhaft.");
+                            "Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 break;
 
@@ -214,8 +214,8 @@ public class Product {
                 if (weight >= 0.01 && weight <= 100){
                     this.weight = weight;
                 } else {
-                    throw new Exception(" Das Gewicht in " + this.weightUnit + " muss im Bereich 0,01 bis 100 liegen." +
-                            " Ihre eingabe " + weight + " war fehlerhaft.");
+                    throw new Exception("Das Gewicht in " + this.weightUnit + " muss im Bereich 0,01 bis 100 liegen." +
+                            "Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 break;
             case "stück":
@@ -239,7 +239,7 @@ public class Product {
                 this.price = price;
             } else {
                 throw new Exception("Der Preis muss im Bereich zwischen 0.01 und 100.000 liegen." +
-                        " Ihre eingabe " + price + " war fehlerhaft.");
+                        " Ihre Eingabe " + price + " war fehlerhaft.");
             }
     }
 
@@ -257,7 +257,7 @@ public class Product {
             this.basePrice = basePrice;
         } else {
             throw new Exception("Der Grundpreis muss zwischen 0.01 und 100.000 liegen." +
-                    " Ihre eingabe " + basePrice + " war fehlerhaft.");
+                    "Ihre Eingabe " + basePrice + " war fehlerhaft.");
         }
     }
 
