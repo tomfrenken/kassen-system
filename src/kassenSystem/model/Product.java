@@ -268,19 +268,22 @@ public class Product {
     }
 
     /**
-     * Sets a new value for the specialStock of the product.
-     * The stock must be a String equal to n or N
-     * Throws an exception if the stock does not meet these requirements.
+     * Sets a new value for the stock of the product.
+     * The stock must be a int, has to be between 0 and 1000
+     * Throws an exception if the stock does not meet these requirements or the special case is activated for that product.
      *
-     * @param specialStock indicates that the special case is used where a product can not be counted, has to be either n or N
+     * @param stock the stock of the product, has to be between 0 and 1000
      * @throws Exception if the stock is smaller then 0 or greater then 1000
      */
-    public void setStock(String specialStock) throws Exception {
+    public void setStock(int stock) throws Exception {
         if (specialStock.equals("n") || specialStock.equals("N")) {
-            this.specialStock = specialStock;
+            throw new Exception("Der Spezialfall ist aktiviert." +
+                    " Diese Operation ist nicht möglich.");
+        } else if (stock >= 0 && stock <= 1000) {
+            this.stock = stock;
         } else {
-            throw new Exception("Der Spezialfall wird mit n oder N aufgerufen." +
-                    " Ihre Eingabe " + specialStock + " war fehlerhaft.");
+            throw new Exception("Der Bestand muss im Bereich von einschließlich 0 bis einschließlich 1000 liegen." +
+                    " Ihre Eingabe " + stock + " war fehlerhaft.");
         }
     }
 
