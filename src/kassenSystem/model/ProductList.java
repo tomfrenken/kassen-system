@@ -19,7 +19,7 @@ public class ProductList {
     private static final ArrayList<Product> productList = new ArrayList<>();
     Path path = Paths.get("kassenSystem/model/Database.txt");
 
-    ProductList() {}
+    public ProductList() {}
 
     /**
      * Adds a new product to the productList.
