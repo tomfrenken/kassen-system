@@ -43,7 +43,6 @@ public class Product {
      */
     public Product(String name, long id, int stock, double weight, String weightUnit, double price, String category)
             throws Exception {
-
         if(name.length() >= 2 && name.length() <= 32 &&
                 name.matches("([öÖäÄüÜßa-zA-Z\\d&'-]+(\\s?[öÖäÄüÜßa-zA-Z\\d&'-]+\\s?)*[öÖäÄüÜßa-zA-Z\\d&'-]+)")) {
             this.name = name;
