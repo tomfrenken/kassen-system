@@ -326,7 +326,6 @@ public class Product {
      * @param price the price charged for one unit of this product
      * @throws Exception if price is less then 0.01 or greater then 100000
      */
-    // muss überarbeitet werden, damit nur noch bei 1ten konstruktor funktioniert
     public void setPrice(double price) throws Exception {
             if (price >= 0.01 && price <= 100000) {
                 this.price = price;
