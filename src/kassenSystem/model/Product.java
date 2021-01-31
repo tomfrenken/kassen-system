@@ -45,7 +45,7 @@ public class Product {
             throws Exception {
 
         if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("([öÖäÄüÜßa-zA-Z\\d]*\\s?[öÖäÄüÜßa-zA-Z\\d]*)")) {
+                name.matches("([öÖäÄüÜßa-zA-Z\\d&'-]+(\\s?[öÖäÄüÜßa-zA-Z\\d&'-]+\\s?)*[öÖäÄüÜßa-zA-Z\\d&'-]+)")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss 2 bis 32 Zeichen lang sein." +
