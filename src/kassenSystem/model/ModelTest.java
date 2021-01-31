@@ -43,7 +43,6 @@ public class ModelTest {
         myCategoryList.addCategory("Rotes Gemüse");
         myCategoryList.addCategory("Früchte");
         myCategoryList.addCategory("Tiefkühlkost");
-        myCategoryList.addCategory("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAÜA");
         System.out.println();
         System.out.println("Print all categories after creating a list of them.");
         System.out.println(myCategoryList.getCategoryList());
@@ -359,13 +358,18 @@ public class ModelTest {
         System.out.println("------------------------------");
         System.out.println();
 
+        System.out.println();
+        System.out.println("---------------------");
+        System.out.println("productDatabase Test");
+        System.out.println("---------------------");
+        System.out.println();
 
-        System.out.println("productList before saving from Database");
+        System.out.println("productList before saving to ProductDatabase");
         for(Product product : myProductList.getProductList()) {
             System.out.println(product.getStock());
         }
         System.out.println();
-        myProductList.saveToDatabase();
+        myProductList.saveToProductDatabase();
 
         System.out.println("Cleared Productlist after save");
         int i = 0;
@@ -373,10 +377,34 @@ public class ModelTest {
             myProductList.removeProduct(i);
         }
 
-        myProductList.LoadFromDatabase();
-        System.out.println("productList after loading from Database");
+        myProductList.LoadFromProductDatabase();
+        System.out.println("productList after loading from ProductDatabase");
         for(Product product : myProductList.getProductList()) {
             System.out.println(product.getStock());
+        }
+        System.out.println();
+
+
+
+
+        System.out.println();
+        System.out.println("---------------------");
+        System.out.println("CategoryDatabase Test");
+        System.out.println("---------------------");
+        System.out.println();
+
+        System.out.println("productList before saving to CategoryDatabase");
+        for(String category : myCategoryList.getCategoryList()) {
+            System.out.println(category);
+        }
+        System.out.println();
+        System.out.println("test1");
+        myCategoryList.saveToCategoryDatabase();
+        myCategoryList.LoadFromCategoryDatabase();
+        System.out.println("test3");
+        System.out.println("CategoryList after loading from CategoryDatabase");
+        for(String category : myCategoryList.getCategoryList()) {
+            System.out.println(category);
         }
         System.out.println();
 

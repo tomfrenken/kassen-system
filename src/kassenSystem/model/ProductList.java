@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * This is a list of Products.
@@ -17,7 +16,7 @@ public class ProductList {
      * The path is the path to the database.
      */
     private static final ArrayList<Product> productList = new ArrayList<>();
-    private final Path path = Paths.get("kassenSystem/model/Database.txt");
+    private final Path path = Paths.get("kassenSystem/model/ProductDatabase.txt");
 
     public ProductList() {}
 
@@ -45,10 +44,10 @@ public class ProductList {
              }
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
-        } else {
+         } else {
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
-        }
+         }
     }
     /**
      * Adds a new product to the productList.
@@ -262,7 +261,7 @@ public class ProductList {
      * Adds a new product entry to the database.
      *
      */
-    public void saveToDatabase() throws Exception {
+    public void saveToProductDatabase() throws Exception {
         PrintWriter pw = new PrintWriter(String.valueOf(path));
         pw.close();
         for(Product product : productList) {
@@ -282,7 +281,7 @@ public class ProductList {
     /**
      * Reads a product entry from the database
      */
-    public void LoadFromDatabase() throws Exception {
+    public void LoadFromProductDatabase() throws Exception {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line = null;
             String[] paraList;

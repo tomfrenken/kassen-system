@@ -1,11 +1,19 @@
 package kassenSystem.model;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ *
+ */
 public class CategoryList {
     private static final ArrayList<String> categoryList = new ArrayList<>();
     private final ProductList productList = new ProductList();
+    private final Path path = Paths.get("kassenSystem/model/CategoryDatabase.txt");
 
     public CategoryList() {}
 
@@ -21,7 +29,7 @@ public class CategoryList {
      */
     public void addCategory(String category) throws Exception {
         if(category.length() <= 32 && category.length() >= 3 && !category.matches("\\D") &&
-                category.matches("([öÖäÄüÜßa-zA-Z&'-]+(\\s?[öÖäÄüÜßa-zA-Z&'-]+\\s?)*[öÖäÄüÜßa-zA-Z&'-]+)")) {
+                category.matches("([-&'äÄöÖüÜßa-zA-Z]*[\\s]*[-&'äÄöÖüÜßa-zA-Z]*)")) {
             categoryList.add(category);
             Collections.sort(categoryList);
         } else {
@@ -103,5 +111,36 @@ public class CategoryList {
      */
     public boolean categoryInList(String category) {
         return categoryList.contains(category);
+    }
+
+    /**
+     * Adds a new product entry to the database.
+     *
+     */
+    public void saveToCategoryDatabase() throws Exception {
+        PrintWriter pw = new PrintWriter(String.valueOf(path));
+        pw.close();
+        for(String category : categoryList) {
+            String s = category;
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
+            writer.println(s);
+            writer.println();
+            writer.close();
+        }
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+    public void LoadFromCategoryDatabase() throws Exception {
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                // this.addCategory(line);
+            }
+        } catch (IOException x) {
+            System.err.format("IOException: %s%n", x);
+        }
     }
 }

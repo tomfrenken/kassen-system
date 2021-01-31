@@ -1,7 +1,7 @@
 package kassenSystem.model;
 
 /**
- *
+ * This Class handles the Admin password and LoggedIn Status
  */
 public class AdminLogin {
     private final String password;
