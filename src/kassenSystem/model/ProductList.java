@@ -1,12 +1,11 @@
 package kassenSystem.model;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This is a list of Products.
@@ -15,9 +14,10 @@ public class ProductList {
 
     /**
      * This is the product list.
+     * The path is the path to the database.
      */
     private static final ArrayList<Product> productList = new ArrayList<>();
-    Path path = Paths.get("kassenSystem/model/Database.txt");
+    private final Path path = Paths.get("kassenSystem/model/Database.txt");
 
     public ProductList() {}
 
@@ -35,8 +35,8 @@ public class ProductList {
      * @throws Exception When the product id is already in the list
      */
     // needs to handle both price and basePrice
-    public void addProduct(String name, long id, int stock, float weight, String weightUnit,
-                           float price, String category) throws Exception {
+    public void addProduct(String name, long id, int stock, double weight, String weightUnit,
+                           double price, String category) throws Exception {
          if (productList.size() > 0) {
              for (Product product : productList) {
                  if (product.getId() == id) {
@@ -45,11 +45,38 @@ public class ProductList {
              }
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
-             addToDatabase(temp);
         } else {
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
-             addToDatabase(temp);
+        }
+    }
+    /**
+     * Adds a new product to the productList.
+     * The parameters name, id, stock, weight and basePrice are entered by the user.
+     * The category will be supplied by the category list and will not be entered separately.
+     *
+     * @param name the name of the new product
+     * @param id the identification number of the new product
+     * @param specialStock the amount of units of the new product
+     * @param weight the weight of the product
+     * @param basePrice the base price of the product
+     * @param category the category the product will be assigned to
+     */
+    // needs to handle both price and basePrice
+    public void addProduct(String name, long id, String specialStock, double weight, String weightUnit,
+                           double basePrice, String category) throws Exception {
+        if (productList.size() > 0) {
+            for (Product product : productList) {
+                if (product.getId() == id) {
+                    throw new Exception("Die Produkt-ID " + id + " wird bereits verwendet.");
+                }
+            }
+            Product temp = new Product(name, id, specialStock, weight, weightUnit, basePrice, category);
+            productList.add(temp);
+        } else {
+            Product temp = new Product(name, id, specialStock, weight, weightUnit, basePrice, category);
+            productList.add(temp);
+
         }
     }
 
@@ -234,41 +261,41 @@ public class ProductList {
     /**
      * Adds a new product entry to the database.
      *
-     * @param product
      */
-    public void addToDatabase(Product product) throws IOException {
-        String s = String.format("%13d %32s %4d %8.2f %5s  %8.2f %8.2f %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory());
-        //"%1$13d %2$32s %3$4d %4$6f.2 %5$5s  %6$6f.2 %7$6f.2 %8$32s", s
-        //"%13d %32s %4d %6f.2 %5s  %6f.2 %6f.2 %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory()
-
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
-        pw.println(s);
+    public void saveToDatabase() throws Exception {
+        PrintWriter pw = new PrintWriter(String.valueOf(path));
         pw.close();
+        for(Product product : productList) {
+            String s;
+            if(product.getspecialStock() == null) {
+                s = String.format("%d %s %d %.2f %s %.2f %.2f %s", product.getId(), product.getName(), product.getStock(), product.getWeight(), product.getWeightUnit(), product.getPrice(), product.getBasePrice(), product.getCategory());
+            }else {
+                s = String.format("%d %s %s %.2f %s %.2f %.2f %s", product.getId(), product.getName(), product.getspecialStock(), product.getWeight(), product.getWeightUnit(), product.getPrice(), product.getBasePrice(), product.getCategory());
+            }
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
+            writer.println(s);
+            writer.println();
+            writer.close();
+        }
     }
-
-    /**
-     * Updates a product entry in the database.
-     *
-     * @param product
-     */
-    public void updateInDatabase(Product product) {}
-
-    /**
-     * Removes a product entry from the database.
-     *
-     * @param product
-     */
-    public void removeFromDatabase(Product product) {}
 
     /**
      * Reads a product entry from the database
      */
-    public void readFromDatabase() {
-        Charset charset = StandardCharsets.UTF_8;
-        try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+    public void LoadFromDatabase() throws Exception {
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line = null;
+            String[] paraList;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                line = line.replace(",",".");
+                paraList = line.split(" ");
+                if (paraList.length == 8) {
+                    if (!paraList[2].equals("n")){
+                        this.addProduct(paraList[1], Long.parseLong(paraList[0]), Integer.parseInt(paraList[2]), Double.parseDouble(paraList[3]), paraList[4], Double.parseDouble(paraList[5]), paraList[7]);
+                    }else {
+                        this.addProduct(paraList[1], Long.parseLong(paraList[0]), paraList[2], Double.parseDouble(paraList[3]), paraList[4], Double.parseDouble(paraList[6]), paraList[7]);
+                    }
+                }
             }
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);

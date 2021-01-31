@@ -9,6 +9,7 @@ public class LoginView extends JFrame {
     JButton adminViewButton;
     JButton sellerViewButton;
     JLabel welcomeText;
+    private JButton adminButton;
 
     public LoginView(String name) {
         super(name);

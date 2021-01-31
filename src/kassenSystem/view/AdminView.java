@@ -13,6 +13,8 @@ public class AdminView extends JFrame {
 
     private JList list1;
     private JComboBox comboBox1;
+    
+    private JPanel jp;
 
     public AdminView(String name) {
         super(name);
