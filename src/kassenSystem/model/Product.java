@@ -48,7 +48,7 @@ public class Product {
         if(name.length() >= 2 && name.length() <= 32) {
             this.name = name;
         }else {
-            throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein." +
+            throw new Exception("Der Name muss 2 bis 32 Zeichen lang sein." +
                     " Ihre Eingabe " + name + " war fehlerhaft.");
         }
 
@@ -169,16 +169,16 @@ public class Product {
         switch(weightUnit){
             case "g":
             case "ml":
-                if (weight >=1 && weight <= 2000){
+                if (weight >=1 && weight <= 100000){
                     this.weight = weight;
                 } else {
-                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von 1 bis 2000 liegen." +
+                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von einschließlich 1 bis einschließlich 100.000 liegen." +
                             " Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 if(price/weight * 100 <= 100000 && price / weight * 100 >= 0.01) {
                     this.basePrice = price / weight * 100;
                 } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen." +
+                    throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0,01 bis einschließlich 100.000 liegen." +
                             "Ihr aktueller Grundpreis lautet: " + price / weight * 100);
                 }
                 break;
@@ -188,13 +188,13 @@ public class Product {
                 if (weight >= 0.1 && weight <= 100){
                     this.weight = weight;
                 } else {
-                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von 0,1 bis 100 liegen." +
+                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von einschließlich 0,1 bis einschließlich 100 liegen." +
                             " Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 if(price/weight * 1 <= 100000 && price / weight * 1 >= 0.01) {
                     this.basePrice = price / weight * 1;
                 } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen, " +
+                    throw new Exception("Der Grundpreis muss im Bereich einschließlich von 0,01 bis einschließlich 100.000 liegen, " +
                             "Ihr aktueller Grundpreis lautet: " + price / weight * 1);
                 }
         }
