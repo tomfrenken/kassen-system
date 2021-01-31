@@ -1,9 +1,6 @@
 package kassenSystem.model;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -235,16 +232,14 @@ public class ProductList {
      *
      * @param product
      */
-    public void addToDatabase(Product product) {
-        Charset charset = StandardCharsets.UTF_8;
+    public void addToDatabase(Product product) throws IOException {
+        String s = String.format("%13d %32s %4d %8.2f %5s  %8.2f %8.2f %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory());
+        //"%1$13d %2$32s %3$4d %4$6f.2 %5$5s  %6$6f.2 %7$6f.2 %8$32s", s
+        //"%13d %32s %4d %6f.2 %5s  %6f.2 %6f.2 %32s",product.getId(),product.getName(),product.getStock(),product.getWeight(),product.getWeightUnit(),product.getPrice(),product.getBasePrice(),product.getCategory()
 
-        String s = product.toString(null);
-
-        try (FileWriter writer =  new FileWriter(path, true) {
-            writer
-        } catch (IOException x) {
-            System.err.format("IOException: %s%n", x);
-        }
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
+        pw.println(s);
+        pw.close();
     }
 
     /**
