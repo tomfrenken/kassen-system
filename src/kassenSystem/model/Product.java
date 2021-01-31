@@ -48,96 +48,7 @@ public class Product {
         if(name.length() >= 2 && name.length() <= 32) {
             this.name = name;
         }else {
-            throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein " +
-                    "Ihre Eingabe " + name + " war fehlerhaft.");
-        }
-
-        String number = String.valueOf(id);
-        if (number.length() == 13 || number.length() == 4 || (number.length() == 5 &&
-                number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
-            this.id = id;
-        } else {
-            throw new Exception("Die ID muss eines der folgenden Formate erfuellen: " +
-                    "1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9." +
-                    "Ihre Eingabe " + id + " war fehlerhaft.");
-        }
-
-        if (stock >= 0 && stock <= 1000) {
-            this.stock = stock;
-        } else {
-            throw new Exception("Der Bestand muss zwischen 0 und 1000 liegen." +
-                    "Ihre Eingabe " + stock + " war fehlerhaft.");
-        }
-
-        if(price<=100000 && price>=1){
-            this.price = price;
-        } else {
-            throw new Exception("Der angegebene Preis übersteigt das Limit von 100.000.");
-        }
-
-        this.weightUnit = weightUnit;
-
-        switch(weightUnit){
-            case "g":
-            case "ml":
-                if (weight >=1 && weight <= 2000){
-                    this.weight = weight;
-                } else {
-                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von 1 bis 2000 liegen." +
-                            "Ihre Eingabe " + weight + " war fehlerhaft.");
-                }
-                if(price/weight * 100 <= 100000 && price / weight * 100 >= 0.01) {
-                    this.basePrice = price / weight * 100;
-                } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen, " +
-                            "Der aktuelle Grundpreis lautet: " + price / weight * 100);
-                }
-                break;
-
-            case "kg":
-            case "l":
-                if (weight >= 0.1 && weight <= 100){
-                    this.weight = weight;
-                } else {
-                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von 0,1 bis 100 liegen." +
-                            "Ihre Eingabe " + weight + " war fehlerhaft.");
-                }
-                if(price/weight * 1 <= 100000 && price / weight * 1 >= 0.01) {
-                    this.basePrice = price / weight * 1;
-                } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen, " +
-                            "Ihr aktueller Grundpreis lautet: " + price / weight * 1);
-                }
-                break;
-            case "stück":
-                if(weight >= 1 && weight <= 1000){
-                    this.weight = weight;
-                } else {
-                    throw new Exception("Das Gewicht in " + weightUnit + "  muss im Bereich 1 bis 1000 liegen." +
-                            "Ihre Eingabe " + weight + " war fehlerhaft.");
-                }
-                if(price/weight * 1 <= 1000 && price / weight * 1 >= 0.01) {
-                    this.basePrice = price / weight * 1;
-                } else {
-                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen, " +
-                            "Ihr aktueller Grundpreis lautet: " + price / weight * 1);
-                }
-        }
-
-        if (categoryList.categoryInList(category)) {
-            this.category = category;
-        } else {
-            throw new Exception("Die Kategorie " + category + " existiert nicht.");
-        }
-    }
-
-    public Product(String name, long id, String specialStock, double weight, String weightUnit, double price, String category)
-            throws Exception {
-
-        if(name.length() >= 2 && name.length() <= 32) {
-            this.name = name;
-        }else {
-            throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein " +
+            throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein." +
                     " Ihre Eingabe " + name + " war fehlerhaft.");
         }
 
@@ -151,11 +62,11 @@ public class Product {
                     " Ihre Eingabe " + id + " war fehlerhaft.");
         }
 
-        if (specialStock == "n") {
-            this.specialStock = specialStock;
+        if (stock >= 0 && stock <= 1000) {
+            this.stock = stock;
         } else {
-            throw new Exception("Der Spezialfall wird mit n aufgerufen" +
-                    " Ihre eingabe " + stock + " war fehlerhaft.");
+            throw new Exception("Der Bestand muss zwischen 0 und 1000 liegen." +
+                    " Ihre Eingabe " + stock + " war fehlerhaft.");
         }
 
         if(price<=100000 && price>=1){
@@ -203,9 +114,84 @@ public class Product {
                     this.weight = weight;
                 } else {
                     throw new Exception("Das Gewicht in " + weightUnit + "  muss im Bereich 1 bis 1000 liegen." +
-                            "Ihre Eingabe " + weight + " war fehlerhaft.");
+                            " Ihre Eingabe " + weight + " war fehlerhaft.");
                 }
                 if(price/weight * 1 <= 1000 && price / weight * 1 >= 0.01) {
+                    this.basePrice = price / weight * 1;
+                } else {
+                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen, " +
+                            "Ihr aktueller Grundpreis lautet: " + price / weight * 1);
+                }
+        }
+
+        if (categoryList.categoryInList(category)) {
+            this.category = category;
+        } else {
+            throw new Exception("Die Kategorie " + category + " existiert nicht.");
+        }
+    }
+
+    public Product(String name, long id, String specialStock, double weight, String weightUnit, double price, String category)
+            throws Exception {
+
+        if(name.length() >= 2 && name.length() <= 32) {
+            this.name = name;
+        }else {
+            throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein." +
+                    " Ihre Eingabe " + name + " war fehlerhaft.");
+        }
+
+        String number = String.valueOf(id);
+        if (number.length() == 13 || number.length() == 4 || (number.length() == 5 &&
+                number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
+            this.id = id;
+        } else {
+            throw new Exception("Die ID muss eines der folgenden Formate erfuellen: " +
+                    "1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9." +
+                    " Ihre Eingabe " + id + " war fehlerhaft.");
+        }
+
+        if (specialStock == "n") {
+            this.specialStock = specialStock;
+        } else {
+            throw new Exception("Der Spezialfall wird mit n aufgerufen." +
+                    " Ihre Eingabe " + stock + " war fehlerhaft.");
+        }
+
+        if(price<=100000 && price>=1){
+            this.price = price;
+        } else {
+            throw new Exception("Der angegebene Preis übersteigt das Limit von 100.000.");
+        }
+
+        this.weightUnit = weightUnit;
+
+        switch(weightUnit){
+            case "g":
+            case "ml":
+                if (weight >=1 && weight <= 2000){
+                    this.weight = weight;
+                } else {
+                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von 1 bis 2000 liegen." +
+                            " Ihre Eingabe " + weight + " war fehlerhaft.");
+                }
+                if(price/weight * 100 <= 100000 && price / weight * 100 >= 0.01) {
+                    this.basePrice = price / weight * 100;
+                } else {
+                    throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen." +
+                            "Ihr aktueller Grundpreis lautet: " + price / weight * 100);
+                }
+                break;
+
+            case "kg":
+            case "l":
+                if (weight >= 0.1 && weight <= 100){
+                    this.weight = weight;
+                } else {
+                    throw new Exception("Das Gewicht in " + weightUnit + " muss im Bereich von 0,1 bis 100 liegen." +
+                            " Ihre Eingabe " + weight + " war fehlerhaft.");
+                }
+                if(price/weight * 1 <= 100000 && price / weight * 1 >= 0.01) {
                     this.basePrice = price / weight * 1;
                 } else {
                     throw new Exception("Der Grundpreis muss innerhalb von 0,01 bis 100.000 liegen, " +
