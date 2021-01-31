@@ -12,7 +12,7 @@ public class ProductList {
      */
     private static ArrayList<Product> productList = new ArrayList<>();
 
-    ProductList() {}
+    public ProductList() {}
 
     /**
      * Adds a new product to the productList.
