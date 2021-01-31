@@ -15,11 +15,11 @@ public class LoginView extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         adminViewButton = new JButton("Administrator");
-        sellerViewButton = new JButton("Verkäufer");
+        sellerViewButton = new JButton("Verkaeufer");
         welcomeText = new JLabel("Willkommen im Kassen System 1.0.0");
 
         add(welcomeText);
         add(adminViewButton);
-        add(welcomeText);
-    }
+        add(sellerViewButton);
+        }
 }
