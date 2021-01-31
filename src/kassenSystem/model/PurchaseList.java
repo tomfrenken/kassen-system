@@ -21,7 +21,7 @@ public class PurchaseList {
                 if (item.getProduct() == product) {
                     item.changeAmount(amount);
                     this.addSubtotal(product.getPrice() * amount);
-                    return;
+                    break;
                 }
             }
         }
