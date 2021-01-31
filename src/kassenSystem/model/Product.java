@@ -356,4 +356,12 @@ public class Product {
     public String getWeightUnit() {
         return this.weightUnit;
     }
+
+    public  String toString(String specialStock) {
+        if(specialStock == null) {
+            return id + " " + name + " " + stock + " " + weight + " " + weightUnit + " " + price  + " " + basePrice  + " " + category;
+        } else {
+            return id + " " + name + " " + "specialStock" + " " + weight + " " + weightUnit + " " + price + " " +basePrice  + " " + category;
+        }
+    }
 }
