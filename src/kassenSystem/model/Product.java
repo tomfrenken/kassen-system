@@ -270,7 +270,7 @@ public class Product {
      * @throws Exception if the stock is smaller then 0 or greater then 1000 or special case is activated
      */
     public void setStock(int stock) throws Exception {
-        if (this.specialStock != null) {
+        if (this.getspecialStock() != null) {
             throw new Exception("Der Spezialfall ist aktiviert." +
                     " Diese Operation ist nicht möglich.");
         } else if (stock >= 0 && stock <= 1000) {
@@ -343,7 +343,7 @@ public class Product {
      * @throws Exception if the basePrice is less then 0.01 or greater then 100000 or special case is not activated
      */
     public void setBasePrice(double basePrice) throws Exception {
-        if (this.specialStock == null) {
+        if (this.getspecialStock() == null) {
             throw new Exception("Der Spezialfall ist nicht aktiviert." +
                     " Diese Operation ist nicht möglich.");
         } else if (basePrice<=100000 && basePrice>=0.01) {
@@ -446,5 +446,14 @@ public class Product {
      */
     public String getWeightUnit() {
         return this.weightUnit;
+    }
+
+    /**
+     * Returns the specialStock, has to be n or N
+     *
+     * @return the value n or N that indicates that the special case ist activated
+     */
+    public String getspecialStock() {
+        return this.specialStock;
     }
 }
