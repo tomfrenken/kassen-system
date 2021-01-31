@@ -1,31 +1,25 @@
 package kassenSystem.view;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
-public class LoginView {
-    public static void main(String[] args) {
-        JFrame jframe= new JFrame("Kassensystem");
-        final JTextField textField = new JTextField();
-        textField.setBounds(50,50,150,20);
-        JButton adminViewButton = new JButton("Adminansicht");
-        JButton sellerViewButton = new JButton("Verkäuferansicht");
-        adminViewButton.setBounds(50,100,95,30);
-        jframe.add(adminViewButton);
-        jframe.setSize(1920,1080);
-        jframe.setLayout(null);
-        jframe.setVisible(true);
-        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        adminViewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // loginViewController
-            }
-        });
-        jframe.add(adminViewButton);
-        jframe.add(textField);
-        jframe.setLayout(null);
-        jframe.setVisible(true);
+public class LoginView extends JFrame {
+    JButton adminViewButton;
+    JButton sellerViewButton;
+    JLabel welcomeText;
+    public LoginView(String name){
+        super(name);
+
+        setLayout(new GridLayout(3, 1));
+        this.setSize(800,400);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        adminViewButton = new JButton("Administrator");
+        sellerViewButton = new JButton("Verkäufer");
+        welcomeText = new JLabel("Willkommen im Kassen System 1.0.0");
+
+        add(welcomeText);
+        add(adminViewButton);
+        add(welcomeText);
     }
 }
