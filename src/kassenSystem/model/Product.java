@@ -44,7 +44,8 @@ public class Product {
     public Product(String name, long id, int stock, double weight, String weightUnit, double price, String category)
             throws Exception {
 
-        if(name.length() >= 2 && name.length() <= 32) {
+        if(name.length() >= 2 && name.length() <= 32 &&
+                name.matches("([öÖäÄüÜßa-zA-Z\\d]*\\s?[öÖäÄüÜßa-zA-Z\\d]*)")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein " +
@@ -140,7 +141,8 @@ public class Product {
      * @throws Exception if the name is shorter then 2 or longer then 32 Symbols
      */
     public void setName(String name) throws Exception {
-        if(name.length() >= 2 && name.length() <= 32) {
+        if(name.length() >= 2 && name.length() <= 32 &&
+                name.matches("([öÖäÄüÜßa-zA-Z\\d&'-]+(\\s?[öÖäÄüÜßa-zA-Z\\d&'-]+\\s?)*[öÖäÄüÜßa-zA-Z\\d&'-]+)")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss zwischen 2 und 32 zeichen lang sein " +

@@ -62,4 +62,8 @@ public class Item {
     public void changeAmount(int change) throws Exception {
         this.setAmount(this.amount + change);
     }
+
+    public String toString() {
+        return product.getName();
+    }
 }
