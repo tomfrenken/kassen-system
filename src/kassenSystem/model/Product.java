@@ -3,6 +3,8 @@ package kassenSystem.model;
 /**
  * This is a Product.
  */
+
+// Preis muss noch errechnet werden.
 public class Product {
     private String name;
     private long id;

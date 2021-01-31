@@ -44,7 +44,7 @@ public class ModelTest {
         karotte = new Product("Karrotte", 2345L,
                 1000, 100, 100000, "Gemüse");
         apfel = new Product("Apfel", 94321L,
-                0, 100, 0.01, "MEGAFRÜCHTE");
+                980, 100, 0.01, "MEGAFRÜCHTE");
 
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());
@@ -87,7 +87,7 @@ public class ModelTest {
             System.out.println("Anzahl: " + item.getAmount());
             System.out.println();
         }
-        System.out.println(myPurchaseList.getSubtotal());
+        System.out.println("Zwischensumme: " + myPurchaseList.getSubtotal());
         System.out.println();
         myPurchaseList.removeItem(karotte);
         for(Item item : myPurchaseList.getPurchaseList()){
@@ -96,7 +96,7 @@ public class ModelTest {
             System.out.println("Anzahl: " + item.getAmount());
             System.out.println();
         }
-        System.out.println(myPurchaseList.getSubtotal());
+        System.out.println("Zwischensumme: " + myPurchaseList.getSubtotal());
         System.out.println();
 
 

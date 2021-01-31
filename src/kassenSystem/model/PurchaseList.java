@@ -20,17 +20,17 @@ public class PurchaseList {
             for (Item item : this.purchaseList) {
                 if (item.getProduct() == product) {
                     item.changeAmount(1);
-                    this.changeSubtotal(product.getPrice() * amount);
+                    this.addSubtotal(product.getPrice() * amount);
                     break;
                 } else {
                     this.purchaseList.add(new Item(product, amount));
-                    this.changeSubtotal(product.getPrice() * amount);;
+                    this.addSubtotal(product.getPrice() * amount);;
                     break;
                 }
             }
         } else {
             this.purchaseList.add(new Item(product, amount));
-            this.changeSubtotal(product.getPrice() * amount);
+            this.addSubtotal(product.getPrice() * amount);
         }
     }
 
@@ -42,7 +42,7 @@ public class PurchaseList {
     public void removeItem(Product product) {
        for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
-                this.changeSubtotal(item.getAmount() * item.getProduct().getPrice());
+                this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
                 this.purchaseList.remove(item);
                 break;
             }
@@ -90,12 +90,22 @@ public class PurchaseList {
         return this.subtotal;
     }
 
-    public void changeSubtotal(double change){
-        if(change>0){
-            this.subtotal = this.getSubtotal() + change;
-        } else {
-            this.subtotal = this.getSubtotal() - change;
-        }
+    /**
+     * Subtracts the value from the subtotal.
+     *
+     * @param subtractValue The value to subtract from the subtotal.
+     */
+    public void subtractSubtotal(double subtractValue){
+        this.subtotal = this.getSubtotal() - subtractValue;
+    }
+
+    /**
+     * Adds the value to the subtotal.
+     *
+     * @param addValue The value to add to the subtotal.
+     */
+    public void addSubtotal(double addValue){
+        this.subtotal = this.getSubtotal() + addValue;
     }
 
     public ArrayList<Item> getPurchaseList(){
