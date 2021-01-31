@@ -270,7 +270,7 @@ public class Product {
      * @throws Exception if the stock is smaller then 0 or greater then 1000 or special case is activated
      */
     public void setStock(int stock) throws Exception {
-        if (specialStock != null) {
+        if (this.specialStock != null) {
             throw new Exception("Der Spezialfall ist aktiviert." +
                     " Diese Operation ist nicht möglich.");
         } else if (stock >= 0 && stock <= 1000) {
@@ -343,7 +343,7 @@ public class Product {
      * @throws Exception if the basePrice is less then 0.01 or greater then 100000 or special case is not activated
      */
     public void setBasePrice(double basePrice) throws Exception {
-        if (specialStock == null) {
+        if (this.specialStock == null) {
             throw new Exception("Der Spezialfall ist nicht aktiviert." +
                     " Diese Operation ist nicht möglich.");
         } else if (basePrice<=100000 && basePrice>=0.01) {
