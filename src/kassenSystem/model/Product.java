@@ -337,7 +337,7 @@ public class Product {
 
     /**
      * Sets a new value for the base price of the product.
-     * The base price must be a double 0.01 100000
+     * The base price must be a double 0.01 - 100.000
      * Throws an exception if the basePrice does not meet these requirements.
      *
      * @param basePrice the price charged for a fixed amount of this product
@@ -345,7 +345,10 @@ public class Product {
      */
     // muss überarbeitet werden, dass es nur noch bei 2ten geht
     public void setBasePrice(double basePrice) throws Exception {
-        if(basePrice >= 0.01 && basePrice <= 100000) {
+        if (specialStock == null) {
+            throw new Exception("Der Spezialfall ist nicht aktiviert." +
+                    " Diese Operation ist nicht möglich.");
+        } else if (basePrice<=100000 && basePrice>=0.01) {
             this.basePrice = basePrice;
         } else {
             throw new Exception("Der Grundpreis muss zwischen 0.01 und 100.000 liegen." +
