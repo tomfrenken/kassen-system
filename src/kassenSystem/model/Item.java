@@ -1,10 +1,16 @@
 package kassenSystem.model;
 
 public class Item {
-    private Product product;
+    private final Product product;
     private int amount;
-    
-    // Create a new PurchaseObject
+
+    /**
+     * Creates a new item from a given product and amount.
+     *
+     * @param product The product to buy.
+     * @param amount The amount of the product to buy.
+     * @throws Exception If the stock is too low for this operation.
+     */
     Item(Product product, int amount) throws Exception {
         if(product.getStock() - amount >=0) {
             this.product = product;
@@ -17,10 +23,15 @@ public class Item {
     /**
      * Sets a new value for the amount of this item.
      *
-     * @param amount the amount of this item
+     * @param amount the amount of this item.
+     * @throws Exception If the stock is too low for this operation.
      */
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setAmount(int amount) throws Exception {
+        if(product.getStock() - amount >=0) {
+            this.amount = amount;
+        } else {
+            throw new Exception("Der Bestand des Artikels " + product.getName() + " ist zu gering für diese Operation.");
+        }
     }
 
     /**
@@ -45,9 +56,10 @@ public class Item {
      * Changes the amount of this item by the difference specified by the change parameter.
      * This value can be a positive and negative integer.
      *
-     * @param change specifies the difference of the old and new value for the amount attribute
+     * @param change specifies the difference of the old and new value for the amount attribute.
+     * @throws Exception If the stock is too low for this operation.
      */
-    public void changeAmount(int change) {
+    public void changeAmount(int change) throws Exception {
         this.setAmount(this.amount + change);
     }
 }

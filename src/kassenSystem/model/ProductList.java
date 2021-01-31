@@ -25,17 +25,13 @@ public class ProductList {
      * @param id the identification number of the new product
      * @param stock the amount of units of the new product
      * @param weight the weight of the product
-     * @param basePrice the base price of the product
+     * @param price the base price of the product
      * @param category the category the product will be assigned to
      */
-    public void addProduct(String name, long id, int stock, float weight,
-                           float basePrice, String category) throws Exception {
-        Product temp;
-        try {
-            temp = new Product(name, id, stock, weight, basePrice, category);
-        } catch (Exception e) {
-            throw e;
-        }
+    // needs to handle both price and basePrice
+    public void addProduct(String name, long id, int stock, float weight, String weightUnit,
+                           float price, String category) throws Exception {
+        Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
         productList.add(temp);
     }
 
@@ -221,7 +217,10 @@ public class ProductList {
     /**
      * Parses the database for Products and adds them to the productList.
      */
-    public void getProducts() {
+    public void parseProducts(){
 
+    }
+    public ArrayList<Product> getProducts() {
+        return productList;
     }
 }

@@ -4,12 +4,24 @@ package kassenSystem.model;
  *
  */
 public class AdminLogin {
-    /**
-     * The attribute password is the password required for accessing the admin view.
-     * The attribute isLoggedIn keeps track if there is an Admin currently logged in.
-     */
-    private String password = "123456";
+    private final String password;
     private boolean isLoggedIn = false;
+
+    /**
+     * The AdminLogin is initiated with a default password of 123456.
+     */
+    AdminLogin(){
+        this.password = "123456";
+    }
+
+    /**
+     * The AdminLogin is initiated with a password.
+     *
+     * @param password The password for the AdminLogin
+     */
+    AdminLogin(String password){
+        this.password = password;
+    }
 
     /**
      * Checks if the entered password is correct.
@@ -19,7 +31,7 @@ public class AdminLogin {
      */
     public boolean checkPassword(String password) throws Exception {
         if (this.password.contentEquals(password)) {
-            isLoggedIn = true;
+            this.isLoggedIn = true;
             return true;
         } else {
             throw new Exception("Password ist nicht korrekt");
@@ -41,5 +53,4 @@ public class AdminLogin {
     public boolean getIsLoggedIn() {
         return isLoggedIn;
     }
-
 }
