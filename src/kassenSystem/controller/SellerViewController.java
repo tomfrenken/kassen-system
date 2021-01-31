@@ -12,5 +12,6 @@ public class SellerViewController {
         this.model = model;
     }
 
-    // funktionen
+    public void updateView(){
+    }
 }
