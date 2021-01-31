@@ -271,7 +271,7 @@ public class Product {
      * @throws Exception if the stock is smaller then 0 or greater then 1000 or special case is activated
      */
     public void setStock(int stock) throws Exception {
-        if (specialStock.length() == 0) {
+        if (specialStock != null) {
             throw new Exception("Der Spezialfall ist aktiviert." +
                     " Diese Operation ist nicht möglich.");
         } else if (stock >= 0 && stock <= 1000) {
