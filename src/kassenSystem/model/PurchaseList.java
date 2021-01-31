@@ -16,7 +16,7 @@ public class PurchaseList {
      * @param amount The amount you want to use.
      */
     public void addItem(Product product, int amount) throws Exception {
-        if(purchaseList.size()>0) {
+        if(purchaseList.size() > 0) {
             for (Item item : this.purchaseList) {
                 if (item.getProduct() == product) {
                     item.changeAmount(amount);
