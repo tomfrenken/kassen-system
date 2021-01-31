@@ -10,49 +10,47 @@ public class Product {
     private long id;
     private int stock;
     private double weight;
+    private String weightUnit;
     private double price;
     private double basePrice;
     private String category;
-    private CategoryList categoryList = new CategoryList();
+    private final CategoryList categoryList = new CategoryList();
+    // public Product(String name, long id, int stock, )
+
+
+
+
+
+
+
 
     /**
      * Creates a new Product and initializes the attributes name, id, stock, weight, basePrice
-     * and category.
+     * and category and price.
      * It will also check if the parameters have correct values.
      *
-     * @param name the name of the product
-     * @param id the identification number of the product
-     * @param stock the stock of the product
-     * @param weight the weight of one unit of the product
-     * @param basePrice the base price for a fixed amount of the product
-     * @param category the category the product has been assigned to
+     * @param name the name of the product, must be between 2 and 32 characters
+     * @param id the identification number of the product, has to be either 13 digits long, 4 digits long,
+     *           or 5 digits with a leading 9
+     * @param stock the stock of the product, has to be between 0 and 1000
+     * @param weight the weight of a unit of the product has to be between 1 and 100.000 for gramm and ml,
+     *               between 0,01 and 100 for l and kg and between 1 and 1000 for stück
+     * @param weightUnit the unit of the given weight has to be in unit list
+     * @param basePrice the base price for a fixed amount of the product, between 0.01 and 100.000
+     * @param category the category the product has been assigned to, has to be part of the category list
      *
      * @throws Exception specified at each check
      */
-    public Product(String name, long id, int stock, double weight, double basePrice,
+    public Product(String name, long id, int stock, double weight, String weightUnit, double basePrice,
                    String category) throws Exception {
 
-        /**
-         * Checks if the name is 2 to 32 symbols long.
-         * Throws an exception if the name does not meet these requirements.
-         *
-         * @throws Exception if the name is shorter then 2 or longer then 32 Symbols
-         */
         if(name.length() >= 2 && name.length() <= 32) {
             this.name = name;
         }else {
-            throw new Exception("Der Name muss zwischen 2 und 32 zeichen lang sein " +
+            throw new Exception("Der Name muss zwischen 2 und 32 Zeichen lang sein " +
                     " Ihre Eingabe " + name + " war fehlerhaft.");
         }
 
-        /**
-         * Checks if the id is 13 digits or 4 digits or 5 digits long.
-         * If it is 5 digits long it checks if the first digit is a 9.
-         * Throws an exception if the id does not meet these requirements.
-         *
-         * @throws Exception if the id is not 13 or 4 digits long or 5 digits long and of the
-         *                   scheme 9XXXX
-         */
         String number = String.valueOf(id);
         if (number.length() == 13 || number.length() == 4 || (number.length() == 5 &&
                 number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
@@ -63,12 +61,6 @@ public class Product {
                     " Ihre Eingabe " + id + " war fehlerhaft.");
         }
 
-        /**
-         * Checks if the Stock is between 0 and 1000 units.
-         * Throws an exception if the stock does not meet these requirements.
-         *
-         * @throws Exception if the stock is smaller then 0 or greater then 1000
-         */
         if (stock >= 0 && stock <= 1000) {
             this.stock = stock;
         } else {
@@ -76,42 +68,52 @@ public class Product {
                     " Ihre eingabe " + stock + " war fehlerhaft.");
         }
 
-        /**
-         * Checks if the weight is between XXXXXXXXX.
-         * Throws an exception if the weight does not meet these requirements.
-         *
-         * @throws Exception if the weight is XXXXXXXXXXX
-         */
-        if (weight >= 0.01 && weight <= 100) {
-            this.weight = weight;
-        } else {
-            throw new Exception(" Das Gewicht muss im Bereich XXXXXX liegen." +
-                    " Ihre eingabe " + weight + " war fehlerhaft.");
+        this.weightUnit = weightUnit;
+
+        switch(weightUnit){
+            case "g":
+            case "ml":
+                if (weight >=1 && weight <= 100000){
+                    this.weight = weight;
+                } else {
+                    throw new Exception(" Das Gewicht muss im Bereich 1 bis 100000 liegen." +
+                            " Ihre eingabe " + weight + " war fehlerhaft.");
+                }
+                break;
+
+            case "kg":
+            case "l":
+                if (weight >= 0.01 && weight <= 100){
+                    this.weight = weight;
+                } else {
+                    throw new Exception(" Das Gewicht muss im Bereich 0,01 bis 100 liegen." +
+                            " Ihre eingabe " + weight + " war fehlerhaft.");
+                }
+                break;
+            case "stück":
+                if(weight >= 1 && weight <= 1000){
+                    this.weight = weight;
+                }
         }
 
-        /**
-         * Checks if the basePrice is between 0.01 and 100000.
-         * Throws an exception if the basePrice does not meet these requirements.
-         *
-         * @throws Exception if the basePrice is less then 0.01 or greater then 100000
-         */
+
         if(basePrice >= 0.01 && basePrice <= 100000) {
             this.basePrice = basePrice;
         } else {
             throw new Exception("Der Grundpreis muss zwischen 0.01 und 100000 liegen." +
-                    " Ihre eingabe " + basePrice + " war fehlerhaft.");
+                    " Ihre Eingabe " + basePrice + " war fehlerhaft.");
         }
 
-        /**
-         * Checks if the category already exits
-         * Throws an exception if the category does not meet these requirements.
-         *
-         * @throws Exception if the category does not already exists in categoryList
-         */
         if (categoryList.categoryInList(category)) {
             this.category = category;
         } else {
             throw new Exception("Die Kategorie " + category + " existiert nicht.");
+        }
+
+        if((basePrice * weight) < 100000 && (basePrice * weight) > 0.01){
+            this.price = basePrice * weight;
+        } else {
+            throw new Exception("Der Preis muss zwischen 0.01 und 100000 liegen. Ihre Eingabe war fehlerhaft.");
         }
     }
 
@@ -176,18 +178,37 @@ public class Product {
 
     /**
      * Sets a new value for the weight of the product.
-     * The weight must be XXXXX
-     * Throws an exception if the stock does not meet these requirements.
+     * the weight of a unit of the product has to be between 1 and 100.000 for gramm and ml,
+     * between 0,01 and 100 for l and kg and between 1 and 1000 for stück
      *
-     * @param weight the weight of one unit of this product
-     * @throws Exception if the weight is XXXXXXXXXXX
+     * @param weight the weight of one unit of this product.
+     * @throws Exception if the weight is exceeds the respective weightUnit.
      */
     public void setWeight(double weight) throws Exception {
-        if (weight >= 0.01 && weight <= 100) {
-            this.weight = weight;
-        } else {
-            throw new Exception(" Das Gewicht muss im Bereich XXXXXX liegen." +
-                    " Ihre eingabe " + weight + " war fehlerhaft.");
+        switch(this.weightUnit){
+            case "g":
+            case "ml":
+                if (weight >=1 && weight <= 100000){
+                    this.weight = weight;
+                } else {
+                    throw new Exception(" Das Gewicht muss im Bereich 1 bis 100000 liegen." +
+                            " Ihre eingabe " + weight + " war fehlerhaft.");
+                }
+                break;
+
+            case "kg":
+            case "l":
+                if (weight >= 0.01 && weight <= 100){
+                    this.weight = weight;
+                } else {
+                    throw new Exception(" Das Gewicht muss im Bereich 0,01 bis 100 liegen." +
+                            " Ihre eingabe " + weight + " war fehlerhaft.");
+                }
+                break;
+            case "stück":
+                if(weight >= 1 && weight <= 1000){
+                    this.weight = weight;
+                }
         }
     }
 
@@ -199,14 +220,13 @@ public class Product {
      * @param price the price charged for one unit of this product
      * @throws Exception if price is less then 0.01 or greater then 100000
      */
-    //was passiert hiermit
     public void setPrice(double price) throws Exception {
-        if (price >= 0.01 && price <= 100000) {
-            this.price = price;
-        } else {
-            throw new Exception("Der Preis muss im Bereich zwischen 0.01 und 100000 liegen." +
-                    " Ihre eingabe " + price + " war fehlerhaft.");
-        }
+            if (price >= 0.01 && price <= 100000) {
+                this.price = price;
+            } else {
+                throw new Exception("Der Preis muss im Bereich zwischen 0.01 und 100000 liegen." +
+                        " Ihre eingabe " + price + " war fehlerhaft.");
+            }
     }
 
     /**
@@ -309,5 +329,9 @@ public class Product {
      */
     public String getCategory() {
         return this.category;
+    }
+
+    public String getWeightUnit() {
+        return this.weightUnit;
     }
 }

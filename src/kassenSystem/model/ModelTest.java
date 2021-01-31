@@ -42,12 +42,9 @@ public class ModelTest {
         Product karotte;
         Product apfel;
         karotte = new Product("Karrotte", 2345L,
-                1000, 100, 100000, "Gemüse");
+                1000, 100, 5000, "Gemüse");
         apfel = new Product("Apfel", 94321L,
                 980, 100, 0.01, "MEGAFRÜCHTE");
-
-        // set price needs to be implemented in product
-        apfel.setPrice(10);
 
         System.out.println("Name: " + karotte.getName());
         System.out.println("ID: " + karotte.getId());
@@ -113,8 +110,11 @@ public class ModelTest {
         System.out.println("Zwischensumme: " + myPurchaseList.getSubtotal());
         System.out.println();
 
+        System.out.println("Size before canceling: " + myPurchaseList.getPurchaseList().size());
+        myPurchaseList.cancelPurchase();
+        System.out.println("Size after canceling: " + myPurchaseList.getPurchaseList().size());
+
         //cancelPurchase
-        //setItemAmount
 
 
         // Implement tests for:

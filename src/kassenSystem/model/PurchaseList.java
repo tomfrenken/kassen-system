@@ -35,16 +35,17 @@ public class PurchaseList {
     }
 
     /**
-     * Removes an item from the purchaseList.
+     * Removes an item from the purchaseList and subtracts the amount from the subtotal.
      *
      * @param item The item you want to remove from the purchaseList.
      */
     public void removeItem(Item item) {
-       purchaseList.remove(item);
+        this.subtractSubtotal(item.getProduct().getBasePrice() * item.getAmount());
+        purchaseList.remove(item);
     }
 
     /**
-     * Sets the item amount to a new value, if the amount is set to 0, removes the item instead.
+     * Sets the item amount to a new value, the subtotal will be updated for the amount changed.
      *
      * @param item The item to be changed.
      * @param amount The new amount.
