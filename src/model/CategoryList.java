@@ -14,7 +14,7 @@ public class CategoryList {
      * @param category The new category.
      */
     public void addCategory(String category) throws Exception {
-        if(category.length()<32 && category.length()>3) {
+        if(category.length()<=32 && category.length()>=3) {
             categoryList.add(category);
             Collections.sort(categoryList);
         } else {

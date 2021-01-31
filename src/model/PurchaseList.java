@@ -3,64 +3,55 @@ package model;
 import java.util.ArrayList;
 
 public class PurchaseList {
-    //subtotal of the Price all Objects in the list
     private double subtotal = 0;
-    private final ArrayList<Item> purchaseList;
+    private final ArrayList<Item> purchaseList = new ArrayList<>();
 
-    PurchaseList() {
-        this.purchaseList = new ArrayList<Item>();
-    }
-
-    // add an item to the list or increase amount of item with the same product
-    // adjust subtotal by change
+    PurchaseList() {};
 
     /**
-     * Add an item to the list or increment the amount of items with
-     * @param product
-     * @param amount
-     * @throws Exception
+     * Add an item to the list or increment the amount of the item if the related item already exists.
+     * Incrementation of 1 is meant for use with the product scanner.
+     *
+     * @param product The product that is used.
+     * @param amount The amount you want to use.
      */
     public void addItem(Product product, int amount) throws Exception {
-        Item item;
-        for (Item i : this.purchaseList) {
-            if (i.getProduct() == product) {
-                try {
-                    int total = i.getAmount() + amount;
-                    item = new Item(product, total);
-                } catch (Exception e) {
-                    throw e;
+        if(purchaseList.size()>0) {
+            for (Item item : this.purchaseList) {
+                if (item.getProduct() == product) {
+                    item.changeAmount(1);
+                    this.changeSubtotal(product.getPrice() * amount);
+                    break;
+                } else {
+                    this.purchaseList.add(new Item(product, amount));
+                    this.changeSubtotal(product.getPrice() * amount);;
+                    break;
                 }
-                i.changeAmount(amount);
-                this.changeSubtotal(amount * product.getPrice());
-                return;
             }
+        } else {
+            this.purchaseList.add(new Item(product, amount));
+            this.changeSubtotal(product.getPrice() * amount);
         }
-        try {
-            item = new Item(product, amount);
-        } catch (Exception e) {
-            throw e;
-        }
-        this.purchaseList.add(item);
-        this.changeSubtotal(amount * product.getPrice());
     }
 
-    //remove a Product from the purchaseList
-    // adjust subtotal by change
+    /**
+     * Removes an item from the purchaseList.
+     *
+     * @param product The product you want to remove from the purchaseList.
+     */
     public void removeItem(Product product) {
-        for (Item item : this.purchaseList) {
+       for (Item item : this.purchaseList) {
             if (item.getProduct() == product) {
-                double change = item.getAmount();
-                double price = item.getProduct().getPrice();
-                double changeSubtotal = -(change * price);
+                this.changeSubtotal(item.getAmount() * item.getProduct().getPrice());
                 this.purchaseList.remove(item);
-                this.changeSubtotal(changeSubtotal);
+                break;
             }
         }
     }
 
     // change the current amount of a item to a new one
     // adjust subtotal by change
-    public void changeItemAmount(Product product, int amount) throws Exception {
+    /* public void changeItemAmount(Item item, int amount) throws Exception {
         Item test;
         try {
             test = new Item(product, amount);
@@ -81,7 +72,7 @@ public class PurchaseList {
             }
         }
         throw new Exception("Der Artikel " + product.getName() + " ist nicht in der Einkaufsliste.");
-    }
+    } */
 
     //clear purchaseList
     public void cancelPurchase() {
@@ -95,18 +86,19 @@ public class PurchaseList {
         purchaseList.clear();
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-
     public double getSubtotal() {
         return this.subtotal;
     }
 
-    public void changeSubtotal(double change) {
-        this.setSubtotal(this.getSubtotal() + change);
+    public void changeSubtotal(double change){
+        if(change>0){
+            this.subtotal = this.getSubtotal() + change;
+        } else {
+            this.subtotal = this.getSubtotal() - change;
+        }
     }
 
-
-
+    public ArrayList<Item> getPurchaseList(){
+        return this.purchaseList;
+    }
 }
