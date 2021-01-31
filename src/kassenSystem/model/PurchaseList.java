@@ -40,7 +40,7 @@ public class PurchaseList {
      * @param item The item you want to remove from the purchaseList.
      */
     public void removeItem(Item item) {
-        this.subtractSubtotal(item.getProduct().getBasePrice() * item.getAmount());
+        this.subtractSubtotal(item.getProduct().getPrice() * item.getAmount());
         purchaseList.remove(item);
     }
 
@@ -51,6 +51,7 @@ public class PurchaseList {
      * @param amount The new amount.
      * @throws Exception When the new item amount isn't left in stock.
      */
+    // muss noch mit getBasePrice funktionieren
     public void setItemAmount(Item item, int amount) throws Exception {
         if (purchaseList.contains(item)) {
             if (item.getAmount() - amount == 0) {
