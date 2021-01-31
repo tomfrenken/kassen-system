@@ -17,7 +17,7 @@ public class AdminLogin {
     /**
      * The AdminLogin is initiated with a password.
      *
-     * @param password The password for the AdminLogin
+     * @param password the password for the AdminLogin
      */
     AdminLogin(String password){
         this.password = password;
