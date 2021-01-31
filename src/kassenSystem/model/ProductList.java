@@ -39,8 +39,17 @@ public class ProductList {
     // needs to handle both price and basePrice
     public void addProduct(String name, long id, int stock, float weight, String weightUnit,
                            float price, String category) throws Exception {
-        Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
-        productList.add(temp);
+         if (productList.size() > 0) {
+            for (Product product : productList) {
+                if (product.getId() == id) {
+                    throw new Exception("Die Produkt-ID " + id + " wird bereits verwendet.");
+                }
+            }
+        } else {
+            Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
+            productList.add(temp);
+
+        }
     }
 
     /**

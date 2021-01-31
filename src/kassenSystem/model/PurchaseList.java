@@ -16,14 +16,10 @@ public class PurchaseList {
      * @param amount The amount you want to use.
      */
     public void addItem(Product product, int amount) throws Exception {
-        if(purchaseList.size()>0) {
+        if(purchaseList.size() > 0) {
             for (Item item : this.purchaseList) {
                 if (item.getProduct() == product) {
                     item.changeAmount(amount);
-                    this.addSubtotal(product.getPrice() * amount);
-                    break;
-                } else {
-                    this.purchaseList.add(new Item(product, amount));
                     this.addSubtotal(product.getPrice() * amount);
                     break;
                 }
