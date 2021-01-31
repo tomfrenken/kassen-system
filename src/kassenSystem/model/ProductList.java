@@ -8,13 +8,11 @@ import java.util.ArrayList;
 public class ProductList {
 
     /**
-     * This is
+     * This is the product list.
      */
-    private static ArrayList<Product> productList;
+    private static ArrayList<Product> productList = new ArrayList<>();
 
-    ProductList() {
-        productList = new ArrayList<Product>();
-    }
+    ProductList() {}
 
     /**
      * Adds a new product to the productList.
@@ -63,7 +61,7 @@ public class ProductList {
             swapped = false;
             for (int i = 0; i < n - 1; i++) {
                 if (productList.get(i).getName().compareTo(productList.get(i + 1).getName()) > 0) {
-                    Product temp = productList.get(i);
+                    Product temp = productList.get(i+1);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
                     swapped = true;
@@ -83,7 +81,7 @@ public class ProductList {
             swapped = false;
             for (int i = 0; i < n - 1; i++) {
                 if (productList.get(i).getId() > productList.get(i+1).getId()) {
-                    Product temp = productList.get(i);
+                    Product temp = productList.get(i+1);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
                     swapped = true;
@@ -103,7 +101,7 @@ public class ProductList {
             swapped = false;
             for (int i = 0; i < n - 1; i++) {
                 if (productList.get(i).getStock() > productList.get(i+1).getStock()) {
-                    Product temp = productList.get(i);
+                    Product temp = productList.get(i+1);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
                     swapped = true;
@@ -123,7 +121,7 @@ public class ProductList {
             swapped = false;
             for (int i = 0; i < n - 1; i++) {
                 if (productList.get(i).getWeight() > productList.get(i+1).getWeight()) {
-                    Product temp = productList.get(i);
+                    Product temp = productList.get(i+1);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
                     swapped = true;
@@ -143,7 +141,7 @@ public class ProductList {
             swapped = false;
             for (int i = 0; i < n - 1; i++) {
                 if (productList.get(i).getPrice() > productList.get(i+1).getPrice()) {
-                    Product temp = productList.get(i);
+                    Product temp = productList.get(i+1);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
                     swapped = true;
@@ -163,7 +161,7 @@ public class ProductList {
             swapped = false;
             for (int i = 0; i < n - 1; i++) {
                 if (productList.get(i).getBasePrice() > productList.get(i+1).getBasePrice()) {
-                    Product temp = productList.get(i);
+                    Product temp = productList.get(i+1);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
                     swapped = true;
@@ -184,7 +182,7 @@ public class ProductList {
             for (int i = 0; i < n - 1; i++) {
                 if (productList.get(i).getCategory().compareTo(
                         productList.get(i + 1).getCategory()) > 0) {
-                    Product temp = productList.get(i);
+                    Product temp = productList.get(i+1);
                     productList.set(i+1,productList.get(i));
                     productList.set(i,temp);
                     swapped = true;
@@ -220,7 +218,12 @@ public class ProductList {
     public void parseProducts(){
 
     }
-    public ArrayList<Product> getProducts() {
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Product> getProductList() {
         return productList;
     }
 }
