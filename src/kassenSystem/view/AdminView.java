@@ -1,38 +1,41 @@
 package kassenSystem.view;
 
+import javafx.scene.Node;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminView extends JFrame {
-    private JButton neuesProduktButton;
-    private JButton produktÄndernButton;
-    private JButton produktLöschenButton;
+    private JButton newProductButton;
+    private JButton changeProductButton;
+    private JButton deleteProductButton;
     private JButton kategorielisteButton;
 
     private JList list1;
     private JComboBox comboBox1;
-    
-    private JPanel jp;
+
+    public JPanel jp;
 
     public AdminView(String name) {
         super(name);
+        add(jp);
 
         setLayout(new GridLayout(3, 1));
-        this.setSize(800, 400);
+        this.setSize(1920, 1080);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        neuesProduktButton.setActionCommand("newProductView");
-        produktÄndernButton.setActionCommand("changeProductView");
-        produktLöschenButton.setActionCommand("deleteProductView");
+        newProductButton.setActionCommand("newProductView");
+        changeProductButton.setActionCommand("changeProductView");
+        deleteProductButton.setActionCommand("deleteProductView");
         kategorielisteButton.setActionCommand("categoryListView");
     }
 
     public void addActionListener(ActionListener actionListener){
-        neuesProduktButton.addActionListener(actionListener);
-        produktÄndernButton.addActionListener(actionListener);
-        produktLöschenButton.addActionListener(actionListener);
+        newProductButton.addActionListener(actionListener);
+        changeProductButton.addActionListener(actionListener);
+        deleteProductButton.addActionListener(actionListener);
         kategorielisteButton.addActionListener(actionListener);
     }
 }
