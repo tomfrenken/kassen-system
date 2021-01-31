@@ -20,7 +20,7 @@ public class LoginView {
         adminViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginViewController.
+                // loginViewController
             }
         });
         jframe.add(adminViewButton);
