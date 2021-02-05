@@ -1,8 +1,6 @@
 package kassenSystem.view;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
@@ -28,12 +26,9 @@ public class AdminView extends JFrame {
     public AdminView(String name) {
         super(name);
         add(jp);
+        this.setSize(1200, 800);
 
-        setLayout(new GridLayout(3, 1));
-        this.setSize(1920, 1080);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        newProductButton.setActionCommand("newProductView");
+        newProductButton.setActionCommand("addProductView");
         changeProductButton.setActionCommand("changeProductView");
         deleteProductButton.setActionCommand("deleteProductView");
         categoryListButton.setActionCommand("categoryListView");
@@ -41,7 +36,7 @@ public class AdminView extends JFrame {
 
     /**
      * Adds actionlisteners to the buttons, so the controller can interact with the view.
-     * @param actionListener the actionlisteners to use with the view
+     * @param actionListener the action listeners to use with the view
      */
     public void addActionListener(ActionListener actionListener){
         newProductButton.addActionListener(actionListener);

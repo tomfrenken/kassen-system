@@ -1,7 +1,6 @@
 package kassenSystem.view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
@@ -16,6 +15,7 @@ public class ChangeProductView extends JFrame {
     private JTextField textField4;
     private JComboBox comboBox2;
     private JTextField textField5;
+    private JPanel jp;
 
     /**
      * The constructor to initialize the view
@@ -23,11 +23,8 @@ public class ChangeProductView extends JFrame {
      */
     public ChangeProductView(String name) {
         super(name);
-
-        setLayout(new GridLayout(3, 1));
-        this.setSize(1920, 1080);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        add(jp);
+        this.setSize(1200, 800);
         aktualisierenButton.setActionCommand("changeProduct");
     }
 

@@ -1,29 +1,29 @@
 package kassenSystem.controller;
 
-import kassenSystem.model.CategoryList;
-import kassenSystem.view.CategoryListView;
+import kassenSystem.model.ProductList;
+import kassenSystem.view.AdminView;
 
 import java.awt.event.ActionListener;
 
 /**
- * The controller to connect the categoryListView and the cateGoryListModel.
+ * The controller to connect the adminView and the adminModel
  */
-public class CategoryListController {
-    private final CategoryListView view;
-    private final CategoryList model;
+public class AdminController {
+    private final AdminView view;
+    private final ProductList model;
 
     /**
      * The controller is initialized with the view and model.
-     * @param view categoryListView
-     * @param model cateGoryListModel
+     * @param view the adminView
+     * @param model the adminModel
      */
-    public CategoryListController(CategoryListView view, CategoryList model){
+    public AdminController(AdminView view, ProductList model) {
         this.view = view;
         this.model = model;
     }
 
     /**
-     * the actionlisteners to add to the views for interaction.
+     * The actionlisteners to add to the views for interaction.
      * @param actionListener generic actionListener
      */
     public void addActionsListeners(ActionListener actionListener){
