@@ -1,21 +1,32 @@
 package kassenSystem.model;
 
-import java.util.Locale;
-
 /**
  * This is a Product.
  */
 public class Product {
+
+    /**
+     * The name attribute is the name of the product.
+     * The id attribute is the id of the product.
+     * The stock attribute is the stock of the product.
+     * The specialStock attribute is the specialStock if used by the product else it is null.
+     * The weight attribute is the weight of the product.
+     * The weightUnit attribute is the weightUnit used for this product.
+     * The price attribute is the price of the product.
+     * The basePrice attribute is the basePrice of the product.
+     * The category attribute is the category of the product.
+     * The categoryList is the same categoryList that is created in CategoryList
+     */
     private String name;
     private long id;
     private int stock;
+    private String specialStock;
     private double weight;
     private final String weightUnit;
     private double price;
     private double basePrice;
     private String category;
     private final CategoryList categoryList = new CategoryList();
-    private String specialStock;
 
     /**
      * Creates a new Product and initializes the attributes name, id, stock, weight, weightUnit,
@@ -461,7 +472,12 @@ public class Product {
         return this.weightUnit;
     }
 
-
+    /**
+     * Returns a string of all product attributes.
+     *
+     * @param specialStock the specialStock attribute of the product that is turned into a string
+     * @return a concatenation of all product attributes as a string
+     */
     public String toString(String specialStock) {
         if (specialStock == null) {
             return this.getId() + " " + this.getName() + " " + this.getStock() + " " +

@@ -12,12 +12,16 @@ import java.util.ArrayList;
 public class ProductList {
 
     /**
-     * This is the product list.
-     * The path is the path to the database.
+     * This is the productList.
+     * The path is the path to the productDatabase.
      */
     private static final ArrayList<Product> productList = new ArrayList<>();
-    private final Path path = Paths.get("out/production/kassen-system/kassenSystem/model/ProductDatabase.txt");
+    private final Path path = Paths.get(
+            "out/production/kassen-system/kassenSystem/model/ProductDatabase.txt");
 
+    /**
+     * ProductList constructor.
+     */
     public ProductList() {}
 
     /**
@@ -32,9 +36,8 @@ public class ProductList {
      * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
      * @param price the base price of the product
      * @param category the category the product will be assigned to
-     * @throws Exception When the product id is already in the list
+     * @throws Exception if product id is already used by a product in the list
      */
-    // needs to handle both price and basePrice
     public void addProduct(String name, long id, int stock, double weight, String weightUnit,
                            double price, String category) throws Exception {
          if (productList.size() > 0) {
@@ -50,6 +53,7 @@ public class ProductList {
              productList.add(temp);
          }
     }
+
     /**
      * Adds a new product to the productList.
      * The parameters name, id, stock, weight and basePrice are entered by the user.
@@ -62,8 +66,8 @@ public class ProductList {
      * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
      * @param basePrice the base price of the product
      * @param category the category the product will be assigned to
+     * @throws Exception if product id is already used by a product in the list
      */
-    // needs to handle both price and basePrice
     public void addProduct(String name, long id, String specialStock, double weight,
                            String weightUnit, double basePrice, String category) throws Exception {
         if (productList.size() > 0) {
@@ -266,6 +270,8 @@ public class ProductList {
      *
      * The save function will be executed only once when the application is closed,
      * because the way the product list is implemented represents an inMemory database.
+     *
+     * @throws Exception if the the file the writer accesses is non existent
      */
     public void saveToProductDatabase() throws Exception {
         PrintWriter pw = new PrintWriter(String.valueOf(path));
@@ -285,7 +291,6 @@ public class ProductList {
             }
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(String.valueOf(path), true)));
             writer.println(s);
-            writer.println();
             writer.close();
         }
         productList.clear();
@@ -300,7 +305,7 @@ public class ProductList {
      *
      * @throws Exception if the the file the reader accesses is non existent
      */
-    public void LoadFromProductDatabase() throws Exception {
+    public void loadFromProductDatabase() throws Exception {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             String[] paraList;

@@ -4,6 +4,11 @@ package kassenSystem.model;
  * This Class handles the Admin password and LoggedIn Status
  */
 public class AdminLogin {
+
+    /**
+     * This is the password for the admin account.
+     * The attribute isLoggedIn keeps track if an Admin is logged in.
+     */
     private final String password;
     private boolean isLoggedIn = false;
 
@@ -27,6 +32,7 @@ public class AdminLogin {
      * Checks if the entered password is correct.
      * Throws an exception if a wrong password was entered.
      *
+     * @param  password the password that is being checked
      * @throws Exception if the password was wrong
      */
     public boolean checkPassword(String password) throws Exception {
