@@ -13,7 +13,7 @@ import java.util.Collections;
 public class CategoryList {
     private static final ArrayList<String> categoryList = new ArrayList<>();
     private final ProductList productList = new ProductList();
-    private final Path path = Paths.get("kassenSystem/model/CategoryDatabase.txt");
+    private final Path path = Paths.get("out/production/kassen-system/kassenSystem/model/CategoryDatabase.txt");
 
     public CategoryList() {}
 
@@ -126,9 +126,9 @@ public class CategoryList {
             PrintWriter writer = new PrintWriter(new BufferedWriter(
                     new FileWriter(String.valueOf(path), true)));
             writer.println(s);
-            writer.println();
             writer.close();
         }
+        categoryList.clear();
     }
 
     /**
@@ -144,7 +144,9 @@ public class CategoryList {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line = null;
             while ((line = reader.readLine()) != null) {
-                // this.addCategory(line);
+                if (line.length() >= 3) {
+                    this.addCategory(line);
+                }
             }
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);

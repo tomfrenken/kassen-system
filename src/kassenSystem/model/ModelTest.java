@@ -372,10 +372,6 @@ public class ModelTest {
         myProductList.saveToProductDatabase();
 
         System.out.println("Cleared Productlist after save");
-        int i = 0;
-        while(i < myProductList.getProductList().size()) {
-            myProductList.removeProduct(i);
-        }
 
         myProductList.LoadFromProductDatabase();
         System.out.println("productList after loading from ProductDatabase");

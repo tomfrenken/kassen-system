@@ -16,7 +16,7 @@ public class ProductList {
      * The path is the path to the database.
      */
     private static final ArrayList<Product> productList = new ArrayList<>();
-    private final Path path = Paths.get("kassenSystem/model/ProductDatabase.txt");
+    private final Path path = Paths.get("out/production/kassen-system/kassenSystem/model/ProductDatabase.txt");
 
     public ProductList() {}
 
@@ -288,6 +288,7 @@ public class ProductList {
             writer.println();
             writer.close();
         }
+        productList.clear();
     }
 
     /**
