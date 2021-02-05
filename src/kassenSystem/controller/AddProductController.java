@@ -1,29 +1,26 @@
 package kassenSystem.controller;
 
 import kassenSystem.model.ProductList;
-import kassenSystem.view.ChangeProductView;
+import kassenSystem.view.AddProductView;
 
 import java.awt.event.ActionListener;
 
-/**
- * The controller to connect the ChangeProductView and the ProductList.
- */
-public class ChangeProductViewController {
-    private final ChangeProductView view;
+public class AddProductController {
+    private final AddProductView view;
     private final ProductList model;
 
     /**
      * The controller is initialized with the view and model.
-     * @param view ChangeProductView
-     * @param model ProductList
+     * @param view the adminView
+     * @param model the adminModel
      */
-    public ChangeProductViewController(ChangeProductView view, ProductList model) {
+    public AddProductController(AddProductView view, ProductList model) {
         this.view = view;
         this.model = model;
     }
 
     /**
-     * the actionlisteners to add to the views for interaction.
+     * The actionlisteners to add to the views for interaction.
      * @param actionListener generic actionListener
      */
     public void addActionsListeners(ActionListener actionListener){

@@ -1,22 +1,19 @@
 package kassenSystem.controller;
 
 import kassenSystem.view.LoginView;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * The controller to use the LoginView
  */
-public class LoginViewController {
+public class LoginController {
     private final LoginView view;
 
     /**
      * The controller is initialized with the view.
      * @param view the LoginView.
      */
-    public LoginViewController(LoginView view){
+    public LoginController(LoginView view){
         this.view = view;
     }
 
