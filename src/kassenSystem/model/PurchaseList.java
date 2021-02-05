@@ -2,10 +2,21 @@ package kassenSystem.model;
 
 import java.util.ArrayList;
 
+/**
+ * This is the purchaseList.
+ */
 public class PurchaseList {
+
+    /**
+     * The subtotal attribute is the subtotal of prices of all items in the purchaseList.
+     * This is the purchaseList.
+     */
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
 
+    /**
+     * PurchaseList constructor.
+     */
     public PurchaseList() {}
 
     /**
@@ -15,6 +26,8 @@ public class PurchaseList {
      *
      * @param product The product that is used.
      * @param amount  The amount you want to use.
+     * @throws Exception if amount of this item is bigger then the stock of the product it
+     *                   represents
      */
     public void addItem(Product product, int amount) throws Exception {
         if (purchaseList.size() > 0) {
@@ -48,7 +61,6 @@ public class PurchaseList {
      * @param amount The new amount.
      * @throws Exception When the new item amount isn't left in stock.
      */
-    // muss noch mit getBasePrice funktionieren
     public void setItemAmount(Item item, int amount) throws Exception {
         if (purchaseList.contains(item)) {
             if (item.getAmount() - amount == 0) {
@@ -85,6 +97,11 @@ public class PurchaseList {
         purchaseList.clear();
     }
 
+    /**
+     * Returns the subtotal of the purchaseList.
+     *
+     * @return the subtotal of the purchaseList
+     */
     public double getSubtotal() {
         return this.subtotal;
     }
@@ -107,6 +124,11 @@ public class PurchaseList {
         this.subtotal = this.getSubtotal() + addValue;
     }
 
+    /**
+     * Returns the purchaseList.
+     *
+     * @return the purchaseList
+     */
     public ArrayList<Item> getPurchaseList(){
         return this.purchaseList;
     }

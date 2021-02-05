@@ -11,10 +11,20 @@ import java.util.Collections;
  * This class handles the CategoryDatabase and CategoryList
  */
 public class CategoryList {
+
+    /**
+     * This is the categoryList.
+     * The productList is the same productList that is created in ProductList.
+     * The path is the path to the categoryDatabase.
+     */
     private static final ArrayList<String> categoryList = new ArrayList<>();
     private final ProductList productList = new ProductList();
-    private final Path path = Paths.get("out/production/kassen-system/kassenSystem/model/CategoryDatabase.txt");
+    private final Path path = Paths.get(
+            "out/production/kassen-system/kassenSystem/model/CategoryDatabase.txt");
 
+    /**
+     * CategoryList constructor.
+     */
     public CategoryList() {}
 
     /**
@@ -44,6 +54,8 @@ public class CategoryList {
      * Removes a category from the list.
      *
      * @param category the category to be removed
+     * @throws Exception if the category that is being removed is still used by any product
+     *                   in the productList
      */
     public void removeCategory(String category) throws Exception {
         int n = productList.getProductList().size();
@@ -117,6 +129,8 @@ public class CategoryList {
      * Saves all categories to the Database.
      * The save function will be executed only once when the application is closed,
      * because the way the category list is implemented represents an inMemory database.
+     *
+     * @throws Exception if the the file the writer accesses is non existent
      */
     public void saveToCategoryDatabase() throws Exception {
         PrintWriter pw = new PrintWriter(String.valueOf(path));
@@ -140,7 +154,7 @@ public class CategoryList {
      *
      * @throws Exception if the the file the reader accesses is non existent
      */
-    public void LoadFromCategoryDatabase() throws Exception {
+    public void loadFromCategoryDatabase() throws Exception {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line = null;
             while ((line = reader.readLine()) != null) {

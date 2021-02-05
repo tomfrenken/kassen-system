@@ -1,6 +1,15 @@
 package kassenSystem.model;
 
+/**
+ * This is an Item in the PurchaseList.
+ */
 public class Item {
+
+    /**
+     *  The product attribute is the product of which an amount is added to the purchaseList.
+     *  The amount attribute is the amount of the specified product that is added to the
+     *  purchaseList.
+     */
     private final Product product;
     private int amount;
 
@@ -66,6 +75,11 @@ public class Item {
         this.setAmount(this.amount + change);
     }
 
+    /**
+     * Returns the name of the item as a String.
+     *
+     * @return the name of the item as a string
+     */
     public String toString() {
         return product.getName();
     }

@@ -360,25 +360,31 @@ public class ModelTest {
 
         System.out.println();
         System.out.println("---------------------");
-        System.out.println("productDatabase Test");
+        System.out.println("ProductDatabase Test");
         System.out.println("---------------------");
         System.out.println();
 
         System.out.println("productList before saving to ProductDatabase");
+        System.out.println();
         for(Product product : myProductList.getProductList()) {
             System.out.println(product.getStock());
         }
         System.out.println();
+
+        System.out.println("Saving to ProductDatabase");
         myProductList.saveToProductDatabase();
 
-        System.out.println("Cleared Productlist after save");
+        System.out.println("Loading from ProductDatabase");
+        myProductList.loadFromProductDatabase();
+        System.out.println();
 
-        myProductList.LoadFromProductDatabase();
         System.out.println("productList after loading from ProductDatabase");
+        System.out.println();
         for(Product product : myProductList.getProductList()) {
             System.out.println(product.getStock());
         }
         System.out.println();
+
 
 
 
@@ -389,22 +395,25 @@ public class ModelTest {
         System.out.println("---------------------");
         System.out.println();
 
-        System.out.println("productList before saving to CategoryDatabase");
+        System.out.println("categoryList before saving to CategoryDatabase");
+        System.out.println();
         for(String category : myCategoryList.getCategoryList()) {
             System.out.println(category);
         }
         System.out.println();
-        System.out.println("test1");
+
+        System.out.println("Saving to CategoryDatabase");
         myCategoryList.saveToCategoryDatabase();
-        myCategoryList.LoadFromCategoryDatabase();
-        System.out.println("test3");
-        System.out.println("CategoryList after loading from CategoryDatabase");
+
+        System.out.println("Loading from CategoryDatabase");
+        myCategoryList.loadFromCategoryDatabase();
+        System.out.println();
+
+        System.out.println("categoryList after loading from CategoryDatabase");
+        System.out.println();
         for(String category : myCategoryList.getCategoryList()) {
             System.out.println(category);
         }
         System.out.println();
-
-
-
     }
 }
