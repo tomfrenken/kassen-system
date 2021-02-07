@@ -58,12 +58,12 @@ public class Product {
         }
 
         String number = String.valueOf(id);
-        if (number.length() == 13 || number.length() == 4 || (number.length() == 5 &&
+        if (number.length() == 13  || number.length() == 8 || number.length() == 4 || (number.length() == 5 &&
                 number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
             this.id = id;
         } else {
             throw new Exception("Die ID muss eines der folgenden Formate erfuellen: " +
-                    "1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9." +
+                    "1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 3) 8 Stellen" +
                     " Ihre Eingabe " + id + " war fehlerhaft.");
         }
 
