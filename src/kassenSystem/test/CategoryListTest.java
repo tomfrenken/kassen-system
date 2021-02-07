@@ -3,6 +3,7 @@ package kassenSystem.test;
 import kassenSystem.model.CategoryList;
 import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -42,6 +43,12 @@ public class CategoryListTest {
         productList.addProduct("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven");
     }
 
+    @AfterEach
+    public void tearDown(){
+        productList.getProductList().clear();
+        categoryList.getCategoryList().clear();
+    }
+    
     @Test
     public void removeCategory() {
         Throwable exception = assertThrows(Exception.class, () -> categoryList.removeCategory("Süßwaren"));
