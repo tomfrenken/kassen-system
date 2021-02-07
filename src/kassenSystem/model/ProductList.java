@@ -1,10 +1,13 @@
 package kassenSystem.model;
 
+import com.sun.istack.internal.Nullable;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * This is a list of Products.
@@ -279,6 +282,33 @@ public class ProductList {
         return result;
     }
 
+    public void changeProduct(int index, String name,  long id, int stock, double weight,
+                              String weightUnit, double price, String category) throws Exception {
+        Product temp = this.getProduct(index);
+        this.removeProduct(index);
+        try {
+            this.addProduct(name, id , stock, weight, weightUnit,
+                    price, category);
+        } catch (Exception e){
+            this.addProduct(temp.getName(), temp.getId(), temp.getStock(), temp.getWeight(),
+                    temp.getWeightUnit(), temp.getPrice(), temp.getCategory());
+            throw e;
+        }
+    }
+
+    public void changeProduct(int index, String name,  long id, String specialStock, double weight,
+                              String weightUnit, double basePrice, String category) throws Exception {
+        Product temp = this.getProduct(index);
+        this.removeProduct(index);
+        try {
+            this.addProduct(name, id , specialStock, weight, weightUnit,
+                    basePrice, category);
+        } catch (Exception e){
+            this.addProduct(temp.getName(), temp.getId(), temp.getSpecialStock(), temp.getWeight(),
+                    temp.getWeightUnit(), temp.getBasePrice(), temp.getCategory());
+            throw e;
+        }
+    }
 
     /**
      * Saves all products to the ProductDatabase.
@@ -321,7 +351,8 @@ public class ProductList {
      * @throws Exception if the the file the reader accesses is non existent
      */
     public void loadFromProductDatabase() throws Exception {
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
+        try {
+            BufferedReader reader = Files.newBufferedReader(path);
             String line;
             String[] paraList;
             while ((line = reader.readLine()) != null) {

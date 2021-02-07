@@ -415,5 +415,40 @@ public class ModelTest {
             System.out.println(category);
         }
         System.out.println();
+
+
+
+        System.out.println();
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println("ChangeProduct Test");
+        System.out.println("------------------------------");
+        System.out.println("------------------------------");
+        System.out.println();
+
+        System.out.println("Alte Productliste:");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getName());
+        }
+        System.out.println();
+
+        myProductList.changeProduct(5,"Ananas1", 93153L, 100,
+                2, "stück", 500, "MEGAFRUECHTE");
+
+        System.out.println("1. Veränderte Productliste:");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getName());
+        }
+        System.out.println();
+
+        myProductList.changeProduct(5,"Ananas1mitN", 93153L, "n",
+                2, "stück", 500, "MEGAFRUECHTE");
+
+        System.out.println("2. Veränderte Productliste:");
+        for(Product product : myProductList.getProductList()) {
+            System.out.println(product.getName());
+        }
+        System.out.println();
+
     }
 }
