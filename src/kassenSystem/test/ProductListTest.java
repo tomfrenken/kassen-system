@@ -36,8 +36,13 @@ public class ProductListTest {
     }
 
     @Test
-    public void createUnqiueEan() {
-        Throwable exception = assertThrows(Exception.class, () -> productList.addProduct("Mehl 406", 8597618758423L, 20, 2, "kg", 4.99, "Backwaren"));
-        assertEquals("Die Produkt-ID 8597618758423 wird bereits verwendet.", exception.getMessage());
+    public void createUniqueEan() {
+        Throwable exceptionForThirteenNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Mehl 406", 8597618758423L, 20, 2, "kg", 4.99, "Backwaren"));
+        Throwable exceptionForFiveNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Tomate Havanna", 93780, 12, 1, "kg", 3.99, "Gemüse"));
+        Throwable exceptionForFourNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Birne Silby", 4532, 132, 250, "g", 1.99, "Obst"));
+
+        assertEquals("Die Produkt-ID 8597618758423 wird bereits verwendet.", exceptionForThirteenNumbersLongEan.getMessage());
+        assertEquals("Die Produkt-ID 93780 wird bereits verwendet.", exceptionForFiveNumbersLongEan.getMessage());
+        assertEquals("Die Produkt-ID 4532 wird bereits verwendet.", exceptionForFourNumbersLongEan.getMessage());
     }
 }
