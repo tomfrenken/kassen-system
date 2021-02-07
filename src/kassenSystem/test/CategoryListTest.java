@@ -49,14 +49,6 @@ public class CategoryListTest {
     }
 
     @Test
-    public void searchByName() throws Exception {
-        ArrayList<Product> testList = new ArrayList<>();
-        testList.add(new Product("Brausepulver Zuckerfrei", 2913455551023L, 27, 75, "g", 3.99, "Süßwaren"));
-        testList.add(new Product("Zucker-Ganglien", 1151216951419L, 15, 1, "stück", 45.32, "Süßwaren"));
-        assertEquals(productList.searchProductByName("Zucker"), testList);
-    }
-
-    @Test
     public void searchById() throws Exception {
         ArrayList<Product> testList = new ArrayList<>();
         testList.add(new Product("Apfel Goldy", 4532, 68, 100, "g", 2.50, "Obst"));

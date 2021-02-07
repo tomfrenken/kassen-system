@@ -1,9 +1,12 @@
 package kassenSystem.test;
 
 import kassenSystem.model.CategoryList;
+import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -49,5 +52,22 @@ public class ProductListTest {
         assertEquals("Die Produkt-ID 32135947 wird bereits verwendet.", exceptionForEightNumbersLongEan.getMessage());
         assertEquals("Die Produkt-ID 93780 wird bereits verwendet.", exceptionForFiveNumbersLongEan.getMessage());
         assertEquals("Die Produkt-ID 4532 wird bereits verwendet.", exceptionForFourNumbersLongEan.getMessage());
+    }
+
+    @Test
+    public void searchByName() throws Exception {
+        ArrayList<Product> testList = new ArrayList<>();
+        testList.add(new Product("Brausepulver Zuckerfrei", 2913455551023L, 27, 75, "g", 3.99, "Süßwaren"));
+        testList.add(new Product("Zucker-Ganglien", 1151216951419L, 15, 1, "stück", 45.32, "Süßwaren"));
+        assertEquals(productList.searchProductByName("Zucker"), testList);
+    }
+
+    @Test
+    public void searchById() throws Exception {
+        ArrayList<Product> testList = new ArrayList<>();
+        testList.add(new Product("Apfel Goldy", 4532, 68, 100, "g", 2.50, "Obst"));
+        testList.add(new Product("Erdbeer-Konfitüre",8453267832680L , 14, 250, "g", 4.27, "Aufstrich"));
+        testList.add(new Product("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven"));
+        assertEquals(productList.searchProductById(4532L), testList);
     }
 }
