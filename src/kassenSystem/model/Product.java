@@ -1,5 +1,7 @@
 package kassenSystem.model;
 
+import java.util.Objects;
+
 /**
  * This is a Product.
  */
@@ -497,5 +499,34 @@ public class Product {
      */
     public String getSpecialStock() {
         return this.specialStock;
+    }
+
+    /**
+     * Compares two products with another
+     * @param o an object to compare with a given product object
+     * @return true if the object is the same as the product
+     */
+    public boolean equals(Object o) {
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (getClass() != o.getClass())
+            return false;
+        Product product = (Product) o;
+        // field comparison
+        return Objects.equals(this.getName(), product.getName())
+                && Objects.equals(this.getId(), product.getId())
+                && Objects.equals(this.getStock(), product.getStock())
+                && Objects.equals(this.getWeight(), product.getWeight())
+                && Objects.equals(this.getBasePrice(), product.getBasePrice())
+                && Objects.equals(this.getSpecialStock(), product.getSpecialStock())
+                && Objects.equals(this.getPrice(), product.getPrice())
+                && Objects.equals(this.getWeightUnit(), product.getWeightUnit())
+                && Objects.equals(this.getCategory(), product.getCategory());
+
     }
 }
