@@ -52,7 +52,8 @@ public class Product {
                    double price, String category)
             throws Exception {
         if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("([-&'äÄöÖüÜßa-zA-Z\\d]*[\\s]*[-&'äÄöÖüÜßa-zA-Z\\d]*)")) {
+                name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
+                        "[-&'äÄöÖüÜßa-zA-Z\\d\\s]{0,30})[-&'äÄöÖüÜßa-zA-Z\\d]")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss 2 bis 32 Zeichen lang sein." +
@@ -169,7 +170,8 @@ public class Product {
                    double basePrice, String category)
             throws Exception {
         if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("([-&'äÄöÖüÜßa-zA-Z\\d]*[\\s]*[-&'äÄöÖüÜßa-zA-Z\\d]*)")) {
+                name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
+                        "[-&'äÄöÖüÜßa-zA-Z\\d\\s]{0,30})[-&'äÄöÖüÜßa-zA-Z\\d]")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss 2 bis 32 Zeichen lang sein." +
@@ -250,7 +252,8 @@ public class Product {
      */
     public void setName(String name) throws Exception {
         if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("([-&'äÄöÖüÜßa-zA-Z\\d]*[\\s]*[-&'äÄöÖüÜßa-zA-Z\\d]*)")) {
+                name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
+                        "[-&'äÄöÖüÜßa-zA-Z\\d\\s]{0,30})[-&'äÄöÖüÜßa-zA-Z\\d]")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss zwischen 2 und 32 zeichen lang sein " +
@@ -503,6 +506,7 @@ public class Product {
 
     /**
      * Compares two products with another
+     *
      * @param o an object to compare with a given product object
      * @return true if the object is the same as the product
      */
