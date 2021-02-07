@@ -1,18 +1,15 @@
 package kassenSystem.view;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * The view from which you can choose either adminView or sellerView
  */
 public class LoginView extends JFrame {
-    JButton adminViewButton;
-    JButton sellerViewButton;
-    JLabel welcomeText;
-    private JButton adminButton;
+    private JButton adminLoginViewButton;
+    private JButton sellerViewButton;
+    private JPanel jp;
 
     /**
      * The view is constructed only with a name
@@ -20,20 +17,12 @@ public class LoginView extends JFrame {
      */
     public LoginView(String name) {
         super(name);
-
-        setLayout(new GridLayout(3, 1));
+        add(jp);
         this.setSize(800, 400);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        adminViewButton = new JButton("Administrator");
-        adminViewButton.setActionCommand("adminView");
-        sellerViewButton = new JButton("Verkaeufer");
+        adminLoginViewButton.setActionCommand("adminLoginView");
         sellerViewButton.setActionCommand("sellerView");
-        welcomeText = new JLabel("Willkommen im Kassen System 1.0.0");
-
-        add(welcomeText);
-        add(adminViewButton);
-        add(sellerViewButton);
     }
 
     /**
@@ -41,7 +30,7 @@ public class LoginView extends JFrame {
      * @param actionListener adds actionListeners for the interaction with the controller
      */
     public void addActionListener(ActionListener actionListener){
-        adminViewButton.addActionListener(actionListener);
+        adminLoginViewButton.addActionListener(actionListener);
         sellerViewButton.addActionListener(actionListener);
     }
 }
