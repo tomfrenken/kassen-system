@@ -253,17 +253,32 @@ public class ProductList {
      * @return a list of products with the same name as the search phrase,
      *         or where the given search phrase is part of the name
      */
-    public ArrayList<Product> searchProduct(String search) {
+    public ArrayList<Product> searchProductByName(String search) {
         ArrayList<Product> result = new ArrayList<>();
-        CharSequence sequence = search.subSequence(0,search.length() - 1);
-        for (int i = 0; i < productList.size() - 1; i++) {
-            Product temp = productList.get(i);
-            if (temp.getName().contains(sequence)) {
-                result.add(temp);
+        for (Product product : productList) {
+            if(product.getName().contains(search)){
+                result.add(product);
             }
         }
         return result;
     }
+
+    /**
+     * Searches the productList for a product with its id.
+     * @param id the id of a product
+     * @return a list of products with the same id as the search phrase,
+     *         or where the given search phrase is part of the name
+     */
+    public ArrayList<Product> searchProductById(Long id) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Product product : productList) {
+            if(Long.toString(product.getId()).contains(Long.toString(id))) {
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
 
     /**
      * Saves all products to the ProductDatabase.

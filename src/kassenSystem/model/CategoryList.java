@@ -106,9 +106,8 @@ public class CategoryList {
      */
     public ArrayList<String> searchCategory(String search) {
         ArrayList<String> result = new ArrayList<>();
-        for (int i = 0; i < categoryList.size() - 1; i++) {
-            String category = categoryList.get(i);
-            if (category.contains(search)) {
+        for (String category : categoryList) {
+            if(category.contains(search)) {
                 result.add(category);
             }
         }
