@@ -38,8 +38,7 @@ public class CategoryList {
      *                   or contains a number, or punctuation symbol
      */
     public void addCategory(String category) throws Exception {
-        if(category.length() <= 32 && category.length() >= 3 && !category.matches("\\D") &&
-                category.matches("[-&'äÄöÖüÜßa-zA-Z]([-&'äÄöÖüÜßa-zA-Z\\s]{1,30})[-&'äÄöÖüÜßa-zA-Z]")) {
+        if(category.matches("[-&'äÄöÖüÜßa-zA-Z]([-&'äÄöÖüÜßa-zA-Z\\s]{1,30})[-&'äÄöÖüÜßa-zA-Z]")) {
             categoryList.add(category);
             Collections.sort(categoryList);
         } else {
