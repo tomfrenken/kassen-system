@@ -51,8 +51,7 @@ public class Product {
     public Product(String name, long id, int stock, double weight, String weightUnit,
                    double price, String category)
             throws Exception {
-        if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
+        if(name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
                         "[-&'äÄöÖüÜßa-zA-Z\\d\\s]{0,30})[-&'äÄöÖüÜßa-zA-Z\\d]")) {
             this.name = name;
         }else {
@@ -61,8 +60,9 @@ public class Product {
         }
 
         String number = String.valueOf(id);
-        if (number.length() == 13  || number.length() == 8 || number.length() == 4 || (number.length() == 5 &&
-                number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
+        if (number.length() == 13  || number.length() == 8
+                || number.length() == 4 || (number.length() == 5
+                && number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
             this.id = id;
         } else {
             throw new Exception("Die ID muss eines der folgenden Formate erfuellen: " +
@@ -169,8 +169,7 @@ public class Product {
     public Product(String name, long id, String specialStock, double weight, String weightUnit,
                    double basePrice, String category)
             throws Exception {
-        if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
+        if (name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
                         "[-&'äÄöÖüÜßa-zA-Z\\d\\s]{0,30})[-&'äÄöÖüÜßa-zA-Z\\d]")) {
             this.name = name;
         }else {
@@ -179,8 +178,9 @@ public class Product {
         }
 
         String number = String.valueOf(id);
-        if (number.length() == 13 || number.length() == 8 || number.length() == 4 || (number.length() == 5 &&
-                number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
+        if (number.length() == 13 || number.length() == 8
+                || number.length() == 4 || (number.length() == 5
+                && number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
             this.id = id;
         } else {
             throw new Exception("Die ID muss eines der folgenden Formate erfuellen: " +
@@ -251,9 +251,8 @@ public class Product {
      * @throws Exception if the name is shorter then 2 or longer then 32 Symbols
      */
     public void setName(String name) throws Exception {
-        if(name.length() >= 2 && name.length() <= 32 &&
-                name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
-                        "[-&'äÄöÖüÜßa-zA-Z\\d\\s]{0,30})[-&'äÄöÖüÜßa-zA-Z\\d]")) {
+        if(name.matches("[-&'äÄöÖüÜßa-zA-Z\\d](" +
+                "[-&'äÄöÖüÜßa-zA-Z\\d\\s]{0,30})[-&'äÄöÖüÜßa-zA-Z\\d]")) {
             this.name = name;
         }else {
             throw new Exception("Der Name muss zwischen 2 und 32 zeichen lang sein " +
@@ -275,8 +274,9 @@ public class Product {
      */
     public void setId(long id) throws Exception {
         String number = String.valueOf(id);
-        if (number.length() == 13 || number.length() == 4 || (number.length() == 5 &&
-                number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
+        if (number.length() == 13 || number.length() == 8
+                || number.length() == 4 || (number.length() == 5
+                && number.regionMatches(0,((Integer) 90000).toString(),0,1))) {
             this.id = id;
         } else {
             throw new Exception("Die ID muss eines der folgenden Formate erfuellen: " +
