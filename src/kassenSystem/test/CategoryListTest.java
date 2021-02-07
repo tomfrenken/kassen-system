@@ -47,13 +47,4 @@ public class CategoryListTest {
         Throwable exception = assertThrows(Exception.class, () -> categoryList.removeCategory("Süßwaren"));
         assertEquals("Die Kategorie Süßwaren ist nicht leer, bitte leeren sie zuerst die Kategorie.", exception.getMessage());
     }
-
-    @Test
-    public void searchById() throws Exception {
-        ArrayList<Product> testList = new ArrayList<>();
-        testList.add(new Product("Apfel Goldy", 4532, 68, 100, "g", 2.50, "Obst"));
-        testList.add(new Product("Erdbeer-Konfitüre",8453267832680L , 14, 250, "g", 4.27, "Aufstrich"));
-        testList.add(new Product("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven"));
-        assertEquals(productList.searchProductById(4532L), testList);
-    }
 }
