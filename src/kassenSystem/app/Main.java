@@ -4,6 +4,7 @@ import kassenSystem.controller.*;
 import kassenSystem.model.AdminLogin;
 import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
+import kassenSystem.model.PurchaseList;
 import kassenSystem.view.*;
 
 import javax.swing.*;
@@ -17,6 +18,7 @@ public class Main extends JFrame implements ActionListener {
     ProductList productListModel = new ProductList();
     CategoryList categoryListModel = new CategoryList();
     AdminLogin adminLogin = new AdminLogin();
+    PurchaseList purchaseList = new PurchaseList();
 
     private final LoginView loginView = new LoginView("Startmenü");
     private final AdminLoginView adminLoginView = new AdminLoginView("Administrator Login");
@@ -24,6 +26,7 @@ public class Main extends JFrame implements ActionListener {
     private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern");
     private final CategoryListView categoryListView = new CategoryListView("Kategorieliste");
     private final AddProductView addProductView = new AddProductView("Produkt hinzufügen");
+    private final SellerView sellerView = new SellerView("Verkäuferoberfläche");
 
     LoginController loginViewController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
@@ -31,6 +34,7 @@ public class Main extends JFrame implements ActionListener {
     ChangeProductController changeProductViewController = new ChangeProductController(changeProductView, productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
     AddProductController addProductController = new AddProductController(addProductView, productListModel);
+    SellerController sellerController = new SellerController(sellerView, purchaseList);
 
     /**
      * Main is only initialized with the eventlisteners to chain all other MVC parts together
@@ -41,6 +45,7 @@ public class Main extends JFrame implements ActionListener {
         adminViewController.addActionsListeners(this);
         changeProductViewController.addActionsListeners(this);
         categoryListController.addActionsListeners(this);
+        sellerController.addActionsListeners(this);
     }
 
     /**
@@ -76,7 +81,7 @@ public class Main extends JFrame implements ActionListener {
                 categoryListController.showView();
                 break;
             case "sellerView":
-                System.out.println("Nothing to see here yet!");
+                sellerController.showView();
                 break;
         }
     }

@@ -12,6 +12,7 @@ public class AdminLoginView extends JFrame {
         super(name);
         add(jp);
         loginButton.setActionCommand("adminView");
+        this.setSize(1200, 800);
     }
 
     /**
