@@ -153,7 +153,8 @@ public class CategoryList {
      * @throws Exception if the the file the reader accesses is non existent
      */
     public void loadFromCategoryDatabase() throws Exception {
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
+        try {
+            BufferedReader reader = Files.newBufferedReader(path);
             String line = null;
             while ((line = reader.readLine()) != null) {
                 if (line.length() >= 3) {
