@@ -43,8 +43,8 @@ public class Main extends JFrame implements ActionListener {
      */
     Main(){
         loginController.addActionsListeners(this);
-        adminLoginController.addActionsListeners(this);
         adminViewController.addActionsListeners(this);
+        adminLoginController.addActionsListeners(this);
         changeProductViewController.addActionsListeners(this);
         categoryListController.addActionsListeners(this);
         sellerController.addActionsListeners(this);

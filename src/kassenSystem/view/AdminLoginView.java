@@ -1,25 +1,30 @@
 package kassenSystem.view;
 
 import javax.swing.*;
+import kassenSystem.controller.AdminLoginController;
+import kassenSystem.model.AdminLogin;
+
 import java.awt.event.ActionListener;
 
 public class AdminLoginView extends JFrame {
-    private JPasswordField passwordField1;
     private JPanel jp;
-    private JButton loginButton;
+    public JPasswordField passwordField;
+    public JButton loginButton;
+    public JButton loginSuccessButton = new JButton();
 
     public AdminLoginView(String name) {
         super(name);
         add(jp);
-        loginButton.setActionCommand("adminView");
         this.setSize(1200, 800);
+
+        AdminLogin adminLoginModel = new AdminLogin();
+        AdminLoginController adminLoginController = new AdminLoginController(this, adminLoginModel);
+
+        loginButton.addActionListener(adminLoginController);
+        loginSuccessButton.setActionCommand("adminView");
     }
 
-    /**
-     * Adds action listeners to the buttons.
-     * @param actionListener the actionlistener to interact with the controller
-     */
-    public void addActionListener(ActionListener actionListener){
-        loginButton.addActionListener(actionListener);
+    public void addActionListener(ActionListener actionListener) {
+        loginSuccessButton.addActionListener(actionListener);
     }
 }
