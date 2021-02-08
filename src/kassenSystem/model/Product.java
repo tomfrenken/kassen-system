@@ -480,11 +480,10 @@ public class Product {
     /**
      * Returns a string of all product attributes.
      *
-     * @param specialStock the specialStock attribute of the product that is turned into a string
      * @return a concatenation of all product attributes as a string
      */
-    public String toString(String specialStock) {
-        if (specialStock == null) {
+    public String toString() {
+        if (this.specialStock == null) {
             return this.getId() + " " + this.getName() + " " + this.getStock() + " " +
                     this.getWeight() + " " + this.getWeightUnit() + " " + this.getPrice() + " " +
                     this.getBasePrice() + " " + this.getCategory();
