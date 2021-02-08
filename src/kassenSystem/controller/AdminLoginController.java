@@ -49,10 +49,11 @@ public class AdminLoginController implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.view.loginButton) {
+        if (e.getActionCommand().equals("login")) {
             try {
                 this.verifyLogin(String.valueOf(this.view.passwordField.getPassword()));
-                this.view.loginSuccessButton.doClick();
+                this.view.loginButton.setActionCommand("adminView");
+                this.view.loginButton.doClick();
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage());
             }

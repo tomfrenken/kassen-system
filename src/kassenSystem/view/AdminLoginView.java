@@ -10,7 +10,6 @@ public class AdminLoginView extends JFrame {
     private JPanel jp;
     public JPasswordField passwordField;
     public JButton loginButton;
-    public JButton loginSuccessButton = new JButton();
 
     public AdminLoginView(String name) {
         super(name);
@@ -21,10 +20,10 @@ public class AdminLoginView extends JFrame {
         AdminLoginController adminLoginController = new AdminLoginController(this, adminLoginModel);
 
         loginButton.addActionListener(adminLoginController);
-        loginSuccessButton.setActionCommand("adminView");
+        loginButton.setActionCommand("login");
     }
 
     public void addActionListener(ActionListener actionListener) {
-        loginSuccessButton.addActionListener(actionListener);
+        loginButton.addActionListener(actionListener);
     }
 }
