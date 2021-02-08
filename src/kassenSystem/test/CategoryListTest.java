@@ -1,14 +1,10 @@
 package kassenSystem.test;
 
 import kassenSystem.model.CategoryList;
-import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -48,7 +44,7 @@ public class CategoryListTest {
         productList.getProductList().clear();
         categoryList.getCategoryList().clear();
     }
-    
+
     @Test
     public void removeCategory() {
         Throwable exception = assertThrows(Exception.class, () -> categoryList.removeCategory("Süßwaren"));
