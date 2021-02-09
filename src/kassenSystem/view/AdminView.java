@@ -1,7 +1,6 @@
 package kassenSystem.view;
 
 import kassenSystem.controller.AdminController;
-import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
 import javax.swing.*;
 import java.awt.event.ActionListener;

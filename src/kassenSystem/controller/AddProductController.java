@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 public class AddProductController {
     private final AddProductView view;
-    private final CategoryList categoryListModel = new CategoryList();
     private final ProductList productListModel = new ProductList();
 
 

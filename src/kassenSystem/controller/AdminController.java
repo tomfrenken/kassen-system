@@ -13,15 +13,15 @@ import java.awt.event.MouseListener;
  */
 public class AdminController implements ActionListener, MouseListener {
     private final AdminView view;
-    private final ProductList productListModel;
+    private final ProductList model;
 
     /**
      * The Admin controller
      * @param view the admin view
      */
-    public AdminController(AdminView view, ProductList productListModel) {
+    public AdminController(AdminView view, ProductList model) {
         this.view = view;
-        this.productListModel = productListModel;
+        this.model = model;
     }
 
     /**
@@ -54,10 +54,10 @@ public class AdminController implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("deleteProduct")) {
-            this.productListModel.removeProduct(this.view.productListTable.getSelectedRow());
-            this.productListModel.fireTableStructureChanged();
+            this.model.removeProduct(this.view.productListTable.getSelectedRow());
+            this.model.fireTableStructureChanged();
             try {
-                this.productListModel.saveToProductDatabase();
+                this.model.saveToProductDatabase();
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(null, exception);
             }
@@ -77,32 +77,32 @@ public class AdminController implements ActionListener, MouseListener {
             String columnName = this.view.productListTable.getColumnName(col);
             switch(columnName){
                 case "EAN":
-                    this.productListModel.sortById();
-                    this.productListModel.fireTableDataChanged();
+                    this.model.sortById();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Name":
-                    this.productListModel.sortByName();
-                    this.productListModel.fireTableDataChanged();
+                    this.model.sortByName();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Preis":
-                    this.productListModel.sortByPrice();
-                    this.productListModel.fireTableDataChanged();
+                    this.model.sortByPrice();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Bestand":
-                    this.productListModel.sortByStock();
-                    this.productListModel.fireTableDataChanged();
+                    this.model.sortByStock();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Kategorie":
-                    this.productListModel.sortByCategory();
-                    this.productListModel.fireTableDataChanged();
+                    this.model.sortByCategory();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Grundpreis":
-                    this.productListModel.sortByBasePrice();
-                    this.productListModel.fireTableDataChanged();
+                    this.model.sortByBasePrice();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Gewicht":
-                    this.productListModel.sortByWeight();
-                    this.productListModel.fireTableDataChanged();
+                    this.model.sortByWeight();
+                    this.model.fireTableDataChanged();
                     break;
             }
         }

@@ -32,8 +32,7 @@ public class Main extends JFrame implements ActionListener {
     LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
     AdminController adminViewController = new AdminController(adminView, productListModel);
-    ChangeProductController changeProductViewController = new ChangeProductController(changeProductView,
-            productListModel);
+    ChangeProductController changeProductController = new ChangeProductController(changeProductView, productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
     AddProductController addProductController = new AddProductController(addProductView);
     SellerController sellerController = new SellerController(sellerView, purchaseList);
@@ -46,7 +45,7 @@ public class Main extends JFrame implements ActionListener {
         loginController.addActionsListeners(this);
         adminViewController.addActionsListeners(this);
         adminLoginController.addActionsListeners(this);
-        changeProductViewController.addActionsListeners(this);
+        changeProductController.addActionsListeners(this);
         categoryListController.addActionsListeners(this);
         sellerController.addActionsListeners(this);
     }
@@ -80,7 +79,7 @@ public class Main extends JFrame implements ActionListener {
                 addProductController.showView();
                 break;
             case "changeProductView":
-                changeProductViewController.showView();
+                changeProductController.showView();
                 break;
             case "categoryListView":
                 categoryListController.showView();
