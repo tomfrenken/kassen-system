@@ -281,6 +281,19 @@ public class ProductList extends AbstractTableModel {
         return result;
     }
 
+    /**
+     * Changes the parameters of a product in the database.
+     *
+     * @param index the index of the product that shall be changed
+     * @param name the name of the new product
+     * @param id the identification number of the new product
+     * @param stock the amount of units of the new product
+     * @param weight the weight of the product
+     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
+     * @param price the base price of the product
+     * @param category the category the product will be assigned to
+     * @throws Exception if a parameter violates the restrictions set in the addProduct function
+     */
     public void changeProduct(int index, String name,  long id, int stock, double weight,
                               String weightUnit, double price, String category) throws Exception {
         Product temp = this.getProduct(index);
@@ -295,7 +308,19 @@ public class ProductList extends AbstractTableModel {
             throw e;
         }
     }
-
+    /**
+     * Changes the parameters of a product in the database.
+     *
+     * @param index the index of the product that shall be changed
+     * @param name the name of the new product
+     * @param id the identification number of the new product
+     * @param specialStock the amount of units of the new product
+     * @param weight the weight of the product
+     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
+     * @param basePrice the base price of the product
+     * @param category the category the product will be assigned to
+     * @throws Exception if a parameter violates the restrictions set in the addProduct function
+     */
     public void changeProduct(int index, String name,  long id, String specialStock, double weight,
                               String weightUnit, double basePrice, String category) throws Exception {
         Product temp = this.getProduct(index);
@@ -324,12 +349,12 @@ public class ProductList extends AbstractTableModel {
         for(Product product : productList) {
             String s;
             if(product.getSpecialStock() == null) {
-                s = String.format("%d %s %d %.2f %s %.2f %.2f %s", product.getId(),
+                s = String.format("%d|%s|%d|%.2f|%s|%.2f|%.2f|%s", product.getId(),
                         product.getName(), product.getStock(), product.getWeight(),
                         product.getWeightUnit(), product.getPrice(), product.getBasePrice(),
                         product.getCategory());
             }else {
-                s = String.format("%d %s %s %.2f %s %.2f %.2f %s", product.getId(),
+                s = String.format("%d|%s|%s|%.2f|%s|%.2f|%.2f|%s", product.getId(),
                         product.getName(), product.getSpecialStock(), product.getWeight(),
                         product.getWeightUnit(), product.getPrice(), product.getBasePrice(),
                         product.getCategory());
@@ -338,6 +363,7 @@ public class ProductList extends AbstractTableModel {
             writer.println(s);
             writer.close();
         }
+        productList.clear();
     }
 
     /**
@@ -356,7 +382,7 @@ public class ProductList extends AbstractTableModel {
             String[] paraList;
             while ((line = reader.readLine()) != null) {
                 line = line.replace(",",".");
-                paraList = line.split(" ");
+                paraList = line.split("\\|");
                 if (paraList.length == 8) {
                     if (!paraList[2].equals("n")){
                         this.addProduct(paraList[1], Long.parseLong(paraList[0]),
