@@ -51,11 +51,6 @@ public class AdminController implements ActionListener {
         this.view.setVisible(false);
     }
 
-    public void updateView(){
-        this.hideView();
-        this.showView();
-    }
-
     public void fillCategoryList() {
         try {
             categoryModel.loadFromCategoryDatabase();

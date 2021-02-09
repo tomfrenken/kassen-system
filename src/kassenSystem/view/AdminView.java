@@ -38,8 +38,6 @@ public class AdminView extends JFrame {
 
         productListTable.setModel(productList);
 
-
-
         newProductButton.setActionCommand("addProductView");
 
         changeProductButton.setActionCommand("changeProductView");
