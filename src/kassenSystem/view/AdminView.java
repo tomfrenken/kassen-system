@@ -14,11 +14,12 @@ public class AdminView extends JFrame {
     private JButton deleteProductButton;
     private JButton categoryListButton;
     private JList<Object> searchList;
-    private JComboBox<String> searchSelectBox;
     private JScrollPane scrollPane;
     private ProductList productListModel;
     public JPanel jp;
     public JTable productListTable;
+    private JTextField suchfeldTextField;
+    private JButton button1;
     public AdminController adminController;
 
     /**

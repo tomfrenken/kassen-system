@@ -23,6 +23,7 @@ public class SellerView extends JFrame {
     private JButton artikelStornierenButton;
     private JButton anpassenButton;
     private JPanel jp;
+    private JButton button1;
 
     public SellerView(String name) {
         super(name);
