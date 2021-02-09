@@ -79,6 +79,11 @@ public class AdminController implements ActionListener, MouseListener {
         if(e.getActionCommand().equals("deleteProduct")) {
             this.productModel.removeProduct(this.view.productListTable.getSelectedRow());
             this.productModel.fireTableStructureChanged();
+            try {
+                this.productModel.saveToProductDatabase();
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(null, exception);
+            }
         }
     }
 

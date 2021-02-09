@@ -338,7 +338,6 @@ public class ProductList extends AbstractTableModel {
             writer.println(s);
             writer.close();
         }
-        productList.clear();
     }
 
     /**

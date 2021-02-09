@@ -30,6 +30,7 @@ public class AdminView extends JFrame {
         super(name);
         add(jp);
         this.setSize(1920, 800);
+
         ProductList productList = new ProductList();
         CategoryList categoryList = new CategoryList();
         AdminController adminController = new AdminController(this, productList, categoryList);
