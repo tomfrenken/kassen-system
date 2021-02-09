@@ -6,12 +6,13 @@ import kassenSystem.model.ProductList;
 import kassenSystem.view.AdminView;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * The controller to connect the adminView and the adminModel
  */
-public class AdminController {
+public class AdminController implements ActionListener {
     private final AdminView view;
     private final ProductList productModel;
     private final CategoryList categoryModel;
@@ -50,6 +51,11 @@ public class AdminController {
         this.view.setVisible(false);
     }
 
+    public void updateView(){
+        this.hideView();
+        this.showView();
+    }
+
     public void fillCategoryList() {
         try {
             categoryModel.loadFromCategoryDatabase();
@@ -66,7 +72,17 @@ public class AdminController {
         }
     }
 
-    public Object[] getProductListAsArray() {
-        return this.productModel.getProductList().toArray();
+    /**
+     * Invoked when an action occurs.
+     *
+     * @param e
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getActionCommand().equals("deleteProduct")) {
+            Product selectedProduct = this.productModel.getProduct(this.view.productListTable.getSelectedColumn());
+            this.productModel.removeProduct(selectedProduct);
+            this.productModel.fireTableStructureChanged();
+        }
     }
 }

@@ -432,7 +432,7 @@ public class ModelTest {
         }
         System.out.println();
 
-        myProductList.changeProduct(5,"Ananas1", 93153L, 100,
+        myProductList.changeProduct(myProductList.getProduct(5),"Ananas1", 93153L, 100,
                 2, "stück", 500, "MEGAFRUECHTE");
 
         System.out.println("1. Veränderte Productliste:");
@@ -441,7 +441,7 @@ public class ModelTest {
         }
         System.out.println();
 
-        myProductList.changeProduct(5,"Ananas1mitN", 93153L, "n",
+        myProductList.changeProduct(myProductList.getProduct(5),"Ananas1mitN", 93153L, "n",
                 2, "stück", 500, "MEGAFRUECHTE");
 
         System.out.println("2. Veränderte Productliste:");

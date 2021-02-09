@@ -101,10 +101,10 @@ public class ProductList extends AbstractTableModel {
     /**
      * Removes the element at the specified index from productList.
      *
-     * @param index specifies the position at which the element is deleted
+     * @param product specifies the position at which the element is deleted
      */
-    public void removeProduct(int index) {
-        productList.remove(index);
+    public void removeProduct(Product product) {
+        productList.remove(product);
     }
 
     /**
@@ -281,30 +281,29 @@ public class ProductList extends AbstractTableModel {
         return result;
     }
 
-    public void changeProduct(int index, String name,  long id, int stock, double weight,
+    public void changeProduct(Product previousProduct, String name,  long id, int stock, double weight,
                               String weightUnit, double price, String category) throws Exception {
-        Product temp = this.getProduct(index);
-        this.removeProduct(index);
+        this.removeProduct(previousProduct);
         try {
             this.addProduct(name, id , stock, weight, weightUnit,
                     price, category);
         } catch (Exception e){
-            this.addProduct(temp.getName(), temp.getId(), temp.getStock(), temp.getWeight(),
-                    temp.getWeightUnit(), temp.getPrice(), temp.getCategory());
+            this.addProduct(previousProduct.getName(), previousProduct.getId(), previousProduct.getStock(),
+                    previousProduct.getWeight(), previousProduct.getWeightUnit(), previousProduct.getPrice(),
+                    previousProduct.getCategory());
             throw e;
         }
     }
 
-    public void changeProduct(int index, String name,  long id, String specialStock, double weight,
+    public void changeProduct(Product previousProduct, String name,  long id, String specialStock, double weight,
                               String weightUnit, double basePrice, String category) throws Exception {
-        Product temp = this.getProduct(index);
-        this.removeProduct(index);
+        this.removeProduct(previousProduct);
         try {
             this.addProduct(name, id , specialStock, weight, weightUnit,
                     basePrice, category);
         } catch (Exception e){
-            this.addProduct(temp.getName(), temp.getId(), temp.getSpecialStock(), temp.getWeight(),
-                    temp.getWeightUnit(), temp.getBasePrice(), temp.getCategory());
+            this.addProduct(previousProduct.getName(), previousProduct.getId(), previousProduct.getSpecialStock(), previousProduct.getWeight(),
+                    previousProduct.getWeightUnit(), previousProduct.getBasePrice(), previousProduct.getCategory());
             throw e;
         }
     }
@@ -483,14 +482,5 @@ public class ProductList extends AbstractTableModel {
         String[] columnNames = {"EAN", "Name", "Preis", "Bestand", "Kategorie", "Grundpreis", "Gewicht",
                 "Gewichtseineheit"};
         return columnNames[index];
-    }
-
-    /**
-     * This will return the product at the specified row
-     * @param row the row in the JTable
-     * @return the product at the specified row
-     */
-    public Product getProductAt(int row) {
-        return this.getProduct(row);
     }
 }

@@ -20,7 +20,7 @@ public class AdminView extends JFrame {
 
     public JPanel jp;
     private JScrollPane scrollPane;
-    private JTable productListTable;
+    public JTable productListTable;
 
     /**
      * The constructor to intialize the view
@@ -41,8 +41,12 @@ public class AdminView extends JFrame {
 
 
         newProductButton.setActionCommand("addProductView");
+
         changeProductButton.setActionCommand("changeProductView");
-        deleteProductButton.setActionCommand("deleteProductView");
+
+        deleteProductButton.setActionCommand("deleteProduct");
+        deleteProductButton.addActionListener(adminController);
+
         categoryListButton.setActionCommand("categoryListView");
     }
 
@@ -53,7 +57,6 @@ public class AdminView extends JFrame {
     public void addActionListener(ActionListener actionListener){
         newProductButton.addActionListener(actionListener);
         changeProductButton.addActionListener(actionListener);
-        deleteProductButton.addActionListener(actionListener);
         categoryListButton.addActionListener(actionListener);
     }
 }
