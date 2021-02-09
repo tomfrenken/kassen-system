@@ -3,7 +3,6 @@ package kassenSystem.controller;
 import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
 import kassenSystem.view.LoginView;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -20,8 +19,6 @@ public class LoginController {
      */
     public LoginController(LoginView view){
         this.view = view;
-        this.fillCategoryList();
-        this.fillProductList();
     }
 
     /**

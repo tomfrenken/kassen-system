@@ -31,7 +31,7 @@ public class Main extends JFrame implements ActionListener {
 
     LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
-    AdminController adminViewController = new AdminController(adminView);
+    AdminController adminViewController = new AdminController(adminView, productListModel);
     ChangeProductController changeProductViewController = new ChangeProductController(changeProductView,
             productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
@@ -57,6 +57,8 @@ public class Main extends JFrame implements ActionListener {
      */
     public static void main(String[] args) {
         Main main = new Main();
+        main.loginController.fillCategoryList();
+        main.loginController.fillProductList();
         main.loginController.showView();
     }
 

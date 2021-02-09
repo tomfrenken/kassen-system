@@ -13,14 +13,15 @@ import java.awt.event.MouseListener;
  */
 public class AdminController implements ActionListener, MouseListener {
     private final AdminView view;
-    private final ProductList productListModel = new ProductList();
+    private final ProductList productListModel;
 
     /**
      * The Admin controller
      * @param view the admin view
      */
-    public AdminController(AdminView view) {
+    public AdminController(AdminView view, ProductList productListModel) {
         this.view = view;
+        this.productListModel = productListModel;
     }
 
     /**

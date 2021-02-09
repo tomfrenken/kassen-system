@@ -32,7 +32,7 @@ public class AdminView extends JFrame {
         this.setSize(1920, 800);
 
         ProductList productListModel = new ProductList();
-        AdminController adminController = new AdminController(this);
+        AdminController adminController = new AdminController(this, productListModel);
 
         productListTable.setModel(productListModel);
         productListTable.getTableHeader().addMouseListener(adminController);
