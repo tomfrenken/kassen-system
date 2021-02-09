@@ -1,6 +1,9 @@
 package kassenSystem.controller;
 
+import kassenSystem.model.CategoryList;
+import kassenSystem.model.ProductList;
 import kassenSystem.view.LoginView;
+import javax.swing.*;
 import java.awt.event.ActionListener;
 
 /**
@@ -8,7 +11,8 @@ import java.awt.event.ActionListener;
  */
 public class LoginController {
     private final LoginView view;
-
+    private final CategoryList categoryListModel = new CategoryList();
+    private final ProductList productListModel = new ProductList();
     /**
      * The controller is initialized with the view.
      * @param view the LoginView.
@@ -37,5 +41,22 @@ public class LoginController {
      */
     public void hideView(){
         view.setVisible(false);
+    }
+
+    public void fillCategoryList() {
+        try {
+            categoryListModel.loadFromCategoryDatabase();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    public void fillProductList() {
+        try {
+            this.productListModel.loadFromProductDatabase();
+            this.productListModel.sortById();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 }
