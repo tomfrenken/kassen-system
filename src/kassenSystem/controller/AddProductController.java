@@ -9,17 +9,18 @@ import java.awt.event.ActionListener;
 
 public class AddProductController implements ActionListener {
     private final AddProductView view;
-    private final CategoryList categoryListModel = new CategoryList();
-    private final ProductList productListModel = new ProductList();
+    private final CategoryList categoryListModel;
+    private final ProductList productListModel;
 
 
     /**
      * The controller is initialized with the categoryListModel and the productListModel, as well as the addProductView
      * @param view the addProductView
      */
-    public AddProductController(AddProductView view) {
+    public AddProductController(AddProductView view, CategoryList categoryListModel, ProductList productListModel) {
         this.view = view;
-
+        this.categoryListModel = categoryListModel;
+        this.productListModel = productListModel;
     }
 
     /**

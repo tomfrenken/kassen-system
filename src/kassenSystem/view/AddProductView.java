@@ -1,6 +1,9 @@
 package kassenSystem.view;
 
 import kassenSystem.controller.AddProductController;
+import kassenSystem.model.CategoryList;
+import kassenSystem.model.ProductList;
+
 import javax.swing.*;
 
 /**
@@ -16,13 +19,17 @@ public class AddProductView extends JFrame {
     public JComboBox<String> categoryBox;
     public JButton confirmButton;
     private JPanel jp;
+    private CategoryList categoryListModel;
+    private ProductList productListModel;
 
-    public AddProductView(String name){
+    public AddProductView(String name, CategoryList categoryListModel, ProductList productListModel){
         super(name);
         add(jp);
         this.setSize(1200, 800);
 
-        AddProductController addProductController = new AddProductController(this);
+        categoryListModel = this.categoryListModel;
+        productListModel = this. productListModel;
+        AddProductController addProductController = new AddProductController(this, categoryListModel, productListModel);
 
         confirmButton.addActionListener(addProductController);
     }

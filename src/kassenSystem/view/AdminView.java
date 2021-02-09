@@ -16,6 +16,7 @@ public class AdminView extends JFrame {
     private JList<Object> searchList;
     private JComboBox<String> searchSelectBox;
     private JScrollPane scrollPane;
+    private ProductList productListModel;
     public JPanel jp;
     public JTable productListTable;
     public AdminController adminController;
@@ -24,21 +25,19 @@ public class AdminView extends JFrame {
      * The constructor to initialize the view
      * @param name the name of the view
      */
-    public AdminView(String name) {
+    public AdminView(String name, ProductList productListModel) {
         super(name);
         add(jp);
         this.setSize(1920, 800);
 
-        ProductList productListModel = new ProductList();
+        this.productListModel = productListModel;
         adminController = new AdminController(this, productListModel);
 
         productListTable.setModel(productListModel);
         productListTable.getTableHeader().addMouseListener(adminController);
 
         newProductButton.setActionCommand("addProductView");
-
         changeProductButton.setActionCommand("changeProductView");
-
         deleteProductButton.setActionCommand("deleteProduct");
         deleteProductButton.addActionListener(adminController);
 
