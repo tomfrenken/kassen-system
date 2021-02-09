@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class SellerView extends JFrame {
     private JList list;
     private JScrollPane scroll;
-    private JTextField suchfeldTextField;
+    private JTextField suchfeldEingabeTextField;
     private JButton hinzufuegenButton;
     private JList list2;
     private JScrollPane scroll2;
