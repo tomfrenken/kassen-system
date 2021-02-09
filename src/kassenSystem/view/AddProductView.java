@@ -1,5 +1,9 @@
 package kassenSystem.view;
 
+import kassenSystem.controller.AddProductController;
+import kassenSystem.model.CategoryList;
+import kassenSystem.model.ProductList;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -21,6 +25,8 @@ public class AddProductView extends JFrame {
         super(name);
         add(jp);
         this.setSize(1200, 800);
+
+        AddProductController addProductController = new AddProductController(this);
 
         bestaetigenButton.setActionCommand("bestaetigen");
     }

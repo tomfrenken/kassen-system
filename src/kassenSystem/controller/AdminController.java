@@ -1,10 +1,7 @@
 package kassenSystem.controller;
 
-import kassenSystem.model.CategoryList;
-import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.view.AdminView;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,19 +13,14 @@ import java.awt.event.MouseListener;
  */
 public class AdminController implements ActionListener, MouseListener {
     private final AdminView view;
-    private final ProductList productModel;
-    private final CategoryList categoryModel;
+    private final ProductList productListModel = new ProductList();
 
     /**
      * The Admin controller
      * @param view the admin view
-     * @param productModel the productList model
-     * @param categoryModel the categoryList model
      */
-    public AdminController(AdminView view, ProductList productModel, CategoryList categoryModel) {
+    public AdminController(AdminView view) {
         this.view = view;
-        this.categoryModel = categoryModel;
-        this.productModel = productModel;
     }
 
     /**
@@ -53,23 +45,6 @@ public class AdminController implements ActionListener, MouseListener {
         this.view.setVisible(false);
     }
 
-    public void fillCategoryList() {
-        try {
-            categoryModel.loadFromCategoryDatabase();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
-    public void fillProductList() {
-        try {
-            this.productModel.loadFromProductDatabase();
-            this.productModel.sortById();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
     /**
      * Invoked when an action occurs.
      *
@@ -78,10 +53,10 @@ public class AdminController implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("deleteProduct")) {
-            this.productModel.removeProduct(this.view.productListTable.getSelectedRow());
-            this.productModel.fireTableStructureChanged();
+            this.productListModel.removeProduct(this.view.productListTable.getSelectedRow());
+            this.productListModel.fireTableStructureChanged();
             try {
-                this.productModel.saveToProductDatabase();
+                this.productListModel.saveToProductDatabase();
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(null, exception);
             }
@@ -101,32 +76,32 @@ public class AdminController implements ActionListener, MouseListener {
             String columnName = this.view.productListTable.getColumnName(col);
             switch(columnName){
                 case "EAN":
-                    this.productModel.sortById();
-                    this.productModel.fireTableDataChanged();
+                    this.productListModel.sortById();
+                    this.productListModel.fireTableDataChanged();
                     break;
                 case "Name":
-                    this.productModel.sortByName();
-                    this.productModel.fireTableDataChanged();
+                    this.productListModel.sortByName();
+                    this.productListModel.fireTableDataChanged();
                     break;
                 case "Preis":
-                    this.productModel.sortByPrice();
-                    this.productModel.fireTableDataChanged();
+                    this.productListModel.sortByPrice();
+                    this.productListModel.fireTableDataChanged();
                     break;
                 case "Bestand":
-                    this.productModel.sortByStock();
-                    this.productModel.fireTableDataChanged();
+                    this.productListModel.sortByStock();
+                    this.productListModel.fireTableDataChanged();
                     break;
                 case "Kategorie":
-                    this.productModel.sortByCategory();
-                    this.productModel.fireTableDataChanged();
+                    this.productListModel.sortByCategory();
+                    this.productListModel.fireTableDataChanged();
                     break;
                 case "Grundpreis":
-                    this.productModel.sortByBasePrice();
-                    this.productModel.fireTableDataChanged();
+                    this.productListModel.sortByBasePrice();
+                    this.productListModel.fireTableDataChanged();
                     break;
                 case "Gewicht":
-                    this.productModel.sortByWeight();
-                    this.productModel.fireTableDataChanged();
+                    this.productListModel.sortByWeight();
+                    this.productListModel.fireTableDataChanged();
                     break;
             }
         }

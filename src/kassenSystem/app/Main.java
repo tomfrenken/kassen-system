@@ -31,10 +31,11 @@ public class Main extends JFrame implements ActionListener {
 
     LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
-    AdminController adminViewController = new AdminController(adminView, productListModel, categoryListModel);
-    ChangeProductController changeProductViewController = new ChangeProductController(changeProductView, productListModel);
+    AdminController adminViewController = new AdminController(adminView);
+    ChangeProductController changeProductViewController = new ChangeProductController(changeProductView,
+            productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
-    AddProductController addProductController = new AddProductController(addProductView, productListModel);
+    AddProductController addProductController = new AddProductController(addProductView);
     SellerController sellerController = new SellerController(sellerView, purchaseList);
     FinishPurchaseController finishPurchaseController = new FinishPurchaseController(finishPurchaseView, purchaseList);
 

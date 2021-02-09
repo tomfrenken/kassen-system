@@ -1,5 +1,6 @@
 package kassenSystem.controller;
 
+import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
 import kassenSystem.view.AddProductView;
 
@@ -7,16 +8,16 @@ import java.awt.event.ActionListener;
 
 public class AddProductController {
     private final AddProductView view;
-    private final ProductList model;
+    private final CategoryList categoryListModel = new CategoryList();
+    private final ProductList productListModel = new ProductList();
+
 
     /**
-     * The controller is initialized with the view and model.
-     * @param view the adminView
-     * @param model the adminModel
+     * The controller is initialized with the categoryListModel and the productListModel, as well as the addProductView
+     * @param view the addProductView
      */
-    public AddProductController(AddProductView view, ProductList model) {
+    public AddProductController(AddProductView view) {
         this.view = view;
-        this.model = model;
     }
 
     /**
