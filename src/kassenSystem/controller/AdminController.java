@@ -64,6 +64,7 @@ public class AdminController implements ActionListener, MouseListener {
     public void fillProductList() {
         try {
             this.productModel.loadFromProductDatabase();
+            this.productModel.sortById();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
