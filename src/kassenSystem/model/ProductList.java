@@ -101,10 +101,10 @@ public class ProductList extends AbstractTableModel {
     /**
      * Removes the element at the specified index from productList.
      *
-     * @param product specifies the position at which the element is deleted
+     * @param i specifies the position at which the element is deleted
      */
-    public void removeProduct(Product product) {
-        productList.remove(product);
+    public void removeProduct(int i) {
+        productList.remove(i);
     }
 
     /**
@@ -281,29 +281,31 @@ public class ProductList extends AbstractTableModel {
         return result;
     }
 
-    public void changeProduct(Product previousProduct, String name,  long id, int stock, double weight,
+    public void changeProduct(int index, String name,  long id, int stock, double weight,
                               String weightUnit, double price, String category) throws Exception {
-        this.removeProduct(previousProduct);
+        Product temp = this.getProduct(index);
+        this.removeProduct(index);
         try {
             this.addProduct(name, id , stock, weight, weightUnit,
                     price, category);
         } catch (Exception e){
-            this.addProduct(previousProduct.getName(), previousProduct.getId(), previousProduct.getStock(),
-                    previousProduct.getWeight(), previousProduct.getWeightUnit(), previousProduct.getPrice(),
-                    previousProduct.getCategory());
+            this.addProduct(temp.getName(), temp.getId(), temp.getStock(),
+                    temp.getWeight(), temp.getWeightUnit(), temp.getPrice(),
+                    temp.getCategory());
             throw e;
         }
     }
 
-    public void changeProduct(Product previousProduct, String name,  long id, String specialStock, double weight,
+    public void changeProduct(int index, String name,  long id, String specialStock, double weight,
                               String weightUnit, double basePrice, String category) throws Exception {
-        this.removeProduct(previousProduct);
+        Product temp = this.getProduct(index);
+        this.removeProduct(index);
         try {
             this.addProduct(name, id , specialStock, weight, weightUnit,
                     basePrice, category);
         } catch (Exception e){
-            this.addProduct(previousProduct.getName(), previousProduct.getId(), previousProduct.getSpecialStock(), previousProduct.getWeight(),
-                    previousProduct.getWeightUnit(), previousProduct.getBasePrice(), previousProduct.getCategory());
+            this.addProduct(temp.getName(), temp.getId(), temp.getSpecialStock(), temp.getWeight(),
+                    temp.getWeightUnit(), temp.getBasePrice(), temp.getCategory());
             throw e;
         }
     }

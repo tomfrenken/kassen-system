@@ -75,8 +75,7 @@ public class AdminController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("deleteProduct")) {
-            Product selectedProduct = this.productModel.getProduct(this.view.productListTable.getSelectedRow());
-            this.productModel.removeProduct(selectedProduct);
+            this.productModel.removeProduct(this.view.productListTable.getSelectedRow());
             this.productModel.fireTableStructureChanged();
         }
     }
