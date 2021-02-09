@@ -54,7 +54,11 @@ public class AdminController implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("deleteProduct")) {
-            this.model.removeProduct(this.view.productListTable.getSelectedRow());
+            try {
+                this.model.removeProduct(this.view.productListTable.getSelectedRow());
+            } catch(Exception exception) {
+                JOptionPane.showMessageDialog(null, "Wähle ein Produkt aus.");
+            }
             this.model.fireTableStructureChanged();
             try {
                 this.model.saveToProductDatabase();
