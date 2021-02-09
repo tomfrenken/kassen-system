@@ -168,8 +168,7 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
      */
     @Override
     public void windowClosing(WindowEvent e) {
-        System.out.println("Check if it works");
-        this.model.fireTableDataChanged();
+
     }
 
     /**
@@ -235,6 +234,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
      */
     @Override
     public void windowDeactivated(WindowEvent e) {
-
+        this.model.fireTableDataChanged();
     }
 }

@@ -6,7 +6,6 @@ import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
 import kassenSystem.model.PurchaseList;
 import kassenSystem.view.*;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +30,7 @@ public class Main extends JFrame implements ActionListener {
 
     LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
-    AdminController adminViewController = new AdminController(adminView, productListModel);
+    AdminController adminController = new AdminController(adminView, productListModel);
     ChangeProductController changeProductController = new ChangeProductController(changeProductView, productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
     AddProductController addProductController = new AddProductController(addProductView);
@@ -43,9 +42,8 @@ public class Main extends JFrame implements ActionListener {
      */
     Main(){
         loginController.addActionsListeners(this);
-        adminViewController.addActionsListeners(this);
+        adminController.addActionsListeners(this);
         adminLoginController.addActionsListeners(this);
-        changeProductController.addActionsListeners(this);
         categoryListController.addActionsListeners(this);
         sellerController.addActionsListeners(this);
     }
@@ -58,10 +56,11 @@ public class Main extends JFrame implements ActionListener {
         Main main = new Main();
         main.loginController.fillCategoryList();
         main.loginController.fillProductList();
+        main.addProductController.fillCategoryBox();
 
-        main.addProductView.addWindowListener(main.adminViewController);
-        main.changeProductView.addWindowListener(main.adminViewController);
-        main.categoryListView.addWindowListener(main.adminViewController);
+        main.addProductView.addWindowListener(main.adminView.adminController);
+        main.changeProductView.addWindowListener(main.adminView.adminController);
+        main.categoryListView.addWindowListener(main.adminView.adminController);
 
         main.loginController.showView();
     }
@@ -77,7 +76,7 @@ public class Main extends JFrame implements ActionListener {
                 adminLoginController.showView();
                 break;
             case "adminView":
-                adminViewController.showView();
+                adminController.showView();
                 adminLoginController.hideView();
                 break;
             case "addProductView":
