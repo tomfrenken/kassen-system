@@ -15,6 +15,7 @@ public class CategoryListView extends JFrame {
     private JScrollPane scroll;
     private JPanel jp;
     private JTextField eingabeTextField;
+    private JButton button1;
 
     public CategoryListView(String name){
         super(name);
