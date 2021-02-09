@@ -29,7 +29,7 @@ public class AdminView extends JFrame {
     public AdminView(String name) {
         super(name);
         add(jp);
-        this.setSize(1200, 800);
+        this.setSize(1920, 800);
         ProductList productList = new ProductList();
         CategoryList categoryList = new CategoryList();
         AdminController adminController = new AdminController(this, productList, categoryList);
@@ -37,6 +37,7 @@ public class AdminView extends JFrame {
         adminController.fillProductList();
 
         productListTable.setModel(productList);
+        productListTable.getTableHeader().addMouseListener(adminController);
 
         newProductButton.setActionCommand("addProductView");
 
