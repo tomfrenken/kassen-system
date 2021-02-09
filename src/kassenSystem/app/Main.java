@@ -18,7 +18,7 @@ public class Main extends JFrame implements ActionListener {
     ProductList productListModel = new ProductList();
     CategoryList categoryListModel = new CategoryList();
     AdminLogin adminLogin = new AdminLogin();
-    PurchaseList purchaseList = new PurchaseList();
+    PurchaseList purchaseListModel = new PurchaseList();
 
     private final LoginView loginView = new LoginView("Startmenü");
     private final AdminLoginView adminLoginView = new AdminLoginView("Administrator Login");
@@ -35,8 +35,8 @@ public class Main extends JFrame implements ActionListener {
     ChangeProductController changeProductController = new ChangeProductController(changeProductView, productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
     AddProductController addProductController = new AddProductController(addProductView);
-    SellerController sellerController = new SellerController(sellerView, purchaseList);
-    FinishPurchaseController finishPurchaseController = new FinishPurchaseController(finishPurchaseView, purchaseList);
+    SellerController sellerController = new SellerController(sellerView, purchaseListModel);
+    FinishPurchaseController finishPurchaseController = new FinishPurchaseController(finishPurchaseView, purchaseListModel);
 
     /**
      * Main is only initialized with the eventlisteners to chain all other MVC parts together
@@ -58,6 +58,11 @@ public class Main extends JFrame implements ActionListener {
         Main main = new Main();
         main.loginController.fillCategoryList();
         main.loginController.fillProductList();
+
+        main.addProductView.addWindowListener(main.adminViewController);
+        main.changeProductView.addWindowListener(main.adminViewController);
+        main.categoryListView.addWindowListener(main.adminViewController);
+
         main.loginController.showView();
     }
 
