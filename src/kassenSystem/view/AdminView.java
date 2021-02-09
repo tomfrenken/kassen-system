@@ -1,7 +1,6 @@
 package kassenSystem.view;
 
 import kassenSystem.controller.AdminController;
-import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -14,16 +13,15 @@ public class AdminView extends JFrame {
     private JButton changeProductButton;
     private JButton deleteProductButton;
     private JButton categoryListButton;
-
     private JList<Object> searchList;
     private JComboBox<String> searchSelectBox;
-
-    public JPanel jp;
     private JScrollPane scrollPane;
+    public JPanel jp;
     public JTable productListTable;
+    public AdminController adminController;
 
     /**
-     * The constructor to intialize the view
+     * The constructor to initialize the view
      * @param name the name of the view
      */
     public AdminView(String name) {
@@ -31,13 +29,10 @@ public class AdminView extends JFrame {
         add(jp);
         this.setSize(1920, 800);
 
-        ProductList productList = new ProductList();
-        CategoryList categoryList = new CategoryList();
-        AdminController adminController = new AdminController(this, productList, categoryList);
-        adminController.fillCategoryList();
-        adminController.fillProductList();
+        ProductList productListModel = new ProductList();
+        adminController = new AdminController(this, productListModel);
 
-        productListTable.setModel(productList);
+        productListTable.setModel(productListModel);
         productListTable.getTableHeader().addMouseListener(adminController);
 
         newProductButton.setActionCommand("addProductView");

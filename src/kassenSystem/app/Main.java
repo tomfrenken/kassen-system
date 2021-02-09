@@ -6,7 +6,6 @@ import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
 import kassenSystem.model.PurchaseList;
 import kassenSystem.view.*;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +17,7 @@ public class Main extends JFrame implements ActionListener {
     ProductList productListModel = new ProductList();
     CategoryList categoryListModel = new CategoryList();
     AdminLogin adminLogin = new AdminLogin();
-    PurchaseList purchaseList = new PurchaseList();
+    PurchaseList purchaseListModel = new PurchaseList();
 
     private final LoginView loginView = new LoginView("Startmenü");
     private final AdminLoginView adminLoginView = new AdminLoginView("Administrator Login");
@@ -31,21 +30,20 @@ public class Main extends JFrame implements ActionListener {
 
     LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
-    AdminController adminViewController = new AdminController(adminView, productListModel, categoryListModel);
-    ChangeProductController changeProductViewController = new ChangeProductController(changeProductView, productListModel);
+    AdminController adminController = new AdminController(adminView, productListModel);
+    ChangeProductController changeProductController = new ChangeProductController(changeProductView, productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
-    AddProductController addProductController = new AddProductController(addProductView, productListModel);
-    SellerController sellerController = new SellerController(sellerView, purchaseList);
-    FinishPurchaseController finishPurchaseController = new FinishPurchaseController(finishPurchaseView, purchaseList);
+    AddProductController addProductController = new AddProductController(addProductView);
+    SellerController sellerController = new SellerController(sellerView, purchaseListModel);
+    FinishPurchaseController finishPurchaseController = new FinishPurchaseController(finishPurchaseView, purchaseListModel);
 
     /**
      * Main is only initialized with the eventlisteners to chain all other MVC parts together
      */
     Main(){
         loginController.addActionsListeners(this);
-        adminViewController.addActionsListeners(this);
+        adminController.addActionsListeners(this);
         adminLoginController.addActionsListeners(this);
-        changeProductViewController.addActionsListeners(this);
         categoryListController.addActionsListeners(this);
         sellerController.addActionsListeners(this);
     }
@@ -56,6 +54,14 @@ public class Main extends JFrame implements ActionListener {
      */
     public static void main(String[] args) {
         Main main = new Main();
+        main.loginController.fillCategoryList();
+        main.loginController.fillProductList();
+        main.addProductController.fillCategoryBox();
+
+        main.addProductView.addWindowListener(main.adminView.adminController);
+        main.changeProductView.addWindowListener(main.adminView.adminController);
+        main.categoryListView.addWindowListener(main.adminView.adminController);
+
         main.loginController.showView();
     }
 
@@ -70,14 +76,14 @@ public class Main extends JFrame implements ActionListener {
                 adminLoginController.showView();
                 break;
             case "adminView":
-                adminViewController.showView();
+                adminController.showView();
                 adminLoginController.hideView();
                 break;
             case "addProductView":
                 addProductController.showView();
                 break;
             case "changeProductView":
-                changeProductViewController.showView();
+                changeProductController.showView();
                 break;
             case "categoryListView":
                 categoryListController.showView();

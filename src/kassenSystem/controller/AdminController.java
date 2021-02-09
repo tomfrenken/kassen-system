@@ -1,34 +1,25 @@
 package kassenSystem.controller;
 
-import kassenSystem.model.CategoryList;
-import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.view.AdminView;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * The controller to connect the adminView and the adminModel
  */
-public class AdminController implements ActionListener, MouseListener {
+public class AdminController implements ActionListener, MouseListener, WindowListener {
     private final AdminView view;
-    private final ProductList productModel;
-    private final CategoryList categoryModel;
+    private final ProductList model;
 
     /**
      * The Admin controller
      * @param view the admin view
-     * @param productModel the productList model
-     * @param categoryModel the categoryList model
      */
-    public AdminController(AdminView view, ProductList productModel, CategoryList categoryModel) {
+    public AdminController(AdminView view, ProductList model) {
         this.view = view;
-        this.categoryModel = categoryModel;
-        this.productModel = productModel;
+        this.model = model;
     }
 
     /**
@@ -53,23 +44,6 @@ public class AdminController implements ActionListener, MouseListener {
         this.view.setVisible(false);
     }
 
-    public void fillCategoryList() {
-        try {
-            categoryModel.loadFromCategoryDatabase();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
-    public void fillProductList() {
-        try {
-            this.productModel.loadFromProductDatabase();
-            this.productModel.sortById();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
     /**
      * Invoked when an action occurs.
      *
@@ -78,10 +52,14 @@ public class AdminController implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("deleteProduct")) {
-            this.productModel.removeProduct(this.view.productListTable.getSelectedRow());
-            this.productModel.fireTableStructureChanged();
             try {
-                this.productModel.saveToProductDatabase();
+                this.model.removeProduct(this.view.productListTable.getSelectedRow());
+            } catch(Exception exception) {
+                JOptionPane.showMessageDialog(null, "Wähle ein Produkt aus.");
+            }
+            this.model.fireTableStructureChanged();
+            try {
+                this.model.saveToProductDatabase();
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(null, exception);
             }
@@ -101,32 +79,32 @@ public class AdminController implements ActionListener, MouseListener {
             String columnName = this.view.productListTable.getColumnName(col);
             switch(columnName){
                 case "EAN":
-                    this.productModel.sortById();
-                    this.productModel.fireTableDataChanged();
+                    this.model.sortById();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Name":
-                    this.productModel.sortByName();
-                    this.productModel.fireTableDataChanged();
+                    this.model.sortByName();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Preis":
-                    this.productModel.sortByPrice();
-                    this.productModel.fireTableDataChanged();
+                    this.model.sortByPrice();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Bestand":
-                    this.productModel.sortByStock();
-                    this.productModel.fireTableDataChanged();
+                    this.model.sortByStock();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Kategorie":
-                    this.productModel.sortByCategory();
-                    this.productModel.fireTableDataChanged();
+                    this.model.sortByCategory();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Grundpreis":
-                    this.productModel.sortByBasePrice();
-                    this.productModel.fireTableDataChanged();
+                    this.model.sortByBasePrice();
+                    this.model.fireTableDataChanged();
                     break;
                 case "Gewicht":
-                    this.productModel.sortByWeight();
-                    this.productModel.fireTableDataChanged();
+                    this.model.sortByWeight();
+                    this.model.fireTableDataChanged();
                     break;
             }
         }
@@ -170,5 +148,92 @@ public class AdminController implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    /**
+     * Invoked the first time a window is made visible.
+     *
+     * @param e
+     */
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when the user attempts to close the window
+     * from the window's system menu.
+     *
+     * @param e
+     */
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when a window has been closed as the result
+     * of calling dispose on the window.
+     *
+     * @param e
+     */
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when a window is changed from a normal to a
+     * minimized state. For many platforms, a minimized window
+     * is displayed as the icon specified in the window's
+     * iconImage property.
+     *
+     * @param e
+     * @see Frame#setIconImage
+     */
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when a window is changed from a minimized
+     * to a normal state.
+     *
+     * @param e
+     */
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when the Window is set to be the active Window. Only a Frame or
+     * a Dialog can be the active Window. The native windowing system may
+     * denote the active Window or its children with special decorations, such
+     * as a highlighted title bar. The active Window is always either the
+     * focused Window, or the first Frame or Dialog that is an owner of the
+     * focused Window.
+     *
+     * @param e
+     */
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when a Window is no longer the active Window. Only a Frame or a
+     * Dialog can be the active Window. The native windowing system may denote
+     * the active Window or its children with special decorations, such as a
+     * highlighted title bar. The active Window is always either the focused
+     * Window, or the first Frame or Dialog that is an owner of the focused
+     * Window.
+     *
+     * @param e
+     */
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        this.model.fireTableDataChanged();
     }
 }
