@@ -478,29 +478,29 @@ public class Product {
     }
 
     /**
-     * Returns a string of all product attributes.
-     *
-     * @return a concatenation of all product attributes as a string
-     */
-    public String toString() {
-        if (this.specialStock == null) {
-            return this.getId() + " " + this.getName() + " " + this.getStock() + " " +
-                    this.getWeight() + " " + this.getWeightUnit() + " " + this.getPrice() + " " +
-                    this.getBasePrice() + " " + this.getCategory();
-        } else {
-            return this.getId() + " " + this.getName() + " " + this.getSpecialStock() + " " +
-                    this.getWeight() + " " + this.getWeightUnit() + " " + this.getPrice() + " " +
-                    this.getBasePrice() + " " + this.getCategory();
-        }
-    }
-
-    /**
      * Returns the specialStock, has to be n or N
      *
      * @return the value n or N that indicates that the special case ist activated
      */
     public String getSpecialStock() {
         return this.specialStock;
+    }
+
+    /**
+     * Returns a string of all product attributes.
+     *
+     * @return a concatenation of all product attributes as a string
+     */
+    public String toString() {
+        if (this.getSpecialStock() == null) {
+            return this.getId() + " " + this.getName() + " " + this.getPrice() + " " +  this.getStock()
+                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€/" + this.getWeight()
+                    + "" + this.getWeightUnit();
+        } else {
+            return this.getId() + " " + this.getName() + " " + this.getPrice() + " " +  this.getSpecialStock()
+                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€/" + this.getWeight()
+                    + "" + this.getWeightUnit();
+        }
     }
 
     /**
@@ -530,6 +530,5 @@ public class Product {
                 && Objects.equals(this.getPrice(), product.getPrice())
                 && Objects.equals(this.getWeightUnit(), product.getWeightUnit())
                 && Objects.equals(this.getCategory(), product.getCategory());
-
     }
 }

@@ -1,6 +1,7 @@
 package kassenSystem.controller;
 
 import kassenSystem.model.CategoryList;
+import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.view.AdminView;
 

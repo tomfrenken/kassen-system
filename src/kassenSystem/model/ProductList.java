@@ -1,18 +1,17 @@
 package kassenSystem.model;
 
-import com.sun.istack.internal.Nullable;
-
+import javax.swing.table.AbstractTableModel;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 /**
  * This is a list of Products.
  */
-public class ProductList {
+public class ProductList extends AbstractTableModel {
 
     /**
      * This is the productList.
@@ -382,5 +381,116 @@ public class ProductList {
      */
     public ArrayList<Product> getProductList() {
         return productList;
+    }
+
+    /**
+     * Returns the number of rows in the model. A
+     * <code>JTable</code> uses this method to determine how many rows it
+     * should display.  This method should be quick, as it
+     * is called frequently during rendering.
+     *
+     * @return the number of rows in the model
+     * @see #getColumnCount
+     */
+    @Override
+    public int getRowCount() {
+        return this.getProductList().size();
+    }
+
+    /**
+     * Returns the number of columns in the model. A
+     * <code>JTable</code> uses this method to determine how many columns it
+     * should create and display by default.
+     *
+     * @return the number of columns in the model
+     * @see #getRowCount
+     */
+    @Override
+    public int getColumnCount() {
+        return 8;
+    }
+
+    /**
+     * Returns the value for the cell at <code>columnIndex</code> and
+     * <code>rowIndex</code>.
+     *
+     * @param rowIndex    the row whose value is to be queried
+     * @param columnIndex the column whose value is to be queried
+     * @return the value Object at the specified cell
+     */
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Object value = null;
+        Product product = this.getProduct(rowIndex);
+        if (product.getSpecialStock() == null) {
+            switch (columnIndex) {
+                case 0:
+                    value = product.getId();
+                    break;
+                case 1:
+                    value = product.getName();
+                    break;
+                case 2:
+                    value = product.getPrice();
+                    break;
+                case 3:
+                    value = product.getStock();
+                    break;
+                case 4:
+                    value = product.getCategory();
+                    break;
+                case 5:
+                    value = product.getBasePrice();
+                    break;
+                case 6:
+                    value = product.getWeight();
+                    break;
+                case 7:
+                    value = product.getWeightUnit();
+            }
+        } else {
+            switch (columnIndex) {
+                case 0:
+                    value = product.getId();
+                    break;
+                case 1:
+                    value = product.getName();
+                    break;
+                case 2:
+                    value = product.getPrice();
+                    break;
+                case 3:
+                    value = product.getSpecialStock();
+                    break;
+                case 4:
+                    value = product.getCategory();
+                    break;
+                case 5:
+                    value = product.getBasePrice();
+                    break;
+                case 6:
+                    value = product.getWeight();
+                    break;
+                case 7:
+                    value = product.getWeightUnit();
+            }
+        }
+        return value;
+    }
+
+    @Override
+    public String getColumnName(int index) {
+        String[] columnNames = {"EAN", "Name", "Preis", "Bestand", "Kategorie", "Grundpreis", "Gewicht",
+                "Gewichtseineheit"};
+        return columnNames[index];
+    }
+
+    /**
+     * This will return the product at the specified row
+     * @param row the row in the JTable
+     * @return the product at the specified row
+     */
+    public Product getProductAt(int row) {
+        return this.getProduct(row);
     }
 }
