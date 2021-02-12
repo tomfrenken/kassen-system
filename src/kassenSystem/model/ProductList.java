@@ -103,8 +103,12 @@ public class ProductList extends AbstractTableModel {
      *
      * @param i specifies the position at which the element is deleted
      */
-    public void removeProduct(int i) {
+    public void removeProductByIndex(int i) {
         productList.remove(i);
+    }
+
+    public void removeProduct(Product product) {
+        productList.remove(product);
     }
 
     /**
@@ -297,7 +301,7 @@ public class ProductList extends AbstractTableModel {
     public void changeProduct(int index, String name,  long id, int stock, double weight,
                               String weightUnit, double price, String category) throws Exception {
         Product temp = this.getProduct(index);
-        this.removeProduct(index);
+        this.removeProductByIndex(index);
         try {
             this.addProduct(name, id , stock, weight, weightUnit,
                     price, category);
@@ -324,7 +328,7 @@ public class ProductList extends AbstractTableModel {
     public void changeProduct(int index, String name,  long id, String specialStock, double weight,
                               String weightUnit, double basePrice, String category) throws Exception {
         Product temp = this.getProduct(index);
-        this.removeProduct(index);
+        this.removeProductByIndex(index);
         try {
             this.addProduct(name, id , specialStock, weight, weightUnit,
                     basePrice, category);

@@ -65,7 +65,13 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("deleteProduct")) {
             try {
-                this.model.removeProduct(this.view.productListTable.getSelectedRow());
+                if(this.view.productListTable.getSelectedRow() != -1) {
+                    this.model.removeProductByIndex(this.view.productListTable.getSelectedRow());
+                } else if(this.view.searchList.getSelectedValue() != null) {
+                    this.model.removeProduct((Product)this.view.searchList.getSelectedValue());
+                } else {
+                    throw new Exception("Nothing was selected");
+                }
             } catch(Exception exception) {
                 JOptionPane.showMessageDialog(null, "Wähle ein Produkt aus.");
             }
