@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CategoryListTest {
 
-    private final CategoryList categoryList = new CategoryList();;
-    private final ProductList productList = new ProductList();;
+    private final CategoryList categoryList = new CategoryList();
+    private final ProductList productList = new ProductList();
 
     @BeforeEach
     public void setUp() throws Exception {
