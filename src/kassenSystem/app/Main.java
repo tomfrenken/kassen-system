@@ -22,7 +22,7 @@ public class Main extends JFrame implements ActionListener {
     private final LoginView loginView = new LoginView("Startmenü");
     private final AdminLoginView adminLoginView = new AdminLoginView("Administrator Login");
     private final AdminView adminView = new AdminView("Administratorenoberfläche", productListModel);
-    private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern");
+    private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern", categoryListModel, productListModel, adminView);
     private final CategoryListView categoryListView = new CategoryListView("Kategorieliste");
     private final AddProductView addProductView = new AddProductView("Produkt hinzufügen", categoryListModel, productListModel);
     private final SellerView sellerView = new SellerView("Verkäuferoberfläche");
@@ -31,7 +31,7 @@ public class Main extends JFrame implements ActionListener {
     LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
     AdminController adminController = new AdminController(adminView, productListModel);
-    ChangeProductController changeProductController = new ChangeProductController(changeProductView, productListModel);
+    ChangeProductController changeProductController = new ChangeProductController(changeProductView, adminView, categoryListModel, productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
     AddProductController addProductController = new AddProductController(addProductView, categoryListModel, productListModel);
     SellerController sellerController = new SellerController(sellerView, purchaseListModel);
@@ -57,9 +57,11 @@ public class Main extends JFrame implements ActionListener {
         main.loginController.fillCategoryList();
         main.loginController.fillProductList();
         main.addProductController.fillCategoryBox();
+        main.changeProductController.fillCategoryBox();
 
         main.addProductView.addWindowListener(main.adminController);
         main.changeProductView.addWindowListener(main.adminController);
+        main.changeProductView.addWindowListener(main.changeProductController);
         main.categoryListView.addWindowListener(main.adminController);
 
         main.loginController.showView();

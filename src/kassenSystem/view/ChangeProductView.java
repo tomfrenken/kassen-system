@@ -1,5 +1,9 @@
 package kassenSystem.view;
 
+import kassenSystem.controller.ChangeProductController;
+import kassenSystem.model.CategoryList;
+import kassenSystem.model.ProductList;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -7,25 +11,33 @@ import java.awt.event.ActionListener;
  * Contains the view to change the product
  */
 public class ChangeProductView extends JFrame {
-    private JTextField textField1;
-    private JButton aktualisierenButton;
-    private JTextField textField2;
-    private JComboBox comboBox1;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JComboBox comboBox2;
-    private JTextField textField5;
+    private JButton changeButton;
     private JPanel jp;
+    private CategoryList categoryListModel;
+    private ProductList productListModel;
+    public JTextField idField;
+    public JTextField nameField;
+    public JTextField priceField;
+    public JTextField stockField;
+    public JTextField weightField;
+    public JComboBox<String> weightUnitBox;
+    public AdminView adminView;
+    public JComboBox<String> categoryBox;
 
     /**
      * The constructor to initialize the view
      * @param name the name to initialize the view with
      */
-    public ChangeProductView(String name) {
+    public ChangeProductView(String name, CategoryList categoryListModel, ProductList productListModel, AdminView adminView) {
         super(name);
+        this.adminView = adminView;
         add(jp);
         this.setSize(1200, 800);
-        aktualisierenButton.setActionCommand("changeProduct");
+
+        ChangeProductController changeProductController = new ChangeProductController(this, adminView, categoryListModel, productListModel);
+
+        changeButton.setActionCommand("changeProduct");
+        changeButton.addActionListener(changeProductController);
     }
 
     /**
@@ -33,6 +45,6 @@ public class ChangeProductView extends JFrame {
      * @param actionListener the actionlistener to interact with the controller
      */
     public void addActionListener(ActionListener actionListener){
-        aktualisierenButton.addActionListener(actionListener);
+        changeButton.addActionListener(actionListener);
     }
 }

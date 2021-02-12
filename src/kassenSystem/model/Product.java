@@ -494,11 +494,11 @@ public class Product {
     public String toString() {
         if (this.getSpecialStock() == null) {
             return this.getId() + " " + this.getName() + " " + this.getPrice() + " " +  this.getStock()
-                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€/" + this.getWeight()
+                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€ " + this.getWeight()
                     + "" + this.getWeightUnit();
         } else {
             return this.getId() + " " + this.getName() + " " + this.getPrice() + " " +  this.getSpecialStock()
-                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€/" + this.getWeight()
+                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€ " + this.getWeight()
                     + "" + this.getWeightUnit();
         }
     }
