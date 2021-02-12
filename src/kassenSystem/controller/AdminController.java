@@ -75,12 +75,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
             } catch(Exception exception) {
                 JOptionPane.showMessageDialog(null, "Wähle ein Produkt aus.");
             }
-            this.model.fireTableStructureChanged();
-            try {
-                this.model.saveToProductDatabase();
-            } catch (Exception exception) {
-                JOptionPane.showMessageDialog(null, exception);
-            }
         } else if(e.getActionCommand().equals("searchProduct")) {
             ArrayList<Product> searchListData = this.searchProduct(this.view.searchField.getText());
             this.view.searchList.setListData(searchListData.toArray());
@@ -101,31 +95,24 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
             switch(columnName){
                 case "EAN":
                     this.model.sortById();
-                    this.model.fireTableDataChanged();
                     break;
                 case "Name":
                     this.model.sortByName();
-                    this.model.fireTableDataChanged();
                     break;
                 case "Preis":
                     this.model.sortByPrice();
-                    this.model.fireTableDataChanged();
                     break;
                 case "Bestand":
                     this.model.sortByStock();
-                    this.model.fireTableDataChanged();
                     break;
                 case "Kategorie":
                     this.model.sortByCategory();
-                    this.model.fireTableDataChanged();
                     break;
                 case "Grundpreis":
                     this.model.sortByBasePrice();
-                    this.model.fireTableDataChanged();
                     break;
                 case "Gewicht":
                     this.model.sortByWeight();
-                    this.model.fireTableDataChanged();
                     break;
             }
         }

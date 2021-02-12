@@ -22,18 +22,20 @@ public class Main extends JFrame implements ActionListener {
     private final LoginView loginView = new LoginView("Startmenü");
     private final AdminLoginView adminLoginView = new AdminLoginView("Administrator Login");
     private final AdminView adminView = new AdminView("Administratorenoberfläche", productListModel);
-    private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern", categoryListModel, productListModel, adminView);
-    private final CategoryListView categoryListView = new CategoryListView("Kategorieliste");
     private final AddProductView addProductView = new AddProductView("Produkt hinzufügen", categoryListModel, productListModel);
+    private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern", categoryListModel, productListModel, adminView);
+    private final CategoryListView categoryListView = new CategoryListView("Kategorieliste", categoryListModel);
+    private final ChangeCategoryView changeCategoryView = new ChangeCategoryView("Kategorie ändern");
     private final SellerView sellerView = new SellerView("Verkäuferoberfläche");
     private final FinishPurchaseView finishPurchaseView = new FinishPurchaseView("Einkauf abschließen");
 
     LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
     AdminController adminController = new AdminController(adminView, productListModel);
+    AddProductController addProductController = new AddProductController(addProductView, categoryListModel, productListModel);
     ChangeProductController changeProductController = new ChangeProductController(changeProductView, adminView, categoryListModel, productListModel);
     CategoryListController categoryListController = new CategoryListController(categoryListView, categoryListModel);
-    AddProductController addProductController = new AddProductController(addProductView, categoryListModel, productListModel);
+    ChangeCategoryController changeCategoryController = new ChangeCategoryController(changeCategoryView, categoryListView, categoryListModel);
     SellerController sellerController = new SellerController(sellerView, purchaseListModel);
     FinishPurchaseController finishPurchaseController = new FinishPurchaseController(finishPurchaseView, purchaseListModel);
 
@@ -58,6 +60,7 @@ public class Main extends JFrame implements ActionListener {
         main.loginController.fillProductList();
         main.addProductController.fillCategoryBox();
         main.changeProductController.fillCategoryBox();
+        main.categoryListController.fillCategoryList();
 
         main.addProductView.addWindowListener(main.adminController);
         main.changeProductView.addWindowListener(main.adminController);
@@ -95,6 +98,9 @@ public class Main extends JFrame implements ActionListener {
                 break;
             case "finishPurchaseView":
                 finishPurchaseController.showView();
+                break;
+            case "changeCategory":
+                changeCategoryController.showView();
                 break;
         }
     }

@@ -74,11 +74,6 @@ public class AddProductController implements ActionListener {
                 JOptionPane.showMessageDialog(null, exception.getMessage());
             }
         }
-        try {
-            this.productListModel.saveToProductDatabase();
-        } catch (Exception exception) {
-            JOptionPane.showMessageDialog(null, exception.getMessage());
-        }
         this.hideView();
     }
 }

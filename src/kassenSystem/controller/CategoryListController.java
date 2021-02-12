@@ -3,12 +3,15 @@ package kassenSystem.controller;
 import kassenSystem.model.CategoryList;
 import kassenSystem.view.CategoryListView;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * The controller to connect the categoryListView and the cateGoryListModel.
  */
-public class CategoryListController {
+public class CategoryListController implements ActionListener {
     private final CategoryListView view;
     private final CategoryList model;
 
@@ -42,5 +45,36 @@ public class CategoryListController {
      */
     public void hideView(){
         this.view.setVisible(false);
+    }
+
+    public void fillCategoryList(){
+        this.view.categoryList.setListData(this.model.getCategoryList().toArray());
+    }
+
+    public ArrayList<String> searchForCategory(String searchPhrase) {
+        return this.model.searchCategory(searchPhrase);
+    }
+
+    /**
+     * Invoked when an action occurs.
+     *
+     * @param e
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch(e.getActionCommand()) {
+            case "searchCategory":
+                this.view.categoryList.setListData(this.searchForCategory(this.view.searchField.getText()).toArray());
+                break;
+            case "addCategory":
+                try {
+                    this.model.addCategory(this.view.inputField.getText());
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(null, exception.getMessage());
+                }
+                break;
+            case "deleteCategory":
+                break;
+        }
     }
 }

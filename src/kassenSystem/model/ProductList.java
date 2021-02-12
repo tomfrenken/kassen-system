@@ -54,6 +54,8 @@ public class ProductList extends AbstractTableModel {
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
          }
+        this.fireTableStructureChanged();
+        this.saveToProductDatabase();
     }
 
     /**
@@ -85,8 +87,9 @@ public class ProductList extends AbstractTableModel {
             Product temp = new Product(name, id, specialStock, weight, weightUnit, basePrice,
                     category);
             productList.add(temp);
-
         }
+        this.saveToProductDatabase();
+        this.fireTableStructureChanged();
     }
 
     /**
@@ -103,12 +106,16 @@ public class ProductList extends AbstractTableModel {
      *
      * @param i specifies the position at which the element is deleted
      */
-    public void removeProductByIndex(int i) {
+    public void removeProductByIndex(int i) throws Exception {
         productList.remove(i);
+        this.saveToProductDatabase();
+        this.fireTableStructureChanged();
     }
 
-    public void removeProduct(Product product) {
+    public void removeProduct(Product product) throws Exception {
         productList.remove(product);
+        this.saveToProductDatabase();
+        this.fireTableStructureChanged();
     }
 
     /**
@@ -129,6 +136,7 @@ public class ProductList extends AbstractTableModel {
             }
             n = n - 1;
         } while (swapped);
+        this.fireTableDataChanged();
     }
 
     /**
@@ -149,6 +157,7 @@ public class ProductList extends AbstractTableModel {
             }
             n = n - 1;
         } while (swapped);
+        this.fireTableDataChanged();
     }
 
     /**
@@ -169,6 +178,7 @@ public class ProductList extends AbstractTableModel {
             }
             n = n - 1;
         } while (swapped);
+        this.fireTableDataChanged();
     }
 
     /**
@@ -189,6 +199,7 @@ public class ProductList extends AbstractTableModel {
             }
             n = n - 1;
         } while (swapped);
+        this.fireTableDataChanged();
     }
 
     /**
@@ -209,6 +220,7 @@ public class ProductList extends AbstractTableModel {
             }
             n = n - 1;
         } while (swapped);
+        this.fireTableDataChanged();
     }
 
     /**
@@ -229,6 +241,7 @@ public class ProductList extends AbstractTableModel {
             }
             n = n - 1;
         } while (swapped);
+        this.fireTableDataChanged();
     }
 
     /**
@@ -250,6 +263,7 @@ public class ProductList extends AbstractTableModel {
             }
             n = n - 1;
         } while (swapped);
+        this.fireTableDataChanged();
     }
 
     /**
