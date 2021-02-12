@@ -54,6 +54,7 @@ public class ProductList extends AbstractTableModel {
              Product temp = new Product(name, id, stock, weight, weightUnit, price, category);
              productList.add(temp);
          }
+        this.sortById();
         this.fireTableStructureChanged();
         this.saveToProductDatabase();
     }
@@ -88,6 +89,7 @@ public class ProductList extends AbstractTableModel {
                     category);
             productList.add(temp);
         }
+        this.sortById();
         this.saveToProductDatabase();
         this.fireTableStructureChanged();
     }
@@ -116,6 +118,11 @@ public class ProductList extends AbstractTableModel {
         productList.remove(product);
         this.saveToProductDatabase();
         this.fireTableStructureChanged();
+    }
+
+    public void clear() throws Exception {
+        this.getProductList().clear();
+        this.saveToProductDatabase();
     }
 
     /**
