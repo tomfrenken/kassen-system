@@ -1,10 +1,12 @@
 package kassenSystem.controller;
 
+import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.view.AdminView;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * The controller to connect the adminView and the adminModel
@@ -44,6 +46,16 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
         this.view.setVisible(false);
     }
 
+    public ArrayList<Product> searchProduct(String searchPhrase) {
+        ArrayList<Product> productList = null;
+        try{
+            productList = this.model.searchProductById(Long.parseLong(searchPhrase));
+        } catch(Exception e){
+            productList = this.model.searchProductByName(searchPhrase);
+        }
+        return productList;
+    }
+
     /**
      * Invoked when an action occurs.
      *
@@ -63,6 +75,9 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(null, exception);
             }
+        } else if(e.getActionCommand().equals("searchProduct")) {
+            ArrayList<Product> searchListData = this.searchProduct(this.view.searchField.getText());
+            this.view.searchList.setListData(searchListData.toArray());
         }
     }
 

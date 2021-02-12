@@ -13,13 +13,13 @@ public class AdminView extends JFrame {
     private JButton changeProductButton;
     private JButton deleteProductButton;
     private JButton categoryListButton;
-    private JList<Object> searchList;
     private JScrollPane scrollPane;
     private ProductList productListModel;
+    public JList<Object> searchList;
     public JPanel jp;
     public JTable productListTable;
-    private JTextField suchfeldTextField;
-    private JButton button1;
+    public JTextField searchField;
+    public JButton searchButton;
     public AdminController adminController;
 
     /**
@@ -37,6 +37,8 @@ public class AdminView extends JFrame {
         productListTable.setModel(productListModel);
         productListTable.getTableHeader().addMouseListener(adminController);
 
+        searchButton.setActionCommand("searchProduct");
+        searchButton.addActionListener(adminController);
         newProductButton.setActionCommand("addProductView");
         changeProductButton.setActionCommand("changeProductView");
         deleteProductButton.setActionCommand("deleteProduct");
