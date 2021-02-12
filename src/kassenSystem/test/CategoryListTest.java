@@ -12,13 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CategoryListTest {
 
-    private CategoryList categoryList;
-    private ProductList productList;
+    private final CategoryList categoryList = new CategoryList();;
+    private final ProductList productList = new ProductList();;
 
     @BeforeEach
     public void setUp() throws Exception {
-        categoryList = new CategoryList();
-        productList = new ProductList();
         categoryList.addCategory("Süßwaren");
         categoryList.addCategory("Obst");
         categoryList.addCategory("Gemüse");

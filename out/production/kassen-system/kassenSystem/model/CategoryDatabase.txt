@@ -1,7 +1,8 @@
-AWare
-Grünes Gemüse
-MEGAFRUECHTE
-Neue Kategorie
-Rotes Gemüse
-Schokoladen
-ULTRAGEMÜSE
+Aufstrich
+Backwaren
+Gemüse
+Getränke
+Gewürze
+Konserven
+Obst
+Süßwaren
