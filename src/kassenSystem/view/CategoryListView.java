@@ -15,11 +15,11 @@ public class CategoryListView extends JFrame {
     private JButton deleteButton;
     private JScrollPane scroll;
     private JPanel jp;
-    private JButton searchButton;
     private CategoryList categoryListModel;
     public JList<Object> categoryList;
     public JTextField inputField;
     public JTextField searchField;
+    public JButton searchButton;
 
     public CategoryListView(String name, CategoryList categoryListModel){
         super(name);

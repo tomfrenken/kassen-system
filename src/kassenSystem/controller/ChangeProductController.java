@@ -57,6 +57,7 @@ public class ChangeProductController implements ActionListener, WindowListener {
     }
 
     public void fillCategoryBox() {
+        this.changeProductView.categoryBox.removeAllItems();
         for(String category : this.categoryListModel.getCategoryList()) {
             this.changeProductView.categoryBox.addItem(category);
         }
@@ -236,6 +237,7 @@ public class ChangeProductController implements ActionListener, WindowListener {
     @Override
     public void windowActivated(WindowEvent e) {
         try{
+            this.fillCategoryBox();
             this.fillAllFields();
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(null, "Es wurde kein Produkt ausgewählt");

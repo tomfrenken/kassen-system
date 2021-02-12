@@ -72,7 +72,6 @@ public class CategoryList {
             throw new Exception("Die Kategorie " + category + " ist nicht leer," +
                     " bitte leeren sie zuerst die Kategorie.");
         }
-        this.saveToCategoryDatabase();
     }
 
     /**

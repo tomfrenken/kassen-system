@@ -40,6 +40,11 @@ public class CategoryListController implements ActionListener {
         this.view.setVisible(true);
     }
 
+    public void refreshView() {
+        this.view.searchField.setText("");
+        this.view.searchButton.doClick();
+    }
+
     /**
      * hides the view
      */
@@ -69,11 +74,18 @@ public class CategoryListController implements ActionListener {
             case "addCategory":
                 try {
                     this.model.addCategory(this.view.inputField.getText());
+                    this.refreshView();
                 } catch (Exception exception) {
                     JOptionPane.showMessageDialog(null, exception.getMessage());
                 }
                 break;
             case "deleteCategory":
+                try {
+                    this.model.removeCategory(this.view.categoryList.getSelectedValue().toString());
+                    this.refreshView();
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(null, "Wähle eine Kategorie aus.");
+                }
                 break;
         }
     }

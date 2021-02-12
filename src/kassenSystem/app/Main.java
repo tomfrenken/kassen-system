@@ -58,11 +58,10 @@ public class Main extends JFrame implements ActionListener {
         Main main = new Main();
         main.loginController.fillCategoryList();
         main.loginController.fillProductList();
-        main.addProductController.fillCategoryBox();
-        main.changeProductController.fillCategoryBox();
         main.categoryListController.fillCategoryList();
 
         main.addProductView.addWindowListener(main.adminController);
+        main.addProductView.addWindowListener(main.addProductController);
         main.changeProductView.addWindowListener(main.adminController);
         main.changeProductView.addWindowListener(main.changeProductController);
         main.categoryListView.addWindowListener(main.adminController);
@@ -93,14 +92,14 @@ public class Main extends JFrame implements ActionListener {
             case "categoryListView":
                 categoryListController.showView();
                 break;
+            case "changeCategory":
+                changeCategoryController.showView();
+                break;
             case "sellerView":
                 sellerController.showView();
                 break;
             case "finishPurchaseView":
                 finishPurchaseController.showView();
-                break;
-            case "changeCategory":
-                changeCategoryController.showView();
                 break;
         }
     }
