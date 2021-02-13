@@ -374,6 +374,8 @@ public class ModelTest {
         System.out.println("Saving to ProductDatabase");
         myProductList.saveToProductDatabase();
 
+        myProductList.clear();
+
         System.out.println("Loading from ProductDatabase");
         myProductList.loadFromProductDatabase();
         System.out.println();
@@ -405,6 +407,8 @@ public class ModelTest {
         System.out.println("Saving to CategoryDatabase");
         myCategoryList.saveToCategoryDatabase();
 
+        myCategoryList.clear();
+
         System.out.println("Loading from CategoryDatabase");
         myCategoryList.loadFromCategoryDatabase();
         System.out.println();
@@ -432,7 +436,7 @@ public class ModelTest {
         }
         System.out.println();
 
-        myProductList.changeProduct(5,"Ananas1", 93153L, 100,
+        myProductList.changeProduct(5,"Ananas2", 93153L, 100,
                 2, "stück", 500, "MEGAFRUECHTE");
 
         System.out.println("1. Veränderte Productliste:");
@@ -441,7 +445,7 @@ public class ModelTest {
         }
         System.out.println();
 
-        myProductList.changeProduct(5,"Ananas1mitN", 93153L, "n",
+        myProductList.changeProduct(5,"Ananas1mitN", 93154L, 100,
                 2, "stück", 500, "MEGAFRUECHTE");
 
         System.out.println("2. Veränderte Productliste:");

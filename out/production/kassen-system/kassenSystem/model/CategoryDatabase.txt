@@ -1,6 +1,6 @@
-Aufstrich
-Backwaren
-Gemuese
-Getränke
-Konserven
-Süßwaren
+AWare
+Grünes Gemüse
+MEGAFRUECHTE
+Rotes Gemüse
+Schokoladen
+ULTRAGEMÜSE
