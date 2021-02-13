@@ -1,6 +1,5 @@
 package kassenSystem.controller;
 
-import jdk.nashorn.internal.scripts.JO;
 import kassenSystem.model.CategoryList;
 import kassenSystem.view.CategoryListView;
 import kassenSystem.view.ChangeCategoryView;
