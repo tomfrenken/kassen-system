@@ -22,8 +22,8 @@ public class Main extends JFrame implements ActionListener {
     private final LoginView loginView = new LoginView("Startmenü");
     private final AdminLoginView adminLoginView = new AdminLoginView("Administrator Login");
     private final AdminView adminView = new AdminView("Administratorenoberfläche", productListModel);
-    private final AddProductView addProductView = new AddProductView("Produkt hinzufügen", categoryListModel, productListModel);
-    private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern", categoryListModel, productListModel, adminView);
+    private final AddProductView addProductView = new AddProductView("Produkt hinzufügen", productListModel);
+    private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern", adminView, productListModel);
     private final CategoryListView categoryListView = new CategoryListView("Kategorieliste");
     private final ChangeCategoryView changeCategoryView = new ChangeCategoryView("Kategorie ändern", categoryListView);
     private final SellerView sellerView = new SellerView("Verkäuferoberfläche");

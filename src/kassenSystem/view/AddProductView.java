@@ -19,16 +19,13 @@ public class AddProductView extends JFrame {
     public JComboBox<String> categoryBox;
     public JButton confirmButton;
     private JPanel jp;
-    private CategoryList categoryListModel;
-    private ProductList productListModel;
 
-    public AddProductView(String name, CategoryList categoryListModel, ProductList productListModel){
+    public AddProductView(String name, ProductList productListModel){
         super(name);
         add(jp);
         this.setSize(1200, 800);
 
-        this.categoryListModel = categoryListModel;
-        this.productListModel = productListModel;
+        CategoryList categoryListModel = new CategoryList();
         AddProductController addProductController = new AddProductController(this, categoryListModel, productListModel);
 
         confirmButton.addActionListener(addProductController);

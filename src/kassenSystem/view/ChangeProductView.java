@@ -13,8 +13,6 @@ import java.awt.event.ActionListener;
 public class ChangeProductView extends JFrame {
     private JButton changeButton;
     private JPanel jp;
-    private CategoryList categoryListModel;
-    private ProductList productListModel;
     public JTextField idField;
     public JTextField nameField;
     public JTextField priceField;
@@ -28,12 +26,13 @@ public class ChangeProductView extends JFrame {
      * The constructor to initialize the view
      * @param name the name to initialize the view with
      */
-    public ChangeProductView(String name, CategoryList categoryListModel, ProductList productListModel, AdminView adminView) {
+    public ChangeProductView(String name, AdminView adminView, ProductList productListModel) {
         super(name);
         this.adminView = adminView;
         add(jp);
         this.setSize(1200, 800);
 
+        CategoryList categoryListModel = new CategoryList();
         ChangeProductController changeProductController = new ChangeProductController(this, adminView, categoryListModel, productListModel);
 
         changeButton.setActionCommand("changeProduct");
