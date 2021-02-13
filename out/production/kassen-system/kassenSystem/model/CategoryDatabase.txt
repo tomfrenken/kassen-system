@@ -1,5 +1,6 @@
 Aufstrich
 Backwaren
+Eingabe
 Gemüse
 Getränke
 Konserven

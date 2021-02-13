@@ -15,16 +15,14 @@ import java.awt.event.WindowListener;
  */
 public class LoginController implements WindowListener {
     private final LoginView view;
-    private final CategoryList categoryListModel;
-    private final ProductList productListModel;
+    private final CategoryList categoryListModel = new CategoryList();
+    private final ProductList productListModel = new ProductList();
     /**
      * The controller is initialized with the view.
      * @param view the LoginView.
      */
-    public LoginController(LoginView view, CategoryList categoryListModel, ProductList productListModel){
+    public LoginController(LoginView view){
         this.view = view;
-        this.categoryListModel = categoryListModel;
-        this.productListModel = productListModel;
     }
 
     /**

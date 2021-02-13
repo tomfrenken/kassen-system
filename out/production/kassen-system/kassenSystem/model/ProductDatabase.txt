@@ -6,4 +6,3 @@
 1151216951419|Zucker-Ganglien|15|1,00|stück|45,32|45,32|Süßwaren
 2913455551023|Brausepulver Zuckerfrei|27|75,00|g|3,99|5,32|Süßwaren
 4686835148936|Zitronensaft trüb|21|250,00|ml|2,49|1,00|Getränke
-8453267832680|Erdbeer-Konfitüre|14|250,00|g|4,27|1,71|Aufstrich

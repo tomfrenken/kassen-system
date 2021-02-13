@@ -29,7 +29,7 @@ public class Main extends JFrame implements ActionListener {
     private final SellerView sellerView = new SellerView("Verkäuferoberfläche");
     private final FinishPurchaseView finishPurchaseView = new FinishPurchaseView("Einkauf abschließen");
 
-    LoginController loginController = new LoginController(loginView, categoryListModel, productListModel);
+    LoginController loginController = new LoginController(loginView);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
     AdminController adminController = new AdminController(adminView, productListModel);
     AddProductController addProductController = new AddProductController(addProductView, categoryListModel, productListModel);
