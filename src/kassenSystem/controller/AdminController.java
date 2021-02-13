@@ -50,6 +50,11 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
         return this.model.searchProduct(searchPhrase);
     }
 
+    public void refreshSearchList() {
+        this.view.searchField.setText("");
+        this.view.searchButton.doClick();
+    }
+
     /**
      * Invoked when an action occurs.
      *
@@ -61,8 +66,10 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
             try {
                 if(this.view.productListTable.getSelectedRow() != -1) {
                     this.model.removeProductByIndex(this.view.productListTable.getSelectedRow());
+                    this.refreshSearchList();
                 } else if(this.view.searchList.getSelectedValue() != null) {
                     this.model.removeProduct((Product)this.view.searchList.getSelectedValue());
+                    this.refreshSearchList();
                 } else {
                     throw new Exception("Nothing was selected");
                 }
