@@ -29,7 +29,7 @@ public class Main extends JFrame implements ActionListener {
     private final SellerView sellerView = new SellerView("Verkäuferoberfläche");
     private final FinishPurchaseView finishPurchaseView = new FinishPurchaseView("Einkauf abschließen");
 
-    LoginController loginController = new LoginController(loginView);
+    LoginController loginController = new LoginController(loginView, categoryListModel, productListModel);
     AdminLoginController adminLoginController = new AdminLoginController(adminLoginView, adminLogin);
     AdminController adminController = new AdminController(adminView, productListModel);
     AddProductController addProductController = new AddProductController(addProductView, categoryListModel, productListModel);
@@ -56,14 +56,13 @@ public class Main extends JFrame implements ActionListener {
      */
     public static void main(String[] args) {
         Main main = new Main();
-        main.loginController.fillCategoryList();
-        main.loginController.fillProductList();
-        main.categoryListController.fillCategoryList();
 
+        main.loginView.addWindowListener(main.loginController);
         main.addProductView.addWindowListener(main.adminController);
         main.addProductView.addWindowListener(main.addProductController);
         main.changeProductView.addWindowListener(main.adminController);
         main.changeProductView.addWindowListener(main.changeProductController);
+        main.categoryListView.addWindowListener(main.categoryListController);
         main.categoryListView.addWindowListener(main.adminController);
 
         main.loginController.showView();

@@ -41,8 +41,8 @@ public class ProductListTest {
 
     @AfterEach
     public void tearDown(){
-        productList.getProductList().clear();
-        categoryList.getCategoryList().clear();
+        productList.clear();
+        categoryList.clear();
     }
 
     @Test

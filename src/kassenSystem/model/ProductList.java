@@ -90,7 +90,6 @@ public class ProductList extends AbstractTableModel {
             productList.add(temp);
         }
         this.sortById();
-        this.saveToProductDatabase();
         this.fireTableStructureChanged();
     }
 
@@ -110,19 +109,16 @@ public class ProductList extends AbstractTableModel {
      */
     public void removeProductByIndex(int i) throws Exception {
         productList.remove(i);
-        this.saveToProductDatabase();
         this.fireTableStructureChanged();
     }
 
     public void removeProduct(Product product) throws Exception {
         productList.remove(product);
-        this.saveToProductDatabase();
         this.fireTableStructureChanged();
     }
 
-    public void clear() throws Exception {
+    public void clear() {
         this.getProductList().clear();
-        this.saveToProductDatabase();
     }
 
     /**

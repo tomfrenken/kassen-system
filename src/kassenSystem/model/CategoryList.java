@@ -100,6 +100,10 @@ public class CategoryList {
         return categoryList;
     }
 
+    public void clear() {
+        this.getCategoryList().clear();
+    }
+
     /**
      * Searches for a category in the category list.
      *
