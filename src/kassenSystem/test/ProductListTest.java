@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ProductListTest {
@@ -48,6 +47,19 @@ public class ProductListTest {
     }
 
     @Test
+    public void createProduct() throws Exception {
+        Throwable exceptionForToBigPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel Kaiser", 91234, 100, 100, "g", 100000.01, "Obst"));
+        Throwable exceptionForToSmallPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel König", 91235, 100, 100, "g", 0.00, "Obst"));
+
+        assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForToBigPrice.getMessage());
+        assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForToSmallPrice.getMessage());
+        productList.addProduct("Apfel Bismarck", 1815, 100, 1, "g", 0.01, "Obst");
+        productList.addProduct("Apfel Otto", 1898, 100, 1815, "g", 100000, "Obst");
+        assertTrue(0.01 <= productList.getProduct(10).getPrice() && productList.getProduct(10).getPrice() <= 100000);
+        assertTrue(0.01 <= productList.getProduct(11).getPrice() && productList.getProduct(11).getPrice() <= 100000);
+    }
+
+    @Test
     public void createUniqueEan() {
         Throwable exceptionForThirteenNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Mehl 406", 8597618758423L, 20, 2, "kg", 4.99, "Backwaren"));
         Throwable exceptionForEightNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Birnensaft Klar", 32135947, 69, 2, "l", 2.49, "Getränke"));
@@ -76,4 +88,5 @@ public class ProductListTest {
         testList.add(new Product("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven"));
         assertEquals(productList.searchProductById(4532L), testList);
     }
+
 }
