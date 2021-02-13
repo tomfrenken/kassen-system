@@ -27,8 +27,8 @@ public class AddProductView extends JFrame {
         add(jp);
         this.setSize(1200, 800);
 
-        categoryListModel = this.categoryListModel;
-        productListModel = this. productListModel;
+        this.categoryListModel = categoryListModel;
+        this.productListModel = productListModel;
         AddProductController addProductController = new AddProductController(this, categoryListModel, productListModel);
 
         confirmButton.addActionListener(addProductController);
