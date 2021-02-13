@@ -45,12 +45,12 @@ public class ProductListTest {
     }
 
     @Test
-    public void createProduct() throws Exception {
-        Throwable exceptionForToBigPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel Kaiser", 91234, 100, 100, "g", 100000.01, "Obst"));
-        Throwable exceptionForToSmallPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel König", 91235, 100, 100, "g", 0.00, "Obst"));
+    public void addProduct() throws Exception {
+        Throwable exceptionForTooBigPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel Kaiser", 91234, 100, 100, "g", 100000.01, "Obst"));
+        Throwable exceptionForTooSmallPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel König", 91235, 100, 100, "g", 0.00, "Obst"));
 
-        assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForToBigPrice.getMessage());
-        assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForToSmallPrice.getMessage());
+        assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForTooBigPrice.getMessage());
+        assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForTooSmallPrice.getMessage());
         productList.addProduct("Apfel Bismarck", 1815, 100, 1, "g", 0.01, "Obst");
         productList.addProduct("Apfel Otto", 1898, 100, 1815, "g", 100000, "Obst");
         assertTrue(0.01 <= productList.getProduct(10).getPrice() && productList.getProduct(10).getPrice() <= 100000);
