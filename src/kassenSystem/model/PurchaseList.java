@@ -63,17 +63,32 @@ public class PurchaseList {
      */
     public void setItemAmount(Item item, int amount) throws Exception {
         if (purchaseList.contains(item)) {
-            if (item.getAmount() - amount == 0) {
-                this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
-                purchaseList.remove(item);
-            } else if (item.getAmount() < amount) {
-                this.addSubtotal((amount - item.getAmount()) * item.getProduct()
-                        .getPrice());
-                item.setAmount(amount);
+            if (item.getProduct().getSpecialStock() == null) {
+                if (item.getAmount() - amount == 0) {
+                    this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
+                    purchaseList.remove(item);
+                } else if (item.getAmount() < amount) {
+                    this.addSubtotal((amount - item.getAmount()) * item.getProduct()
+                            .getPrice());
+                    item.setAmount(amount);
+                } else {
+                    this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
+                            .getPrice());
+                    item.setAmount(amount);
+                }
             } else {
-                this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
-                        .getPrice());
-                item.setAmount(amount);
+                if (item.getAmount() - amount == 0) {
+                    this.subtractSubtotal(item.getAmount() * item.getProduct().getBasePrice());
+                    purchaseList.remove(item);
+                } else if (item.getAmount() < amount) {
+                    this.addSubtotal((amount - item.getAmount()) * item.getProduct()
+                            .getBasePrice());
+                    item.setAmount(amount);
+                } else {
+                    this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
+                            .getBasePrice());
+                    item.setAmount(amount);
+                }
             }
         } else {
             throw new Exception("Der Artikel " + item.getProduct().getName() +

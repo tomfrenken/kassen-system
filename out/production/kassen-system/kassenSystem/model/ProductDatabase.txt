@@ -1,5 +1,6 @@
-12744533|Grüne Bohnen Eintopf|12|0,40|kg|1,59|3,98|Konserven
-32135947|Apfelsaft Klar|41|1,50|l|1,65|1,10|Getränke
-1151216951419|Zucker-Ganglien|15|1,00|stück|45,32|45,32|Süßwaren
-2913455551023|Brausepulver Zuckerfrei|27|75,00|g|3,99|5,32|Süßwaren
-8453267832680|Erdbeer-Konfitüre|14|250,00|g|4,27|1,71|Aufstrich
+1234|Babakush|500|10,00|stück|500,00|50,00|AWare
+1591201843213|Schokolade|250|200,00|g|200,00|100,00|Schokoladen
+1591201843214|Schokolade1|250|200,00|g|200,00|100,00|Schokoladen
+93152|Ananas1|100|2,00|stück|500,00|250,00|MEGAFRUECHTE
+93151|Ananas|n|2,00|kg|0,00|500,00|MEGAFRUECHTE
+1235|Babakush1|500|10,00|g|500,00|5000,00|AWare
