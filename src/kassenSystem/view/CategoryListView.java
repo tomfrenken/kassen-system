@@ -15,18 +15,17 @@ public class CategoryListView extends JFrame {
     private JButton deleteButton;
     private JScrollPane scroll;
     private JPanel jp;
-    private CategoryList categoryListModel;
     public JList<Object> categoryList;
     public JTextField inputField;
     public JTextField searchField;
     public JButton searchButton;
 
-    public CategoryListView(String name, CategoryList categoryListModel){
+    public CategoryListView(String name){
         super(name);
-        this.categoryListModel = categoryListModel;
         add(jp);
         this.setSize(1200, 800);
 
+        CategoryList categoryListModel = new CategoryList();
         CategoryListController categoryListController = new CategoryListController(this, categoryListModel);
 
         searchButton.setActionCommand("searchCategory");

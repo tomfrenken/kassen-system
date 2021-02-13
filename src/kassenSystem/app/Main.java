@@ -24,8 +24,8 @@ public class Main extends JFrame implements ActionListener {
     private final AdminView adminView = new AdminView("Administratorenoberfläche", productListModel);
     private final AddProductView addProductView = new AddProductView("Produkt hinzufügen", categoryListModel, productListModel);
     private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern", categoryListModel, productListModel, adminView);
-    private final CategoryListView categoryListView = new CategoryListView("Kategorieliste", categoryListModel);
-    private final ChangeCategoryView changeCategoryView = new ChangeCategoryView("Kategorie ändern");
+    private final CategoryListView categoryListView = new CategoryListView("Kategorieliste");
+    private final ChangeCategoryView changeCategoryView = new ChangeCategoryView("Kategorie ändern", categoryListView);
     private final SellerView sellerView = new SellerView("Verkäuferoberfläche");
     private final FinishPurchaseView finishPurchaseView = new FinishPurchaseView("Einkauf abschließen");
 
@@ -64,6 +64,7 @@ public class Main extends JFrame implements ActionListener {
         main.changeProductView.addWindowListener(main.changeProductController);
         main.categoryListView.addWindowListener(main.categoryListController);
         main.categoryListView.addWindowListener(main.adminController);
+        main.changeCategoryView.addWindowListener(main.changeCategoryController);
 
         main.loginController.showView();
     }
