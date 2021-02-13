@@ -47,13 +47,7 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     }
 
     public ArrayList<Product> searchProduct(String searchPhrase) {
-        ArrayList<Product> productList = null;
-        try{
-            productList = this.model.searchProductById(Long.parseLong(searchPhrase));
-        } catch(Exception e){
-            productList = this.model.searchProductByName(searchPhrase);
-        }
-        return productList;
+        return this.model.searchProduct(searchPhrase);
     }
 
     /**

@@ -56,7 +56,6 @@ public class ProductList extends AbstractTableModel {
          }
         this.sortById();
         this.fireTableStructureChanged();
-        this.saveToProductDatabase();
     }
 
     /**
@@ -276,10 +275,10 @@ public class ProductList extends AbstractTableModel {
      * @return a list of products with the same name as the search phrase,
      *         or where the given search phrase is part of the name
      */
-    public ArrayList<Product> searchProductByName(String search) {
+    public ArrayList<Product> searchProductByName(String searchPhrase) {
         ArrayList<Product> result = new ArrayList<>();
         for (Product product : productList) {
-            if(product.getName().contains(search)){
+            if(product.getName().contains(searchPhrase)){
                 result.add(product);
             }
         }
@@ -300,6 +299,16 @@ public class ProductList extends AbstractTableModel {
             }
         }
         return result;
+    }
+
+    public ArrayList<Product> searchProduct(String searchPhrase) {
+        ArrayList<Product> productList;
+        try{
+            productList = this.searchProductById(Long.parseLong(searchPhrase));
+        } catch(Exception e){
+            productList = this.searchProductByName(searchPhrase);
+        }
+        return productList;
     }
 
     /**
