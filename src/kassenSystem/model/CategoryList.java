@@ -42,7 +42,6 @@ public class CategoryList {
         !this.categoryInList(category)) {
             categoryList.add(category);
             Collections.sort(categoryList);
-            this.saveToCategoryDatabase();
         } else {
             throw new Exception("Der Name der Kategorie muss einzigartig sein, darf" +
                     " keine Zahlen und sonderzeichen enthalten," +
@@ -58,16 +57,15 @@ public class CategoryList {
      * @throws Exception if the category that is being removed is still used by any product
      *                   in the productList
      */
-    public void removeCategory(String category) throws Exception {
-        int n = productList.getProductList().size();
+    public void removeCategory(String category) throws Exception { ;
         boolean removable = true;
-        for (int i = 0; i < n - 1; i++)
-            if (productList.getProduct(i).getCategory() == category) {
+        for (Product product : productList.getProductList())
+            if (product.getCategory().equals(category)) {
                 removable = false;
+                break;
             }
         if (removable) {
             categoryList.remove(category);
-            this.saveToCategoryDatabase();
         } else {
             throw new Exception("Die Kategorie " + category + " ist nicht leer," +
                     " bitte leeren sie zuerst die Kategorie.");

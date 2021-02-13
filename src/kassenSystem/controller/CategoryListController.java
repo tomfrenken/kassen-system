@@ -84,10 +84,14 @@ public class CategoryListController implements ActionListener, WindowListener {
                 break;
             case "deleteCategory":
                 try {
-                    this.model.removeCategory(this.view.categoryList.getSelectedValue().toString());
+                    try {
+                        this.model.removeCategory(this.view.categoryList.getSelectedValue().toString());
+                    } catch( Exception exception) {
+                        JOptionPane.showMessageDialog(null, "Wähle eine Kategorie aus.");
+                    }
                     this.refreshView();
                 } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(null, "Wähle eine Kategorie aus.");
+                    JOptionPane.showMessageDialog(null, exception.getMessage());
                 }
                 break;
         }
