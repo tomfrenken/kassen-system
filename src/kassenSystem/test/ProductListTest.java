@@ -63,7 +63,7 @@ public class ProductListTest {
         ArrayList<Product> testList = new ArrayList<>();
         testList.add(new Product("Zucker-Ganglien", 1151216951419L, 15, 1, "stück", 45.32, "Süßwaren"));
         testList.add(new Product("Brausepulver Zuckerfrei", 2913455551023L, 27, 75, "g", 3.99, "Süßwaren"));
-        assertEquals(productList.searchProductByName("Zucker"), testList);
+        assertEquals(productList.searchProduct("Zucker"), testList);
     }
 
     @Test
@@ -72,6 +72,6 @@ public class ProductListTest {
         testList.add(new Product("Apfel Goldy", 4532, 68, 100, "g", 2.50, "Obst"));
         testList.add(new Product("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven"));
         testList.add(new Product("Erdbeer-Konfitüre",8453267832680L , 14, 250, "g", 4.27, "Aufstrich"));
-        assertEquals(productList.searchProductById(4532L), testList);
+        assertEquals(productList.searchProduct("4532"), testList);
     }
 }
