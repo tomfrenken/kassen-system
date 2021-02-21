@@ -24,7 +24,7 @@ public class AdminLogin {
      *
      * @param password the password for the AdminLogin
      */
-    AdminLogin(String password){
+    public AdminLogin(String password){
         this.password = password;
     }
 
