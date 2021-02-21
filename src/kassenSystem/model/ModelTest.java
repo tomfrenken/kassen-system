@@ -73,7 +73,7 @@ public class ModelTest {
         Product apfel;
         Product kuerbis;
         Product birne;
-        karotte = new Product("Karotte1", 2345L,
+        karotte = new Product("Karotte1", 345L,
                 1000, 100, "g", 1000, "Gemüse");
         apfel = new Product("Ap 1fel", 94321L,
                 980, 100, "stück", 1000, "MEGAFRUECHTE");

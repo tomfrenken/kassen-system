@@ -86,5 +86,4 @@ public class ProductListTest {
         testList.add(new Product("Erdbeer-Konfitüre",8453267832680L , 14, 250, "g", 4.27, "Aufstrich"));
         assertEquals(productList.searchProduct("4532"), testList);
     }
-
 }
