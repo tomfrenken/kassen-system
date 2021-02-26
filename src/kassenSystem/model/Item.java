@@ -17,8 +17,8 @@ public class Item {
      * Creates a new item from a given product and amount.
      * Throws Exception if the stock is smaller then the amount.
      *
-     * @param product the product to buy
-     * @param amount the amount of the product to buy
+     * @param product    the product to buy
+     * @param amount     the amount of the product to buy
      * @throws Exception if the stock is smaller then the amount
      */
     Item(Product product, int amount) throws Exception {
@@ -33,8 +33,9 @@ public class Item {
 
     /**
      * Sets a new value for the amount of this item.
+     * Throws Exception if the stock is smaller then the amount.
      *
-     * @param amount the amount of this item
+     * @param amount     the amount of this item
      * @throws Exception If the stock is smaller then the amount
      */
     public void setAmount(int amount) throws Exception {
@@ -58,7 +59,7 @@ public class Item {
     /**
      * Returns the current value for the amount of this item.
      *
-     * @return the amount of this item
+     * @return the current amount of this item
      */
     public int getAmount() {
         return this.amount;
@@ -66,10 +67,11 @@ public class Item {
 
     /**
      * Changes the amount of this item by the difference specified by the change parameter.
-     * This value can be a positive and negative integer.
+     * This value can be a positive or negative integer.
+     * Throws Exception if the stock of this item is too low for this operation.
      *
-     * @param change specifies the difference of the old and new value for the amount attribute
-     * @throws Exception If the stock is too low for this operation
+     * @param change     specifies the difference of the old and new value for the amount attribute
+     * @throws Exception if the stock of this item is too low for this operation
      */
     public void changeAmount(int change) throws Exception {
         this.setAmount(this.amount + change);

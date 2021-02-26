@@ -9,7 +9,7 @@ public class PurchaseList {
 
     /**
      * The subtotal attribute is the subtotal of prices of all items in the purchaseList.
-     * This is the purchaseList.
+     * The purchaseList attribute is the purchaseList.
      */
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
@@ -22,10 +22,12 @@ public class PurchaseList {
     /**
      * Add an item to the list or increment the amount of the item if the related item already
      * exists.
-     * Incrementation of 1 is meant for use with the product scanner.
+     * The incrementation of 1 is meant for use with the product scanner.
+     * Throws Exception if amount of this item is bigger then the stock of the product it
+     * represents.
      *
-     * @param product The product that is used.
-     * @param amount  The amount you want to use.
+     * @param product    the product that is used
+     * @param amount     the amount you want to use
      * @throws Exception if amount of this item is bigger then the stock of the product it
      *                   represents
      */
@@ -47,7 +49,7 @@ public class PurchaseList {
     /**
      * Removes an item from the purchaseList and subtracts the amount from the subtotal.
      *
-     * @param item The item you want to remove from the purchaseList.
+     * @param item the item you want to remove from the purchaseList
      */
     public void removeItem(Item item) {
         this.subtractSubtotal(item.getProduct().getPrice() * item.getAmount());
@@ -57,9 +59,9 @@ public class PurchaseList {
     /**
      * Sets the item amount to a new value, the subtotal will be updated for the amount changed.
      *
-     * @param item The item to be changed.
-     * @param amount The new amount.
-     * @throws Exception When the new item amount isn't left in stock.
+     * @param item       the item to be changed
+     * @param amount     the new amount
+     * @throws Exception when the new item amount isn't left in stock
      */
     public void setItemAmount(Item item, int amount) throws Exception {
         if (purchaseList.contains(item)) {
@@ -104,7 +106,7 @@ public class PurchaseList {
     }
 
     /**
-     * Finishes the purchase, reduces the stock and returns the subtotal
+     * Finishes the purchase, reduces the stock returns the subtotal and clears the purchaseList.
      */
     public void finishPurchase() {
         //return subtotal to UI
@@ -124,7 +126,7 @@ public class PurchaseList {
     /**
      * Subtracts the value from the subtotal.
      *
-     * @param subtractValue The value to subtract from the subtotal.
+     * @param subtractValue the value to subtract from the subtotal
      */
     public void subtractSubtotal(double subtractValue){
         this.subtotal = this.getSubtotal() - subtractValue;
@@ -133,7 +135,7 @@ public class PurchaseList {
     /**
      * Adds the value to the subtotal.
      *
-     * @param addValue The value to add to the subtotal.
+     * @param addValue the value to add to the subtotal
      */
     public void addSubtotal(double addValue){
         this.subtotal = this.getSubtotal() + addValue;
