@@ -7,15 +7,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-
 /**
- * This is a list of Products.
+ * This is the list of Products currently in stock.
  */
 public class ProductList extends AbstractTableModel {
 
     /**
-     * This is the productList.
-     * The path is the path to the productDatabase.
+     * The productList attribute is the productList.
+     * The path attribute is the path to the productDatabase.
      */
     private static final ArrayList<Product> productList = new ArrayList<>();
     private final Path path = Paths.get(
@@ -29,16 +28,18 @@ public class ProductList extends AbstractTableModel {
     /**
      * Adds a new product to the productList.
      * The parameters name, id, stock, weight and basePrice are entered by the user.
+     * The weightUnit and category are selected from a dropdown menu.
      * The category will be supplied by the category list and will not be entered separately.
+     * Throws Exception if the product id is already used by a product in the list.
      *
-     * @param name the name of the new product
-     * @param id the identification number of the new product
-     * @param stock the amount of units of the new product
-     * @param weight the weight of the product
+     * @param name       the name of the new product
+     * @param id         the identification number of the new product
+     * @param stock      the amount of units of the new product
+     * @param weight     the weight of the product
      * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
-     * @param price the base price of the product
-     * @param category the category the product will be assigned to
-     * @throws Exception if product id is already used by a product in the list
+     * @param price      the base price of the product
+     * @param category   the category the product will be assigned to
+     * @throws Exception if the product id is already used by a product in the list
      */
     public void addProduct(String name, long id, int stock, double weight, String weightUnit,
                            double price, String category) throws Exception {
@@ -60,17 +61,19 @@ public class ProductList extends AbstractTableModel {
 
     /**
      * Adds a new product to the productList.
-     * The parameters name, id, stock, weight and basePrice are entered by the user.
+     * The parameters name, id, specialStock, weight and basePrice are entered by the user.
+     * The weightUnit and category are selected from a dropdown menu.
      * The category will be supplied by the category list and will not be entered separately.
+     * Throws Exception if the product id is already used by a product in the list.
      *
-     * @param name the name of the new product
-     * @param id the identification number of the new product
+     * @param name         the name of the new product
+     * @param id           the identification number of the new product
      * @param specialStock the amount of units of the new product
-     * @param weight the weight of the product
-     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
-     * @param basePrice the base price of the product
-     * @param category the category the product will be assigned to
-     * @throws Exception if product id is already used by a product in the list
+     * @param weight       the weight of the product
+     * @param weightUnit   the unit of the given weight e.g. g,kg,ml,l,stück
+     * @param basePrice    the base price of the product
+     * @param category     the category the product will be assigned to
+     * @throws Exception   if the product id is already used by a product in the list
      */
     public void addProduct(String name, long id, String specialStock, double weight,
                            String weightUnit, double basePrice, String category) throws Exception {
@@ -96,6 +99,7 @@ public class ProductList extends AbstractTableModel {
      * Returns the element at the specified index from productList.
      *
      * @param index specifies the position at which the element is found
+     * @return      the product at the index position
      */
     public Product getProduct(int index) {
         return productList.get(index);
@@ -106,16 +110,28 @@ public class ProductList extends AbstractTableModel {
      *
      * @param i specifies the position at which the element is deleted
      */
-    public void removeProductByIndex(int i) throws Exception {
+    public void removeProductByIndex(int i) {
         productList.remove(i);
         this.fireTableStructureChanged();
     }
 
+    /**
+     * Removes the specified product from the productList.
+     * Throws Exception if the remove function is not used correctly or a wrong type of
+     * element that is being removed is supplied.
+     *
+     * @param product    the product that shall be removed
+     * @throws Exception if the remove function is not used correctly or a wrong type of
+     *                   element that is being removed is supplied
+     */
     public void removeProduct(Product product) throws Exception {
         productList.remove(product);
         this.fireTableStructureChanged();
     }
 
+    /**
+     * Empties the productList of all stored products.
+     */
     public void clear() {
         this.getProductList().clear();
     }
@@ -226,7 +242,7 @@ public class ProductList extends AbstractTableModel {
     }
 
     /**
-     * Sorts the products in productList numerically by their base price in ascending order.
+     * Sorts the products in productList numerically by their basePrice in ascending order.
      */
     public void sortByBasePrice() {
         boolean swapped;
@@ -270,10 +286,11 @@ public class ProductList extends AbstractTableModel {
 
     /**
      * Searches the productList for a product with this name.
+     * The entered search phrase can be a substring of the results or a specific name.
      *
-     * @param search The search phrase that is looked for in the productList
-     * @return a list of products with the same name as the search phrase,
-     *         or where the given search phrase is part of the name
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of products with the same name as the search phrase,
+     *                     or where the given search phrase is part of the name
      */
     public ArrayList<Product> searchProductByName(String searchPhrase) {
         ArrayList<Product> result = new ArrayList<>();
@@ -286,10 +303,12 @@ public class ProductList extends AbstractTableModel {
     }
 
     /**
-     * Searches the productList for a product with its id.
+     * Searches the productList for a product with this id.
+     * The entered search phrase can be a partial id of the results or a specific id.
+     *
      * @param id the id of a product
-     * @return a list of products with the same id as the search phrase,
-     *         or where the given search phrase is part of the name
+     * @return   a list of products with the same id as the search phrase,
+     *           or where the given search phrase is part of the name
      */
     public ArrayList<Product> searchProductById(Long id) {
         ArrayList<Product> result = new ArrayList<>();
@@ -301,6 +320,14 @@ public class ProductList extends AbstractTableModel {
         return result;
     }
 
+    /**
+     * Searches the productList for a product with this name or id.
+     * The search phrase can be a specific name or id of the results or it can be part of one.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of product with the same name or id regarding what was searched
+     *                     for, or where the search phrase is part of
+     */
     public ArrayList<Product> searchProduct(String searchPhrase) {
         ArrayList<Product> productList;
         try{
@@ -313,15 +340,16 @@ public class ProductList extends AbstractTableModel {
 
     /**
      * Changes the parameters of a product in the database.
+     * Throws Exception if a parameter violates the restrictions set in the addProduct function.
      *
-     * @param index the index of the product that shall be changed
-     * @param name the name of the new product
-     * @param id the identification number of the new product
-     * @param stock the amount of units of the new product
-     * @param weight the weight of the product
+     * @param index      the index of the product that shall be changed
+     * @param name       the name of the new product
+     * @param id         the identification number of the new product
+     * @param stock      the amount of units of the new product
+     * @param weight     the weight of the new product
      * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
-     * @param price the base price of the product
-     * @param category the category the product will be assigned to
+     * @param price      the base price of the new product
+     * @param category   the category the new product will be assigned to
      * @throws Exception if a parameter violates the restrictions set in the addProduct function
      */
     public void changeProduct(int index, String name,  long id, int stock, double weight,
@@ -340,16 +368,17 @@ public class ProductList extends AbstractTableModel {
     }
     /**
      * Changes the parameters of a product in the database.
+     * Throws Exception if a parameter violates the restrictions set in the addProduct function.
      *
-     * @param index the index of the product that shall be changed
-     * @param name the name of the new product
-     * @param id the identification number of the new product
+     * @param index        the index of the product that shall be changed
+     * @param name         the name of the new product
+     * @param id           the identification number of the new product
      * @param specialStock the amount of units of the new product
-     * @param weight the weight of the product
-     * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
-     * @param basePrice the base price of the product
-     * @param category the category the product will be assigned to
-     * @throws Exception if a parameter violates the restrictions set in the addProduct function
+     * @param weight       the weight of the new product
+     * @param weightUnit   the unit of the given weight e.g. g,kg,ml,l,stück
+     * @param basePrice    the base price of the new product
+     * @param category     the category the new product will be assigned to
+     * @throws Exception   if a parameter violates the restrictions set in the addProduct function
      */
     public void changeProduct(int index, String name,  long id, String specialStock, double weight,
                               String weightUnit, double basePrice, String category) throws Exception {
@@ -367,9 +396,9 @@ public class ProductList extends AbstractTableModel {
 
     /**
      * Saves all products to the ProductDatabase.
-     *
      * The save function will be executed only once when the application is closed,
      * because the way the product list is implemented represents an inMemory database.
+     * Throws IOException if the the file the writer accesses is non existent.
      *
      * @throws Exception if the the file the writer accesses is non existent
      */
@@ -397,7 +426,6 @@ public class ProductList extends AbstractTableModel {
 
     /**
      * Loads all Products from the ProductDatabase.
-     *
      * The load function will be executed only once when the application is started,
      * because the way the product list is implemented represents an inMemory database.
      * Throws IO Exception if there is no file or a wrong path declared to read from.
@@ -439,13 +467,12 @@ public class ProductList extends AbstractTableModel {
     }
 
     /**
-     * Returns the number of rows in the model. A
-     * <code>JTable</code> uses this method to determine how many rows it
-     * should display.  This method should be quick, as it
-     * is called frequently during rendering.
+     * Returns the number of rows in the model.
+     * A <code>JTable</code> uses this method to determine how many rows it should display.
+     * This method should be quick, as it is called frequently during rendering.
      *
      * @return the number of rows in the model
-     * @see #getColumnCount
+     * @see    #getColumnCount
      */
     @Override
     public int getRowCount() {
@@ -453,12 +480,12 @@ public class ProductList extends AbstractTableModel {
     }
 
     /**
-     * Returns the number of columns in the model. A
-     * <code>JTable</code> uses this method to determine how many columns it
+     * Returns the number of columns in the model.
+     * A <code>JTable</code> uses this method to determine how many columns it
      * should create and display by default.
      *
      * @return the number of columns in the model
-     * @see #getRowCount
+     * @see    #getRowCount
      */
     @Override
     public int getColumnCount() {
@@ -466,12 +493,11 @@ public class ProductList extends AbstractTableModel {
     }
 
     /**
-     * Returns the value for the cell at <code>columnIndex</code> and
-     * <code>rowIndex</code>.
+     * Returns the value for the cell at <code>columnIndex</code> and <code>rowIndex</code>.
      *
      * @param rowIndex    the row whose value is to be queried
      * @param columnIndex the column whose value is to be queried
-     * @return the value Object at the specified cell
+     * @return            the value Object at the specified cell
      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -533,6 +559,12 @@ public class ProductList extends AbstractTableModel {
         return value;
     }
 
+    /**
+     * Returns the columnName of the column specified by the index.
+     *
+     * @param index specifies the column of which the name is returned
+     * @return      the column name of the column with the given index
+     */
     @Override
     public String getColumnName(int index) {
         String[] columnNames = {"EAN", "Name", "Preis", "Bestand", "Kategorie", "Grundpreis", "Gewicht",
