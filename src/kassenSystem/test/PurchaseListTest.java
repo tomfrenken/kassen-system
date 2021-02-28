@@ -89,6 +89,9 @@ public class PurchaseListTest {
         purchaseList.addItem(purchaseList.searchProductById((long) 32135947).get(0), 7); // Apfelsaft Klar; 11.55
         purchaseList.cancelPurchase();
         assertEquals(0, purchaseList.getPurchaseList().size());
+        assertEquals(12, purchaseList.searchProductById((long)12744532).get(0).getStock());
+        assertEquals(53, purchaseList.searchProductById(8597618758423L).get(0).getStock());
+        assertEquals(41, purchaseList.searchProductById((long)32135947).get(0).getStock());
     }
 
 
