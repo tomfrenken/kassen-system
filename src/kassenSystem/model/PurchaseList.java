@@ -13,6 +13,7 @@ public class PurchaseList {
      */
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
+    private final ProductList productList = new ProductList();
 
     /**
      * PurchaseList constructor.
@@ -33,7 +34,7 @@ public class PurchaseList {
      */
     public void addItem(Product product, double amount) throws Exception {
         if (product.getSpecialStock() == null) {
-            if (purchaseList.size() > 0) {
+            if (this.purchaseList.size() > 0) {
                 for (Item item : this.purchaseList) {
                     if (item.getProduct() == product) {
                         item.changeAmount(amount);
@@ -45,7 +46,7 @@ public class PurchaseList {
             this.purchaseList.add(new Item(product, amount));
             this.addSubtotal(product.getPrice() * amount);
         } else {
-            if (purchaseList.size() > 0) {
+            if (this.purchaseList.size() > 0) {
                 for (Item item : this.purchaseList) {
                     if (item.getProduct() == product) {
                         item.changeAmount(amount);
@@ -101,7 +102,7 @@ public class PurchaseList {
                     this.subtractSubtotal((item.getAmount()) * item.getProduct().getBasePrice());
             }
         }
-        purchaseList.remove(item);
+        this.purchaseList.remove(item);
     }
 
     /**
@@ -112,7 +113,7 @@ public class PurchaseList {
      * @throws Exception when the new item amount isn't left in stock
      */
     public void setItemAmount(Item item, double amount) throws Exception {
-        if (purchaseList.contains(item)) {
+        if (this.purchaseList.contains(item)) {
             if (item.getProduct().getSpecialStock() == null) {
                 if (item.getAmount() - amount == 0) {
                     this.removeItem(item);
@@ -166,16 +167,21 @@ public class PurchaseList {
      * Clears the purchaseList to cancel the purchase.
      */
     public void cancelPurchase() {
-        purchaseList.clear();
+        this.purchaseList.clear();
     }
 
     /**
      * Finishes the purchase, reduces the stock returns the subtotal and clears the purchaseList.
      */
-    public void finishPurchase() {
-        //return subtotal to UI
+    public double finishPurchase() {
+        for (Item item : this.purchaseList) {
+            if (item.getProduct().getSpecialStock() == null) {
+                for (Product product : productList.)
+            }
+        }
         //reduce Stock by amount
-        purchaseList.clear();
+        this.purchaseList.clear();
+        return getSubtotal();
     }
 
     /**
