@@ -4,7 +4,6 @@ import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.model.PurchaseList;
 import kassenSystem.view.SellerView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
