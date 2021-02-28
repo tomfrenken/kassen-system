@@ -15,12 +15,12 @@ public class AdminView extends JFrame {
     private JButton deleteProductButton;
     private JButton categoryListButton;
     private JScrollPane scrollPane;
-    private ProductList productListModel;
     public JList<Object> searchList;
     public JPanel jp;
     public JTable productListTable;
     public JTextField searchField;
     public JButton searchButton;
+    private JScrollPane searchScrollPane;
     public AdminController adminController;
 
     /**
@@ -34,7 +34,6 @@ public class AdminView extends JFrame {
         add(jp);
         this.setSize(1920, 800);
 
-        this.productListModel = productListModel;
         adminController = new AdminController(this, productListModel);
 
         productListTable.setModel(productListModel);

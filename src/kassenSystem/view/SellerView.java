@@ -1,8 +1,8 @@
 package kassenSystem.view;
 
-import kassenSystem.controller.AdminController;
 import kassenSystem.controller.SellerController;
-import kassenSystem.model.ProductList;
+import kassenSystem.model.Item;
+import kassenSystem.model.Product;
 import kassenSystem.model.PurchaseList;
 
 import javax.swing.*;
@@ -13,26 +13,26 @@ import java.awt.event.ActionListener;
  */
 public class SellerView extends JFrame {
 
-    private PurchaseList purchaseListModel;
-    private JList list;
+    private JList<Item> purchaseList;
     private JScrollPane scroll;
-    private JTextField suchfeldEingabeTextField;
-    private JButton hinzufuegenButton;
-    private JList list2;
+    public JTextField searchProductField;
+    private JButton addItemButton;
+    public JList<Product> searchProductList;
     private JScrollPane scroll2;
-    private JTextField anzahlTextField;
-    private JTextField suchfeldTextField1;
-    private JList list3;
+    private JTextField amountField;
+    private JTextField customerSearchField;
+    private JList<Item> customerSearchList;
     private JScrollPane scroll3;
-    private JButton einkaufStornierenButton;
-    private JButton einkaufAbschließenButton;
-    private JPanel Zwischensumme;
-    private JButton artikelStornierenButton;
-    private JButton mengeAnpassenButton;
+    private JButton cancelPurchaseButton;
+    private JButton finishPurchaseButton;
+    private JPanel zwischensumme;
+    private JButton cancelItemButton;
+    private JButton changeAmountButton;
     private JPanel jp;
-    private JButton button1;
-    private JButton button2;
-    private JTextField textField1;
+    private JButton searchProductButton;
+    private JButton customerSearchButton;
+    private JTextField changeAmountField;
+    private JLabel subtotal;
     public SellerController sellerController;
 
     /**
@@ -41,22 +41,29 @@ public class SellerView extends JFrame {
      * @param name the name of the view
      * @param purchaseListModel the purchaseListModel
      */
-    public SellerView(String name, PurchaseList purchaseListModel) {
+    public SellerView(String name) {
         super(name);
         add(jp);
         this.setSize(1200, 800);
 
-        this.purchaseListModel = purchaseListModel;
+        PurchaseList purchaseListModel = new PurchaseList();
         sellerController = new SellerController(this, purchaseListModel);
 
-        button1.setActionCommand("searchProduct");
-        button1.addActionListener(sellerController);
+        cancelItemButton.setActionCommand("cancelItem");
+        cancelItemButton.addActionListener(sellerController);
 
-        button2.setActionCommand("searchProductByName");
-        button2.addActionListener(sellerController);
+        changeAmountButton.setActionCommand("changeAmount");
+        changeAmountButton.addActionListener(sellerController);
+
+        searchProductButton.setActionCommand("searchProduct");
+        searchProductButton.addActionListener(sellerController);
 
 
-        einkaufAbschließenButton.setActionCommand("finishPurchaseView");
+        customerSearchButton.setActionCommand("customerSearch");
+        customerSearchButton.addActionListener(sellerController);
+
+
+        finishPurchaseButton.setActionCommand("finishPurchaseView");
     }
 
     /**
@@ -65,6 +72,6 @@ public class SellerView extends JFrame {
      * @param actionListener adds actionListeners for the interaction with the controller
      */
     public void addActionListener(ActionListener actionListener){
-        einkaufAbschließenButton.addActionListener(actionListener);
+        finishPurchaseButton.addActionListener(actionListener);
     }
 }
