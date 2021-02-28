@@ -86,7 +86,21 @@ public class PurchaseList {
      * @param item the item you want to remove from the purchaseList
      */
     public void removeItem(Item item) {
-        this.subtractSubtotal(item.getProduct().getPrice() * item.getAmount());
+        if (item.getProduct().getSpecialStock() == null) {
+            this.subtractSubtotal(item.getProduct().getPrice() * item.getAmount());
+        } else {
+            switch(item.getProduct().getWeightUnit()) {
+                case "g":
+                case "ml":
+                    this.subtractSubtotal(item.getAmount()/100); Subtotal(amount/100 * product.getBasePrice());
+                    break;
+
+                case "kg":
+                case "l":
+                case "stück":
+                    this.addSubtotal(amount * product.getBasePrice());
+            }
+        }
         purchaseList.remove(item);
     }
 

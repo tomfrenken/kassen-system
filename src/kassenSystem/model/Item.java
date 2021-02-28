@@ -11,7 +11,7 @@ public class Item {
      *  purchaseList.
      */
     private final Product product;
-    private int amount;
+    private double amount;
 
     /**
      * Creates a new item from a given product and amount.
