@@ -179,12 +179,14 @@ public class PurchaseList {
                 for (Product product : productList.getProductList()) {
                     if (item.getProduct().equals(product)) {
                         product.setStock((int) item.getAmount());
+                        break;
                     }
                 }
             } else {
                 for (Product product : productList.getProductList()) {
                     if (item.getProduct().equals(product)) {
                         product.setWeight(item.getAmount());
+                        break;
                     }
                 }
             }
