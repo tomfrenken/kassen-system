@@ -21,7 +21,7 @@ public class Item {
      * @param amount     the amount of the product to buy
      * @throws Exception if the stock is smaller then the amount
      */
-    public Item(Product product, int amount) throws Exception {
+    public Item(Product product, double amount) throws Exception {
         if (product.getSpecialStock() == null) {
             if(product.getStock() - amount >=0) {
                 this.product = product;
@@ -48,7 +48,7 @@ public class Item {
      * @param amount     the amount of this item
      * @throws Exception If the stock is smaller then the amount
      */
-    public void setAmount(int amount) throws Exception {
+    public void setAmount(double amount) throws Exception {
         if (product.getSpecialStock() == null) {
             if (product.getStock() - amount >= 0) {
                 this.amount = amount;
@@ -80,7 +80,7 @@ public class Item {
      *
      * @return the current amount of this item
      */
-    public int getAmount() {
+    public double getAmount() {
         return this.amount;
     }
 
