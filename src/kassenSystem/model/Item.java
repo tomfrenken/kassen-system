@@ -22,12 +22,22 @@ public class Item {
      * @throws Exception if the stock is smaller then the amount
      */
     public Item(Product product, int amount) throws Exception {
-        if(product.getStock() - amount >=0) {
-            this.product = product;
-            this.amount = amount;
+        if (product.getSpecialStock() == null) {
+            if(product.getStock() - amount >=0) {
+                this.product = product;
+                this.amount = amount;
+            } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() +
+                        " ist zu gering für diese Operation.");
+            }
         } else {
-            throw new Exception("Der Bestand des Artikels " + product.getName() +
-                    " ist zu gering für diese Operation.");
+            if (product.getWeight() - amount >= 0) {
+                this.product = product;
+                this.amount = amount;
+            } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() +
+                        " ist zu gering für diese Operation.");
+            }
         }
     }
 
