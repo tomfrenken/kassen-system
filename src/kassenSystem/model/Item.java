@@ -10,11 +10,11 @@ public class Item {
      *  The amount attribute is the amount of the specified product that is added to the
      *  purchaseList.
      */
-    private final Product product;
+    private Product product;
     private int amount;
 
     /**
-     * Creates a new item from a given product and amount.
+     * Creates a new item from a given product and amount (stock/weight).
      * Throws Exception if the stock is smaller then the amount.
      *
      * @param product    the product to buy
@@ -22,13 +22,19 @@ public class Item {
      * @throws Exception if the stock is smaller then the amount
      */
     public Item(Product product, int amount) throws Exception {
-        if(product.getStock() - amount >=0) {
-            this.product = product;
-            this.amount = amount;
+        if (this.product.getSpecialStock() == null) {
+            if(product.getStock() - amount >=0) {
+                this.product = product;
+                this.amount = amount;
+            } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() + " ist zu gering für diese Operation.");
+            }
         } else {
-            throw new Exception("Der Bestand des Artikels " + product.getName() +
-                    " ist zu gering für diese Operation.");
-        }
+            if(product.getWeight() - amount >=0) {
+                this.product = product;
+                this.amount = amount;
+        } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() + " ist zu gering für diese Operation.");
     }
 
     /**
@@ -38,12 +44,21 @@ public class Item {
      * @param amount     the amount of this item
      * @throws Exception If the stock is smaller then the amount
      */
-    public void setAmount(int amount) throws Exception {
-        if(product.getStock() - amount >=0) {
-            this.amount = amount;
+    public void setAmount(int num) throws Exception {
+        if (this.product.getSpecialStock() == null) {
+            if (product.getStock() - amount >= 0) {
+                this.amount = num;
+            } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() +
+                        " ist zu gering für diese Operation.");
+            }
         } else {
-            throw new Exception("Der Bestand des Artikels " + product.getName() +
-                    " ist zu gering für diese Operation.");
+            if (this.product.getWeight() - amount >= 0) {
+                this.amount = num;
+            } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() +
+                        " ist zu gering für diese Operation.");
+            }
         }
     }
 
