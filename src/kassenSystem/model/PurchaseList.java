@@ -38,7 +38,7 @@ public class PurchaseList {
                     if (item.getProduct() == product) {
                         item.changeAmount(amount);
                         this.addSubtotal(product.getPrice() * amount);
-                        break;
+                        return;
                     }
                 }
             }
@@ -115,19 +115,29 @@ public class PurchaseList {
         if (purchaseList.contains(item)) {
             if (item.getProduct().getSpecialStock() == null) {
                 if (item.getAmount() - amount == 0) {
-                    this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
                     purchaseList.remove(item);
+                    switch(item.getProduct().getWeightUnit()) {
+                        case "g":
+                        case "ml":
+                            this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
+                            break;
+
+                        case "kg":
+                        case "l":
+                        case "stück":
+                            this.subtractSubtotal((item.getAmount()) * item.getProduct().getBasePrice());
+                    }
                 } else if (item.getAmount() < amount) {
+                    item.setAmount(amount);
                     this.addSubtotal((amount - item.getAmount()) * item.getProduct()
                             .getPrice());
-                    item.setAmount(amount);
                 } else {
+                    item.setAmount(amount);
                     this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
                             .getPrice());
-                    item.setAmount(amount);
                 }
             } else {
-                if (item.getAmount() - amount == 0) {
+                if (item.getProduct().getWeight() - amount == 0) {
                     this.subtractSubtotal(item.getAmount() * item.getProduct().getBasePrice());
                     purchaseList.remove(item);
                 } else if (item.getAmount() < amount) {
