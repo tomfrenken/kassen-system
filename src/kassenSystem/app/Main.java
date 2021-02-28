@@ -27,7 +27,7 @@ public class Main extends JFrame implements ActionListener {
     private final ChangeProductView changeProductView = new ChangeProductView("Produkt ändern", adminView, productListModel);
     private final CategoryListView categoryListView = new CategoryListView("Kategorieliste");
     private final ChangeCategoryView changeCategoryView = new ChangeCategoryView("Kategorie ändern", categoryListView);
-    private final SellerView sellerView = new SellerView("Verkäuferoberfläche");
+    private final SellerView sellerView = new SellerView("Verkäuferoberfläche", purchaseListModel);
     private final FinishPurchaseView finishPurchaseView = new FinishPurchaseView("Einkauf abschließen");
 
     LoginController loginController = new LoginController(loginView);
@@ -53,6 +53,8 @@ public class Main extends JFrame implements ActionListener {
 
     /**
      * Initializes main and opens the login view.
+     *
+     * @param args not used
      */
     public static void main(String[] args) {
         Main main = new Main();

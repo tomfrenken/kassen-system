@@ -186,8 +186,8 @@ public class ProductTest {
         assertTrue(90000 <= apfel5.getId() && apfel5.getId() <= 99999);
         assertTrue(10000000 <= apfel8.getId() && apfel8.getId() <= 99999999);
         assertTrue(1000000000000L <= apfel13.getId() && apfel13.getId() <= 9999999999999L);
-        // assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 4) 8 Stellen Ihre Eingabe 123 war fehlerhaft.", exceptionForNotFourFiveEightThirteen);
-        // assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 4) 8 Stellen Ihre Eingabe 81234 war fehlerhaft.", exceptionForFiveAndNotLeadingNine);
+        assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9. Ihre Eingabe 123 war fehlerhaft.", exceptionForNotFourFiveEightThirteen.getMessage());
+        assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9. Ihre Eingabe 81234 war fehlerhaft.", exceptionForFiveAndNotLeadingNine.getMessage());
     }
 
     /**

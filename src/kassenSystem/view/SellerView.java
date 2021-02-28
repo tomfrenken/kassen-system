@@ -1,5 +1,10 @@
 package kassenSystem.view;
 
+import kassenSystem.controller.AdminController;
+import kassenSystem.controller.SellerController;
+import kassenSystem.model.ProductList;
+import kassenSystem.model.PurchaseList;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -8,6 +13,7 @@ import java.awt.event.ActionListener;
  */
 public class SellerView extends JFrame {
 
+    private PurchaseList purchaseListModel;
     private JList list;
     private JScrollPane scroll;
     private JTextField suchfeldEingabeTextField;
@@ -25,16 +31,29 @@ public class SellerView extends JFrame {
     private JButton anpassenButton;
     private JPanel jp;
     private JButton button1;
+    private JButton button2;
+    public SellerController sellerController;
 
     /**
      * The view is constructed only with a name.
      *
      * @param name the name of the view
      */
-    public SellerView(String name) {
+    public SellerView(String name, PurchaseList purchaseListModel) {
         super(name);
         add(jp);
         this.setSize(1200, 800);
+
+        this.purchaseListModel = purchaseListModel;
+        sellerController = new SellerController(this, purchaseListModel);
+
+        button1.setActionCommand("searchProduct");
+        button1.addActionListener(sellerController);
+
+        button2.setActionCommand("searchProductByName");
+        button2.addActionListener(sellerController);
+
+
         einkaufAbschließenButton.setActionCommand("finishPurchaseView");
     }
 
