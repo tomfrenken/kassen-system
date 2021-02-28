@@ -178,14 +178,18 @@ public class PurchaseList {
             if (item.getProduct().getSpecialStock() == null) {
                 for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
-                        product.setStock((int) item.getAmount());
+                        productList.changeProduct(productList.getProductList().indexOf(product), product.getName(),
+                                product.getId(), product.getStock(), product.getWeight(), product.getWeightUnit(),
+                                product.getPrice(), product.getCategory());
                         break;
                     }
                 }
             } else {
                 for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
-                        product.setWeight(item.getAmount());
+                        productList.changeProduct(productList.getProductList().indexOf(product), product.getName(),
+                                product.getId(), product.getSpecialStock(), product.getWeight(), product.getWeightUnit(),
+                                product.getBasePrice(), product.getCategory());
                         break;
                     }
                 }
