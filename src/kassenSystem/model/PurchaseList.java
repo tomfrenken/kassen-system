@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * This is the purchaseList.
  */
 public class PurchaseList {
-
     /**
      * The subtotal attribute is the subtotal of prices of all items in the purchaseList.
      * The purchaseList attribute is the purchaseList.
@@ -175,6 +174,7 @@ public class PurchaseList {
      */
     public void cancelPurchase() {
         this.purchaseList.clear();
+        this.setSubtotal(0);
     }
 
     /**
@@ -193,7 +193,7 @@ public class PurchaseList {
                 for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
                         productList.changeProduct(productList.getProductList().indexOf(product), product.getName(),
-                                product.getId(), product.getStock(), product.getWeight(), product.getWeightUnit(),
+                                product.getId(), (int)(product.getStock() - item.getAmount()), product.getWeight(), product.getWeightUnit(),
                                 product.getPrice(), product.getCategory());
                         break;
                     }
@@ -202,15 +202,16 @@ public class PurchaseList {
                 for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
                         productList.changeProduct(productList.getProductList().indexOf(product), product.getName(),
-                                product.getId(), product.getSpecialStock(), product.getWeight(), product.getWeightUnit(),
+                                product.getId(), product.getSpecialStock(), product.getWeight() - item.getAmount(), product.getWeightUnit(),
                                 product.getBasePrice(), product.getCategory());
                         break;
                     }
                 }
             }
         }
-        this.purchaseList.clear();
-        return getSubtotal();
+        double total = this.getSubtotal();
+        this.cancelPurchase();
+        return total;
     }
 
     /**
@@ -220,6 +221,14 @@ public class PurchaseList {
      */
     public double getSubtotal() {
         return this.subtotal;
+    }
+
+
+    /**
+     * Sets the subtotal of the purchaseList.
+     */
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
     /**
