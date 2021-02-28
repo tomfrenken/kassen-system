@@ -86,7 +86,7 @@ public class Item {
 
     /**
      * Changes the amount of this item by the difference specified by the change parameter.
-     * This value can be a positive or negative integer.
+     * This value can be a positive or negative double.
      * Throws Exception if the stock of this item is too low for this operation.
      *
      * @param change     specifies the difference of the old and new value for the amount attribute

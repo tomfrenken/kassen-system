@@ -10,6 +10,7 @@ public class PurchaseList {
     /**
      * The subtotal attribute is the subtotal of prices of all items in the purchaseList.
      * The purchaseList attribute is the purchaseList.
+     * The productList is the same productList that is created in ProductList.
      */
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
@@ -24,12 +25,12 @@ public class PurchaseList {
      * Add an item to the list or increment the amount of the item if the related item already
      * exists.
      * The incrementation of 1 is meant for use with the product scanner.
-     * Throws Exception if amount of this item is bigger then the stock of the product it
+     * Throws Exception if amount of this item is bigger then the stock or weight of the product it
      * represents.
      *
      * @param product    the product that is used
      * @param amount     the amount you want to use
-     * @throws Exception if amount of this item is bigger then the stock of the product it
+     * @throws Exception if amount of this item is bigger then the stock or weight of the product it
      *                   represents
      */
     public void addItem(Product product, double amount) throws Exception {
@@ -93,13 +94,15 @@ public class PurchaseList {
             switch(item.getProduct().getWeightUnit()) {
                 case "g":
                 case "ml":
-                    this.subtractSubtotal(item.getAmount()/100 * item.getProduct().getBasePrice());
+                    this.subtractSubtotal(
+                            item.getAmount()/100 * item.getProduct().getBasePrice());
                     break;
 
                 case "kg":
                 case "l":
                 case "stück":
-                    this.subtractSubtotal((item.getAmount()) * item.getProduct().getBasePrice());
+                    this.subtractSubtotal(
+                            (item.getAmount()) * item.getProduct().getBasePrice());
             }
         }
         this.purchaseList.remove(item);
@@ -133,26 +136,30 @@ public class PurchaseList {
                     switch(item.getProduct().getWeightUnit()) {
                         case "g":
                         case "ml":
-                            this.subtractSubtotal((amount - item.getAmount())/100  * item.getProduct().getBasePrice());
+                            this.subtractSubtotal((amount - item.getAmount())/100
+                                    * item.getProduct().getBasePrice());
                             break;
 
                         case "kg":
                         case "l":
                         case "stück":
-                            this.subtractSubtotal((amount - item.getAmount()) * item.getProduct().getBasePrice());
+                            this.subtractSubtotal((amount - item.getAmount())
+                                    * item.getProduct().getBasePrice());
                     }
                     item.setAmount(amount);
                 } else {
                     switch(item.getProduct().getWeightUnit()) {
                         case "g":
                         case "ml":
-                            this.subtractSubtotal((item.getAmount() - amount)/100  * item.getProduct().getBasePrice());
+                            this.subtractSubtotal((item.getAmount() - amount)/100
+                                    * item.getProduct().getBasePrice());
                             break;
 
                         case "kg":
                         case "l":
                         case "stück":
-                            this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getBasePrice());
+                            this.subtractSubtotal((item.getAmount() - amount)
+                                    * item.getProduct().getBasePrice());
                     }
                     item.setAmount(amount);
                 }
@@ -171,7 +178,14 @@ public class PurchaseList {
     }
 
     /**
-     * Finishes the purchase, reduces the stock returns the subtotal and clears the purchaseList.
+     * Finishes the purchase.
+     * Reduces the stock of each product represented by an item in the purchaseList.
+     * Returns the subtotal of all items in the purchaseList.
+     * Empties the purchaseList.
+     * Throws Exception if a constraint regarding the content of stock or weight has been violated.
+     *
+     * @return the subtotal of all items in the purchaseList
+     * @throws Exception if a constraint regarding the content of stock or weight has been violated
      */
     public double finishPurchase() throws Exception {
         for (Item item : this.purchaseList) {

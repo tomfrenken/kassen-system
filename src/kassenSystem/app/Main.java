@@ -53,6 +53,8 @@ public class Main extends JFrame implements ActionListener {
 
     /**
      * Initializes main and opens the login view.
+     *
+     * @param args not used
      */
     public static void main(String[] args) {
         Main main = new Main();
