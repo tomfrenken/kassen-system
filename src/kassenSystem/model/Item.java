@@ -22,22 +22,26 @@ public class Item {
      * @throws Exception if the stock is smaller then the amount
      */
     public Item(Product product, double amount) throws Exception {
-        if (product.getSpecialStock() == null) {
-            if(product.getStock() - amount >=0) {
-                this.product = product;
-                this.amount = amount;
+        if(amount > 0) {
+            if (product.getSpecialStock() == null) {
+                if(product.getStock() - amount >=0) {
+                    this.product = product;
+                    this.amount = amount;
+                } else {
+                    throw new Exception("Der Bestand des Artikels " + product.getName() +
+                            " ist zu gering für diese Operation.");
+                }
             } else {
-                throw new Exception("Der Bestand des Artikels " + product.getName() +
-                        " ist zu gering für diese Operation.");
+                if (product.getWeight() - amount >= 0) {
+                    this.product = product;
+                    this.amount = amount;
+                } else {
+                    throw new Exception("Der Bestand des Artikels " + product.getName() +
+                            " ist zu gering für diese Operation.");
+                }
             }
         } else {
-            if (product.getWeight() - amount >= 0) {
-                this.product = product;
-                this.amount = amount;
-            } else {
-                throw new Exception("Der Bestand des Artikels " + product.getName() +
-                        " ist zu gering für diese Operation.");
-            }
+            throw new Exception("Die Anzahl muss >0 sein!");
         }
     }
 
@@ -49,20 +53,24 @@ public class Item {
      * @throws Exception If the stock is smaller then the amount
      */
     public void setAmount(double amount) throws Exception {
-        if (product.getSpecialStock() == null) {
-            if (product.getStock() - amount >= 0) {
-                this.amount = amount;
+        if (amount > 0) {
+            if (product.getSpecialStock() == null) {
+                if (product.getStock() - amount >= 0) {
+                    this.amount = amount;
+                } else {
+                    throw new Exception("Der Bestand des Artikels " + product.getName() +
+                            " ist zu gering für diese Operation.");
+                }
             } else {
-                throw new Exception("Der Bestand des Artikels " + product.getName() +
-                        " ist zu gering für diese Operation.");
+                if (product.getWeight() - amount >= 0) {
+                    this.amount = amount;
+                } else {
+                    throw new Exception("Der Bestand des Artikels " + product.getName() +
+                            " ist zu gering für diese Operation.");
+                }
             }
         } else {
-            if (product.getWeight() - amount >= 0) {
-                this.amount = amount;
-            } else {
-                throw new Exception("Der Bestand des Artikels " + product.getName() +
-                        " ist zu gering für diese Operation.");
-            }
+            throw new Exception("Die Anzahl darf nicht muss >0 sein.");
         }
     }
 
