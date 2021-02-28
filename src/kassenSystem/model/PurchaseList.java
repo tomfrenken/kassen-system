@@ -10,6 +10,7 @@ public class PurchaseList {
     /**
      * The subtotal attribute is the subtotal of prices of all items in the purchaseList.
      * The purchaseList attribute is the purchaseList.
+     * The productList is the same productList that is created in ProductList.
      */
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
