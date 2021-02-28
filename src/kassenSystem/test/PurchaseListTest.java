@@ -56,66 +56,42 @@ public class PurchaseListTest {
     public void tearDown(){
         productList.clear();
         categoryList.clear();
+        purchaseList.getPurchaseList().clear();
     }
 
     /**
-     * Test if the addProduct function works correctly.
+     * Test if the finishPurchase function works correctly.
      * Throws Exception if a constraint regarding the content of an attribute has been violated.
      *
      * @throws Exception if a constraint regarding the content of an attribute has been violated
      */
     @Test
-    public void purchase1() throws Exception {
-
-        purchaseList.addItem(purchaseList.getProductList().get(2), 2); // Tomate Savanna
+    public void purchase1() throws Exception{
+        purchaseList.addItem(purchaseList.getProductList().get(2), 2); // Tomate Savanna; 9,98
         purchaseList.addItem(purchaseList.getProductList().get(0), 4); // Brausepulver Zuckerfrei; 15.96
         purchaseList.addItem(purchaseList.getProductList().get(8), 1); // Zucker-Ganglien; 45.32
-        assertTrue(0.01 <= productList.getProduct(10).getPrice() && productList.getProduct(10).getPrice() <= 100000);
-        assertTrue(0.01 <= productList.getProduct(11).getPrice() && productList.getProduct(11).getPrice() <= 100000);
+        assertEquals(71.26, purchaseList.finishPurchase());
+        assertEquals(32, purchaseList.getProductList().get(2).getStock());
+        assertEquals(23, purchaseList.getProductList().get(0).getStock());
+        assertEquals(14, purchaseList.getProductList().get(8).getStock());
     }
 
     /**
-     * Test if the productList only accepts products with unique id's.
-     */
-    @Test
-    public void createUniqueEan() {
-        Throwable exceptionForThirteenNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Mehl 406", 8597618758423L, 20, 2, "kg", 4.99, "Backwaren"));
-        Throwable exceptionForEightNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Birnensaft Klar", 32135947, 69, 2, "l", 2.49, "Getränke"));
-        Throwable exceptionForFiveNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Tomate Havanna", 93780, 12, 1, "kg", 3.99, "Gemüse"));
-        Throwable exceptionForFourNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Birne Silby", 4532, 132, 250, "g", 1.99, "Obst"));
-
-        assertEquals("Die Produkt-ID 8597618758423 wird bereits verwendet.", exceptionForThirteenNumbersLongEan.getMessage());
-        assertEquals("Die Produkt-ID 32135947 wird bereits verwendet.", exceptionForEightNumbersLongEan.getMessage());
-        assertEquals("Die Produkt-ID 93780 wird bereits verwendet.", exceptionForFiveNumbersLongEan.getMessage());
-        assertEquals("Die Produkt-ID 4532 wird bereits verwendet.", exceptionForFourNumbersLongEan.getMessage());
-    }
-
-    /**
-     * Test if the searchByName function works correctly.
+     * Test if the finishPurchase function works correctly.
      * Throws Exception if a constraint regarding the content of an attribute has been violated.
      *
      * @throws Exception if a constraint regarding the content of an attribute has been violated
      */
     @Test
-    public void searchByName() throws Exception {
-        ArrayList<Product> testList = new ArrayList<>();
-        testList.add(new Product("Zucker-Ganglien", 1151216951419L, 15, 1, "stück", 45.32, "Süßwaren"));
-        testList.add(new Product("Brausepulver Zuckerfrei", 2913455551023L, 27, 75, "g", 3.99, "Süßwaren"));
-        assertEquals(productList.searchProduct("Zucker"), testList);
+    public void purchase2() throws Exception{
+        purchaseList.addItem(purchaseList.getProductList().get(9), 1); // Grüne Bohnen Eintopf; 1.59
+        purchaseList.addItem(purchaseList.getProductList().get(5), 4); // Brausepulver Zuckerfrei; 15.96
+        purchaseList.addItem(purchaseList.getProductList().get(8), 1); // Zucker-Ganglien; 45.32
+        assertEquals(71.26, purchaseList.finishPurchase());
+        assertEquals(32, purchaseList.getProductList().get(2).getStock());
+        assertEquals(23, purchaseList.getProductList().get(0).getStock());
+        assertEquals(14, purchaseList.getProductList().get(8).getStock());
     }
 
-    /**
-     * Test if the searchById function works correctly.
-     * Throws Exception if a constraint regarding the content of an attribute has been violated.
-     *
-     * @throws Exception if a constraint regarding the content of an attribute has been violated
-     */
-    @Test
-    public void searchById() throws Exception {
-        ArrayList<Product> testList = new ArrayList<>();
-        testList.add(new Product("Apfel Goldy", 4532, 68, 100, "g", 2.50, "Obst"));
-        testList.add(new Product("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven"));
-        testList.add(new Product("Erdbeer-Konfitüre",8453267832680L , 14, 250, "g", 4.27, "Aufstrich"));
-        assertEquals(productList.searchProduct("4532"), testList);
-    }
+
 }
