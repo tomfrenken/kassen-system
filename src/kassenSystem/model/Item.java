@@ -43,7 +43,7 @@ public class Item {
 
     /**
      * Sets a new value for the amount of this item.
-     * Throws Exception if the stock is smaller then the amount.
+     * Throws Exception if the stock/weight is smaller then the amount.
      *
      * @param amount     the amount of this item
      * @throws Exception If the stock is smaller then the amount
