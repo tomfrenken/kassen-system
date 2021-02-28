@@ -236,6 +236,23 @@ public class Product {
                             " bis einschließlich 100.000 liegen, " +
                             "Ihr aktueller Grundpreis lautet: " + price / weight * 1);
                 }
+                break;
+
+            case "stück":
+                if(weight >= 1 && weight <= 1000){
+                    this.weight = weight;
+                } else {
+                    throw new Exception("Das Gewicht in " + weightUnit + "  muss im Bereich von" +
+                            " einschließlich 1 bis einschließlich 1000 liegen." +
+                            " Ihre Eingabe " + weight + " war fehlerhaft.");
+                }
+                if(price / weight * 1 <= 100000 && price / weight * 1 >= 0.01) {
+                    this.basePrice = price / weight * 1;
+                } else {
+                    throw new Exception("Der Grundpreis muss im Bereich von einschließlich 0,01 " +
+                            "bis einschließlich 100.000 liegen," +
+                            " Ihr aktueller Grundpreis lautet: " + price / weight * 1);
+                }
         }
         if (categoryList.categoryInList(category)) {
             this.category = category;
