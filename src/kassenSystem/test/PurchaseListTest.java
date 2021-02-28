@@ -72,7 +72,6 @@ public class PurchaseListTest {
         purchaseList.addItem(purchaseList.searchProductById(2913455551023L).get(0), 4); // Brausepulver Zuckerfrei; 15.96
         purchaseList.addItem(purchaseList.searchProductById(1151216951419L).get(0), 1); // Zucker-Ganglien; 45.32
         assertEquals(71.26, purchaseList.finishPurchase());
-        purchaseList.finishPurchase();
         assertEquals(32, purchaseList.searchProductById((long)93780).get(0).getStock());
         assertEquals(23, purchaseList.searchProductById(2913455551023L).get(0).getStock());
         assertEquals(14, purchaseList.searchProductById(1151216951419L).get(0).getStock());
@@ -90,7 +89,6 @@ public class PurchaseListTest {
         purchaseList.addItem(purchaseList.searchProductById(8597618758423L).get(0), 3); // Mehl 405; 2.97
         purchaseList.addItem(purchaseList.searchProductById((long) 32135947).get(0), 7); // Apfelsaft Klar; 11.55
         assertEquals(16.11, purchaseList.finishPurchase());
-        purchaseList.finishPurchase();
         assertEquals(11, purchaseList.searchProductById((long)12744532).get(0).getStock());
         assertEquals(50, purchaseList.searchProductById(8597618758423L).get(0).getStock());
         assertEquals(34, purchaseList.searchProductById((long)32135947).get(0).getStock());
