@@ -176,14 +176,14 @@ public class PurchaseList {
     public double finishPurchase() throws Exception {
         for (Item item : this.purchaseList) {
             if (item.getProduct().getSpecialStock() == null) {
-                for (Product product : productList.getProductList()) {
+                for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
                         product.setStock((int) item.getAmount());
                         break;
                     }
                 }
             } else {
-                for (Product product : productList.getProductList()) {
+                for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
                         product.setWeight(item.getAmount());
                         break;
@@ -229,5 +229,32 @@ public class PurchaseList {
      */
     public ArrayList<Item> getPurchaseList(){
         return this.purchaseList;
+    }
+
+    /**
+     * Returns the productList.
+     *
+     * @return the productList
+     */
+    public ArrayList<Product> getProductList() {
+        return productList.getProductList();
+    }
+
+    /**
+     * Searches the productList for a product with this name.
+     * The entered search phrase can be a substring of the results or a specific name.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of products with the same name as the search phrase,
+     *                     or where the given search phrase is part of the name
+     */
+    public ArrayList<Product> searchProductByName(String searchPhrase) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Product product : getProductList()) {
+            if(product.getName().contains(searchPhrase)){
+                result.add(product);
+            }
+        }
+        return result;
     }
 }
