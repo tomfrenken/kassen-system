@@ -31,7 +31,7 @@ public class Item {
                         " ist zu gering für diese Operation.");
             }
         } else {
-            if (product.getWeight() - amount >= 0) {
+            if (product.getStock() - amount >= 0) {
                 this.product = product;
                 this.amount = amount;
             } else {
