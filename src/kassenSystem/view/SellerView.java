@@ -28,10 +28,11 @@ public class SellerView extends JFrame {
     private JButton einkaufAbschließenButton;
     private JPanel Zwischensumme;
     private JButton artikelStornierenButton;
-    private JButton anpassenButton;
+    private JButton mengeAnpassenButton;
     private JPanel jp;
     private JButton button1;
     private JButton button2;
+    private JTextField textField1;
     public SellerController sellerController;
 
     /**
