@@ -52,14 +52,30 @@ public class PurchaseList {
                         switch(product.getWeightUnit()) {
                             case "g":
                             case "ml":
-                                this.addSubtotal(amount / product.getBasePrice() * product.getBasePrice());
+                                this.addSubtotal(amount/100 * product.getBasePrice());
+                                break;
+
+                            case "kg":
+                            case "l":
+                            case "stück":
+                                this.addSubtotal(amount * product.getBasePrice());
                         }
                         break;
                     }
                 }
             }
             this.purchaseList.add(new Item(product, amount));
-            this.addSubtotal(product.getPrice() * amount);
+            switch(product.getWeightUnit()) {
+                case "g":
+                case "ml":
+                    this.addSubtotal(amount/100 * product.getBasePrice());
+                    break;
+
+                case "kg":
+                case "l":
+                case "stück":
+                    this.addSubtotal(amount * product.getBasePrice());
+            }
         }
     }
 
