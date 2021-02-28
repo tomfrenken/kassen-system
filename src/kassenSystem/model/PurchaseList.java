@@ -190,16 +190,20 @@ public class PurchaseList {
     public double finishPurchase() throws Exception {
         for (Item item : this.purchaseList) {
             if (item.getProduct().getSpecialStock() == null) {
-                for (Product product : productList.getProductList()) {
+                for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
-                        product.setStock((int) item.getAmount());
+                        productList.changeProduct(productList.getProductList().indexOf(product), product.getName(),
+                                product.getId(), product.getStock(), product.getWeight(), product.getWeightUnit(),
+                                product.getPrice(), product.getCategory());
                         break;
                     }
                 }
             } else {
-                for (Product product : productList.getProductList()) {
+                for (Product product : getProductList()) {
                     if (item.getProduct().equals(product)) {
-                        product.setWeight(item.getAmount());
+                        productList.changeProduct(productList.getProductList().indexOf(product), product.getName(),
+                                product.getId(), product.getSpecialStock(), product.getWeight(), product.getWeightUnit(),
+                                product.getBasePrice(), product.getCategory());
                         break;
                     }
                 }
@@ -243,5 +247,68 @@ public class PurchaseList {
      */
     public ArrayList<Item> getPurchaseList(){
         return this.purchaseList;
+    }
+
+    /**
+     * Returns the productList.
+     *
+     * @return the productList
+     */
+    public ArrayList<Product> getProductList() {
+        return productList.getProductList();
+    }
+
+    /**
+     * Searches the productList for a product with this name.
+     * The entered search phrase can be a substring of the results or a specific name.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of products with the same name as the search phrase,
+     *                     or where the given search phrase is part of the name
+     */
+    public ArrayList<Product> searchProductByName(String searchPhrase) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Product product : getProductList()) {
+            if(product.getName().contains(searchPhrase)){
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Searches the productList for a product with this id.
+     * The entered search phrase can be a partial id of the results or a specific id.
+     *
+     * @param id the id of a product
+     * @return   a list of products with the same id as the search phrase,
+     *           or where the given search phrase is part of the id
+     */
+    public ArrayList<Product> searchProductById(Long id) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Product product : getProductList()) {
+            if(Long.toString(product.getId()).contains(Long.toString(id))) {
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Searches the productList for a product with this name or id.
+     * The search phrase can be a specific name or id of the results or it can be part of them.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of product with the same name or id regarding what was searched
+     *                     for, or where the search phrase is part of the name or id
+     */
+    public ArrayList<Product> searchProduct(String searchPhrase) {
+        ArrayList<Product> productList;
+        try{
+            productList = this.searchProductById(Long.parseLong(searchPhrase));
+        } catch(Exception e){
+            productList = this.searchProductByName(searchPhrase);
+        }
+        return productList;
     }
 }

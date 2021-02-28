@@ -1,8 +1,11 @@
 package kassenSystem.controller;
 
+import kassenSystem.model.Product;
+import kassenSystem.model.ProductList;
 import kassenSystem.model.PurchaseList;
 import kassenSystem.view.SellerView;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * The controller to connect the SellerView and the PurchaseListModel.
@@ -44,5 +47,29 @@ public class SellerController {
      */
     public void hideView(){
         this.view.setVisible(false);
+    }
+
+    /**
+     * Searches the productList for a product with this name.
+     * The search phrase can be a specific name of the results or it can be part of one.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of product with the same name regarding what was searched
+     *                     for, or where the search phrase is part of
+     */
+    public ArrayList<Product> searchProductByName(String searchPhrase) {
+        return this.model.searchProductByName(searchPhrase);
+    }
+
+    /**
+     * Searches the productList for a product with this name or id.
+     * The search phrase can be a specific name or id of the results or it can be part of one.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of product with the same name or id regarding what was searched
+     *                     for, or where the search phrase is part of
+     */
+    public ArrayList<Product> searchProduct(String searchPhrase) {
+        return this.model.searchProduct(searchPhrase);
     }
 }
