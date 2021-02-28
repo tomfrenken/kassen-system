@@ -32,7 +32,7 @@ public class SellerView extends JFrame {
     private JButton searchProductButton;
     private JButton customerSearchButton;
     public JTextField changeAmountField;
-    private JLabel subtotalValue;
+    public JLabel subtotalValue;
     public SellerController sellerController;
 
     /**
@@ -40,12 +40,11 @@ public class SellerView extends JFrame {
      *
      * @param name the name of the view
      */
-    public SellerView(String name) {
+    public SellerView(String name, PurchaseList purchaseListModel) {
         super(name);
         add(jp);
         this.setSize(1200, 800);
 
-        PurchaseList purchaseListModel = new PurchaseList();
         sellerController = new SellerController(this, purchaseListModel);
 
         cancelItemButton.setActionCommand("cancelItem");
@@ -63,8 +62,11 @@ public class SellerView extends JFrame {
         customerSearchButton.setActionCommand("customerSearch");
         customerSearchButton.addActionListener(sellerController);
 
+        cancelPurchaseButton.setActionCommand("cancelPurchase");
+        cancelPurchaseButton.addActionListener(sellerController);
 
         finishPurchaseButton.setActionCommand("finishPurchaseView");
+
         subtotalValue.setText("00,00€");
     }
 

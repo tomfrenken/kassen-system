@@ -104,12 +104,49 @@ public class SellerController implements ActionListener {
                     try {
                         this.model.addItem((Product) this.view.searchProductList.getSelectedValue(), Integer.parseInt(this.view.amountField.getText()));
                         this.view.purchaseList.setListData(this.model.getPurchaseList().toArray());
+                        this.view.subtotalValue.setText(Double.toString(this.model.getSubtotal()));
                         break;
                     } catch (Exception exception) {
                         JOptionPane.showMessageDialog(null, exception.getMessage());
                         break;
                     }
                 }
+            case "changeAmount":
+                try{
+                    Integer.parseInt(this.view.changeAmountField.getText());
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(null, "Trage eine Zahl ein!");
+                    break;
+                }
+                if(this.view.purchaseList.getSelectedValue() == null){
+                    JOptionPane.showMessageDialog(null, "Wähle zuerst einen Artikel aus!");
+                    break;
+                } else {
+                    try{
+                        this.model.setItemAmount((Item)this.view.purchaseList.getSelectedValue(),
+                                Integer.parseInt(this.view.changeAmountField.getText()));
+                        this.view.purchaseList.setListData(this.model.getPurchaseList().toArray());
+                        this.view.subtotalValue.setText(Double.toString(this.model.getSubtotal()));
+                        break;
+                    } catch (Exception exception) {
+                        JOptionPane.showMessageDialog(null, exception.getMessage());
+                        break;
+                    }
+                }
+            case "cancelItem":
+                if(this.view.purchaseList.getSelectedValue() == null){
+                    JOptionPane.showMessageDialog(null, "Wähle einen Artikel zum stornieren aus.");
+                } else {
+                    this.model.removeItem((Item)this.view.purchaseList.getSelectedValue());
+                    this.view.purchaseList.setListData(this.model.getPurchaseList().toArray());
+                    this.view.subtotalValue.setText(Double.toString(this.model.getSubtotal()));
+                }
+                break;
+            case "cancelPurchase":
+                this.model.cancelPurchase();
+                this.view.purchaseList.setListData(this.model.getPurchaseList().toArray());
+                this.view.subtotalValue.setText(Double.toString(this.model.getSubtotal()));
+                break;
         }
     }
 }
