@@ -86,19 +86,8 @@ public class ProductTest {
         assertTrue(90000 <= apfel5.getId() && apfel5.getId() <= 99999);
         assertTrue(10000000 <= apfel8.getId() && apfel8.getId() <= 99999999);
         assertTrue(1000000000000L <= apfel13.getId() && apfel13.getId() <= 9999999999999L);
-        //assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 4) 8 Stellen Ihre Eingabe 123 war fehlerhaft.", exceptionForNotFourFiveEightThirteen);
-        //assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 4) 8 Stellen Ihre Eingabe 81234 war fehlerhaft.", exceptionForFiveAndNotLeadingNine);
-
-        // 2.Fall Vorhandensein der ID
-        Throwable exceptionForFourNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Apfel4", 1234L, 1000, 100, "ml", 1.5 , "Obst"));
-        Throwable exceptionForFiveNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Apfel5", 94321L, 1000, 100, "stück", 1.5 , "Obst"));
-        Throwable exceptionForEightNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Apfel8", 12345678L, "n", 100, "kg", 1.5 , "Obst"));
-        Throwable exceptionForThirteenNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Apfel13", 1234567890123L, "N", 100, "l", 1.5 , "Obst"));
-
-        assertEquals("Die Produkt-ID 1234 wird bereits verwendet.", exceptionForFourNumbersLongEan.getMessage());
-        assertEquals("Die Produkt-ID 94321 wird bereits verwendet.", exceptionForFiveNumbersLongEan.getMessage());
-        assertEquals("Die Produkt-ID 12345678 wird bereits verwendet.", exceptionForEightNumbersLongEan.getMessage());
-        assertEquals("Die Produkt-ID 1234567890123 wird bereits verwendet.", exceptionForThirteenNumbersLongEan.getMessage());
+        assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 4) 8 Stellen Ihre Eingabe 123 war fehlerhaft.", exceptionForNotFourFiveEightThirteen.getMessage());
+        assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 4) 8 Stellen Ihre Eingabe 81234 war fehlerhaft.", exceptionForFiveAndNotLeadingNine.getMessage());
 
         // Bestand Test
         // Normal Fall
