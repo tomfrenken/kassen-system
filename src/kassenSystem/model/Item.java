@@ -102,6 +102,6 @@ public class Item {
      * @return the name of the item as a string
      */
     public String toString() {
-        return product.getName();
+        return this.getProduct().getName() + " - " + this.getAmount();
     }
 }

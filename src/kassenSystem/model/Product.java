@@ -505,13 +505,11 @@ public class Product {
      */
     public String toString() {
         if (this.getSpecialStock() == null) {
-            return this.getId() + " " + this.getName() + " " + this.getPrice() + " " +  this.getStock()
-                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€ " + this.getWeight()
-                    + "" + this.getWeightUnit();
+            return String.format("%-13.13d %-20s %-20f %-20d %-20s %-20f€ %-20f %-20s", this.getId(), this.getName(), this.getPrice(),
+                    this.getStock(), this.getCategory(), this.getBasePrice(), this.getWeight(), this.getWeightUnit());
         } else {
-            return this.getId() + " " + this.getName() + " " + this.getPrice() + " " +  this.getSpecialStock()
-                    + " " + this.getCategory() + " " +  this.getBasePrice() + "€ " + this.getWeight()
-                    + "" + this.getWeightUnit();
+            return String.format("%-13.13d %-20s %-20f %-20s %-20s %-20f€ %-20f %-20s", this.getId(), this.getName(), this.getPrice(),
+                    this.getSpecialStock(), this.getCategory(), this.getBasePrice(), this.getWeight(), this.getWeightUnit());
         }
     }
 
