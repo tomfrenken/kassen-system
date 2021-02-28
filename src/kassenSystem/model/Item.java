@@ -53,7 +53,7 @@ public class Item {
      * @throws Exception If the stock is smaller then the amount
      */
     public void setAmount(double amount) throws Exception {
-        if (amount > 0) {
+        if (amount >= 0) {
             if (product.getSpecialStock() == null) {
                 if (product.getStock() - amount >= 0) {
                     this.amount = amount;
@@ -70,7 +70,7 @@ public class Item {
                 }
             }
         } else {
-            throw new Exception("Die Anzahl darf nicht muss >0 sein.");
+            throw new Exception("Die Anzahl darf nicht muss >=0 sein.");
         }
     }
 

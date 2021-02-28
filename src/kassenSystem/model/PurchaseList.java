@@ -117,7 +117,7 @@ public class PurchaseList {
     public void setItemAmount(Item item, double amount) throws Exception {
         if (this.purchaseList.contains(item)) {
             if (item.getProduct().getSpecialStock() == null) {
-                if (item.getAmount() - amount == 0) {
+                if (amount == 0) {
                     this.removeItem(item);
                 } else if (item.getAmount() < amount) {
                     item.setAmount(amount);
@@ -129,7 +129,7 @@ public class PurchaseList {
                             .getPrice());
                 }
             } else {
-                if (item.getProduct().getWeight() - amount == 0) {
+                if (amount == 0) {
                     this.removeItem(item);
                 } else if (item.getAmount() < amount) {
                     switch(item.getProduct().getWeightUnit()) {
