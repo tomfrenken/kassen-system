@@ -92,7 +92,7 @@ public class Item {
      * @param change     specifies the difference of the old and new value for the amount attribute
      * @throws Exception if the stock of this item is too low for this operation
      */
-    public void changeAmount(int change) throws Exception {
+    public void changeAmount(double change) throws Exception {
         this.setAmount(this.amount + change);
     }
 

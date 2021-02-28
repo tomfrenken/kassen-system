@@ -31,7 +31,7 @@ public class PurchaseList {
      * @throws Exception if amount of this item is bigger then the stock of the product it
      *                   represents
      */
-    public void addItem(Product product, int amount) throws Exception {
+    public void addItem(Product product, double amount) throws Exception {
         if (product.getSpecialStock() == null) {
             if (purchaseList.size() > 0) {
                 for (Item item : this.purchaseList) {
@@ -92,13 +92,13 @@ public class PurchaseList {
             switch(item.getProduct().getWeightUnit()) {
                 case "g":
                 case "ml":
-                    this.subtractSubtotal(item.getAmount()/100); Subtotal(amount/100 * product.getBasePrice());
+                    this.subtractSubtotal(item.getAmount()/100 * item.getProduct().getBasePrice());
                     break;
 
                 case "kg":
                 case "l":
                 case "stück":
-                    this.addSubtotal(amount * product.getBasePrice());
+                    this.subtractSubtotal((item.getAmount()) * item.getProduct().getBasePrice());
             }
         }
         purchaseList.remove(item);
@@ -111,7 +111,7 @@ public class PurchaseList {
      * @param amount     the new amount
      * @throws Exception when the new item amount isn't left in stock
      */
-    public void setItemAmount(Item item, int amount) throws Exception {
+    public void setItemAmount(Item item, double amount) throws Exception {
         if (purchaseList.contains(item)) {
             if (item.getProduct().getSpecialStock() == null) {
                 if (item.getAmount() - amount == 0) {
