@@ -32,17 +32,35 @@ public class PurchaseList {
      *                   represents
      */
     public void addItem(Product product, int amount) throws Exception {
-        if (purchaseList.size() > 0) {
-            for (Item item : this.purchaseList) {
-                if (item.getProduct() == product) {
-                    item.changeAmount(amount);
-                    this.addSubtotal(product.getPrice() * amount);
-                    break;
+        if (product.getSpecialStock() == null) {
+            if (purchaseList.size() > 0) {
+                for (Item item : this.purchaseList) {
+                    if (item.getProduct() == product) {
+                        item.changeAmount(amount);
+                        this.addSubtotal(product.getPrice() * amount);
+                        break;
+                    }
                 }
             }
+            this.purchaseList.add(new Item(product, amount));
+            this.addSubtotal(product.getPrice() * amount);
+        } else {
+            if (purchaseList.size() > 0) {
+                for (Item item : this.purchaseList) {
+                    if (item.getProduct() == product) {
+                        item.changeAmount(amount);
+                        switch(product.getWeightUnit()) {
+                            case "g":
+                            case "ml":
+                                this.addSubtotal(amount / product.getBasePrice() * product.getBasePrice());
+                        }
+                        break;
+                    }
+                }
+            }
+            this.purchaseList.add(new Item(product, amount));
+            this.addSubtotal(product.getPrice() * amount);
         }
-        this.purchaseList.add(new Item(product, amount));
-        this.addSubtotal(product.getPrice() * amount);
     }
 
 
