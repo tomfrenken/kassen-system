@@ -3,7 +3,6 @@ package kassenSystem.controller;
 import kassenSystem.model.CategoryList;
 import kassenSystem.view.CategoryListView;
 import kassenSystem.view.ChangeCategoryView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,18 +10,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * The controller to connect the ChangeCategoryView and the CategoryListModel.
+ */
 public class ChangeCategoryController implements ActionListener, WindowListener {
+
     private final CategoryListView categoryListView;
     private final ChangeCategoryView changeCategoryView;
     private final CategoryList model;
 
     /**
-     * The controller is initialized with the view and model.
-     * @param changeCategoryView categoryListView
-     * @param model categoryListModel
+     * The controller is initialized with the changeCategoryView, categoryListView
+     * and categoryListModel.
+     *
+     * @param changeCategoryView the changeCategoryView
+     * @param categoryListView   the categoryListView
+     * @param model              the categoryListModel
      */
     public ChangeCategoryController(ChangeCategoryView changeCategoryView,
-                                  CategoryListView categoryListView, CategoryList model){
+                                    CategoryListView categoryListView, CategoryList model){
 
         this.changeCategoryView = changeCategoryView;
         this.categoryListView = categoryListView;
@@ -30,14 +36,14 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
     }
 
     /**
-     * shows the view
+     * Shows the view.
      */
     public void showView(){
         this.changeCategoryView.setVisible(true);
     }
 
     /**
-     * hides the view
+     * Hides the view.
      */
     public void hideView(){
         this.changeCategoryView.setVisible(false);
@@ -45,8 +51,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
 
     /**
      * Invoked when an action occurs.
-     *
-     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -65,8 +69,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
 
     /**
      * Invoked the first time a window is made visible.
-     *
-     * @param e
      */
     @Override
     public void windowOpened(WindowEvent e) {
@@ -76,8 +78,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
     /**
      * Invoked when the user attempts to close the window
      * from the window's system menu.
-     *
-     * @param e
      */
     @Override
     public void windowClosing(WindowEvent e) {
@@ -87,8 +87,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
     /**
      * Invoked when a window has been closed as the result
      * of calling dispose on the window.
-     *
-     * @param e
      */
     @Override
     public void windowClosed(WindowEvent e) {
@@ -101,7 +99,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
      * is displayed as the icon specified in the window's
      * iconImage property.
      *
-     * @param e
      * @see Frame#setIconImage
      */
     @Override
@@ -112,8 +109,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
     /**
      * Invoked when a window is changed from a minimized
      * to a normal state.
-     *
-     * @param e
      */
     @Override
     public void windowDeiconified(WindowEvent e) {
@@ -127,8 +122,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
      * as a highlighted title bar. The active Window is always either the
      * focused Window, or the first Frame or Dialog that is an owner of the
      * focused Window.
-     *
-     * @param e
      */
     @Override
     public void windowActivated(WindowEvent e) {
@@ -148,8 +141,6 @@ public class ChangeCategoryController implements ActionListener, WindowListener 
      * highlighted title bar. The active Window is always either the focused
      * Window, or the first Frame or Dialog that is an owner of the focused
      * Window.
-     *
-     * @param e
      */
     @Override
     public void windowDeactivated(WindowEvent e) {

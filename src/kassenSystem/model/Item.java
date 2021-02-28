@@ -1,7 +1,7 @@
 package kassenSystem.model;
 
 /**
- * This is an Item in the PurchaseList.
+ * This is an Item used in the PurchaseList.
  */
 public class Item {
 
@@ -21,7 +21,7 @@ public class Item {
      * @param amount     the amount of the product to buy
      * @throws Exception if the stock is smaller then the amount
      */
-    Item(Product product, int amount) throws Exception {
+    public Item(Product product, int amount) throws Exception {
         if(product.getStock() - amount >=0) {
             this.product = product;
             this.amount = amount;

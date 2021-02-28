@@ -3,14 +3,14 @@ package kassenSystem.view;
 import kassenSystem.controller.ChangeProductController;
 import kassenSystem.model.CategoryList;
 import kassenSystem.model.ProductList;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
 /**
- * Contains the view to change the product
+ * Contains the view to change a product.
  */
 public class ChangeProductView extends JFrame {
+
     private JButton changeButton;
     private JPanel jp;
     public JTextField idField;
@@ -23,8 +23,11 @@ public class ChangeProductView extends JFrame {
     public JComboBox<String> categoryBox;
 
     /**
-     * The constructor to initialize the view
-     * @param name the name to initialize the view with
+     * The view is constructed with a name, the adminView and the productList.
+     *
+     * @param name             the name of the frame
+     * @param adminView        the adminView
+     * @param productListModel the productList
      */
     public ChangeProductView(String name, AdminView adminView, ProductList productListModel) {
         super(name);
@@ -33,7 +36,8 @@ public class ChangeProductView extends JFrame {
         this.setSize(1200, 800);
 
         CategoryList categoryListModel = new CategoryList();
-        ChangeProductController changeProductController = new ChangeProductController(this, adminView, categoryListModel, productListModel);
+        ChangeProductController changeProductController = new ChangeProductController(
+                this, adminView, categoryListModel, productListModel);
 
         changeButton.setActionCommand("changeProduct");
         changeButton.addActionListener(changeProductController);
@@ -41,6 +45,7 @@ public class ChangeProductView extends JFrame {
 
     /**
      * Adds action listeners to the buttons.
+     *
      * @param actionListener the actionlistener to interact with the controller
      */
     public void addActionListener(ActionListener actionListener){

@@ -4,6 +4,9 @@ import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Integration Test for specific functions ------- deprecated.
+ */
 public class ModelTest {
     public static void main(String[] args) throws Exception {
         // This class is only for testing purpose during development.

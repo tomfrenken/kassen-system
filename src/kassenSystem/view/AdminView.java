@@ -6,9 +6,10 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 /**
- * Contains the admin view, from which you can change the products and product categories
+ * Contains the adminView, from which you can change the products and product categories.
  */
 public class AdminView extends JFrame {
+
     private JButton newProductButton;
     private JButton changeProductButton;
     private JButton deleteProductButton;
@@ -23,8 +24,10 @@ public class AdminView extends JFrame {
     public AdminController adminController;
 
     /**
-     * The constructor to initialize the view
-     * @param name the name of the view
+     * The view is constructed with a name and the productList.
+     *
+     * @param name             the name of the frame
+     * @param productListModel the productList
      */
     public AdminView(String name, ProductList productListModel) {
         super(name);
@@ -48,7 +51,8 @@ public class AdminView extends JFrame {
     }
 
     /**
-     * Adds actionlisteners to the buttons, so the controller can interact with the view.
+     * Adds actionListeners to the buttons, so the controller can interact with the view.
+     *
      * @param actionListener the action listeners to use with the view
      */
     public void addActionListener(ActionListener actionListener){

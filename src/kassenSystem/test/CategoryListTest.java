@@ -9,12 +9,20 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
+/**
+ * Test for the categoryList.
+ */
 public class CategoryListTest {
 
     private final CategoryList categoryList = new CategoryList();
     private final ProductList productList = new ProductList();
 
+    /**
+     * Initialize categoryList and productList with entries to perform the test on.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @BeforeEach
     public void setUp() throws Exception {
         categoryList.addCategory("Süßwaren");
@@ -37,12 +45,18 @@ public class CategoryListTest {
         productList.addProduct("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven");
     }
 
+    /**
+     * Clears categoryList and productList off all test entries.
+     */
     @AfterEach
     public void tearDown(){
         productList.clear();
         categoryList.clear();
     }
 
+    /**
+     * Test if the removeCategory function works correctly.
+     */
     @Test
     public void removeCategory() {
         Throwable exception = assertThrows(Exception.class, () -> categoryList.removeCategory("Süßwaren"));

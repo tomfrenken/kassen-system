@@ -2,7 +2,6 @@ package kassenSystem.controller;
 
 import kassenSystem.model.CategoryList;
 import kassenSystem.view.CategoryListView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,16 +11,18 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 /**
- * The controller to connect the categoryListView and the cateGoryListModel.
+ * The controller to connect the categoryListView and the categoryListModel.
  */
 public class CategoryListController implements ActionListener, WindowListener {
+
     private final CategoryListView view;
     private final CategoryList model;
 
     /**
-     * The controller is initialized with the view and model.
-     * @param view categoryListView
-     * @param model cateGoryListModel
+     * The controller is initialized with the categoryListView and cateGoryListModel.
+     *
+     * @param view  the categoryListView
+     * @param model the categoryListModel
      */
     public CategoryListController(CategoryListView view, CategoryList model){
         this.view = view;
@@ -30,6 +31,7 @@ public class CategoryListController implements ActionListener, WindowListener {
 
     /**
      * the actionlisteners to add to the views for interaction.
+     *
      * @param actionListener generic actionListener
      */
     public void addActionsListeners(ActionListener actionListener){
@@ -37,36 +39,48 @@ public class CategoryListController implements ActionListener, WindowListener {
     }
 
     /**
-     * shows the view
+     * Shows the view.
      */
     public void showView(){
         this.view.setVisible(true);
     }
 
+    /**
+     * Refreshes the view.
+     */
     public void refreshView() {
         this.view.searchField.setText("");
         this.view.searchButton.doClick();
     }
 
     /**
-     * hides the view
+     * Hides the view.
      */
     public void hideView(){
         this.view.setVisible(false);
     }
 
+    /**
+     * Fill the category list in categoryListView with all categories,
+     * currently in the categoryList.
+     */
     public void fillCategoryList(){
         this.view.categoryList.setListData(this.model.getCategoryList().toArray());
     }
 
+    /**
+     * Searches for a category in the category list.
+     * The entered String can be a substring of the results or a specific name.
+     *
+     * @param searchPhrase the (sub)string to search for
+     * @return             an array of all categories that contain the (sub)string
+     */
     public ArrayList<String> searchForCategory(String searchPhrase) {
         return this.model.searchCategory(searchPhrase);
     }
 
     /**
      * Invoked when an action occurs.
-     *
-     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -99,8 +113,6 @@ public class CategoryListController implements ActionListener, WindowListener {
 
     /**
      * Invoked the first time a window is made visible.
-     *
-     * @param e
      */
     @Override
     public void windowOpened(WindowEvent e) {
@@ -110,8 +122,6 @@ public class CategoryListController implements ActionListener, WindowListener {
     /**
      * Invoked when the user attempts to close the window
      * from the window's system menu.
-     *
-     * @param e
      */
     @Override
     public void windowClosing(WindowEvent e) {
@@ -121,8 +131,6 @@ public class CategoryListController implements ActionListener, WindowListener {
     /**
      * Invoked when a window has been closed as the result
      * of calling dispose on the window.
-     *
-     * @param e
      */
     @Override
     public void windowClosed(WindowEvent e) {
@@ -135,7 +143,6 @@ public class CategoryListController implements ActionListener, WindowListener {
      * is displayed as the icon specified in the window's
      * iconImage property.
      *
-     * @param e
      * @see Frame#setIconImage
      */
     @Override
@@ -146,8 +153,6 @@ public class CategoryListController implements ActionListener, WindowListener {
     /**
      * Invoked when a window is changed from a minimized
      * to a normal state.
-     *
-     * @param e
      */
     @Override
     public void windowDeiconified(WindowEvent e) {
@@ -161,8 +166,6 @@ public class CategoryListController implements ActionListener, WindowListener {
      * as a highlighted title bar. The active Window is always either the
      * focused Window, or the first Frame or Dialog that is an owner of the
      * focused Window.
-     *
-     * @param e
      */
     @Override
     public void windowActivated(WindowEvent e) {
@@ -176,8 +179,6 @@ public class CategoryListController implements ActionListener, WindowListener {
      * highlighted title bar. The active Window is always either the focused
      * Window, or the first Frame or Dialog that is an owner of the focused
      * Window.
-     *
-     * @param e
      */
     @Override
     public void windowDeactivated(WindowEvent e) {

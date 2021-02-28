@@ -4,16 +4,18 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 /**
- * The view from which you can choose either adminView or sellerView
+ * The view from which you can choose either adminView or sellerView.
  */
 public class LoginView extends JFrame {
+
     private JButton adminLoginViewButton;
     private JButton sellerViewButton;
     private JPanel jp;
 
     /**
-     * The view is constructed only with a name
-     * @param name the name to initialize the view with
+     * The view is constructed only with a name.
+     *
+     * @param name the name of the view
      */
     public LoginView(String name) {
         super(name);
@@ -26,7 +28,8 @@ public class LoginView extends JFrame {
     }
 
     /**
-     * The actionListeners to interact with the controller
+     * The actionListeners to interact with the controller.
+     *
      * @param actionListener adds actionListeners for the interaction with the controller
      */
     public void addActionListener(ActionListener actionListener){
