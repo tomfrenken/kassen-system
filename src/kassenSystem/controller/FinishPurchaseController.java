@@ -71,9 +71,11 @@ public class FinishPurchaseController implements ActionListener, WindowListener 
         } else if (e.getActionCommand().equals("finishPurchase")){
             try {
                 if(this.model.getSubtotal() <= Double.parseDouble(this.finishPurchaseView.moneyField.getText())) {
-                    this.model.finishPurchase();
                     JOptionPane.showMessageDialog(null, "Ihr Rückgeld beträgt " +
                             (Double.parseDouble(this.finishPurchaseView.moneyField.getText()) - this.model.getSubtotal()));
+                    this.model.finishPurchase();
+                    this.sellerView.subtotalValue.setText(Double.toString(this.model.getSubtotal()));
+                    this.hideView();
                 } else {
                     JOptionPane.showMessageDialog(null, "Der Betrag den Sie Zahlen wollen ist zu gering.");
                 }
