@@ -85,12 +85,12 @@ public class PurchaseListTest {
     @Test
     public void purchase2() throws Exception{
         purchaseList.addItem(purchaseList.getProductList().get(9), 1); // Grüne Bohnen Eintopf; 1.59
-        purchaseList.addItem(purchaseList.getProductList().get(5), 4); // Brausepulver Zuckerfrei; 15.96
-        purchaseList.addItem(purchaseList.getProductList().get(8), 1); // Zucker-Ganglien; 45.32
-        assertEquals(71.26, purchaseList.finishPurchase());
-        assertEquals(32, purchaseList.getProductList().get(2).getStock());
-        assertEquals(23, purchaseList.getProductList().get(0).getStock());
-        assertEquals(14, purchaseList.getProductList().get(8).getStock());
+        purchaseList.addItem(purchaseList.getProductList().get(5), 3); // Mehl 405; 2.97
+        purchaseList.addItem(purchaseList.getProductList().get(8), 7); // Apfelsaft Klar; 11.55
+        assertEquals(16.11, purchaseList.finishPurchase());
+        assertEquals(11, purchaseList.getProductList().get(2).getStock());
+        assertEquals(50, purchaseList.getProductList().get(0).getStock());
+        assertEquals(34, purchaseList.getProductList().get(8).getStock());
     }
 
 
