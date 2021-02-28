@@ -115,8 +115,7 @@ public class PurchaseList {
         if (purchaseList.contains(item)) {
             if (item.getProduct().getSpecialStock() == null) {
                 if (item.getAmount() - amount == 0) {
-                    purchaseList.remove(item);
-                    this.subtractSubtotal((item.getAmount()) * item.getProduct().getBasePrice());
+                    this.removeItem(item);
                 } else if (item.getAmount() < amount) {
                     item.setAmount(amount);
                     this.addSubtotal((amount - item.getAmount()) * item.getProduct()
@@ -128,15 +127,32 @@ public class PurchaseList {
                 }
             } else {
                 if (item.getProduct().getWeight() - amount == 0) {
-                    this.subtractSubtotal(item.getAmount() * item.getProduct().getBasePrice());
-                    purchaseList.remove(item);
+                    this.removeItem(item);
                 } else if (item.getAmount() < amount) {
-                    this.addSubtotal((amount - item.getAmount()) * item.getProduct()
-                            .getBasePrice());
+                    switch(item.getProduct().getWeightUnit()) {
+                        case "g":
+                        case "ml":
+                            this.subtractSubtotal((amount - item.getAmount())/100  * item.getProduct().getBasePrice());
+                            break;
+
+                        case "kg":
+                        case "l":
+                        case "stück":
+                            this.subtractSubtotal((amount - item.getAmount()) * item.getProduct().getBasePrice());
+                    }
                     item.setAmount(amount);
                 } else {
-                    this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
-                            .getBasePrice());
+                    switch(item.getProduct().getWeightUnit()) {
+                        case "g":
+                        case "ml":
+                            this.subtractSubtotal((item.getAmount() - amount)/100  * item.getProduct().getBasePrice());
+                            break;
+
+                        case "kg":
+                        case "l":
+                        case "stück":
+                            this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getBasePrice());
+                    }
                     item.setAmount(amount);
                 }
             }
