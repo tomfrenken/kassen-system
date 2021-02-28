@@ -3,6 +3,7 @@ package kassenSystem.test;
 import kassenSystem.model.CategoryList;
 import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
+import kassenSystem.model.PurchaseList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ public class PurchaseListTest {
 
     private final CategoryList categoryList = new CategoryList();
     private final ProductList productList = new ProductList();
+    private final PurchaseList purchaseList = new PurchaseList();
 
     /**
      * Initialize categoryList and productList with entries to perform the test on.
@@ -63,9 +65,9 @@ public class PurchaseListTest {
      * @throws Exception if a constraint regarding the content of an attribute has been violated
      */
     @Test
-    public void addItem() throws Exception {
-        Throwable exceptionForTooBigPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel Kaiser", 91234, 100, 100, "g", 100000.01, "Obst"));
-        Throwable exceptionForTooSmallPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel König", 91235, 100, 100, "g", 0.00, "Obst"));
+    public void purchase1() throws Exception {
+        Throwable exceptionForTooBigAmount = assertThrows(Exception.class, () -> purchaseList.addItem("Apfel Kaiser", 91234, 100, 100, "g", 100000.01, "Obst"));
+        Throwable exceptionForTooSmallAmount = assertThrows(Exception.class, () -> productList.addProduct("Apfel König", 91235, 100, 100, "g", 0.00, "Obst"));
 
         assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForTooBigPrice.getMessage());
         assertEquals("Der Preis muss im Bereich von einschließlich 0.01 bis einschließlich 100000 liegen.", exceptionForTooSmallPrice.getMessage());
