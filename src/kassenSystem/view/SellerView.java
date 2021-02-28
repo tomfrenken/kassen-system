@@ -47,8 +47,12 @@ public class SellerView extends JFrame {
         this.purchaseListModel = purchaseListModel;
         sellerController = new SellerController(this, purchaseListModel);
 
-        searchButton.setActionCommand("searchProduct");
-        searchButton.addActionListener(sellerController);
+        button1.setActionCommand("searchProduct");
+        button1.addActionListener(sellerController);
+
+        button2.setActionCommand("searchProductByName");
+        button2.addActionListener(sellerController);
+
 
         einkaufAbschließenButton.setActionCommand("finishPurchaseView");
     }
