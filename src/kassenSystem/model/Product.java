@@ -504,13 +504,23 @@ public class Product {
      * @return a concatenation of all product attributes as a string
      */
     public String toString() {
+        String s;
         if (this.getSpecialStock() == null) {
-            return String.format("%-13.13d %-20s %-20f %-20d %-20s %-20f€ %-20f %-20s", this.getId(), this.getName(), this.getPrice(),
-                    this.getStock(), this.getCategory(), this.getBasePrice(), this.getWeight(), this.getWeightUnit());
+             s = String.format(
+                     "%1$13.13S %2$32.32S %3$8.8S %4$4.4S %5$32.32S %6$9.9S %7$8.8S %8$5.5S",
+                     Long.toString(this.getId()), this.getName(), Double.toString(this.getPrice()),
+                     Integer.toString(this.getStock()), this.getCategory(),
+                     Double.toString(this.getBasePrice()), Double.toString(this.getWeight()),
+                     this.getWeightUnit());
         } else {
-            return String.format("%-13.13d %-20s %-20f %-20s %-20s %-20f€ %-20f %-20s", this.getId(), this.getName(), this.getPrice(),
-                    this.getSpecialStock(), this.getCategory(), this.getBasePrice(), this.getWeight(), this.getWeightUnit());
+             s = String.format(
+                     "%1$13.13S %2$32.32S %3$8.8S %4$4.4S %5$32.32S %6$9.9S %7$8.8S %8$5.5S",
+                     Long.toString(this.getId()), this.getName(), Double.toString(this.getPrice()),
+                     this.getSpecialStock(), this.getCategory(),
+                     Double.toString(this.getBasePrice()), Double.toString(this.getWeight()),
+                     this.getWeightUnit());
         }
+        return s;
     }
 
     /**
