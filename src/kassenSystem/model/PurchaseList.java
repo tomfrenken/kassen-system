@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * This is the purchaseList.
  */
 public class PurchaseList {
-
     /**
      * The subtotal attribute is the subtotal of prices of all items in the purchaseList.
      * The purchaseList attribute is the purchaseList.
@@ -220,6 +219,14 @@ public class PurchaseList {
      */
     public double getSubtotal() {
         return this.subtotal;
+    }
+
+
+    /**
+     * Sets the subtotal of the purchaseList.
+     */
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
     /**

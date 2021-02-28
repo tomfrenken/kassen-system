@@ -57,7 +57,8 @@ public class PurchaseListTest {
         productList.clear();
         categoryList.clear();
         purchaseList.getPurchaseList().clear();
-    }
+
+        purchaseList.
 
     /**
      * Test if the finishPurchase function works correctly.
