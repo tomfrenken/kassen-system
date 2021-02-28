@@ -2,7 +2,6 @@ package kassenSystem.controller;
 
 import kassenSystem.model.ProductList;
 import kassenSystem.model.PurchaseList;
-import kassenSystem.view.AddProductView;
 import kassenSystem.view.FinishPurchaseView;
 import java.awt.event.ActionListener;
 
