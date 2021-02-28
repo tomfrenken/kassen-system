@@ -100,7 +100,7 @@ public class CategoryList {
     /**
      * Returns the category list.
      *
-     * @return returns the CategoryList
+     * @return the CategoryList
      */
     public ArrayList<String> getCategoryList() {
         return categoryList;
@@ -117,7 +117,7 @@ public class CategoryList {
      * Searches for a category in the category list.
      * The entered String can be a substring of the results or a specific name.
      *
-     * @param search the (sub)string of the search
+     * @param search the (sub)string to search for
      * @return       an array of all categories that contained the (sub)string
      */
     public ArrayList<String> searchCategory(String search) {
@@ -131,7 +131,7 @@ public class CategoryList {
     }
 
     /**
-     * Searches for a specific category in categoryList.
+     * Searches if a specific category is in the categoryList.
      *
      * @param category the category you search for
      * @return         true if the category is in the list, false otherwise

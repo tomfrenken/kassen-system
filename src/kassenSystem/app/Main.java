@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
  * The main application that connects all MVC parts together.
  */
 public class Main extends JFrame implements ActionListener {
+
     ProductList productListModel = new ProductList();
     CategoryList categoryListModel = new CategoryList();
     AdminLogin adminLogin = new AdminLogin();
@@ -40,7 +41,7 @@ public class Main extends JFrame implements ActionListener {
     FinishPurchaseController finishPurchaseController = new FinishPurchaseController(finishPurchaseView, purchaseListModel);
 
     /**
-     * Main is only initialized with the eventlisteners to chain all other MVC parts together
+     * Main is only initialized with the eventlisteners to chain all other MVC parts together.
      */
     Main(){
         loginController.addActionsListeners(this);
@@ -51,8 +52,7 @@ public class Main extends JFrame implements ActionListener {
     }
 
     /**
-     * initializes main and opens the login view
-     * @param args have no purpose
+     * Initializes main and opens the login view.
      */
     public static void main(String[] args) {
         Main main = new Main();
@@ -70,7 +70,8 @@ public class Main extends JFrame implements ActionListener {
     }
 
     /**
-     * Reacts to the press of buttons that should open different views.
+     * Reacts to the press of buttons that open different views.
+     *
      * @param e is the next view to open
      */
     @Override

@@ -271,7 +271,7 @@ public class Product {
      * If it is a PLU it must be 4 or 5 digits long.
      * If it is 5 digits long, the first digit must be a 9
      * For example an EAN looks like this 1234567890123 or this 12345678,
-     * a PLU like this 1234 or 91234.
+     * a PLU like this 1234 or this 91234.
      * Throws Exception if the id does not meet these requirements.
      *
      * @param id         the number used to identify each unique product
@@ -486,9 +486,10 @@ public class Product {
     }
 
     /**
-     * Returns the specialStock, has to be n or N.
+     * Returns the specialStock, has to be n, N or null.
      *
-     * @return the value n or N that indicates that the special case ist activated
+     * @return the value n or N that indicates that the special case is activated,
+     *         null if the special case is not active
      */
     public String getSpecialStock() {
         return this.specialStock;

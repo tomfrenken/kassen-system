@@ -10,36 +10,49 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * The controller to connect the AddProductView and the ProductListModel.
+ */
 public class AddProductController implements ActionListener, WindowListener {
+
     private final AddProductView view;
     private final CategoryList categoryListModel;
     private final ProductList productListModel;
 
 
     /**
-     * The controller is initialized with the categoryListModel and the productListModel, as well as the addProductView
-     * @param view the addProductView
+     * The controller is initialized with the categoryListModel and the productListModel,
+     * as well as the addProductView.
+     *
+     * @param view              the addProductView
+     * @param categoryListModel the categoryListModel
+     * @param productListModel  the productListModel
      */
-    public AddProductController(AddProductView view, CategoryList categoryListModel, ProductList productListModel) {
+    public AddProductController(AddProductView view, CategoryList categoryListModel,
+                                ProductList productListModel) {
         this.view = view;
         this.categoryListModel = categoryListModel;
         this.productListModel = productListModel;
     }
 
     /**
-     * shows the view
+     * Shows the view.
      */
     public void showView(){
         this.view.setVisible(true);
     }
 
     /**
-     * hides the view
+     * Hides the view.
      */
     public void hideView(){
         this.view.setVisible(false);
     }
 
+    /**
+     * Fill the Dropdown menu in changeProductView with all categories,
+     * currently in the categoryList.
+     */
     public void fillCategoryBox() {
         this.view.categoryBox.removeAllItems();
         for(String category : this.categoryListModel.getCategoryList()) {
@@ -49,8 +62,6 @@ public class AddProductController implements ActionListener, WindowListener {
 
     /**
      * Invoked when an action occurs.
-     *
-     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -82,8 +93,6 @@ public class AddProductController implements ActionListener, WindowListener {
 
     /**
      * Invoked the first time a window is made visible.
-     *
-     * @param e
      */
     @Override
     public void windowOpened(WindowEvent e) {
@@ -93,8 +102,6 @@ public class AddProductController implements ActionListener, WindowListener {
     /**
      * Invoked when the user attempts to close the window
      * from the window's system menu.
-     *
-     * @param e
      */
     @Override
     public void windowClosing(WindowEvent e) {
@@ -104,8 +111,6 @@ public class AddProductController implements ActionListener, WindowListener {
     /**
      * Invoked when a window has been closed as the result
      * of calling dispose on the window.
-     *
-     * @param e
      */
     @Override
     public void windowClosed(WindowEvent e) {
@@ -118,7 +123,6 @@ public class AddProductController implements ActionListener, WindowListener {
      * is displayed as the icon specified in the window's
      * iconImage property.
      *
-     * @param e
      * @see Frame#setIconImage
      */
     @Override
@@ -129,8 +133,6 @@ public class AddProductController implements ActionListener, WindowListener {
     /**
      * Invoked when a window is changed from a minimized
      * to a normal state.
-     *
-     * @param e
      */
     @Override
     public void windowDeiconified(WindowEvent e) {
@@ -144,8 +146,6 @@ public class AddProductController implements ActionListener, WindowListener {
      * as a highlighted title bar. The active Window is always either the
      * focused Window, or the first Frame or Dialog that is an owner of the
      * focused Window.
-     *
-     * @param e
      */
     @Override
     public void windowActivated(WindowEvent e) {
@@ -159,8 +159,6 @@ public class AddProductController implements ActionListener, WindowListener {
      * highlighted title bar. The active Window is always either the focused
      * Window, or the first Frame or Dialog that is an owner of the focused
      * Window.
-     *
-     * @param e
      */
     @Override
     public void windowDeactivated(WindowEvent e) {

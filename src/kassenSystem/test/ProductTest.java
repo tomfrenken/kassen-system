@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for the product.
+ */
 public class ProductTest {
 
     private final CategoryList categoryList = new CategoryList();
@@ -19,6 +22,13 @@ public class ProductTest {
     Product apfel8;
     Product apfel13;
 
+    /**
+     * Initialize categoryList and productList with entries to perform the test on.
+     * Initializes single products to perform the test on.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @BeforeEach
     public void setUp() throws Exception {
         categoryList.addCategory("Obst");
@@ -34,12 +44,21 @@ public class ProductTest {
         apfel13 = new Product("Apfel13", 1234567890123L, "N", 100, "l", 1.5 , "Obst");
     }
 
+    /**
+     * Clears categoryList and productList off all test entries.
+     */
     @AfterEach
     public void tearDown() {
         categoryList.clear();
         productList.clear();
     }
 
+    /**
+     * Test if the Product constructor works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void Product() throws Exception {
 
@@ -122,6 +141,12 @@ public class ProductTest {
         assertEquals("Der Grundpreis muss im Bereich von einschließlich 0.01 bis einschließlich 100.000 liegen. Ihr aktueller Grundpreis lautet: 0.0", exceptionForTooSmallBasePrice.getMessage());
     }
 
+    /**
+     * Test if the setName function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void setName() throws Exception {
         // 1.Fall Länge des Namen
@@ -141,6 +166,12 @@ public class ProductTest {
         assertEquals("Der Name muss zwischen 2 und 32 zeichen lang sein  Ihre Eingabe §§§ war fehlerhaft.", exceptionForWrongNameSymbols.getMessage());
     }
 
+    /**
+     * Test if the setId function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void setId() throws Exception {
         // 1.Fall Länge der ID
@@ -159,6 +190,12 @@ public class ProductTest {
         // assertEquals("Die ID muss eines der folgenden Formate erfuellen: 1) 13 Stellen oder 2) 4 Stellen oder 3) 5 Stellen mit führender 9 4) 8 Stellen Ihre Eingabe 81234 war fehlerhaft.", exceptionForFiveAndNotLeadingNine);
     }
 
+    /**
+     * Test if the setStock function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void setStock() throws Exception {
         // Normal Fall
@@ -173,6 +210,12 @@ public class ProductTest {
         assertEquals("Der Spezialfall ist aktiviert. Diese Operation ist nicht möglich.", exceptionForSpecialStockActive.getMessage());
     }
 
+    /**
+     * Test if the setWeight function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void setWeight() throws Exception {
         Throwable exceptionForWeightNotInBoundsSetByWeightUnit = assertThrows(Exception.class, () -> apfel.setWeight(0));
@@ -190,6 +233,12 @@ public class ProductTest {
         assertEquals("Das Gewicht in g muss im Bereich 1 bis 100.000 liegen. Ihre Eingabe 0.0 war fehlerhaft.", exceptionForWeightNotInBoundsSetByWeightUnit.getMessage());
     }
 
+    /**
+     * Test if the setPrice function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void setPrice() throws Exception {
         Throwable exceptionForTooBigPrice = assertThrows(Exception.class, () -> apfel.setPrice(100000.1));
@@ -201,6 +250,12 @@ public class ProductTest {
         assertEquals("Der Preis muss im Bereich zwischen 0.01 und 100.000 liegen. Ihre Eingabe 0.0 war fehlerhaft.", exceptionForTooSmallPrice.getMessage());
     }
 
+    /**
+     * Test if the setBasePrice function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void setBasePrice() throws Exception {
         Throwable exceptionForTooBigBasePrice = assertThrows(Exception.class, () -> apfel8.setBasePrice(100000.1));
@@ -212,6 +267,12 @@ public class ProductTest {
         assertEquals("Der Grundpreis muss zwischen 0.01 und 100.000 liegen.Ihre Eingabe 0.0 war fehlerhaft.", exceptionForTooSmallBasePrice.getMessage());
     }
 
+    /**
+     * Test if the setCategory function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void setCategory() throws Exception {
         Throwable exceptionForNonExistentCategory = assertThrows(Exception.class, () -> apfel.setCategory("O"));
@@ -221,6 +282,9 @@ public class ProductTest {
         assertEquals("Die Kategorie O existiert nicht.", exceptionForNonExistentCategory.getMessage());
     }
 
+    /**
+     * Test if the toString function works correctly.
+     */
     @Test
     public void toStringTest() {
         assertEquals("91234 Apfel 1.5 1000 Obst 1.5€ 100.0g", apfel.toString());

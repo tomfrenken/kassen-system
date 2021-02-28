@@ -2,20 +2,21 @@ package kassenSystem.controller;
 
 import kassenSystem.model.PurchaseList;
 import kassenSystem.view.SellerView;
-
 import java.awt.event.ActionListener;
 
 /**
- * The controller to connect the SellerView and the PurchaseList.
+ * The controller to connect the SellerView and the PurchaseListModel.
  */
 public class SellerController {
+
     private final SellerView view;
     private final PurchaseList model;
 
     /**
-     * The controller is initialized with the view and model.
-     * @param view the SellerView
-     * @param model the PurchaseList
+     * The controller is initialized with the SellerView and PurchaseListModel.
+     *
+     * @param view  the SellerView
+     * @param model the PurchaseListModel
      */
     public SellerController(SellerView view, PurchaseList model){
         this.view = view;
@@ -24,6 +25,7 @@ public class SellerController {
 
     /**
      * The actionlisteners to add to the views for interaction.
+     *
      * @param actionListener generic actionListener
      */
     public void addActionsListeners(ActionListener actionListener){
@@ -31,14 +33,14 @@ public class SellerController {
     }
 
     /**
-     * shows the view
+     * Shows the view.
      */
     public void showView(){
         this.view.setVisible(true);
     }
 
     /**
-     * hides the view
+     * Hides the view.
      */
     public void hideView(){
         this.view.setVisible(false);

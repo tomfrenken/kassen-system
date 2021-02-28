@@ -12,12 +12,15 @@ import java.util.ArrayList;
  * The controller to connect the adminView and the adminModel
  */
 public class AdminController implements ActionListener, MouseListener, WindowListener {
+
     private final AdminView view;
     private final ProductList model;
 
     /**
-     * The Admin controller
-     * @param view the admin view
+     * The controller is initialized with the adminView and the productListModel.
+     *
+     * @param view  the adminView
+     * @param model the productListModel
      */
     public AdminController(AdminView view, ProductList model) {
         this.view = view;
@@ -25,7 +28,8 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     }
 
     /**
-     * The actionlisteners to add to the views for interaction.
+     * The actionListeners to add to the views for interaction.
+     *
      * @param actionListener generic actionListener
      */
     public void addActionsListeners(ActionListener actionListener){
@@ -33,23 +37,34 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     }
 
     /**
-     * shows the view
+     * Shows the view.
      */
     public void showView(){
         this.view.setVisible(true);
     }
 
     /**
-     * hides the view
+     * Hides the view.
      */
     public void hideView(){
         this.view.setVisible(false);
     }
 
+    /**
+     * Searches the productList for a product with this name or id.
+     * The search phrase can be a specific name or id of the results or it can be part of one.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of product with the same name or id regarding what was searched
+     *                     for, or where the search phrase is part of
+     */
     public ArrayList<Product> searchProduct(String searchPhrase) {
         return this.model.searchProduct(searchPhrase);
     }
 
+    /**
+     * Refreshes the searchList.
+     */
     public void refreshSearchList() {
         this.view.searchField.setText("");
         this.view.searchButton.doClick();
@@ -57,8 +72,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
 
     /**
      * Invoked when an action occurs.
-     *
-     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -85,8 +98,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     /**
      * Invoked when the mouse button has been clicked (pressed
      * and released) on a component.
-     *
-     * @param e
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -121,8 +132,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
 
     /**
      * Invoked when a mouse button has been pressed on a component.
-     *
-     * @param e
      */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -131,8 +140,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
 
     /**
      * Invoked when a mouse button has been released on a component.
-     *
-     * @param e
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -141,8 +148,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
 
     /**
      * Invoked when the mouse enters a component.
-     *
-     * @param e
      */
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -151,8 +156,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
 
     /**
      * Invoked when the mouse exits a component.
-     *
-     * @param e
      */
     @Override
     public void mouseExited(MouseEvent e) {
@@ -161,8 +164,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
 
     /**
      * Invoked the first time a window is made visible.
-     *
-     * @param e
      */
     @Override
     public void windowOpened(WindowEvent e) {
@@ -172,8 +173,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     /**
      * Invoked when the user attempts to close the window
      * from the window's system menu.
-     *
-     * @param e
      */
     @Override
     public void windowClosing(WindowEvent e) {
@@ -183,8 +182,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     /**
      * Invoked when a window has been closed as the result
      * of calling dispose on the window.
-     *
-     * @param e
      */
     @Override
     public void windowClosed(WindowEvent e) {
@@ -197,7 +194,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
      * is displayed as the icon specified in the window's
      * iconImage property.
      *
-     * @param e
      * @see Frame#setIconImage
      */
     @Override
@@ -208,8 +204,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
     /**
      * Invoked when a window is changed from a minimized
      * to a normal state.
-     *
-     * @param e
      */
     @Override
     public void windowDeiconified(WindowEvent e) {
@@ -223,8 +217,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
      * as a highlighted title bar. The active Window is always either the
      * focused Window, or the first Frame or Dialog that is an owner of the
      * focused Window.
-     *
-     * @param e
      */
     @Override
     public void windowActivated(WindowEvent e) {
@@ -238,8 +230,6 @@ public class AdminController implements ActionListener, MouseListener, WindowLis
      * highlighted title bar. The active Window is always either the focused
      * Window, or the first Frame or Dialog that is an owner of the focused
      * Window.
-     *
-     * @param e
      */
     @Override
     public void windowDeactivated(WindowEvent e) {

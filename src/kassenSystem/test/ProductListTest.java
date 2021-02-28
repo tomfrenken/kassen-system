@@ -10,12 +10,20 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * Test for the productList.
+ */
 public class ProductListTest {
 
     private final CategoryList categoryList = new CategoryList();
     private final ProductList productList = new ProductList();
 
+    /**
+     * Initialize categoryList and productList with entries to perform the test on.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @BeforeEach
     public void setUp() throws Exception {
         categoryList.addCategory("Süßwaren");
@@ -38,12 +46,21 @@ public class ProductListTest {
         productList.addProduct("Grüne Bohnen Eintopf", 12744532, 12, 0.4, "kg", 1.59, "Konserven");
     }
 
+    /**
+     * Clears categoryList and productList off all test entries.
+     */
     @AfterEach
     public void tearDown(){
         productList.clear();
         categoryList.clear();
     }
 
+    /**
+     * Test if the addProduct function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void addProduct() throws Exception {
         Throwable exceptionForTooBigPrice = assertThrows(Exception.class, () -> productList.addProduct("Apfel Kaiser", 91234, 100, 100, "g", 100000.01, "Obst"));
@@ -57,6 +74,9 @@ public class ProductListTest {
         assertTrue(0.01 <= productList.getProduct(11).getPrice() && productList.getProduct(11).getPrice() <= 100000);
     }
 
+    /**
+     * Test if the productList only accepts products with unique id's.
+     */
     @Test
     public void createUniqueEan() {
         Throwable exceptionForThirteenNumbersLongEan = assertThrows(Exception.class, () -> productList.addProduct("Mehl 406", 8597618758423L, 20, 2, "kg", 4.99, "Backwaren"));
@@ -70,6 +90,12 @@ public class ProductListTest {
         assertEquals("Die Produkt-ID 4532 wird bereits verwendet.", exceptionForFourNumbersLongEan.getMessage());
     }
 
+    /**
+     * Test if the searchByName function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void searchByName() throws Exception {
         ArrayList<Product> testList = new ArrayList<>();
@@ -78,6 +104,12 @@ public class ProductListTest {
         assertEquals(productList.searchProduct("Zucker"), testList);
     }
 
+    /**
+     * Test if the searchById function works correctly.
+     * Throws Exception if a constraint regarding the content of an attribute has been violated.
+     *
+     * @throws Exception if a constraint regarding the content of an attribute has been violated
+     */
     @Test
     public void searchById() throws Exception {
         ArrayList<Product> testList = new ArrayList<>();

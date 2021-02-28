@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 /**
- * The view which the seller uses to sell the goods
+ * The view which the seller uses to sell the goods.
  */
 public class SellerView extends JFrame {
+
     private JList list;
     private JScrollPane scroll;
     private JTextField suchfeldEingabeTextField;
@@ -25,6 +26,11 @@ public class SellerView extends JFrame {
     private JPanel jp;
     private JButton button1;
 
+    /**
+     * The view is constructed only with a name.
+     *
+     * @param name the name of the view
+     */
     public SellerView(String name) {
         super(name);
         add(jp);
@@ -33,7 +39,8 @@ public class SellerView extends JFrame {
     }
 
     /**
-     * The actionListeners to interact with the controller
+     * The actionListeners to interact with the controller.
+     *
      * @param actionListener adds actionListeners for the interaction with the controller
      */
     public void addActionListener(ActionListener actionListener){

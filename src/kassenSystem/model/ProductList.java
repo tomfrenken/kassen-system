@@ -27,7 +27,7 @@ public class ProductList extends AbstractTableModel {
 
     /**
      * Adds a new product to the productList.
-     * The parameters name, id, stock, weight and basePrice are entered by the user.
+     * The parameters name, id, stock, weight and Price are entered by the user.
      * The weightUnit and category are selected from a dropdown menu.
      * The category will be supplied by the category list and will not be entered separately.
      * Throws Exception if the product id is already used by a product in the list.
@@ -37,7 +37,7 @@ public class ProductList extends AbstractTableModel {
      * @param stock      the amount of units of the new product
      * @param weight     the weight of the product
      * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
-     * @param price      the base price of the product
+     * @param price      the price of the product
      * @param category   the category the product will be assigned to
      * @throws Exception if the product id is already used by a product in the list
      */
@@ -68,7 +68,8 @@ public class ProductList extends AbstractTableModel {
      *
      * @param name         the name of the new product
      * @param id           the identification number of the new product
-     * @param specialStock the amount of units of the new product
+     * @param specialStock The special case where a product can not be counted,
+     *                     has to be either n or N
      * @param weight       the weight of the product
      * @param weightUnit   the unit of the given weight e.g. g,kg,ml,l,stück
      * @param basePrice    the base price of the product
@@ -308,7 +309,7 @@ public class ProductList extends AbstractTableModel {
      *
      * @param id the id of a product
      * @return   a list of products with the same id as the search phrase,
-     *           or where the given search phrase is part of the name
+     *           or where the given search phrase is part of the id
      */
     public ArrayList<Product> searchProductById(Long id) {
         ArrayList<Product> result = new ArrayList<>();
@@ -322,11 +323,11 @@ public class ProductList extends AbstractTableModel {
 
     /**
      * Searches the productList for a product with this name or id.
-     * The search phrase can be a specific name or id of the results or it can be part of one.
+     * The search phrase can be a specific name or id of the results or it can be part of them.
      *
      * @param searchPhrase the search phrase that is looked for in the productList
      * @return             a list of product with the same name or id regarding what was searched
-     *                     for, or where the search phrase is part of
+     *                     for, or where the search phrase is part of the name or id
      */
     public ArrayList<Product> searchProduct(String searchPhrase) {
         ArrayList<Product> productList;
@@ -348,7 +349,7 @@ public class ProductList extends AbstractTableModel {
      * @param stock      the amount of units of the new product
      * @param weight     the weight of the new product
      * @param weightUnit the unit of the given weight e.g. g,kg,ml,l,stück
-     * @param price      the base price of the new product
+     * @param price      the price of the new product
      * @param category   the category the new product will be assigned to
      * @throws Exception if a parameter violates the restrictions set in the addProduct function
      */
@@ -373,7 +374,8 @@ public class ProductList extends AbstractTableModel {
      * @param index        the index of the product that shall be changed
      * @param name         the name of the new product
      * @param id           the identification number of the new product
-     * @param specialStock the amount of units of the new product
+     * @param specialStock The special case where a product can not be counted,
+     *                     has to be either n or N
      * @param weight       the weight of the new product
      * @param weightUnit   the unit of the given weight e.g. g,kg,ml,l,stück
      * @param basePrice    the base price of the new product

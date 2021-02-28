@@ -6,46 +6,61 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The controller to connect the AdminLoginView and the AdminLoginModel.
+ */
 public class AdminLoginController implements ActionListener {
+
     private final AdminLoginView view;
     private final AdminLogin model;
 
     /**
-     * The controller is initialized with the view and model.
-     * @param view the adminView
-     * @param model the adminModel
+     * The controller is initialized with the adminLoginView and adminLoginModel.
+     *
+     * @param view  the adminLoginView
+     * @param model the adminLoginModel
      */
     public AdminLoginController(AdminLoginView view, AdminLogin model) {
         this.view = view;
         this.model = model;
     }
 
+    /**
+     * Checks if the entered password is correct.
+     * Throws Exception if a wrong password was entered.
+     *
+     * @param password   the password that is being checked
+     * @throws Exception if the password was wrong
+     */
     public void verifyLogin(String password) throws Exception {
         model.checkPassword(password);
     }
 
     /**
-     * shows the view
+     * Shows the view.
      */
     public void showView(){
         this.view.setVisible(true);
     }
 
     /**
-     * hides the view
+     * Hides the view.
      */
     public void hideView(){
         this.view.setVisible(false);
     }
 
+    /**
+     * The actionListeners to add to the views for interaction.
+     *
+     * @param actionListener generic actionListener
+     */
     public void addActionsListeners(ActionListener actionListener){
         this.view.addActionListener(actionListener);
     }
 
     /**
      * Invoked when an action occurs.
-     *
-     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {

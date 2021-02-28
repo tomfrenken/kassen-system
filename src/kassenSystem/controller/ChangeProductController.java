@@ -5,7 +5,6 @@ import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.view.AdminView;
 import kassenSystem.view.ChangeProductView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,20 +13,26 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 /**
- * The controller to connect the ChangeProductView and the ProductList.
+ * The controller to connect the ChangeProductView and the ProductListModel.
  */
 public class ChangeProductController implements ActionListener, WindowListener {
+
     private final AdminView adminView;
     private final ChangeProductView changeProductView;
     private final CategoryList categoryListModel;
     private final ProductList productListModel;
 
     /**
-     * The controller is initialized with the view and model.
-     * @param changeProductView ChangeProductView
-     * @param categoryListModel ProductList
+     * The controller is initialized with the changeProductView,adminView,
+     * categoryListModel and productListModel.
+     *
+     * @param changeProductView the changeProductView
+     * @param adminView         the adminView
+     * @param categoryListModel the categoryListModel
+     * @param productListModel  the productListModel
      */
-    public ChangeProductController(ChangeProductView changeProductView, AdminView adminView, CategoryList categoryListModel, ProductList productListModel) {
+    public ChangeProductController(ChangeProductView changeProductView, AdminView adminView,
+                                   CategoryList categoryListModel, ProductList productListModel) {
         this.changeProductView = changeProductView;
         this.adminView = adminView;
         this.categoryListModel = categoryListModel;
@@ -35,7 +40,8 @@ public class ChangeProductController implements ActionListener, WindowListener {
     }
 
     /**
-     * the actionlisteners to add to the views for interaction.
+     * The actionlisteners to add to the views for interaction.
+     *
      * @param actionListener generic actionListener
      */
     public void addActionsListeners(ActionListener actionListener){
@@ -43,19 +49,23 @@ public class ChangeProductController implements ActionListener, WindowListener {
     }
 
     /**
-     * shows the view
+     * Shows the view.
      */
     public void showView(){
         this.changeProductView.setVisible(true);
     }
 
     /**
-     * hides the view
+     * Hides the view.
      */
     public void hideView(){
         this.changeProductView.setVisible(false);
     }
 
+    /**
+     * Fill the Dropdown menu in changeProductView with all categories,
+     * currently in the categoryList.
+     */
     public void fillCategoryBox() {
         this.changeProductView.categoryBox.removeAllItems();
         for(String category : this.categoryListModel.getCategoryList()) {
@@ -63,24 +73,35 @@ public class ChangeProductController implements ActionListener, WindowListener {
         }
     }
 
+    /**
+     * Fill all fields in changeProductView with the values belonging to each field,
+     * currently used by that product corresponding attributes.
+     */
     public void fillAllFields() {
         if (this.adminView.productListTable.getSelectedRow() == -1) {
             Product selectedProduct = (Product) this.adminView.searchList.getSelectedValue();
             if (selectedProduct.getSpecialStock() == null) {
                 this.changeProductView.nameField.setText(selectedProduct.getName());
                 this.changeProductView.idField.setText(Long.toString(selectedProduct.getId()));
-                this.changeProductView.stockField.setText(Integer.toString(selectedProduct.getStock()));
-                this.changeProductView.weightField.setText(Double.toString(selectedProduct.getWeight()));
-                this.changeProductView.weightUnitBox.setSelectedItem(selectedProduct.getWeightUnit());
-                this.changeProductView.priceField.setText(Double.toString(selectedProduct.getPrice()));
+                this.changeProductView.stockField.setText(
+                        Integer.toString(selectedProduct.getStock()));
+                this.changeProductView.weightField.setText(
+                        Double.toString(selectedProduct.getWeight()));
+                this.changeProductView.weightUnitBox.setSelectedItem(
+                        selectedProduct.getWeightUnit());
+                this.changeProductView.priceField.setText(Double.toString(
+                        selectedProduct.getPrice()));
                 this.changeProductView.categoryBox.setSelectedItem(selectedProduct.getCategory());
             } else {
                 this.changeProductView.nameField.setText(selectedProduct.getName());
                 this.changeProductView.idField.setText(Long.toString(selectedProduct.getId()));
                 this.changeProductView.stockField.setText(selectedProduct.getSpecialStock());
-                this.changeProductView.weightField.setText(Double.toString(selectedProduct.getWeight()));
-                this.changeProductView.weightUnitBox.setSelectedItem(selectedProduct.getWeightUnit());
-                this.changeProductView.priceField.setText(Double.toString(selectedProduct.getBasePrice()));
+                this.changeProductView.weightField.setText(Double.toString(
+                        selectedProduct.getWeight()));
+                this.changeProductView.weightUnitBox.setSelectedItem(
+                        selectedProduct.getWeightUnit());
+                this.changeProductView.priceField.setText(Double.toString(
+                        selectedProduct.getBasePrice()));
                 this.changeProductView.categoryBox.setSelectedItem(selectedProduct.getCategory());
             }
         } else {
@@ -89,18 +110,25 @@ public class ChangeProductController implements ActionListener, WindowListener {
             if (selectedProduct.getSpecialStock() == null) {
                 this.changeProductView.nameField.setText(selectedProduct.getName());
                 this.changeProductView.idField.setText(Long.toString(selectedProduct.getId()));
-                this.changeProductView.stockField.setText(Integer.toString(selectedProduct.getStock()));
-                this.changeProductView.weightField.setText(Double.toString(selectedProduct.getWeight()));
-                this.changeProductView.weightUnitBox.setSelectedItem(selectedProduct.getWeightUnit());
-                this.changeProductView.priceField.setText(Double.toString(selectedProduct.getPrice()));
+                this.changeProductView.stockField.setText(Integer.toString(
+                        selectedProduct.getStock()));
+                this.changeProductView.weightField.setText(Double.toString(
+                        selectedProduct.getWeight()));
+                this.changeProductView.weightUnitBox.setSelectedItem(
+                        selectedProduct.getWeightUnit());
+                this.changeProductView.priceField.setText(Double.toString(
+                        selectedProduct.getPrice()));
                 this.changeProductView.categoryBox.setSelectedItem(selectedProduct.getCategory());
             } else {
                 this.changeProductView.nameField.setText(selectedProduct.getName());
                 this.changeProductView.idField.setText(Long.toString(selectedProduct.getId()));
                 this.changeProductView.stockField.setText(selectedProduct.getSpecialStock());
-                this.changeProductView.weightField.setText(Double.toString(selectedProduct.getWeight()));
-                this.changeProductView.weightUnitBox.setSelectedItem(selectedProduct.getWeightUnit());
-                this.changeProductView.priceField.setText(Double.toString(selectedProduct.getBasePrice()));
+                this.changeProductView.weightField.setText(Double.toString(
+                        selectedProduct.getWeight()));
+                this.changeProductView.weightUnitBox.setSelectedItem(
+                        selectedProduct.getWeightUnit());
+                this.changeProductView.priceField.setText(Double.toString(
+                        selectedProduct.getBasePrice()));
                 this.changeProductView.categoryBox.setSelectedItem(selectedProduct.getCategory());
             }
         }
@@ -108,8 +136,6 @@ public class ChangeProductController implements ActionListener, WindowListener {
 
     /**
      * Invoked when an action occurs.
-     *
-     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -169,8 +195,6 @@ public class ChangeProductController implements ActionListener, WindowListener {
 
     /**
      * Invoked the first time a window is made visible.
-     *
-     * @param e
      */
     @Override
     public void windowOpened(WindowEvent e) {
@@ -178,10 +202,7 @@ public class ChangeProductController implements ActionListener, WindowListener {
     }
 
     /**
-     * Invoked when the user attempts to close the window
-     * from the window's system menu.
-     *
-     * @param e
+     * Invoked when the user attempts to close the window from the window's system menu.
      */
     @Override
     public void windowClosing(WindowEvent e) {
@@ -189,10 +210,7 @@ public class ChangeProductController implements ActionListener, WindowListener {
     }
 
     /**
-     * Invoked when a window has been closed as the result
-     * of calling dispose on the window.
-     *
-     * @param e
+     * Invoked when a window has been closed as the result of calling dispose on the window.
      */
     @Override
     public void windowClosed(WindowEvent e) {
@@ -205,8 +223,7 @@ public class ChangeProductController implements ActionListener, WindowListener {
      * is displayed as the icon specified in the window's
      * iconImage property.
      *
-     * @param e
-     * @see Frame#setIconImage
+     * @see     Frame#setIconImage
      */
     @Override
     public void windowIconified(WindowEvent e) {
@@ -216,8 +233,6 @@ public class ChangeProductController implements ActionListener, WindowListener {
     /**
      * Invoked when a window is changed from a minimized
      * to a normal state.
-     *
-     * @param e
      */
     @Override
     public void windowDeiconified(WindowEvent e) {
@@ -231,8 +246,6 @@ public class ChangeProductController implements ActionListener, WindowListener {
      * as a highlighted title bar. The active Window is always either the
      * focused Window, or the first Frame or Dialog that is an owner of the
      * focused Window.
-     *
-     * @param e
      */
     @Override
     public void windowActivated(WindowEvent e) {
@@ -240,7 +253,8 @@ public class ChangeProductController implements ActionListener, WindowListener {
             this.fillCategoryBox();
             this.fillAllFields();
         } catch (Exception exception) {
-            JOptionPane.showMessageDialog(null, "Es wurde kein Produkt ausgewählt");
+            JOptionPane.showMessageDialog(
+                    null, "Es wurde kein Produkt ausgewählt");
             this.hideView();
         }
     }
@@ -252,8 +266,6 @@ public class ChangeProductController implements ActionListener, WindowListener {
      * highlighted title bar. The active Window is always either the focused
      * Window, or the first Frame or Dialog that is an owner of the focused
      * Window.
-     *
-     * @param e
      */
     @Override
     public void windowDeactivated(WindowEvent e) {
