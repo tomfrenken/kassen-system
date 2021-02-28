@@ -1,9 +1,13 @@
 package kassenSystem.controller;
 
+import jdk.nashorn.internal.scripts.JO;
+import kassenSystem.model.Item;
 import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.model.PurchaseList;
 import kassenSystem.view.SellerView;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -79,6 +83,33 @@ public class SellerController implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        switch(e.getActionCommand()) {
+            case "searchProduct":
+                this.view.searchProductList.setListData(this.model.searchProduct(this.view.searchProductField.getText()).toArray());
+                break;
+            case "customerSearch":
+                this.view.customerSearchList.setListData(this.model.searchProductByName(this.view.customerSearchField.getText()).toArray());
+                break;
+            case "addItem":
+                try{
+                    Integer.parseInt(this.view.amountField.getText());
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(null, "Trage die Anzahl des Produkts ein!");
+                    break;
+                }
+                if(this.view.searchProductList.getSelectedValue() == null){
+                    JOptionPane.showMessageDialog(null, "Wähle eine Produkt aus!");
+                    break;
+                } else {
+                    try {
+                        this.model.addItem((Product) this.view.searchProductList.getSelectedValue(), Integer.parseInt(this.view.amountField.getText()));
+                        this.view.purchaseList.setListData(this.model.getPurchaseList().toArray());
+                        break;
+                    } catch (Exception exception) {
+                        JOptionPane.showMessageDialog(null, exception.getMessage());
+                        break;
+                    }
+                }
+        }
     }
 }
