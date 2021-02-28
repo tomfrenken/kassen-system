@@ -29,7 +29,7 @@ public class SellerView extends JFrame {
     private JButton cancelItemButton;
     private JButton changeAmountButton;
     private JPanel jp;
-    private JButton searchProductButton;
+    public JButton searchProductButton;
     private JButton customerSearchButton;
     public JTextField changeAmountField;
     public JLabel subtotalValue;

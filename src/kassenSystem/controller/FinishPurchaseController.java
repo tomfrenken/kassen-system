@@ -75,6 +75,7 @@ public class FinishPurchaseController implements ActionListener, WindowListener 
                             (Double.parseDouble(this.finishPurchaseView.moneyField.getText()) - this.model.getSubtotal()));
                     this.model.finishPurchase();
                     this.sellerView.subtotalValue.setText(Double.toString(this.model.getSubtotal()));
+                    this.sellerView.searchProductButton.doClick();
                     this.hideView();
                 } else {
                     JOptionPane.showMessageDialog(null, "Der Betrag den Sie Zahlen wollen ist zu gering.");
