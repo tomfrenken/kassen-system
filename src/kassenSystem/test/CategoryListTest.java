@@ -1,13 +1,15 @@
 package kassenSystem.test;
 
 import kassenSystem.model.CategoryList;
+import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for the categoryList.
@@ -55,11 +57,88 @@ public class CategoryListTest {
     }
 
     /**
-     * Test if the removeCategory function works correctly.
+     * Test if the addCategory function works correctly.
+     * Throws Exception if the category is shorter then 3 or longer then 32 symbols,
+     * or contains a number, or punctuation symbol.
+     *
+     * @throws Exception if the category is shorter then 3 or longer then 32 symbols,
+     *                   or contains a number, or punctuation symbol
      */
     @Test
-    public void removeCategory() {
-        Throwable exception = assertThrows(Exception.class, () -> categoryList.removeCategory("Süßwaren"));
-        assertEquals("Die Kategorie Süßwaren ist nicht leer, bitte leeren sie zuerst die Kategorie.", exception.getMessage());
+    public void addCategory() throws Exception {
+        Throwable exceptionForNotUniqueName = assertThrows(Exception.class, () -> categoryList.addCategory("Obst"));
+        Throwable exceptionForTooShortName = assertThrows(Exception.class, () -> categoryList.addCategory("O"));
+        Throwable exceptionForTooLongName = assertThrows(Exception.class, () -> categoryList.addCategory("ooooooooooooooooooooooooooooooooo"));
+        Throwable exceptionForIllegalSymbol = assertThrows(Exception.class, () -> categoryList.addCategory("Obst1"));
+
+        categoryList.addCategory("Elektronik");
+        assertEquals("Elektronik", categoryList.getCategoryList().get(2));
+        assertEquals("Der Name der Kategorie muss einzigartig sein, darf keine Zahlen und sonderzeichen enthalten, und muss zwischen 3 und 32 Zeichen liegen. Ihre eingabe Obst war fehlerhaft.", exceptionForNotUniqueName.getMessage());
+        assertEquals("Der Name der Kategorie muss einzigartig sein, darf keine Zahlen und sonderzeichen enthalten, und muss zwischen 3 und 32 Zeichen liegen. Ihre eingabe O war fehlerhaft.", exceptionForTooShortName.getMessage());
+        assertEquals("Der Name der Kategorie muss einzigartig sein, darf keine Zahlen und sonderzeichen enthalten, und muss zwischen 3 und 32 Zeichen liegen. Ihre eingabe ooooooooooooooooooooooooooooooooo war fehlerhaft.", exceptionForTooLongName.getMessage());
+        assertEquals("Der Name der Kategorie muss einzigartig sein, darf keine Zahlen und sonderzeichen enthalten, und muss zwischen 3 und 32 Zeichen liegen. Ihre eingabe Obst1 war fehlerhaft.", exceptionForIllegalSymbol.getMessage());
+    }
+
+    /**
+     * Test if the removeCategory function works correctly.
+     * Throws Exception if the category that is being removed is still used by any product
+     * in the productList.
+     *
+     * @throws Exception if the category that is being removed is still used by any product
+     *                   in the productList
+     */
+    @Test
+    public void removeCategory() throws Exception {
+        Throwable exceptionForCategoryUsed = assertThrows(Exception.class, () -> categoryList.removeCategory("Süßwaren"));
+
+        categoryList.addCategory("Test");
+        categoryList.removeCategory("Test");
+        assertEquals(8,categoryList.getCategoryList().size());
+        assertEquals("Die Kategorie Süßwaren ist nicht leer, bitte leeren sie zuerst die Kategorie.", exceptionForCategoryUsed.getMessage());
+    }
+
+    /**
+     * Test if the changeCategory function works correctly.
+     * Throws Exception if the category name does not meet the requirements set by the
+     * addCategory function.
+     *
+     * @throws Exception if the category name does not meet the requirements set by the
+     *                   addCategory function
+     */
+    @Test
+    public void changeCategory() throws Exception {
+        categoryList.changeCategory("Aufstrich","Aufbau");
+        assertEquals("Aufbau", categoryList.getCategoryList().get(0));
+        assertEquals("Aufbau", productList.getProductList().get(8).getCategory());
+    }
+
+    /**
+     * Test if the clear function works correctly.
+     */
+    @Test
+    public void clear() {
+        categoryList.clear();
+        assertEquals(0, categoryList.getCategoryList().size());
+    }
+
+    /**
+     * Test if the searchCategory function works correctly.
+     */
+    @Test
+    public void searchCategory() {
+        ArrayList<String> testList = new ArrayList<>();
+        testList.add("Gemüse");
+        testList.add("Getränke");
+        testList.add("Gewürze");
+        assertEquals(categoryList.searchCategory("Ge"), testList);
+    }
+
+    /**
+     * Test if the categoryInList function works correctly.
+     */
+    @Test
+    public void categoryInList() {
+        assertTrue(categoryList.categoryInList("Gemüse"));
+        assertFalse(categoryList.categoryInList("Tee"));
     }
 }

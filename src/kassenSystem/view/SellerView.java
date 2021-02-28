@@ -36,9 +36,10 @@ public class SellerView extends JFrame {
     public SellerController sellerController;
 
     /**
-     * The view is constructed only with a name.
+     * The view is constructed with a name and the purchaseListModel.
      *
      * @param name the name of the view
+     * @param purchaseListModel the purchaseListModel
      */
     public SellerView(String name, PurchaseList purchaseListModel) {
         super(name);

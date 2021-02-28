@@ -76,8 +76,6 @@ public class SellerController implements ActionListener {
 
     /**
      * Invoked when an action occurs.
-     *
-     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {
