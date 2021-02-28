@@ -174,6 +174,7 @@ public class PurchaseList {
      */
     public void cancelPurchase() {
         this.purchaseList.clear();
+        this.setSubtotal(0);
     }
 
     /**
@@ -208,8 +209,9 @@ public class PurchaseList {
                 }
             }
         }
-        this.purchaseList.clear();
-        return getSubtotal();
+        double total = this.getSubtotal();
+        this.cancelPurchase();
+        return total;
     }
 
     /**

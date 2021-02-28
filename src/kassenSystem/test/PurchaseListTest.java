@@ -56,8 +56,7 @@ public class PurchaseListTest {
     public void tearDown(){
         productList.clear();
         categoryList.clear();
-        purchaseList.getPurchaseList().clear();
-        purchaseList.setSubtotal(0);
+        purchaseList.cancelPurchase();
     }
 
     /**
@@ -88,10 +87,8 @@ public class PurchaseListTest {
         purchaseList.addItem(purchaseList.searchProductById((long) 12744532).get(0), 1); // Grüne Bohnen Eintopf; 1.59
         purchaseList.addItem(purchaseList.searchProductById(8597618758423L).get(0), 3); // Mehl 405; 2.97
         purchaseList.addItem(purchaseList.searchProductById((long) 32135947).get(0), 7); // Apfelsaft Klar; 11.55
-        assertEquals(16.11, purchaseList.finishPurchase());
-        assertEquals(11, purchaseList.searchProductById((long)12744532).get(0).getStock());
-        assertEquals(50, purchaseList.searchProductById(8597618758423L).get(0).getStock());
-        assertEquals(34, purchaseList.searchProductById((long)32135947).get(0).getStock());
+        purchaseList.cancelPurchase();
+        assertEquals(0, purchaseList.getPurchaseList().size());
     }
 
 
