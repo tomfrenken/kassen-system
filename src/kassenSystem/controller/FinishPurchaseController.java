@@ -66,11 +66,11 @@ public class FinishPurchaseController implements ActionListener, WindowListener 
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("cancelPurchase")){
             this.model.cancelPurchase();
-            this.sellerView.purchaseList.setListData(this.model.getProductList().toArray());
+            this.sellerView.purchaseList.setListData(this.model.getPurchaseList().toArray());
             this.hideView();
         } else if (e.getActionCommand().equals("finishPurchase")){
             try {
-                if(this.model.getSubtotal() < Double.parseDouble(this.finishPurchaseView.moneyField.getText())) {
+                if(this.model.getSubtotal() <= Double.parseDouble(this.finishPurchaseView.moneyField.getText())) {
                     this.model.finishPurchase();
                     JOptionPane.showMessageDialog(null, "Ihr Rückgeld beträgt " +
                             (Double.parseDouble(this.finishPurchaseView.moneyField.getText()) - this.model.getSubtotal()));

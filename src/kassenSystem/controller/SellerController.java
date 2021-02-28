@@ -85,10 +85,10 @@ public class SellerController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case "searchProduct":
-                this.view.searchProductList.setListData(this.model.searchProduct(this.view.searchProductField.getText()).toArray());
+                this.view.searchProductList.setListData(this.searchProduct(this.view.searchProductField.getText()).toArray());
                 break;
             case "customerSearch":
-                this.view.customerSearchList.setListData(this.model.searchProductByName(this.view.customerSearchField.getText()).toArray());
+                this.view.customerSearchList.setListData(this.searchProductByName(this.view.customerSearchField.getText()).toArray());
                 break;
             case "addItem":
                 try{

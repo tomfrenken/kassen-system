@@ -67,7 +67,7 @@ public class Main extends JFrame implements ActionListener {
         main.categoryListView.addWindowListener(main.categoryListController);
         main.categoryListView.addWindowListener(main.adminController);
         main.changeCategoryView.addWindowListener(main.changeCategoryController);
-
+        main.finishPurchaseView.addWindowListener(main.finishPurchaseController);
         main.loginController.showView();
     }
 
