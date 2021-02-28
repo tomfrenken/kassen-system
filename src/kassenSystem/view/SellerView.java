@@ -13,33 +13,32 @@ import java.awt.event.ActionListener;
  */
 public class SellerView extends JFrame {
 
-    private JList<Item> purchaseList;
+    public JList<Object> purchaseList;
     private JScrollPane scroll;
     public JTextField searchProductField;
     private JButton addItemButton;
-    public JList<Product> searchProductList;
+    public JList<Object> searchProductList;
     private JScrollPane scroll2;
-    private JTextField amountField;
-    private JTextField customerSearchField;
-    private JList<Item> customerSearchList;
+    public JTextField amountField;
+    public JTextField customerSearchField;
+    public JList<Object> customerSearchList;
     private JScrollPane scroll3;
     private JButton cancelPurchaseButton;
     private JButton finishPurchaseButton;
-    private JPanel zwischensumme;
+    private JPanel sbTotal;
     private JButton cancelItemButton;
     private JButton changeAmountButton;
     private JPanel jp;
     private JButton searchProductButton;
     private JButton customerSearchButton;
-    private JTextField changeAmountField;
-    private JLabel subtotal;
+    public JTextField changeAmountField;
+    private JLabel subtotalValue;
     public SellerController sellerController;
 
     /**
      * The view is constructed with a name and the purchaseListModel.
      *
      * @param name the name of the view
-     * @param purchaseListModel the purchaseListModel
      */
     public SellerView(String name) {
         super(name);
@@ -58,12 +57,15 @@ public class SellerView extends JFrame {
         searchProductButton.setActionCommand("searchProduct");
         searchProductButton.addActionListener(sellerController);
 
+        addItemButton.setActionCommand("addItem");
+        addItemButton.addActionListener(sellerController);
 
         customerSearchButton.setActionCommand("customerSearch");
         customerSearchButton.addActionListener(sellerController);
 
 
         finishPurchaseButton.setActionCommand("finishPurchaseView");
+        subtotalValue.setText("00,00€");
     }
 
     /**
