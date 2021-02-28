@@ -31,6 +31,8 @@ public class SellerView extends JFrame {
     private JButton anpassenButton;
     private JPanel jp;
     private JButton button1;
+    private JButton button2;
+    public SellerController sellerController;
 
     /**
      * The view is constructed only with a name.
@@ -44,6 +46,9 @@ public class SellerView extends JFrame {
 
         this.purchaseListModel = purchaseListModel;
         sellerController = new SellerController(this, purchaseListModel);
+
+        searchButton.setActionCommand("searchProduct");
+        searchButton.addActionListener(sellerController);
 
         einkaufAbschließenButton.setActionCommand("finishPurchaseView");
     }

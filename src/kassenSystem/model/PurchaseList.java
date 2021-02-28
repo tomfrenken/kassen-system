@@ -257,4 +257,40 @@ public class PurchaseList {
         }
         return result;
     }
+
+    /**
+     * Searches the productList for a product with this id.
+     * The entered search phrase can be a partial id of the results or a specific id.
+     *
+     * @param id the id of a product
+     * @return   a list of products with the same id as the search phrase,
+     *           or where the given search phrase is part of the id
+     */
+    public ArrayList<Product> searchProductById(Long id) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Product product : getProductList()) {
+            if(Long.toString(product.getId()).contains(Long.toString(id))) {
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Searches the productList for a product with this name or id.
+     * The search phrase can be a specific name or id of the results or it can be part of them.
+     *
+     * @param searchPhrase the search phrase that is looked for in the productList
+     * @return             a list of product with the same name or id regarding what was searched
+     *                     for, or where the search phrase is part of the name or id
+     */
+    public ArrayList<Product> searchProduct(String searchPhrase) {
+        ArrayList<Product> productList;
+        try{
+            productList = this.searchProductById(Long.parseLong(searchPhrase));
+        } catch(Exception e){
+            productList = this.searchProductByName(searchPhrase);
+        }
+        return productList;
+    }
 }
