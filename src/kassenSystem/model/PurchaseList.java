@@ -173,13 +173,22 @@ public class PurchaseList {
     /**
      * Finishes the purchase, reduces the stock returns the subtotal and clears the purchaseList.
      */
-    public double finishPurchase() {
+    public double finishPurchase() throws Exception {
         for (Item item : this.purchaseList) {
             if (item.getProduct().getSpecialStock() == null) {
-                for (Product product : productList.)
+                for (Product product : productList.getProductList()) {
+                    if (item.getProduct().equals(product)) {
+                        product.setStock((int) item.getAmount());
+                    }
+                }
+            } else {
+                for (Product product : productList.getProductList()) {
+                    if (item.getProduct().equals(product)) {
+                        product.setWeight(item.getAmount());
+                    }
+                }
             }
         }
-        //reduce Stock by amount
         this.purchaseList.clear();
         return getSubtotal();
     }
