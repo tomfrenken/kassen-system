@@ -49,11 +49,20 @@ public class Item {
      * @throws Exception If the stock is smaller then the amount
      */
     public void setAmount(int amount) throws Exception {
-        if(product.getStock() - amount >=0) {
-            this.amount = amount;
+        if (product.getSpecialStock() == null) {
+            if (product.getStock() - amount >= 0) {
+                this.amount = amount;
+            } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() +
+                        " ist zu gering für diese Operation.");
+            }
         } else {
-            throw new Exception("Der Bestand des Artikels " + product.getName() +
-                    " ist zu gering für diese Operation.");
+            if (product.getWeight() - amount >= 0) {
+                this.amount = amount;
+            } else {
+                throw new Exception("Der Bestand des Artikels " + product.getName() +
+                        " ist zu gering für diese Operation.");
+            }
         }
     }
 
