@@ -66,9 +66,10 @@ public class PurchaseListTest {
      */
     @Test
     public void purchase1() throws Exception {
-        purchaseList.addItem();
-        productList.addProduct("Apfel Bismarck", 1815, 100, 1, "g", 0.01, "Obst");
-        productList.addProduct("Apfel Otto", 1898, 100, 1815, "g", 100000, "Obst");
+
+        purchaseList.addItem(purchaseList.getProductList().get(2), 2); // Tomate Savanna
+        purchaseList.addItem(purchaseList.getProductList().get(0), 4); // Brausepulver Zuckerfrei; 15.96
+        purchaseList.addItem(purchaseList.getProductList().get(8), 1); // Zucker-Ganglien; 45.32
         assertTrue(0.01 <= productList.getProduct(10).getPrice() && productList.getProduct(10).getPrice() <= 100000);
         assertTrue(0.01 <= productList.getProduct(11).getPrice() && productList.getProduct(11).getPrice() <= 100000);
     }
