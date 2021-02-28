@@ -87,13 +87,13 @@ public class PurchaseListTest {
     @Test
     public void purchase2() throws Exception{
         purchaseList.addItem(purchaseList.searchProductById((long) 12744532).get(0), 1); // Grüne Bohnen Eintopf; 1.59
-        purchaseList.addItem(purchaseList.searchProductById((long) 8597618758423L).get(0), 3); // Mehl 405; 2.97
+        purchaseList.addItem(purchaseList.searchProductById(8597618758423L).get(0), 3); // Mehl 405; 2.97
         purchaseList.addItem(purchaseList.searchProductById((long) 32135947).get(0), 7); // Apfelsaft Klar; 11.55
         assertEquals(16.11, purchaseList.finishPurchase());
         purchaseList.finishPurchase();
-        assertEquals(11, purchaseList.getProductList().get(2).getStock());
-        assertEquals(50, purchaseList.getProductList().get(0).getStock());
-        assertEquals(34, purchaseList.getProductList().get(8).getStock());
+        assertEquals(11, purchaseList.searchProductById((long)12744532).get(0).getStock());
+        assertEquals(50, purchaseList.searchProductById(8597618758423L).get(0).getStock());
+        assertEquals(34, purchaseList.searchProductById((long)32135947).get(0).getStock());
     }
 
 
