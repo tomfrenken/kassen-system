@@ -13,6 +13,7 @@ public class PurchaseList {
      */
     private double subtotal = 0;
     private final ArrayList<Item> purchaseList = new ArrayList<>();
+    private final ProductList productList = new ProductList();
 
     /**
      * PurchaseList constructor.
@@ -31,18 +32,52 @@ public class PurchaseList {
      * @throws Exception if amount of this item is bigger then the stock of the product it
      *                   represents
      */
-    public void addItem(Product product, int amount) throws Exception {
-        if (purchaseList.size() > 0) {
-            for (Item item : this.purchaseList) {
-                if (item.getProduct() == product) {
-                    item.changeAmount(amount);
-                    this.addSubtotal(product.getPrice() * amount);
-                    break;
+    public void addItem(Product product, double amount) throws Exception {
+        if (product.getSpecialStock() == null) {
+            if (this.purchaseList.size() > 0) {
+                for (Item item : this.purchaseList) {
+                    if (item.getProduct() == product) {
+                        item.changeAmount(amount);
+                        this.addSubtotal(product.getPrice() * amount);
+                        return;
+                    }
                 }
             }
+            this.purchaseList.add(new Item(product, amount));
+            this.addSubtotal(product.getPrice() * amount);
+        } else {
+            if (this.purchaseList.size() > 0) {
+                for (Item item : this.purchaseList) {
+                    if (item.getProduct() == product) {
+                        item.changeAmount(amount);
+                        switch(product.getWeightUnit()) {
+                            case "g":
+                            case "ml":
+                                this.addSubtotal(amount/100 * product.getBasePrice());
+                                break;
+
+                            case "kg":
+                            case "l":
+                            case "stück":
+                                this.addSubtotal(amount * product.getBasePrice());
+                        }
+                        break;
+                    }
+                }
+            }
+            this.purchaseList.add(new Item(product, amount));
+            switch(product.getWeightUnit()) {
+                case "g":
+                case "ml":
+                    this.addSubtotal(amount/100 * product.getBasePrice());
+                    break;
+
+                case "kg":
+                case "l":
+                case "stück":
+                    this.addSubtotal(amount * product.getBasePrice());
+            }
         }
-        this.purchaseList.add(new Item(product, amount));
-        this.addSubtotal(product.getPrice() * amount);
     }
 
 
@@ -52,8 +87,22 @@ public class PurchaseList {
      * @param item the item you want to remove from the purchaseList
      */
     public void removeItem(Item item) {
-        this.subtractSubtotal(item.getProduct().getPrice() * item.getAmount());
-        purchaseList.remove(item);
+        if (item.getProduct().getSpecialStock() == null) {
+            this.subtractSubtotal(item.getProduct().getPrice() * item.getAmount());
+        } else {
+            switch(item.getProduct().getWeightUnit()) {
+                case "g":
+                case "ml":
+                    this.subtractSubtotal(item.getAmount()/100 * item.getProduct().getBasePrice());
+                    break;
+
+                case "kg":
+                case "l":
+                case "stück":
+                    this.subtractSubtotal((item.getAmount()) * item.getProduct().getBasePrice());
+            }
+        }
+        this.purchaseList.remove(item);
     }
 
     /**
@@ -63,32 +112,48 @@ public class PurchaseList {
      * @param amount     the new amount
      * @throws Exception when the new item amount isn't left in stock
      */
-    public void setItemAmount(Item item, int amount) throws Exception {
-        if (purchaseList.contains(item)) {
+    public void setItemAmount(Item item, double amount) throws Exception {
+        if (this.purchaseList.contains(item)) {
             if (item.getProduct().getSpecialStock() == null) {
                 if (item.getAmount() - amount == 0) {
-                    this.subtractSubtotal(item.getAmount() * item.getProduct().getPrice());
-                    purchaseList.remove(item);
+                    this.removeItem(item);
                 } else if (item.getAmount() < amount) {
+                    item.setAmount(amount);
                     this.addSubtotal((amount - item.getAmount()) * item.getProduct()
                             .getPrice());
-                    item.setAmount(amount);
                 } else {
+                    item.setAmount(amount);
                     this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
                             .getPrice());
-                    item.setAmount(amount);
                 }
             } else {
-                if (item.getAmount() - amount == 0) {
-                    this.subtractSubtotal(item.getAmount() * item.getProduct().getBasePrice());
-                    purchaseList.remove(item);
+                if (item.getProduct().getWeight() - amount == 0) {
+                    this.removeItem(item);
                 } else if (item.getAmount() < amount) {
-                    this.addSubtotal((amount - item.getAmount()) * item.getProduct()
-                            .getBasePrice());
+                    switch(item.getProduct().getWeightUnit()) {
+                        case "g":
+                        case "ml":
+                            this.subtractSubtotal((amount - item.getAmount())/100  * item.getProduct().getBasePrice());
+                            break;
+
+                        case "kg":
+                        case "l":
+                        case "stück":
+                            this.subtractSubtotal((amount - item.getAmount()) * item.getProduct().getBasePrice());
+                    }
                     item.setAmount(amount);
                 } else {
-                    this.subtractSubtotal((item.getAmount() - amount) * item.getProduct()
-                            .getBasePrice());
+                    switch(item.getProduct().getWeightUnit()) {
+                        case "g":
+                        case "ml":
+                            this.subtractSubtotal((item.getAmount() - amount)/100  * item.getProduct().getBasePrice());
+                            break;
+
+                        case "kg":
+                        case "l":
+                        case "stück":
+                            this.subtractSubtotal((item.getAmount() - amount) * item.getProduct().getBasePrice());
+                    }
                     item.setAmount(amount);
                 }
             }
@@ -102,16 +167,30 @@ public class PurchaseList {
      * Clears the purchaseList to cancel the purchase.
      */
     public void cancelPurchase() {
-        purchaseList.clear();
+        this.purchaseList.clear();
     }
 
     /**
      * Finishes the purchase, reduces the stock returns the subtotal and clears the purchaseList.
      */
-    public void finishPurchase() {
-        //return subtotal to UI
-        //reduce Stock by amount
-        purchaseList.clear();
+    public double finishPurchase() throws Exception {
+        for (Item item : this.purchaseList) {
+            if (item.getProduct().getSpecialStock() == null) {
+                for (Product product : productList.getProductList()) {
+                    if (item.getProduct().equals(product)) {
+                        product.setStock((int) item.getAmount());
+                    }
+                }
+            } else {
+                for (Product product : productList.getProductList()) {
+                    if (item.getProduct().equals(product)) {
+                        product.setWeight(item.getAmount());
+                    }
+                }
+            }
+        }
+        this.purchaseList.clear();
+        return getSubtotal();
     }
 
     /**
