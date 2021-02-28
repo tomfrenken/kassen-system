@@ -61,7 +61,7 @@ public class PurchaseList {
                             case "stück":
                                 this.addSubtotal(amount * product.getBasePrice());
                         }
-                        break;
+                        return;
                     }
                 }
             }
