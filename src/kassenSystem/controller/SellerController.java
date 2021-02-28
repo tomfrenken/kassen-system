@@ -4,13 +4,15 @@ import kassenSystem.model.Product;
 import kassenSystem.model.ProductList;
 import kassenSystem.model.PurchaseList;
 import kassenSystem.view.SellerView;
+
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
  * The controller to connect the SellerView and the PurchaseListModel.
  */
-public class SellerController {
+public class SellerController implements ActionListener {
 
     private final SellerView view;
     private final PurchaseList model;
@@ -71,5 +73,15 @@ public class SellerController {
      */
     public ArrayList<Product> searchProduct(String searchPhrase) {
         return this.model.searchProduct(searchPhrase);
+    }
+
+    /**
+     * Invoked when an action occurs.
+     *
+     * @param e
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
